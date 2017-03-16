@@ -77,6 +77,17 @@
                 </ul>
             </li>
 
+            <li class="active">
+                <a href="/admin/category">
+                    <i class="fa fa-dashboard"></i> <span>Category</span>
+                </a>
+            </li>
+            <li class="active">
+                <a href="/admin/product">
+                    <i class="fa fa-dashboard"></i> <span>Product</span>
+                </a>
+            </li>
+
 
 
         </section>

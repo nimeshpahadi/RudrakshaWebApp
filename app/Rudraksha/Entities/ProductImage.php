@@ -8,7 +8,7 @@ class ProductImage extends Model
 {
     public $table = 'product_images';
     protected $fillable = [
-         'name',
+         'name','product_id'
     ];
     protected $casts = [
         'name' => 'array'

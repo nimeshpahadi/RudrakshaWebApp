@@ -3,34 +3,94 @@
 @section('main-content')
 
 
+    @if(isset($productid))
+        <div class="panel panel-success pad ">
+            <div class="panel-heading "><h5>Product Info</h5>
+            </div>
+            <a href="{{route('product.edit',$productid->id)}}">
+                <button class="btn btn-warning pad" data-toggle="popover" data-trigger="hover"
+                        data-placement="top" data-content="Edit the current category"><i class="fa fa-edit"></i>
+                </button>
+            </a>
+
+            {!! Form::open(['method' => 'DELETE','route' => ['product.destroy', $productid->id]]) !!}
+            <button type="submit" class="btn btn-danger glyphicon glyphicon-trash pad"  data-toggle="popover" data-trigger="hover"
+                    data-placement="top" data-content="Delete the current product"
+                    onclick="return confirm('Are you sure you want to delete this item?');">
+
+            </button>
+            {!! Form::close() !!}
+
+            <div class="row">
+                <label class="col-sm-6 "> Code :</label>
+                {{$productid->code}}
+            </div>
+
+            <div class="row">
+                <label class="col-sm-6 "> Name :</label>
+                {{$productid->name}}
+            </div>
+            <div class="row">
+                <label class="col-sm-6 "> Price:</label>
+                {{$productid->price}}
+            </div>
+            <div class="row">
+                <label class="col-sm-6 "> Rank :</label>
+                {{$productid->rank}}
+            </div>
+            <div class="row">
+                <label class="col-sm-6 "> Tags :</label>
+                {{ join(",",json_decode($productid['tag']))}}
+            </div>
+            <div class="row">
+                <label class="col-sm-6 "> Discount :</label>
+                {{$productid->discount}}
+            </div>
+            <div class="row">
+                <label class="col-sm-6 "> Quantity Available :</label>
+                {{$productid->quantity_available}}
+            </div>
+        </div>
+    @endif
+
+
+
+
+
     <div class="panel panel-info">
         <div class="panel-heading">Product Info</div>
         <div class="panel-body">
-       @if(isset($productid))
-           Id:  {{$productid->id}}<br>
-           Code:  {{$productid->code}}<br>
-           Name:  {{$productid->name}}<br>
-            Price:{{$productid->price}}<br>
-            Rank: {{$productid->rank}}<br>
-           Tags:  {{$productid->tag}}<br>
-            Discount: {{$productid->discount}}<br>
-            Quantity: {{$productid->quantity_available}}<br>
-           @endif
-        </div>
-    </div>
-
- <div class="panel panel-info">
-        <div class="panel-heading">Product Info</div>
-        <div class="panel-body">
-{{--            {{$product_desc}}--}}
             @if(isset($product_desc))
-           Id:  {{$product_desc->product_id}}<br>
-           Information:  {{$product_desc->information}}<br>
-           Description:  {{$product_desc->description}}<br>
-            Benifit: @foreach($product_desc->benifit as $benifits)
-{{--                {{$benifits}}--}}
-                    @endforeach<br>
-                @endif
+
+                <div class="row">
+                    <label class="col-sm-6 "> Information :</label>
+                    {{$product_desc->information}}
+                </div>
+                <div class="row">
+                    <label class="col-sm-6 "> Description :</label>
+                    {{$product_desc->description}}
+                </div>
+                <div class="row">
+                    <label class="col-sm-6 "> Benifits :</label>
+
+                   <table>
+                       @foreach($product_desc->benifit as $benifits=>$benifitlist)
+                           <thead>
+                           <th>{{$benifits}}</th>
+                           </thead>
+                       <tr>
+                           @foreach($benifitlist as $blist)
+                           <td><li>{{$blist}}</li></td>
+                       </tr>
+                    @endforeach
+
+                @endforeach
+                   </table>
+
+                </div>
+
+
+            @endif
 
         </div>
     </div>
@@ -38,11 +98,17 @@
     <div class="panel panel-info">
         <div class="panel-heading">Product Image</div>
         <div class="panel-body">
-                        {{--{{$product_image}}--}}
             @if(isset($product_image))
+                @foreach($product_image as $image=>$imagelist)
+                    @foreach(json_decode($imagelist->name) as $img)
+                        {{--ln -s ~/web/RudrakshaWebbapp/storage/app/public/product ~/web/RudrakshaWebbapp/public/storage/--}}
 
-            {{--Id:  {{$product_image->product_id}}<br>--}}
-            {{--<td><img class="productimage" src="storage/product/{{$product_image->name}}"></td>--}}
+                        <img class="productimage" src="storage/product/{{$img}}" >
+
+                    @endforeach
+
+
+                @endforeach
             @endif
         </div>
     </div>

@@ -9,6 +9,7 @@
 namespace App\Rudraksha\Services;
 
 
+use App\Rudraksha\Repositories\CategoryRepository;
 use App\Rudraksha\Repositories\ProductRepository;
 
 class ProductService
@@ -18,10 +19,20 @@ class ProductService
      * @var ProductRepository
      */
     private $productRepository;
+    /**
+     * @var CategoryRepository
+     */
+    private $categoryRepository;
 
-    public function __construct(ProductRepository $productRepository)
+    /**
+     * ProductService constructor.
+     * @param ProductRepository $productRepository
+     * @param CategoryRepository $categoryRepository
+     */
+    public function __construct(ProductRepository $productRepository, CategoryRepository $categoryRepository)
     {
         $this->productRepository = $productRepository;
+        $this->categoryRepository = $categoryRepository;
     }
 
     /**
@@ -33,7 +44,6 @@ class ProductService
     {
         $formData = $request->all();
         $tags = explode("," , $formData['tag']);
-//        dd($tags);
         $formData = array_except($formData, ['_token', 'to', 'remove']);
         $formData['tag'] = json_encode($tags);
         $data= $this->productRepository->storeProduct($formData);
@@ -58,10 +68,19 @@ class ProductService
     public function store_ProductImage($request)
     {
         $formData = $request->all();
-//
         $formData = array_except($formData, ['_token', 'to', 'remove']);
-        $data= $this->productRepository->storeProductImage($formData);
-        return $data;
+        $data =[];
+        $images=[];
+        $data['product_id'] =$formData['product_id'];
+        foreach ($formData['name'] as $img) {
+            $imagename = $formData['product_id']. '_' . $img . '_' . time() . '.' . $img->getClientOriginalExtension();
+            array_push($images,$imagename);
+            $destinationPath = storage_path('app/public/product');
+            $img->move($destinationPath, $imagename);
+        }
+        $data['name']=json_encode($images);
+        return $this->productRepository->storeProductImage($data);
+
     }
 
     /**
@@ -70,7 +89,13 @@ class ProductService
      */
     public function getProductasCategory()
     {
-        $data=$this->productRepository->getCategoryProduct();
+
+        $data = [];
+        $cat=$this->categoryRepository->getCategory();
+        foreach ($cat as $cate) {
+            $data[$cate->name] = [];
+            $data[$cate->name]["product"] = $this->productRepository->getCategoryProduct($cate->id);
+            }
         return $data;
     }
 
@@ -83,6 +108,24 @@ class ProductService
     public function get_product_image($id)
     {
         $data=$this->productRepository->get_productImage($id);
+        return $data;
+    }
+
+    public function allProduct()
+    {
+        $data=$this->productRepository->all_product();
+        return $data;
+    }
+
+    public function edit_productInfo($request, $id)
+    {
+        $data=$this->productRepository->editProductInfo($request,$id);
+        return $data;
+    }
+
+    public function deleteproductInfo($id)
+    {
+        $data=$this->productRepository->deleteProductInfo($id);
         return $data;
     }
 

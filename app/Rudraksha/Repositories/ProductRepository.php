@@ -40,7 +40,7 @@ class ProductRepository
      */
     private $productImage;
 
-    public function __construct(ProductInfo $productInfo,ProductDescription $productDescription,ProductImage $productImage, Log $log,Category $category)
+    public function __construct(ProductInfo $productInfo, ProductDescription $productDescription, ProductImage $productImage, Log $log, Category $category)
     {
         $this->productInfo = $productInfo;
         $this->log = $log;
@@ -57,30 +57,29 @@ class ProductRepository
     public function storeProduct($formData)
     {
         try {
-            dd($formData);
-            $data=$this->productInfo->create($formData);
+            $data = $this->productInfo->create($formData);
             $this->log->info("Product Created");
             return $data;
         } catch (QueryException $e) {
-            $this->log->error(printf("Product Creation Failed %s",$e->getMessage()));
+            $this->log->error("Product Creation Failed %s",[$e->getMessage()]);
             return false;
         }
     }
 
     public function get_productbyId($id)
     {
-        $query= $this->productInfo->select('*')->where('id',$id)->first();
+        $query = $this->productInfo->select('*')->where('id', $id)->first();
         return $query;
     }
 
     public function storeProductDesc($formData)
     {
         try {
-            $data=$this->productDescription->insert($formData);
+            $data = $this->productDescription->insert($formData);
             $this->log->info("Product Description Added");
             return $data;
         } catch (QueryException $e) {
-            $this->log->error(printf("Product Description creation Failed %s",$e->getMessage()));
+            $this->log->error("Product Description creation Failed %s", [$e->getMessage()]);
             return false;
         }
     }
@@ -88,45 +87,25 @@ class ProductRepository
     public function storeProductImage($formData)
     {
         try {
-            $data = new ProductImage();
-            $data->product_id = $formData['product_id'];
-            foreach ($formData['name'] as $img) {
-                $imagename[] = $data->product_id . '_'. $img . '_' . time() . '.' . $img->getClientOriginalExtension();
 
-                foreach ($imagename as $image)
-                {
-                    $destinationPath = storage_path('app/public/product');
-                     $data->name = $imagename;
-//                   $img->move($destinationPath, $image);
-
-                }
-            }
-//            dd($data);
-            $data->save();
+            $t = $this->productImage->create($formData);
             $this->log->info("Product Image added");
-            return $data;
-        } catch (QueryException $e) {
-            $this->log->error("Product Image Creation Failed");
+            return $t;
 
+        } catch (QueryException $e) {
+
+            $this->log->error("Product Image Creation Failed : ",[$e->getMessage()]);
             return false;
         }
     }
 
-    public function getCategoryProduct()
+    public function getCategoryProduct($id)
     {
-//        $query= $this->productInfo->select('product_infos.*','categories.name as cname','categories.id as cid')
-//                                    ->join('categories','categories.id','product_infos.category_id')
-//                                    ->where('categories.id','product_infos.category_id')
-////                                    ->groupBy('categories.id')
-//                                        ->get();
-
-
-        $query= $this->category->select(DB::raw('product_infos.*,product_infos.category_id as catid,
-        categories.name as cname,categories.id as cid'))
-            ->join('product_infos','categories.id','product_infos.category_id')
-//            ->groupBy('categories.name')
-            ->get();
-//        dd($query);
+        $query = $this->productInfo->select('product_infos.*')
+            ->join('categories', 'categories.id', 'product_infos.category_id')
+            ->where('product_infos.category_id', $id)
+            ->groupBy('product_infos.category_id', 'product_infos.id')
+            ->get()->toArray();
         return $query;
 
     }
@@ -134,15 +113,61 @@ class ProductRepository
     public function get_productDesc($id)
     {
 
-        $query= $this->productDescription->select('*')->where('product_id',$id)->first();
+        $query = $this->productDescription->select('*')->where('product_id', $id)->first();
 //        dd($query);
         return $query;
     }
 
     public function get_productImage($id)
     {
-        $query= $this->productImage->select('*')->where('product_id',$id)->get();
+        $query = $this->productImage->select('*')->where('product_id', $id)->get();
         return $query;
+    }
+
+    public function all_product()
+    {
+        $query = $this->productInfo->select('*')->get();
+        return $query;
+    }
+
+    public function editProductInfo($request, $id)
+    {
+
+        try {
+            $data = ProductRepository::get_productbyId($id);
+            $data->category_id = $request->category_id;
+            $data->code = $request->code;
+            $data->name = $request->name;
+            $data->price = $request->price;
+            $data->rank = $request->rank;
+            $data->status = $request->status;
+            $data->tag = $request->tag;
+            $data->discount = $request->discount;
+            $data->quantity_available = $request->quantity_available;
+//            dd($data);
+            $data->update();
+            $this->log->info("Product Info Updated", ['id' => $id]);
+
+            return true;
+        } catch (QueryException $e) {
+            $this->log->error("Product Update  Failed %s", ['id' => $id], [$e->getMessage()]);
+
+            return false;
+        }
+    }
+
+    public function deleteProductInfo($id)
+    {
+        try {
+            $query = $this->productInfo->find($id);
+            $query->delete();
+            $query;
+            $this->log->info("Product Info Deleted",['id'=>$id]);
+            return true;
+        } catch (Exception $e) {
+            $this->log->error("Customer Address Deletion Failed",['id' => $id], [$e->getMessage()]);
+            return false;
+        }
     }
 
 }
