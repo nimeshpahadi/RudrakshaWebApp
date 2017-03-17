@@ -32,7 +32,31 @@
                         </div>
                     </div>
 
+                    @foreach($desc["benifit"] as $head=>$value)
 
+                        @foreach($value as $list)
+                            @if($head =='health')
+                           {{$list}}
+
+                             @endif
+                        @endforeach
+                             @endforeach
+
+                    <div class="form-group{{ $errors->has('benifit') ? ' has-error' : '' }} clearfix">
+                        <label for="benifit" class="col-sm-4 control-label"> Health Benifits </label>
+
+
+                        <div class="col-sm-8">
+
+                            <div class="" id="room_fileds">
+                                <input id="more_fields" type="text" class="form-control" name='benifit[health][]'
+                                       autofocus>
+                            </div>
+                            <input type="button" id="more_fields" onclick="add_fields();" value="Add More"/>
+
+
+                        </div>
+                    </div>
                     {{--<div class="form-group{{ $errors->has('benifit[health][]') ? ' has-error' : '' }} clearfix">--}}
                     {{--<label for="benifit[health][]" class="col-sm-4 control-label">Health Benifit</label>--}}
 
