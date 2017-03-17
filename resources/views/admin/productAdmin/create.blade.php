@@ -12,10 +12,10 @@
                     <div class="col-md-12 well text-center">
                         <h1>Product Info</h1>
 
-                        {!! Form::open(array('route'=>'product.store', 'method'=>'post' ))!!}
+                        {!! Form::open(array('route'=>'products.store', 'method'=>'post' ))!!}
 
                         <div class="form-group{{ $errors->has('category_id') ? ' has-error' : '' }} clearfix">
-                            <label for="category_id" class="col-sm-4 control-label">Warehouse </label>
+                            <label for="category_id" class="col-sm-4 control-label">Category ID </label>
 
                             <div class="col-md-8 warehouse">
                                 <select id="category_id" name="category_id"

@@ -12,8 +12,8 @@
                         <h1>Product Image</h1>
 
                         @if(!isset($product_image))
-
-
+                            Product image already exists
+                        @endif
 
                         {!! Form::open(array('route'=>'product_image_add', 'method'=>'post','enctype'=>'multipart/form-data' ))!!}
 
@@ -34,9 +34,7 @@
                             {!! Form::close() !!}
 
                     </div>
-                        @else
-                            Product image already exists
-                        @endif
+
                 </div>
             </div>
 

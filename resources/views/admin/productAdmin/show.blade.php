@@ -7,13 +7,13 @@
         <div class="panel panel-success pad ">
             <div class="panel-heading "><h5>Product Info</h5>
             </div>
-            <a href="{{route('product.edit',$productid->id)}}">
+            <a href="{{route('products.edit',$productid->id)}}">
                 <button class="btn btn-warning pad" data-toggle="popover" data-trigger="hover"
                         data-placement="top" data-content="Edit the current category"><i class="fa fa-edit"></i>
                 </button>
             </a>
 
-            {!! Form::open(['method' => 'DELETE','route' => ['product.destroy', $productid->id]]) !!}
+            {!! Form::open(['method' => 'DELETE','route' => ['products.destroy', $productid->id]]) !!}
             <button type="submit" class="btn btn-danger glyphicon glyphicon-trash pad" data-toggle="popover"
                     data-trigger="hover"
                     data-placement="top" data-content="Delete the current product"
@@ -112,11 +112,8 @@
                 @foreach($product_image as $image=>$imagelist)
                     @foreach(json_decode($imagelist->name) as $img)
 
-                        {{--ln -s ~/web/RudrakshaWebbapp/storage/app/public/product ~/web/RudrakshaWebbapp/public/admin/product/storage/--}}
-
-                        <img class="productimage" src="storage/product/{{$img}}">
-
-
+                        {{--ln -s ~/web/RudrakshaWebbapp/storage/app/public/product ~/web/RudrakshaWebbapp/public/storage/--}}
+                        <img class="productimage" src="{{asset('storage/product')}}/{{$img}}" style="padding: 10px; border:dotted">
 
                     @endforeach
 

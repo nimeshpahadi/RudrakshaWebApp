@@ -185,4 +185,18 @@ class ProductRepository
         }
     }
 
+    public function deleteProductImg($id)
+    {
+        try {
+            $query = $this->productImage->find($id);
+            $query->delete();
+            $query;
+            $this->log->info("Product Image Deleted",['id'=>$id]);
+            return true;
+        } catch (Exception $e) {
+            $this->log->error("Product Image Deletion Failed",['id' => $id], [$e->getMessage()]);
+            return false;
+        }
+    }
+
 }

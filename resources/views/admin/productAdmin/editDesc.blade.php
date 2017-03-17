@@ -11,7 +11,7 @@
                 <div class="col-md-12 well text-center">
                     <h1>Product Description</h1>
 
-                    {!! Form::model($desc,array('route'=>['product.update',$desc],'method'=>'PUT' ))!!}
+                    {!! Form::model($desc,array('route'=>['products.update',$desc],'method'=>'PUT' ))!!}
 
                     {{ Form::hidden('product_id', $desc->product_id) }}
 

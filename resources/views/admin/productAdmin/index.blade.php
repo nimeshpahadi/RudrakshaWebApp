@@ -3,7 +3,7 @@
 @section('main-content')
 
     <div align="right" style="padding: 10px">
-        <a href="{{route('product.create')}}">
+        <a href="{{route('products.create')}}">
             <span class=" btn btn-sm btn-success" title="Create new category">Create Product</span>
         </a>
     </div>
@@ -41,7 +41,7 @@
                                 <td>{{ join(",",json_decode($item['tag']))}}</td>
                                 <td>{{$item['discount'] }}</td>
                                 <td>{{$item['rank'] }}</td>
-                                <td><a href="{{route('product.show',$item['id'])}}">
+                                <td><a href="{{route('products.show',$item['id'])}}">
                                         <button class="btn btn-sm btn-success" title="View the order details">View
                                         </button>
                                     </a></td>

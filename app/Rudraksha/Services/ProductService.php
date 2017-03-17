@@ -144,4 +144,11 @@ class ProductService
         $data=$this->productRepository->deleteProductDesc($descid->id);
         return $data;
     }
+
+    public function deleteproductImage($id)
+    {
+        $imageid=$this->productRepository->get_productImage($id);
+        $data=$this->productRepository->deleteProductImg($imageid->id);
+        return $data;
+    }
 }

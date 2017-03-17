@@ -83,7 +83,7 @@
                 </a>
             </li>
             <li class="active">
-                <a href="/admin/product">
+                <a href="/admin/products">
                     <i class="fa fa-dashboard"></i> <span>Product</span>
                 </a>
             </li>

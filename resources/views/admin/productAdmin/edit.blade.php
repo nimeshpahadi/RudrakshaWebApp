@@ -12,7 +12,7 @@
                 <div class="col-md-12 well text-center">
                     <h1>Edit Product Info</h1>
 
-                    {!! Form::model($pro_id,array('route'=>['product.update',$pro_id->id],'method'=>'PUT' ))!!}
+                    {!! Form::model($pro_id,array('route'=>['products.update',$pro_id->id],'method'=>'PUT' ))!!}
 
                     <div class="form-group{{ $errors->has('category_id') ? ' has-error' : '' }} clearfix">
                         <label for="category_id" class="col-sm-4 control-label">Warehouse </label>

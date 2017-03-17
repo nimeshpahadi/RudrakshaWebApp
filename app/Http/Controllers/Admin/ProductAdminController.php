@@ -97,7 +97,7 @@ class ProductAdminController extends Controller
     public function storeImage(Request $request)
     {
         if ($data = $this->productService->store_ProductImage($request)) {
-            return redirect()->route('product.index')->withSuccess("Product Image added!");
+            return redirect()->route('products.index')->withSuccess("Product Image added!");
         }
         return back()->withErrors("Something went wrong");
 
@@ -159,7 +159,7 @@ class ProductAdminController extends Controller
     {
         if ($product = $this->productService->edit_productInfo($request, $id)) {
 
-            return redirect()->route('product.index')->withSuccess("Product edited!");
+            return redirect()->route('products.index')->withSuccess("Product edited!");
         }
         return back()->withErrors('something went wrong');
     }
@@ -201,6 +201,19 @@ class ProductAdminController extends Controller
     {
         if ($this->productService->deleteproductDesc($id)) {
             return redirect('/admin/product')->withSuccess('Product Description Deleted');
+        }
+        return back()->withErrors('something went wrong');
+
+    }
+    /**
+     * delete the description of product
+     * @param $id
+     * @return $this
+     */
+    public function deleteImage($id)
+    {
+        if ($this->productService->deleteproductImage($id)) {
+            return redirect('/admin/product')->withSuccess('Product Image Deleted');
         }
         return back()->withErrors('something went wrong');
 
