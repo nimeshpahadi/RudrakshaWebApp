@@ -73,11 +73,13 @@ class ProductService
         $images=[];
         $data['product_id'] =$formData['product_id'];
         foreach ($formData['name'] as $img) {
-            $imagename = $formData['product_id']. '_' . $img . '_' . time() . '.' . $img->getClientOriginalExtension();
+            $imagename = $formData['product_id']. '_' . rand(0,10000) . '.' . $img->getClientOriginalExtension();
             array_push($images,$imagename);
             $destinationPath = storage_path('app/public/product');
             $img->move($destinationPath, $imagename);
         }
+//        dd($imagename);
+
         $data['name']=json_encode($images);
         return $this->productRepository->storeProductImage($data);
 
@@ -119,7 +121,14 @@ class ProductService
 
     public function edit_productInfo($request, $id)
     {
-        $data=$this->productRepository->editProductInfo($request,$id);
+
+        $formData = $request->all();
+        $tags = explode("," , $formData['tag']);
+        $formData = array_except($formData, ['_token', 'to', 'remove']);
+        $formData['tag'] = json_encode($tags);
+//        $data= $this->productRepository->storeProduct($formData);
+
+        $data=$this->productRepository->editProductInfo($formData,$id);
         return $data;
     }
 
@@ -129,4 +138,10 @@ class ProductService
         return $data;
     }
 
+    public function deleteproductDesc($id)
+    {
+        $descid=$this->productRepository->get_productDesc($id);
+        $data=$this->productRepository->deleteProductDesc($descid->id);
+        return $data;
+    }
 }

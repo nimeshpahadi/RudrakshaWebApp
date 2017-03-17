@@ -14,7 +14,8 @@
             </a>
 
             {!! Form::open(['method' => 'DELETE','route' => ['product.destroy', $productid->id]]) !!}
-            <button type="submit" class="btn btn-danger glyphicon glyphicon-trash pad"  data-toggle="popover" data-trigger="hover"
+            <button type="submit" class="btn btn-danger glyphicon glyphicon-trash pad" data-toggle="popover"
+                    data-trigger="hover"
                     data-placement="top" data-content="Delete the current product"
                     onclick="return confirm('Are you sure you want to delete this item?');">
 
@@ -54,14 +55,24 @@
     @endif
 
 
-
-
-
     <div class="panel panel-info">
-        <div class="panel-heading">Product Info</div>
+        <div class="panel-heading">Product Description</div>
         <div class="panel-body">
-            @if(isset($product_desc))
 
+            @if(isset($product_desc))
+                <a href="{{route('product_desc_edit',$productid->id)}}">
+                    <button class="btn btn-warning pad" data-toggle="popover" data-trigger="hover"
+                            data-placement="top" data-content="Edit the current category"><i class="fa fa-edit"></i>
+                    </button>
+                </a>
+
+                {!! Form::open(['method' => 'DELETE','route' => ['product_desc_delete', $productid->id]]) !!}
+                <button type="submit" class="btn btn-danger glyphicon glyphicon-trash pad" data-toggle="popover"
+                        data-trigger="hover"
+                        data-placement="top" data-content="Delete the current product"
+                        onclick="return confirm('Are you sure you want to delete this item?');">
+
+                </button>
                 <div class="row">
                     <label class="col-sm-6 "> Information :</label>
                     {{$product_desc->information}}
@@ -73,22 +84,21 @@
                 <div class="row">
                     <label class="col-sm-6 "> Benifits :</label>
 
-                   <table>
-                       @foreach($product_desc->benifit as $benifits=>$benifitlist)
-                           <thead>
-                           <th>{{$benifits}}</th>
-                           </thead>
-                       <tr>
-                           @foreach($benifitlist as $blist)
-                           <td><li>{{$blist}}</li></td>
-                       </tr>
-                    @endforeach
-
-                @endforeach
-                   </table>
-
+                    <table>
+                        @foreach($product_desc->benifit as $benifits=>$benifitlist)
+                            <thead>
+                            <th>{{$benifits}}</th>
+                            </thead>
+                            <tr>
+                                @foreach($benifitlist as $blist)
+                                    <td>
+                                        <li>{{$blist}}</li>
+                                    </td>
+                            </tr>
+                        @endforeach
+                        @endforeach
+                    </table>
                 </div>
-
 
             @endif
 
@@ -101,9 +111,12 @@
             @if(isset($product_image))
                 @foreach($product_image as $image=>$imagelist)
                     @foreach(json_decode($imagelist->name) as $img)
-                        {{--ln -s ~/web/RudrakshaWebbapp/storage/app/public/product ~/web/RudrakshaWebbapp/public/storage/--}}
 
-                        <img class="productimage" src="storage/product/{{$img}}" >
+                        {{--ln -s ~/web/RudrakshaWebbapp/storage/app/public/product ~/web/RudrakshaWebbapp/public/admin/product/storage/--}}
+
+                        <img class="productimage" src="storage/product/{{$img}}">
+
+
 
                     @endforeach
 

@@ -130,20 +130,21 @@ class ProductRepository
         return $query;
     }
 
-    public function editProductInfo($request, $id)
+    public function editProductInfo($formData, $id)
     {
 
         try {
             $data = ProductRepository::get_productbyId($id);
-            $data->category_id = $request->category_id;
-            $data->code = $request->code;
-            $data->name = $request->name;
-            $data->price = $request->price;
-            $data->rank = $request->rank;
-            $data->status = $request->status;
-            $data->tag = $request->tag;
-            $data->discount = $request->discount;
-            $data->quantity_available = $request->quantity_available;
+//            dd($formData);
+            $data->category_id = $formData['category_id'];
+            $data->code = $formData['code'];
+            $data->name = $formData['name'];
+            $data->price = $formData['price'];
+            $data->rank = $formData['rank'];
+            $data->status = $formData['status'];
+            $data->tag = $formData['tag'];
+            $data->discount = $formData['discount'];
+            $data->quantity_available = $formData['quantity_available'];
 //            dd($data);
             $data->update();
             $this->log->info("Product Info Updated", ['id' => $id]);
@@ -165,7 +166,21 @@ class ProductRepository
             $this->log->info("Product Info Deleted",['id'=>$id]);
             return true;
         } catch (Exception $e) {
-            $this->log->error("Customer Address Deletion Failed",['id' => $id], [$e->getMessage()]);
+            $this->log->error("Product Info Deletion Failed",['id' => $id], [$e->getMessage()]);
+            return false;
+        }
+    }
+
+    public function deleteProductDesc($id)
+    {
+        try {
+            $query = $this->productDescription->find($id);
+            $query->delete();
+            $query;
+            $this->log->info("Product Description Deleted",['id'=>$id]);
+            return true;
+        } catch (Exception $e) {
+            $this->log->error("Product Description Deletion Failed",['id' => $id], [$e->getMessage()]);
             return false;
         }
     }

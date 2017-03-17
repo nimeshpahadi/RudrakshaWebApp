@@ -11,54 +11,48 @@
 
         @if(isset($catprod))
             @foreach($catprod as $cat=>$value)
-                <tr>
-                    <td><h2>{{$cat }}</h2></td>
 
-                    <table id="example1"
-               class="table table-striped table-bordered dt-responsive  table-responsive "
-               cellspacing="0" width="100%">
-            <thead>
-            <tr>
-                <th>Name</th>
-                <th>Code </th>
-                <th>quantity</th>
-                <th>tags .</th>
-                <th>discount</th>
-                <th>rank</th>
-                <th>remark</th>
+                <td><h2>{{$cat }}</h2></td>
 
-            </tr>
-            </thead>
+                <table id="example1"
+                       class="table table-striped table-bordered dt-responsive  table-responsive "
+                       cellspacing="0" width="100%">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Code</th>
+                        <th>quantity</th>
+                        <th>tags .</th>
+                        <th>discount</th>
+                        <th>rank</th>
+                        <th>remark</th>
 
-                        @if(isset($value['product'] ))
-                            @foreach($value['product'] as $prodCat=>$item)
+                    </tr>
+                    </thead>
+
+                    @if(isset($value['product'] ))
+                        @foreach($value['product'] as $prodCat=>$item)
                             <tbody>
+                            <tr>
 
-
-                                 <td>{{$item['name'] }}</td>
-                                 <td>{{$item['code'] }}</td>
-                                 <td>{{$item['quantity_available'] }}</td>
-                                 <td>{{ join(",",json_decode($item['tag']))}}</td>
-                                 <td>{{$item['discount'] }}</td>
-                                 <td>{{$item['rank'] }}</td>
-                                 <td> <a href="{{route('product.show',$item['id'])}}">
-                                         <button class="btn btn-sm btn-success" title="View the order details">View</button>
-                                     </a></td>
+                                <td>{{$item['name'] }}</td>
+                                <td>{{$item['code'] }}</td>
+                                <td>{{$item['quantity_available'] }}</td>
+                                <td>{{ join(",",json_decode($item['tag']))}}</td>
+                                <td>{{$item['discount'] }}</td>
+                                <td>{{$item['rank'] }}</td>
+                                <td><a href="{{route('product.show',$item['id'])}}">
+                                        <button class="btn btn-sm btn-success" title="View the order details">View
+                                        </button>
+                                    </a></td>
+                            </tr>
                             </tbody>
-                            @endforeach
-                        @endif
+                        @endforeach
+                    @endif
 
 
+                </table>
 
-
-
-
-
-
-
-
-        </table>
-                </tr>
             @endforeach
         @endif
     </div>

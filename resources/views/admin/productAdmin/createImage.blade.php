@@ -11,13 +11,15 @@
                     <div class="col-md-12 well text-center">
                         <h1>Product Image</h1>
 
+                        @if(!isset($product_image))
+
+
+
                         {!! Form::open(array('route'=>'product_image_add', 'method'=>'post','enctype'=>'multipart/form-data' ))!!}
 
                         {{ Form::hidden('product_id', $productid) }}
 
-
-
-                        <div class="form-group ">
+                            <div class="form-group ">
                             <label for="name" class="col-sm-4 control-label">Image</label>
                             <div class=" col-sm-8 ">
 
@@ -25,10 +27,6 @@
                                 <input type="file" class="form-control" name="name[]" id="name" required autofocus  multiple>
                             </div>
                         </div>
-{{--                      {!!  Form::file('name[]', ['multiple' => 'multiple']) !!}--}}
-
-
-
 
                         <div class="clearfix pad"></div>
                         <div align="right" >
@@ -36,6 +34,9 @@
                             {!! Form::close() !!}
 
                     </div>
+                        @else
+                            Product image already exists
+                        @endif
                 </div>
             </div>
 
