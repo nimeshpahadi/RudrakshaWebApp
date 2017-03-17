@@ -6,8 +6,8 @@
  * Time: 10:50 AM
  */
 
-Route::get('/login', 'AdminController@getAdmin');
-Route::get('/hello', 'AdminController@index');
+Route::get('/login', 'AdminController@getAdmin')->middleware('auth:admin');
+Route::post('/hello', 'AdminController@index');
 
 Route::resource('/category', 'CategoryAdminController');
 Route::resource('/product', 'ProductAdminController');

@@ -56,6 +56,7 @@ class ProductApiRepository
             ->join('categories', 'categories.id', 'product_infos.category_id')
             ->join('product_images', 'product_images.product_id', 'product_infos.id')
             ->where('product_infos.category_id', $id)
+            ->orderBy('product_infos.rank')
             ->get()->toArray();
 
         return $query;
