@@ -6,7 +6,7 @@
  * Time: 12:18 PM
  */
 
-namespace App\Rudraksha\Repositories;
+namespace App\Rudraksha\Repositories\Api\User;
 
 
 use App\User;

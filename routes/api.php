@@ -13,5 +13,7 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/user/list', 'UserRegisterController@getUsers')->middleware('auth:api');
-Route::post('/user/create', 'UserRegisterController@createUser');
+Route::get('/user/list', 'User\UserRegisterController@getUsers')->middleware('auth:api');
+Route::post('/user/create', 'User\UserRegisterController@createUser');
+
+Route::get('/product/list', 'Product\ProductApiController@getProductList');

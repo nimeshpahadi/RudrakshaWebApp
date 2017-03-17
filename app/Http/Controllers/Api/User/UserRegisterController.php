@@ -10,7 +10,7 @@ namespace App\Http\Controllers\Api\User;
 
 
 use App\Rudraksha\ApiValidation\UserValidation;
-use App\Rudraksha\Services\UserRegisterService;
+use App\Rudraksha\Services\Api\User\UserRegisterService;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 

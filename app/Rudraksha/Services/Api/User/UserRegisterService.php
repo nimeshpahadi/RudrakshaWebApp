@@ -6,10 +6,10 @@
  * Time: 12:17 PM
  */
 
-namespace App\Rudraksha\Services;
+namespace App\Rudraksha\Services\Api\User;
 
 
-use App\Rudraksha\Repositories\UserRegisterRepository;
+use App\Rudraksha\Repositories\Api\User\UserRegisterRepository;
 
 class UserRegisterService
 {
