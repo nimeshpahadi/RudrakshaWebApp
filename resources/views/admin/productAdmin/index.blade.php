@@ -12,7 +12,7 @@
         @if(isset($catprod))
             @foreach($catprod as $cat=>$value)
 
-                <td><h2>{{$cat }}</h2></td>
+                <td><h2 class="" style="background-color: #8c8c8c">{{strtoupper($cat)}} </h2></td>
 
                 <table id="example1"
                        class="table table-striped table-bordered dt-responsive  table-responsive "
@@ -21,11 +21,11 @@
                     <tr>
                         <th>Name</th>
                         <th>Code</th>
-                        <th>quantity</th>
-                        <th>tags .</th>
-                        <th>discount</th>
-                        <th>rank</th>
-                        <th>remark</th>
+                        <th>Quantity</th>
+                        <th>Tags</th>
+                        <th>Discount</th>
+                        <th>Rank</th>
+                        <th>Remark</th>
 
                     </tr>
                     </thead>

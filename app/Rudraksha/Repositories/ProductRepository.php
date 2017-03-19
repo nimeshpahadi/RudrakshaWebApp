@@ -136,6 +136,16 @@ class ProductRepository
         return $query;
     }
 
+    /** get product image as per product id
+     * @param $id
+     * @return mixed
+     */
+    public function get_productImagebyid($id)
+    {
+        $query = $this->productImage->select('*')->where('id', $id)->first();
+        return $query;
+    }
+
     /**
      * get desc by id
      * @param $id
@@ -205,14 +215,15 @@ class ProductRepository
         }
     }
 
-    public function deleteProductImg($id)
+    public function deleteProductImg($id,$namearray)
     {
         try {
-            $query = $this->productImage->find($id);
-            $query->delete();
-            $query;
+            $data = ProductRepository::get_productImagebyid($id);
+            $data['name']=json_encode(array_values($namearray));
+            $data->update();
             $this->log->info("Product Image Deleted",['id'=>$id]);
             return true;
+
         } catch (Exception $e) {
             $this->log->error("Product Image Deletion Failed",['id' => $id], [$e->getMessage()]);
             return false;
@@ -222,19 +233,35 @@ class ProductRepository
     public function editProductDesc($formData, $id)
     {
         try {
-//            dd($formData);
+
             $data = ProductRepository::get_productdescid($id);
             $data->description = $formData['description'];
             $data->information = $formData['information'];
             $data->benifit = $formData['benifit'];
-
             $data->update();
             $this->log->info("Product Info Updated", ['id' => $id]);
-
             return true;
         } catch (QueryException $e) {
             $this->log->error("Product Update  Failed %s", ['id' => $id], [$e->getMessage()]);
 
+            return false;
+        }
+    }
+
+    public function editProductImage($Formdata, $id)
+    {
+        try {
+
+            $data = ProductRepository::get_productImagebyid($id);
+            $p= array_merge( json_decode($data->name),$Formdata['name']);
+            $data->name= json_encode($p);
+            $data->update();
+            $this->log->info("Product Image added");
+            return true;
+
+        } catch (QueryException $e) {
+
+            $this->log->error("Product Image Creation Failed : ",[$e->getMessage()]);
             return false;
         }
     }

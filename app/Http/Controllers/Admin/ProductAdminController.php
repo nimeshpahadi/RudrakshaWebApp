@@ -214,14 +214,25 @@ class ProductAdminController extends Controller
         return back()->withErrors('something went wrong');
 
     }
+
+
+    public function updateImage(Request $request, $id)
+    {
+        if ($this->productService->edit_productImage($request, $id)) {
+
+            return redirect()->route('products.index')->withSuccess("Product edited!");
+        }
+        return back()->withErrors('something went wrong');
+    }
+
     /**
-     * delete the description of product
+     * delete the image of product
      * @param $id
      * @return $this
      */
-    public function deleteImage($id)
+    public function deleteImage($id,$name)
     {
-        if ($this->productService->deleteproductImage($id)) {
+        if ($this->productService->deleteproductImage($id,$name)) {
             return redirect('/admin/products')->withSuccess('Product Image Deleted');
         }
         return back()->withErrors('something went wrong');

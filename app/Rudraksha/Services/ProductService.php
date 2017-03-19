@@ -11,6 +11,7 @@ namespace App\Rudraksha\Services;
 
 use App\Rudraksha\Repositories\CategoryRepository;
 use App\Rudraksha\Repositories\ProductRepository;
+use File;
 
 class ProductService
 {
@@ -142,10 +143,15 @@ class ProductService
         return $data;
     }
 
-    public function deleteproductImage($id)
+    public function deleteproductImage($id,$name)
     {
-        $imageid=$this->productRepository->get_productImage($id);
-        $data=$this->productRepository->deleteProductImg($imageid->id);
+        $query = $this->productRepository->get_productImagebyid($id);
+        $namearray=(json_decode($query->name));
+        $imageKey=array_search($name,$namearray);
+        unset($namearray[$imageKey]);
+        $path = storage_path().'/app/public/product/';
+        File::delete($path . $name);
+        $data=$this->productRepository->deleteProductImg($id,$namearray);
         return $data;
     }
 
@@ -156,5 +162,28 @@ class ProductService
         $formData['benifit'] = json_encode($formData['benifit']);
         $data= $this->productRepository->editProductDesc($formData,$id);
         return $data;
+    }
+
+    public function edit_productImage($request, $id)
+    {
+
+        $formData = $request->all();
+        $formData = array_except($formData, ['_token', 'to', 'remove']);
+        $data =[];
+        $images=[];
+        foreach ($formData['name'] as $img) {
+            $imagename = $formData['product_id']. '_' . rand(0,10000) . '.' . $img->getClientOriginalExtension();
+            array_push($images,$imagename);
+            $destinationPath = storage_path('app/public/product');
+            $img->move($destinationPath, $imagename);
+        }
+
+        $data['name']=$images;
+        return $this->productRepository->editProductImage($data,$id);
+
+
+
+
+
     }
 }
