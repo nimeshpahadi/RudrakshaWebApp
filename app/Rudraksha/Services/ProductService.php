@@ -78,7 +78,6 @@ class ProductService
             $destinationPath = storage_path('app/public/product');
             $img->move($destinationPath, $imagename);
         }
-//        dd($imagename);
 
         $data['name']=json_encode($images);
         return $this->productRepository->storeProductImage($data);
@@ -126,8 +125,6 @@ class ProductService
         $tags = explode("," , $formData['tag']);
         $formData = array_except($formData, ['_token', 'to', 'remove']);
         $formData['tag'] = json_encode($tags);
-//        $data= $this->productRepository->storeProduct($formData);
-
         $data=$this->productRepository->editProductInfo($formData,$id);
         return $data;
     }
@@ -149,6 +146,15 @@ class ProductService
     {
         $imageid=$this->productRepository->get_productImage($id);
         $data=$this->productRepository->deleteProductImg($imageid->id);
+        return $data;
+    }
+
+    public function edit_productDesc($request, $id)
+    {
+        $formData = $request->all();
+        $formData = array_except($formData, ['_token', 'to', 'remove']);
+        $formData['benifit'] = json_encode($formData['benifit']);
+        $data= $this->productRepository->editProductDesc($formData,$id);
         return $data;
     }
 }

@@ -173,7 +173,7 @@ class ProductAdminController extends Controller
     public function destroy($id)
     {
         if ($this->productService->deleteproductInfo($id)) {
-            return redirect('/admin/product')->withSuccess('Product Deleted');
+            return redirect('/admin/products')->withSuccess('Product Deleted');
         }
         return back()->withErrors('something went wrong');
 
@@ -192,6 +192,15 @@ class ProductAdminController extends Controller
 
     }
 
+    public function updateDesc(Request $request, $id)
+    {
+        if ($product = $this->productService->edit_productDesc($request, $id)) {
+
+            return redirect()->route('products.index')->withSuccess("Product edited!");
+        }
+        return back()->withErrors('something went wrong');
+    }
+
     /**
      * delete the description of product
      * @param $id
@@ -200,7 +209,7 @@ class ProductAdminController extends Controller
     public function deleteDesc($id)
     {
         if ($this->productService->deleteproductDesc($id)) {
-            return redirect('/admin/product')->withSuccess('Product Description Deleted');
+            return redirect('/admin/products')->withSuccess('Product Description Deleted');
         }
         return back()->withErrors('something went wrong');
 
@@ -213,7 +222,7 @@ class ProductAdminController extends Controller
     public function deleteImage($id)
     {
         if ($this->productService->deleteproductImage($id)) {
-            return redirect('/admin/product')->withSuccess('Product Image Deleted');
+            return redirect('/admin/products')->withSuccess('Product Image Deleted');
         }
         return back()->withErrors('something went wrong');
 

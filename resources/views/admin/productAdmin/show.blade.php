@@ -60,6 +60,7 @@
         <div class="panel-body">
 
             @if(isset($product_desc))
+               <div class="row" >
                 <a href="{{route('product_desc_edit',$productid->id)}}">
                     <button class="btn btn-warning pad" data-toggle="popover" data-trigger="hover"
                             data-placement="top" data-content="Edit the current category"><i class="fa fa-edit"></i>
@@ -73,6 +74,8 @@
                         onclick="return confirm('Are you sure you want to delete this item?');">
 
                 </button>
+                   {!! Form::close() !!}
+               </div>
                 <div class="row">
                     <label class="col-sm-6 "> Information :</label>
                     {{$product_desc->information}}
@@ -85,18 +88,19 @@
                     <label class="col-sm-6 "> Benifits :</label>
 
                     <table>
-                        @foreach($product_desc->benifit as $benifits=>$benifitlist)
-                            <thead>
-                            <th>{{$benifits}}</th>
-                            </thead>
-                            <tr>
-                                @foreach($benifitlist as $blist)
-                                    <td>
-                                        <li>{{$blist}}</li>
-                                    </td>
-                            </tr>
-                        @endforeach
-                        @endforeach
+                        {{$product_desc->benifit}}
+                        {{--@foreach($product_desc->benifit as $benifits=>$benifitlist)--}}
+                            {{--<thead>--}}
+                            {{--<th>{{$benifits}}</th>--}}
+                            {{--</thead>--}}
+                            {{--<tr>--}}
+                                {{--@foreach($benifitlist as $blist)--}}
+                                    {{--<td>--}}
+                                        {{--<li>{{$blist}}</li>--}}
+                                    {{--</td>--}}
+                            {{--</tr>--}}
+                        {{--@endforeach--}}
+                        {{--@endforeach--}}
                     </table>
                 </div>
 

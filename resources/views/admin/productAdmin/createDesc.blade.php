@@ -16,8 +16,6 @@
 
                         {{ Form::hidden('product_id', $productid) }}
 
-
-
                         <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }} clearfix">
                             <label for="description" class="col-sm-4 control-label">Description</label>
 
