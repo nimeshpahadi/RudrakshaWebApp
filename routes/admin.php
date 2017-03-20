@@ -8,8 +8,6 @@
 
 Route::get('/login', 'AdminController@getAdmin')->middleware('auth:admin');
 
-Route::post('/hello', 'AdminController@index');
-
 Route::resource('/category', 'CategoryAdminController');
 Route::resource('/products', 'ProductAdminController');
 // productdescription

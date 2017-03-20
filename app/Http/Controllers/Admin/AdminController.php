@@ -15,16 +15,11 @@ class AdminController extends Controller
 {
     public function __construct()
     {
-
-    }
-
-    public function getAdmin()
-    {
-        return view('admin/login');
+        $this->middleware('auth:admin');
     }
 
     public function index()
     {
-        return "hello world";
+        return view('admin');
     }
 }

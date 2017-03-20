@@ -51,14 +51,16 @@ class ProductApiService
         $baseUrl=url("/");
         $categoryData = $this->categoryRepository->getCategory();
         $productDetail = [];
+        $i=0;
         foreach ($categoryData as $category) {
-           $productDetail[$category->name]=[];
-           $productDetail[$category->name]["cat"]=$category->name;
+           $productDetail[$i]=[];
+           $productDetail[$i]["category"]=$category->name;
+           $productDetail[$i]["products"]=[];
            $products  = $this->productApiRepository->getCategoryProduct($category->id);
             foreach ($products as $product) {
                 $image = $this->productApiRepository->getProductImage($product['id']);
                 $imageArr = json_decode($image->name);
-                $productDetail[$category->name]["products"]=[
+                $productDetail[$i]["products"]=[
                     "id"=>$product['id'],
                     "name"=>$product['name'],
                     "price"=>$product["price"],
@@ -66,6 +68,7 @@ class ProductApiService
                     "image"=>$baseUrl."/admin/product/storage/product/".$imageArr[0]
                 ];
             }
+            $i++;
         }
         return $productDetail;
     }
