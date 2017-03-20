@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProductImageRequest;
+use App\Http\Requests\ProductInfoRequest;
 use App\Rudraksha\Services\CategoryService;
 use App\Rudraksha\Services\ProductService;
 use Illuminate\Http\Request;
@@ -94,7 +96,7 @@ class ProductAdminController extends Controller
      * @param Request $request
      * @return $this
      */
-    public function storeImage(Request $request)
+    public function storeImage(ProductImageRequest $request)
     {
         if ($data = $this->productService->store_ProductImage($request)) {
             return redirect()->route('products.index')->withSuccess("Product Image added!");
@@ -109,7 +111,7 @@ class ProductAdminController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductInfoRequest $request)
     {
         if ($data = $this->productService->store_Product($request)) {
             $productid = $data->id;
@@ -216,11 +218,11 @@ class ProductAdminController extends Controller
     }
 
 
-    public function updateImage(Request $request, $id)
+    public function updateImage(ProductImageRequest $request, $id)
     {
         if ($this->productService->edit_productImage($request, $id)) {
 
-            return redirect()->route('products.index')->withSuccess("Product edited!");
+            return back()->withSuccess("Product edited!");
         }
         return back()->withErrors('something went wrong');
     }
@@ -233,7 +235,7 @@ class ProductAdminController extends Controller
     public function deleteImage($id,$name)
     {
         if ($this->productService->deleteproductImage($id,$name)) {
-            return redirect('/admin/products')->withSuccess('Product Image Deleted');
+            return back()->withSuccess('Product Image Deleted');
         }
         return back()->withErrors('something went wrong');
 

@@ -5,7 +5,6 @@
     <div class="panel-body">
 
 
-
         <div class="col-md-8 col-md-offset-2 ">
 
             <h3>Create Category</h3>
@@ -48,9 +47,9 @@
                     <label for="short_description" class="col-sm-4 control-label">Short Description</label>
 
                     <div class="col-sm-8">
-                <input id="short_description" type="text" class="form-control" name="short_description"
-                          value="{{ old('short_description') }}" required autofocus>
-                </input>
+                        <input id="short_description" type="text" class="form-control" name="short_description"
+                               value="{{ old('short_description') }}" required autofocus>
+                        </input>
                         @if ($errors->has('short_description'))
                             <span class="help-block">
                                         <strong>{{ $errors->first('short_description') }}</strong>
@@ -78,7 +77,8 @@
                     <label for="face_no" class="col-sm-4 control-label">Face No.</label>
 
                     <div class="col-sm-8">
-                        <input id="face_no" type="number" class="form-control" name="face_no" value="{{ old('face_no') }}" required
+                        <input id="face_no" type="number" class="form-control" name="face_no"
+                               value="{{ old('face_no') }}" required
                                autofocus>
 
                         @if ($errors->has('face_no'))
@@ -95,20 +95,20 @@
 
                     <div class="checkbox col-sm-8">
 
-                            <label>
-                        <input name="status" type="radio" value="1" checked>
-                        Active
-                    </label>
-                    <label>
-                        <input name="status" type="radio" value="0">
-                        Inactive
-                    </label>
-                </div>
+                        <label>
+                            <input name="status" type="radio" value="1" checked>
+                            Active
+                        </label>
+                        <label>
+                            <input name="status" type="radio" value="0">
+                            Inactive
+                        </label>
+                    </div>
                 </div>
 
 
                 <div class="clearfix pad"></div>
-                <div align="right" >
+                <div align="right">
                     {{Form::submit('Create', array('class'=>'btn btn-sm btn-primary ','title'=>'Save the category'))}}
                     <a type="button" class="btn btn-sm btn-warning" href="/category">Cancel</a>
                     {!! Form::close() !!}
@@ -117,4 +117,4 @@
 
             </div>
 
-    @endsection
+@endsection

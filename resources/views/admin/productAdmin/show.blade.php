@@ -43,10 +43,12 @@
                 <label class="col-sm-6 "> Tags :</label>
                 {{ join(",",json_decode($productid['tag']))}}
             </div>
-            <div class="row">
-                <label class="col-sm-6 "> Discount :</label>
-                {{$productid->discount}}
-            </div>
+            @if(isset($productid->discount))
+                <div class="row">
+                    <label class="col-sm-6 "> Discount :</label>
+                    {{$productid->discount}}
+                </div>
+            @endif
             <div class="row">
                 <label class="col-sm-6 "> Quantity Available :</label>
                 {{$productid->quantity_available}}
@@ -58,8 +60,13 @@
     <div class="panel panel-info">
         <div class="panel-heading">Product Description</div>
         <div class="panel-body">
-
-            @if(isset($product_desc))
+            @if(!isset($product_desc))
+                <div align="right" style="padding: 10px">
+                    <a href="{{route('product_description',$productid->id)}}">
+                        <span class=" btn btn-sm btn-success" title="Create new category">Add Description</span>
+                    </a>
+                </div>
+            @else
                 <div class="row">
                     <a href="{{route('product_desc_edit',$productid->id)}}">
                         <button class="btn btn-warning pad" data-toggle="popover" data-trigger="hover"
@@ -88,22 +95,21 @@
                     <label class="col-sm-6 "> Benifits :</label>
 
                     <table>
-                        {{$product_desc->benifit}}
-                        {{-- @foreach($product_desc->benifit as $benifits=>$benifitlist)--}}
-                        {{--<thead>--}}
-                        {{--<th>{{$benifits}}</th>--}}
-                        {{--</thead>--}}
-                        {{--<tr>--}}
-                        {{--@foreach($benifitlist as $blist)--}}
-                        {{--<td>--}}
-                        {{--<li>{{$blist}}</li>--}}
-                        {{--</td>--}}
-                        {{--</tr>--}}
-                        {{--@endforeach--}}
-                        {{--@endforeach--}}
+
+                        @foreach($product_desc->benifit as $benifits=>$benifitlist)
+                            <thead>
+                            <th>{{$benifits}}</th>
+                            </thead>
+                            <tr>
+                                @foreach($benifitlist as $blist)
+                                    <td>
+                                        <li>{{$blist}}</li>
+                                    </td>
+                            </tr>
+                        @endforeach
+                        @endforeach
                     </table>
                 </div>
-
             @endif
 
         </div>
@@ -112,17 +118,20 @@
     <div class="panel panel-info">
         <div class="panel-heading">Product Image</div>
         <div class="panel-body">
+            @if(empty($product_image))
+                <div align="right" style="padding: 10px">
+                    <a href="{{route('product_image',$productid->id)}}">
+                        <span class=" btn btn-sm btn-success" title="Create new category">Add Image</span>
+                    </a>
+                </div>
 
-
-            @if(isset($product_image))
-
-                <button type="button" class="btn btn-info btn-lg col-md-offset-8" data-toggle="modal"
-                        data-target="#myModal">Add Additional Images
-                </button>
-
+            @else
                 @foreach($product_image as $image=>$imagelist)
+                    <button type="button" class="btn btn-info  col-md-offset-10" data-toggle="modal"
+                            data-target="#myModal">Add Additional Images
+                    </button>
 
-                <!-- Modal -->
+                    <!-- Modal -->
                     <div id="myModal" class="modal fade" role="dialog">
                         <div class="modal-dialog">
 
@@ -149,8 +158,8 @@
                                     {{Form::submit('create', array('class'=>'btn btn-bg btn-primary ','title'=>'Save the category'))}}
                                     {!! Form::close() !!}
 
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close
-                                        </button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close
+                                    </button>
 
                                 </div>
 

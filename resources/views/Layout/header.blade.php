@@ -16,9 +16,8 @@
 {!!Html::style('css/all.css') !!}
 <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
-{!! Html::style('css/_all-skins.min.css') !!}
-{!! Html::style('css/custom.css') !!}
-
+    {!! Html::style('css/_all-skins.min.css') !!}
+    {!! Html::style('css/custom.css') !!}
 
 
     <script>
@@ -87,7 +86,6 @@
                     <i class="fa fa-dashboard"></i> <span>Product</span>
                 </a>
             </li>
-
 
 
         </section>

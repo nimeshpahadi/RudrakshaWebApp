@@ -21,7 +21,6 @@
 {!!Html::script('js/custom.js') !!}
 
 
-
 <script>
     $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
         checkboxClass: 'icheckbox_minimal-blue',
@@ -39,7 +38,6 @@
         radioClass: 'iradio_flat-green'
     });
 </script>
-
 
 
 </body>
