@@ -64,16 +64,11 @@
                     </label>
 
                     <label>
-                        <input name="status" type="radio" value="0"  @if($cat_id->status==false) checked @endif>
+                        <input name="status" type="radio" value="0" @if($cat_id->status==false) checked @endif>
                         Inactive
                     </label>
                 </div>
             </div>
-
-
-
-
-
 
 
             <div class="clearfix " align="right">

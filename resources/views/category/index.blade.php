@@ -15,7 +15,7 @@
             <tr>
 
                 <th>Name</th>
-                <th>Code </th>
+                <th>Code</th>
                 <th>Short Description</th>
                 <th>Information</th>
                 <th>Face No.</th>
@@ -39,7 +39,8 @@
                         <td>
                             <a href="{{route('category.edit',$row->id)}}">
                                 <button class="btn btn-warning pad" data-toggle="popover" data-trigger="hover"
-                                        data-placement="top" data-content="Edit the current category"><i class="fa fa-edit"  ></i></button>
+                                        data-placement="top" data-content="Edit the current category"><i
+                                            class="fa fa-edit"></i></button>
                             </a>
                         </td>
                     </tr>
@@ -47,10 +48,9 @@
             @endif
 
 
-
             </tbody>
 
         </table>
     </div>
 
-    @endsection
+@endsection

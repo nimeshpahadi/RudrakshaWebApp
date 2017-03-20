@@ -11,6 +11,7 @@ namespace App\Rudraksha\Services;
 
 use App\Rudraksha\Repositories\CategoryRepository;
 use App\Rudraksha\Repositories\ProductRepository;
+use File;
 
 class ProductService
 {
@@ -78,7 +79,6 @@ class ProductService
             $destinationPath = storage_path('app/public/product');
             $img->move($destinationPath, $imagename);
         }
-//        dd($imagename);
 
         $data['name']=json_encode($images);
         return $this->productRepository->storeProductImage($data);
@@ -126,8 +126,6 @@ class ProductService
         $tags = explode("," , $formData['tag']);
         $formData = array_except($formData, ['_token', 'to', 'remove']);
         $formData['tag'] = json_encode($tags);
-//        $data= $this->productRepository->storeProduct($formData);
-
         $data=$this->productRepository->editProductInfo($formData,$id);
         return $data;
     }
@@ -143,5 +141,49 @@ class ProductService
         $descid=$this->productRepository->get_productDesc($id);
         $data=$this->productRepository->deleteProductDesc($descid->id);
         return $data;
+    }
+
+    public function deleteproductImage($id,$name)
+    {
+        $query = $this->productRepository->get_productImagebyid($id);
+        $namearray=(json_decode($query->name));
+        $imageKey=array_search($name,$namearray);
+        unset($namearray[$imageKey]);
+        $path = storage_path().'/app/public/product/';
+        File::delete($path . $name);
+        $data=$this->productRepository->deleteProductImg($id,$namearray);
+        return $data;
+    }
+
+    public function edit_productDesc($request, $id)
+    {
+        $formData = $request->all();
+        $formData = array_except($formData, ['_token', 'to', 'remove']);
+        $formData['benifit'] = json_encode($formData['benifit']);
+        $data= $this->productRepository->editProductDesc($formData,$id);
+        return $data;
+    }
+
+    public function edit_productImage($request, $id)
+    {
+
+        $formData = $request->all();
+        $formData = array_except($formData, ['_token', 'to', 'remove']);
+        $data =[];
+        $images=[];
+        foreach ($formData['name'] as $img) {
+            $imagename = $formData['product_id']. '_' . rand(0,10000) . '.' . $img->getClientOriginalExtension();
+            array_push($images,$imagename);
+            $destinationPath = storage_path('app/public/product');
+            $img->move($destinationPath, $imagename);
+        }
+
+        $data['name']=$images;
+        return $this->productRepository->editProductImage($data,$id);
+
+
+
+
+
     }
 }

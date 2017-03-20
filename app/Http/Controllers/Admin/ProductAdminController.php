@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProductImageRequest;
+use App\Http\Requests\ProductInfoRequest;
 use App\Rudraksha\Services\CategoryService;
 use App\Rudraksha\Services\ProductService;
 use Illuminate\Http\Request;
@@ -94,10 +96,10 @@ class ProductAdminController extends Controller
      * @param Request $request
      * @return $this
      */
-    public function storeImage(Request $request)
+    public function storeImage(ProductImageRequest $request)
     {
         if ($data = $this->productService->store_ProductImage($request)) {
-            return redirect()->route('product.index')->withSuccess("Product Image added!");
+            return redirect()->route('products.index')->withSuccess("Product Image added!");
         }
         return back()->withErrors("Something went wrong");
 
@@ -109,7 +111,7 @@ class ProductAdminController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductInfoRequest $request)
     {
         if ($data = $this->productService->store_Product($request)) {
             $productid = $data->id;
@@ -159,7 +161,7 @@ class ProductAdminController extends Controller
     {
         if ($product = $this->productService->edit_productInfo($request, $id)) {
 
-            return redirect()->route('product.index')->withSuccess("Product edited!");
+            return redirect()->route('products.index')->withSuccess("Product edited!");
         }
         return back()->withErrors('something went wrong');
     }
@@ -173,7 +175,7 @@ class ProductAdminController extends Controller
     public function destroy($id)
     {
         if ($this->productService->deleteproductInfo($id)) {
-            return redirect('/admin/product')->withSuccess('Product Deleted');
+            return redirect('/admin/products')->withSuccess('Product Deleted');
         }
         return back()->withErrors('something went wrong');
 
@@ -192,6 +194,15 @@ class ProductAdminController extends Controller
 
     }
 
+    public function updateDesc(Request $request, $id)
+    {
+        if ($product = $this->productService->edit_productDesc($request, $id)) {
+
+            return redirect()->route('products.index')->withSuccess("Product edited!");
+        }
+        return back()->withErrors('something went wrong');
+    }
+
     /**
      * delete the description of product
      * @param $id
@@ -200,7 +211,31 @@ class ProductAdminController extends Controller
     public function deleteDesc($id)
     {
         if ($this->productService->deleteproductDesc($id)) {
-            return redirect('/admin/product')->withSuccess('Product Description Deleted');
+            return redirect('/admin/products')->withSuccess('Product Description Deleted');
+        }
+        return back()->withErrors('something went wrong');
+
+    }
+
+
+    public function updateImage(ProductImageRequest $request, $id)
+    {
+        if ($this->productService->edit_productImage($request, $id)) {
+
+            return back()->withSuccess("Product edited!");
+        }
+        return back()->withErrors('something went wrong');
+    }
+
+    /**
+     * delete the image of product
+     * @param $id
+     * @return $this
+     */
+    public function deleteImage($id,$name)
+    {
+        if ($this->productService->deleteproductImage($id,$name)) {
+            return back()->withSuccess('Product Image Deleted');
         }
         return back()->withErrors('something went wrong');
 

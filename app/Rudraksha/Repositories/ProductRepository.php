@@ -99,6 +99,11 @@ class ProductRepository
         }
     }
 
+    /**
+     * get the product as per category
+     * @param $id
+     * @return mixed
+     */
     public function getCategoryProduct($id)
     {
         $query = $this->productInfo->select('product_infos.*')
@@ -110,20 +115,47 @@ class ProductRepository
 
     }
 
+    /** to get category as per product id
+     * @param $id
+     * @return mixed
+     */
     public function get_productDesc($id)
     {
 
         $query = $this->productDescription->select('*')->where('product_id', $id)->first();
-//        dd($query);
         return $query;
     }
 
+    /** get product image as per product id
+     * @param $id
+     * @return mixed
+     */
     public function get_productImage($id)
     {
         $query = $this->productImage->select('*')->where('product_id', $id)->get();
         return $query;
     }
 
+    /** get product image as per product id
+     * @param $id
+     * @return mixed
+     */
+    public function get_productImagebyid($id)
+    {
+        $query = $this->productImage->select('*')->where('id', $id)->first();
+        return $query;
+    }
+
+    /**
+     * get desc by id
+     * @param $id
+     * @return mixed
+     */
+    public function get_productdescid($id)
+    {
+        $query = $this->productDescription->select('*')->where('id', $id)->first();
+        return $query;
+    }
     public function all_product()
     {
         $query = $this->productInfo->select('*')->get();
@@ -135,7 +167,6 @@ class ProductRepository
 
         try {
             $data = ProductRepository::get_productbyId($id);
-//            dd($formData);
             $data->category_id = $formData['category_id'];
             $data->code = $formData['code'];
             $data->name = $formData['name'];
@@ -145,7 +176,6 @@ class ProductRepository
             $data->tag = $formData['tag'];
             $data->discount = $formData['discount'];
             $data->quantity_available = $formData['quantity_available'];
-//            dd($data);
             $data->update();
             $this->log->info("Product Info Updated", ['id' => $id]);
 
@@ -181,6 +211,57 @@ class ProductRepository
             return true;
         } catch (Exception $e) {
             $this->log->error("Product Description Deletion Failed",['id' => $id], [$e->getMessage()]);
+            return false;
+        }
+    }
+
+    public function deleteProductImg($id,$namearray)
+    {
+        try {
+            $data = ProductRepository::get_productImagebyid($id);
+            $data['name']=json_encode(array_values($namearray));
+            $data->update();
+            $this->log->info("Product Image Deleted",['id'=>$id]);
+            return true;
+
+        } catch (Exception $e) {
+            $this->log->error("Product Image Deletion Failed",['id' => $id], [$e->getMessage()]);
+            return false;
+        }
+    }
+
+    public function editProductDesc($formData, $id)
+    {
+        try {
+
+            $data = ProductRepository::get_productdescid($id);
+            $data->description = $formData['description'];
+            $data->information = $formData['information'];
+            $data->benifit = $formData['benifit'];
+            $data->update();
+            $this->log->info("Product Info Updated", ['id' => $id]);
+            return true;
+        } catch (QueryException $e) {
+            $this->log->error("Product Update  Failed %s", ['id' => $id], [$e->getMessage()]);
+
+            return false;
+        }
+    }
+
+    public function editProductImage($Formdata, $id)
+    {
+        try {
+
+            $data = ProductRepository::get_productImagebyid($id);
+            $p= array_merge( json_decode($data->name),$Formdata['name']);
+            $data->name= json_encode($p);
+            $data->update();
+            $this->log->info("Product Image added");
+            return true;
+
+        } catch (QueryException $e) {
+
+            $this->log->error("Product Image Creation Failed : ",[$e->getMessage()]);
             return false;
         }
     }
