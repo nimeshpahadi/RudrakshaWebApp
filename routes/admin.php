@@ -6,7 +6,6 @@
  * Time: 10:50 AM
  */
 
-Route::get('/login', 'AdminController@getAdmin')->middleware('auth:admin');
 
 Route::resource('/category', 'CategoryAdminController');
 Route::resource('/products', 'ProductAdminController');
