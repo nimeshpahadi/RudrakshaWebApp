@@ -89,7 +89,20 @@
                     </div>
                 </div>
 
+                <div class="form-group{{ $errors->has('mantra') ? ' has-error' : '' }} clearfix">
+                    <label for="mantra" class="col-sm-4 control-label">Mantra</label>
 
+                    <div class="col-sm-8">
+                <textarea id="mantra" type="text" class="form-control" name="mantra"
+                          value="{{ old('mantra') }}" required autofocus>
+                </textarea>
+                        @if ($errors->has('mantra'))
+                            <span class="help-block">
+                                        <strong>{{ $errors->first('mantra') }}</strong>
+                                    </span>
+                        @endif
+                    </div>
+                </div>
                 <div class="form-group{{ $errors->has('status') ? ' has-error' : '' }} clearfix">
                     <label for="status" class="col-sm-4 control-label">Status</label>
 

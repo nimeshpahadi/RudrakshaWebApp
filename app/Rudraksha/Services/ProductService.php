@@ -61,7 +61,6 @@ class ProductService
     {
         $formData = $request->all();
         $formData = array_except($formData, ['_token', 'to', 'remove']);
-        $formData['benifit'] = json_encode($formData['benifit']);
         $data= $this->productRepository->storeProductDesc($formData);
         return $data;
     }

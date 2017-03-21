@@ -49,4 +49,21 @@ class CategoryService
         $data= $this->categoryRepository->editCategory($request,$id);
         return $data;
     }
+
+    public function store_category_benefit($request)
+    {
+        $formData = $request->all();
+        $formData = array_except($formData, ['_token', 'to', 'remove']);
+        $formData['benefit']= json_encode($formData['benefit']);
+        $data= $this->categoryRepository->storeCategoryBenefit($formData);
+
+        return $data;
+    }
+
+    public function get_category_benefit($id)
+    {
+
+        $data= $this->categoryRepository->getCategoryBenifit($id);
+        return $data;
+    }
 }

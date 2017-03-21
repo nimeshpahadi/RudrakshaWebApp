@@ -19,6 +19,7 @@
                 <th>Short Description</th>
                 <th>Information</th>
                 <th>Face No.</th>
+                <th>Mantra</th>
                 <th>Status</th>
                 <th>Remarks</th>
 
@@ -35,12 +36,18 @@
                         <td>{{$row->short_description }}</td>
                         <td>{{$row->information }}</td>
                         <td>{{$row->face_no }}</td>
+                        <td>{{$row->mantra }}</td>
                         <td>@if($row->status==1)Active @else Inactive @endif</td>
                         <td>
-                            <a href="{{route('category.edit',$row->id)}}">
-                                <button class="btn btn-warning pad" data-toggle="popover" data-trigger="hover"
-                                        data-placement="top" data-content="Edit the current category"><i
-                                            class="fa fa-edit"></i></button>
+
+                            <a href="{{route('category.benefit',$row->id)}}">
+                                <button class="btn btn-primary pad" data-toggle="popover" data-trigger="hover"
+                                        data-placement="top" data-content="Add benefit to category">Add Benefit</button>
+                            </a>
+                            <a href="{{route('category.show',$row->id)}}">
+                                <button class="btn btn-primary pad" data-toggle="popover" data-trigger="hover"
+                                        data-placement="top" data-content="view details category">
+                                        view</button>
                             </a>
                         </td>
                     </tr>

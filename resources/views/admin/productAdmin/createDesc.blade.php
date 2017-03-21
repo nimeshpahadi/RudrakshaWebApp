@@ -49,37 +49,6 @@
                     </div>
 
 
-                    <div class="form-group{{ $errors->has('benifit') ? ' has-error' : '' }} clearfix">
-                        <label for="benifit" class="col-sm-4 control-label"> Health Benifits </label>
-
-
-                        <div class="col-sm-8">
-
-                            <div class="" id="room_fileds">
-                                <input id="more_fields" type="text" class="form-control" name='benifit[health][]'
-                                       autofocus>
-                            </div>
-                            <input type="button" id="more_fields" onclick="add_fields();" value="Add More"/>
-
-
-                        </div>
-                    </div>
-
-                    <div class="form-group{{ $errors->has('benifit') ? ' has-error' : '' }} clearfix">
-                        <label for="benifit" class="col-sm-4 control-label"> Business Benifits </label>
-
-
-                        <div class="col-sm-8">
-
-                            <div class="" id="b_room_fileds">
-                                <input id="b_more_fields" type="text" class="form-control" name='benifit[business][]'
-                                       autofocus>
-                            </div>
-                            <input type="button" id="b_more_fields" onclick="b_add_fields();" value="Add More"/>
-
-
-                        </div>
-                    </div>
 
 
                     <div class="clearfix pad"></div>

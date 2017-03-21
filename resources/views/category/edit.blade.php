@@ -50,6 +50,13 @@
                     {{ Form::number('face_no',null,array('class'=>'form-control'))}}
                 </div>
             </div>
+            <div class="form-group{{ $errors->has('face_no') ? ' has-error' : '' }} clearfix">
+                <label for="face_no" class="col-sm-4 control-label">Mantra</label>
+
+                <div class="col-sm-8">
+                    {{ Form::testarea('mantra',null,array('class'=>'form-control'))}}
+                </div>
+            </div>
 
 
             <div class="form-group{{ $errors->has('status') ? ' has-error' : '' }} clearfix">

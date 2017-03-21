@@ -91,25 +91,7 @@
                     <label class="col-sm-6 "> Description :</label>
                     {{$product_desc->description}}
                 </div>
-                <div class="row">
-                    <label class="col-sm-6 "> Benifits :</label>
 
-                    <table>
-
-                        @foreach($product_desc->benifit as $benifits=>$benifitlist)
-                            <thead>
-                            <th>{{$benifits}}</th>
-                            </thead>
-                            <tr>
-                                @foreach($benifitlist as $blist)
-                                    <td>
-                                        <li>{{$blist}}</li>
-                                    </td>
-                            </tr>
-                        @endforeach
-                        @endforeach
-                    </table>
-                </div>
             @endif
 
         </div>

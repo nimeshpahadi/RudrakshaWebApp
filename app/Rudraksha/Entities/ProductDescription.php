@@ -8,12 +8,10 @@ class ProductDescription extends Model
 {
     public $table = 'product_descriptions';
     protected $fillable = [
-        'benifit', 'description','information',
+         'description','information',
     ];
     protected $hidden = [
         'product_id'
     ];
-    protected $casts = [
-        'benifit' => 'array'
-    ];
+
 }

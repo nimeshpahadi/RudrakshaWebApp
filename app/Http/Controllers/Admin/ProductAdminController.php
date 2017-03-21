@@ -24,6 +24,7 @@ class ProductAdminController extends Controller
 
     public function __construct(ProductService $productService, CategoryService $categoryService)
     {
+        $this->middleware('auth:admin');
         $this->productService = $productService;
         $this->categoryService = $categoryService;
     }

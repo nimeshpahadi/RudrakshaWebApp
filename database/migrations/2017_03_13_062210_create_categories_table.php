@@ -21,6 +21,7 @@ class CreateCategoriesTable extends Migration
             $table->longText('information');
             $table->integer('face_no');
             $table->boolean('status');
+            $table->longText('mantra')->nullable();
             $table->timestamps();
         });
     }
