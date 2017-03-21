@@ -36,4 +36,14 @@ class CategoryApiController extends Controller
         $category = $this->categoryApiService->getCategory();
         return response()->json($category);
     }
+
+    /**
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getProductByCategory($id)
+    {
+        $products = $this->categoryApiService->getProducts($id);
+        return response()->json($products);
+    }
 }

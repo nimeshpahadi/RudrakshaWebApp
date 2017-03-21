@@ -19,3 +19,4 @@ Route::post('/user/create', 'User\UserRegisterController@createUser');
 Route::get('/product/list', 'Product\ProductApiController@getProductList');
 
 Route::get('/category/list', 'Category\CategoryApiController@getCategoryList');
+Route::get('/category/list/{id}', 'Category\CategoryApiController@getProductByCategory');
