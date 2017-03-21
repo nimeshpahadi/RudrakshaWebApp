@@ -23,3 +23,5 @@ Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 Route::get('/admin/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
 Route::post('/admin/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
 Route::get('/admin', 'Admin\AdminController@index')->name('admin.dashboard');
+
+Route::get('/users/confirmation/{token}', 'Auth\RegisterController@confirmation')->name('confirmation');
