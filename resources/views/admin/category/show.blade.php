@@ -51,11 +51,14 @@
                     <span class=" btn btn-sm btn-success" title="Create new category">Add Benifit</span>
                 </a>
             </div>
-        @else
-            <div class="row">
+            @endif
+
+
+        <div class="row">
                 <label class="col-sm-4 "> Benifits :</label>
 
                 <table>
+                    @if(isset($cate_beni))
                     @foreach($cate_beni as $benifitall=>$val)
                         <thead>
                         <th><h2> {{$val->benefit_heading}}
@@ -86,10 +89,12 @@
                                 </td>
                             </tr>
                         @endforeach
+
                     @endforeach
+                    @endif
                 </table>
             </div>
-        @endif
+
     </div>
 
 

@@ -17,9 +17,9 @@
                     <div class="form-group{{ $errors->has('category_id') ? ' has-error' : '' }} clearfix">
                         <label for="category_id" class="col-sm-4 control-label">Category ID </label>
 
-                        <div class="col-md-8 warehouse">
+                        <div class="col-md-8 ">
                             <select id="category_id" name="category_id"
-                                    class=" form-control warehouse" required>
+                                    class=" form-control " required>
 
                                 @foreach ($category as $cat)
 

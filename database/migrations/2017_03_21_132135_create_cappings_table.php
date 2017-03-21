@@ -15,6 +15,12 @@ class CreateCappingsTable extends Migration
     {
         Schema::create('cappings', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('type');
+            $table->text('design_image');
+            $table->float('price');
+            $table->string('metal_quantity_used')->nullable();
+            $table->longText('description');
+            $table->boolean('status');
             $table->timestamps();
         });
     }
