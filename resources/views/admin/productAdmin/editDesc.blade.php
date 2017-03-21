@@ -32,6 +32,43 @@
                         </div>
                     </div>
 
+                    <div class="form-group{{ $errors->has('benifit') ? ' has-error' : '' }} clearfix">
+                        <label for="benifit" class="col-sm-4 control-label"> Health Benifits </label>
+                        <div class="col-sm-8">
+                            <div class="" id="room_fileds">
+                                @foreach($desc["benifit"] as $head=>$value)
+                                    @foreach($value as $list)
+                                        @if($head =='health')
+                                            <input id="more_fields" type="text" class="form-control"
+                                                   name='benifit[health][]'
+                                                   value="{{$list}}" autofocus>
+                                        @endif
+                                    @endforeach
+                                @endforeach
+                            </div>
+                            <input type="button" id="more_fields" onclick="add_fields();" value="Add More"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group{{ $errors->has('benifit') ? ' has-error' : '' }} clearfix">
+                        <label for="benifit" class="col-sm-4 control-label"> Business Benifits </label>
+                        <div class="col-sm-8">
+                            <div class="" id="b_room_fileds">
+                                @foreach($desc["benifit"] as $head=>$value)
+
+                                    @foreach($value as $list)
+                                        @if($head =='business')
+                                            <input id="b_more_fields" type="text" class="form-control" value="{{$list}}"
+                                                   name='benifit[business][]'
+                                                   autofocus>
+                                        @endif
+                                    @endforeach
+                                @endforeach
+                            </div>
+                            <input type="button" id="b_more_fields" onclick="b_add_fields();" value="Add More"/>
+                        </div>
+                    </div>
+
                     <div class="clearfix pad"></div>
                     <div align="right">
                         {{Form::submit('Save Changes', array('class'=>'btn btn-bg btn-primary ','title'=>'Save the category'))}}

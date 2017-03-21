@@ -98,8 +98,50 @@ class CategoryRepository
         }
     }
 
+    /**
+     * get category benefit as per categoryid
+     * @param $id
+     * @return mixed
+     */
     public function getCategoryBenifit($id)
     {
        return $this->category_benifit->select('*')->where('category_id',$id)->get();
     }
+
+    public function getCatBenifit($id)
+    {
+        return $this->category_benifit->select('*')->where('id',$id)->first();
+    }
+
+    public function editCategoryBenefit($formData,$id)
+    {
+        try {
+
+            $data = CategoryRepository::getCatBenifit($id);
+            $data->benefit_heading = $formData['benefit_heading'];
+            $data->benefit = $formData['benefit'];
+            $data->update();
+            $this->log->info("Category Benefit Updated", ['id' => $id]);
+            return true;
+        } catch (QueryException $e) {
+            $this->log->error("Category Benefit Update  Failed %s", ['id' => $id], [$e->getMessage()]);
+
+            return false;
+        }
+    }
+
+    public function delete_benefit_heading($id)
+    {
+        try {
+            $query = $this->category_benifit->find($id);
+            $query->delete();
+            $query;
+            $this->log->info("Category Benefit Deleted",['id'=>$id]);
+            return true;
+        } catch (Exception $e) {
+            $this->log->error("Category Benefit Deletion Failed",['id' => $id], [$e->getMessage()]);
+            return false;
+        }
+    }
+
 }

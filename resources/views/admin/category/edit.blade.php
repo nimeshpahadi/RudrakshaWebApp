@@ -54,7 +54,7 @@
                 <label for="face_no" class="col-sm-4 control-label">Mantra</label>
 
                 <div class="col-sm-8">
-                    {{ Form::testarea('mantra',null,array('class'=>'form-control'))}}
+                    {{ Form::textarea('mantra',null,array('class'=>'form-control'))}}
                 </div>
             </div>
 

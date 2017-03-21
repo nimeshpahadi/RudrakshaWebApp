@@ -66,4 +66,26 @@ class CategoryService
         $data= $this->categoryRepository->getCategoryBenifit($id);
         return $data;
     }
+
+    public function get_cat_benefit($id)
+    {
+        $data= $this->categoryRepository->getCatBenifit($id);
+        return $data;
+    }
+
+    public function editcategoryBenefit($request, $id)
+    {
+        $formData = $request->all();
+        $formData = array_except($formData, ['_token', 'to', 'remove']);
+        $formData['benefit']= json_encode($formData['benefit']);
+        $data= $this->categoryRepository->editCategoryBenefit($formData,$id);
+        return $data;
+
+    }
+
+    public function deletebenefitheading($id)
+    {
+        $data= $this->categoryRepository->delete_benefit_heading($id);
+        return $data;
+    }
 }

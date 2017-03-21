@@ -30,7 +30,7 @@ class CategoryAdminController extends Controller
     public function index()
     {
        $allcategory= $this->categoryService->get_category();
-       return view('category.index',compact('allcategory'));
+       return view('admin.category.index',compact('allcategory'));
     }
 
     /**
@@ -40,7 +40,7 @@ class CategoryAdminController extends Controller
      */
     public function create()
     {
-       return view('category.create');
+       return view('admin.category.create');
     }
 
     /**
@@ -67,7 +67,7 @@ class CategoryAdminController extends Controller
     {
         $cate=$this->categoryService->get_categoryby_Id($id);
         $cate_beni=$this->categoryService->get_category_benefit($id);
-       return view('category.show',compact('cate','cate_beni'));
+       return view('admin.category.show',compact('cate','cate_beni'));
     }
 
     /**
@@ -79,7 +79,7 @@ class CategoryAdminController extends Controller
     public function edit($id)
     {
         $cat_id=$this->categoryService->get_categoryby_Id($id);
-        return view('category.edit',compact('cat_id'));
+        return view('admin.category.edit',compact('cat_id'));
     }
 
     /**
@@ -109,6 +109,11 @@ class CategoryAdminController extends Controller
         return view('admin.benefit.create',compact('id'));
     }
 
+    /**
+     * store Benifits of category
+     * @param Request $request
+     * @return $this
+     */
     public function storeBenefit(Request $request)
     {
         if ($this->categoryService->store_category_benefit($request)) {
@@ -117,6 +122,47 @@ class CategoryAdminController extends Controller
         return back()->withErrors("Something went wrong");
     }
 
+    /**
+     * show edit form for benifit
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function editBenefit($id)
+    {
+        $beni= $this->categoryService->get_cat_benefit($id);
+        return view('admin.benefit.edit', compact('beni'));
+
+    }
+
+
+    /**
+     * update the benefit of the category
+     * @param Request $request
+     * @param $id
+     * @return $this
+     */
+    public function updateBenefit(Request $request, $id)
+    {
+        if ($product = $this->categoryService->editcategoryBenefit($request, $id)) {
+
+            return back()->withSuccess("Category  Benefit edited!");
+        }
+        return back()->withErrors('something went wrong');
+    }
+
+
+    /**
+     * delete specific benefit as per heading
+     * @param $id
+     * @return $this
+     */
+    public function deleteBenefit($id)
+    {
+        if ($this->categoryService->deletebenefitheading($id)) {
+            return back()->withSuccess('Category Benefit Deleted');
+        }
+        return back()->withErrors('something went wrong');
+    }
     /**
      * Remove the specified resource from storage.
      *

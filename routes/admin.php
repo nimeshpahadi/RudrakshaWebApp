@@ -9,10 +9,13 @@
 
 Route::resource('/category', 'CategoryAdminController');
 Route::resource('/products', 'ProductAdminController');
+Route::resource('/capping', 'CappingAdminController');
 
 //category Benefits
 Route::get('/category/{id}/benefit', 'CategoryAdminController@createBenefit')->name('category.benefit');
 Route::post('/category/benefit', 'CategoryAdminController@storeBenefit')->name('category.benefit.store');
+Route::get('/category/benefit/{id}/edit', 'CategoryAdminController@editBenefit')->name('category.benefit.edit');
+Route::put('/category/benefit/{id}', 'CategoryAdminController@updateBenefit')->name('category.benefit.update');
 
 
 
@@ -25,7 +28,10 @@ Route::put('/product_desc/{id}', 'ProductAdminController@updateDesc')->name('pro
 Route::get('/products/{id}/image', 'ProductAdminController@createImage')->name('product_image');
 Route::post('/products/image', 'ProductAdminController@storeImage')->name('product_image_add');
 Route::put('/product_image/{id}', 'ProductAdminController@updateImage')->name('product_image_update');
+
+
 Route::delete('/product_img/{id}/{name}', 'ProductAdminController@deleteImage')->name('product_image_delete');
 
 
 Route::delete('/product_desc/{id}', 'ProductAdminController@deleteDesc')->name('product_desc_delete');
+Route::delete('/category/benefit/{id}/delete', 'CategoryAdminController@deleteBenefit')->name('category.benefit.delete');

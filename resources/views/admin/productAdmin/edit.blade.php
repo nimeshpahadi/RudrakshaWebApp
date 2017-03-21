@@ -69,8 +69,6 @@
                         <label for="tag" class="col-sm-4 control-label">Tag</label>
 
                         <div class="col-sm-8">
-                            {{--                                {{ join(",",json_decode($productid['tag']))}}--}}
-
                             {{ Form::text(('tag'),null,array('class'=>'form-control'))}}
                         </div>
                     </div>

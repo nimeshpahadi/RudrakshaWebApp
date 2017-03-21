@@ -58,7 +58,26 @@
                 <table>
                     @foreach($cate_beni as $benifitall=>$val)
                         <thead>
-                        <th><h2> {{$val->benefit_heading}}</h2></th>
+                        <th><h2> {{$val->benefit_heading}}
+                                <a href="{{route('category.benefit.edit',$val->id)}}">
+                                    <button class="btn btn-warning pad" data-toggle="popover" data-trigger="hover"
+                                            data-placement="top" data-content="Edit the current category"><i
+                                                class="fa fa-edit"></i></button>
+                                </a>
+                                <div class="col-md-offset-10">
+                                {!! Form::open(['method' => 'DELETE','route' => ['category.benefit.delete', $val->id]]) !!}
+                                <button type="submit" class="btn btn-danger glyphicon glyphicon-trash " data-toggle="popover"
+                                        data-trigger="hover"
+                                        data-placement="top" data-content="Delete the current product"
+                                        onclick="return confirm('Are you sure you want to delete this item?');">
+
+                                </button>
+                                {!! Form::close() !!}
+                                </div>
+                            </h2>
+
+                        </th>
+
                         </thead>
                         @foreach(json_decode($val->benefit) as $ben)
                             <tr>
