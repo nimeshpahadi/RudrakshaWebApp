@@ -22,7 +22,7 @@ class CategoryApiRepository
      * CategoryApiRepository constructor.
      * @param Category $category
      */
-    public function __construct(Category $category, CategoryBenifit $categoryBenifit )
+    public function __construct(Category $category)
     {
         $this->category = $category;
     }
@@ -39,13 +39,11 @@ class CategoryApiRepository
      * @param $id
      * @return mixed
      */
-    public function getCategoryBenifit($id)
+    public function getCategoryBenifit()
     {
-        $query = $this->category->select('benifits.benifit_heading', 'benifits.benifit', 'benifits.created_at'
-            ,'benifits.updated_at')
-            ->join('benifits', 'benifits.category_id', 'categories.id')
-            ->where('benifits.category_id', $id)
-            ->get()->toArray();
+        $query = $this->category->select('categories.*', 'category_benifits.*')
+                    ->join('category_benifits', 'category_benifits.category_id', 'categories.id')
+                    ->get();
 
         return $query;
     }

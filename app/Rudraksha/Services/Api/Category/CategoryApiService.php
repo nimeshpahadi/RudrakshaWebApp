@@ -38,28 +38,25 @@ class CategoryApiService
      */
     public function getCategory()
     {
-        $categoryData = $this->categoryApiRepository->getCategoryData();
+        $categoryData = $this->categoryApiRepository->getCategoryBenifit();
 
         $categoryDetail  = [];
 
         foreach ($categoryData as $category) {
-            $benifitData = $this->categoryApiRepository->getCategoryBenifit($category->id);
-            $categoryDetail[]['categories'] = [
-                'id' => $category['id'],
-                'code' => $category['code'],
-                'name' => $category['name'],
-                'short description' => $category['short description'],
-                'infromation' => $category['infromation'],
-                'face_no' => $category['face_no'],
-                'mantra' => $category['mantra'],
-                'created_at' => $category['created_at'],
-                'updated_at' => $category['updated_at'],
+            $categoryDetail['categories'][] = [
+                'id' => $category->id,
+                'code' => $category->code,
+                'name' => $category->name,
+                'short_description' => $category->short_description,
+                'infromation' => $category->infromation,
+                'face_no' => $category->face_no,
+                'mantra' => $category->mantra,
 
                 'benifits' => [
-                    'benifit_heading' => $benifitData['benifit_heading'],
-                    'benifit' => $benifitData['benifit'],
-                    'created_at' => $benifitData['created_at'],
-                    'updated_at' => $benifitData['updated_at'],
+                    'benefit_heading' => $category->benefit_heading,
+                    'benefit' => $category->benefit,
+                    'created_at' => $category->created_at,
+                    'updated_at' => $category->updated_at,
                 ]
             ];
         }
