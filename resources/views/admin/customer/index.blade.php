@@ -8,13 +8,12 @@
                cellspacing="0" width="100%">
             <thead>
             <tr>
-
+                <th>Image</th>
                 <th>Name</th>
                 <th>Email</th>
                 <th>Contact</th>
                 <th>Alt. Contact</th>
                 <th>Status</th>
-                <th>Image</th>
                 <th>Remarks</th>
 
 
@@ -24,13 +23,13 @@
             @if(isset($customer))
                 @foreach($customer as $row)
                     <tr>
-
+                        {{--ln -s ~/web/RudrakshaWebbapp/storage/app/public/users ~/web/RudrakshaWebbapp/public/storage/--}}
+                        <td><img class="cappingimage" src="{{asset('storage/users')}}/{{$row->image}}"></td>
                         <td>{{$row->name }}</td>
                         <td>{{$row->email }}</td>
                         <td>{{$row->contact }}</td>
                         <td>{{$row->alternative_contact }}</td>
                         <td>@if($row->status==1)Active @else Inactive @endif</td>
-                        <td>{{$row->alternative_contact }}</td>
 
                         <td>
 

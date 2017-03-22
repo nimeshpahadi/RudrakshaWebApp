@@ -51,6 +51,7 @@ class RegisterController extends Controller
             'password' => 'required|min:6|confirmed',
             'contact' => 'required|integer',
             'alternative_contact' => 'required|integer',
+            'image' => 'required',
         ]);
     }
     /**
@@ -61,12 +62,17 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $imagename =  $data['name'].'_'.random_int(1,100). '.' . $data['image']->getClientOriginalExtension();
+        $destinationPath = storage_path('app/public/users');
+        $data['image']->move($destinationPath, $imagename);
+        $data['image']=$imagename;
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'contact' => $data['contact'],
             'alternative_contact' => $data['alternative_contact'],
+            'image' => $data['image'],
         ]);
     }
 

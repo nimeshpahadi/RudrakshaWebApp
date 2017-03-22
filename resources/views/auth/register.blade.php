@@ -7,7 +7,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Register</div>
                     <div class="panel-body">
-                        <form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
+                        <form class="form-horizontal" role="form" enctype="multipart/form-data" method="POST" action="{{ route('register') }}" >
                             {{ csrf_field() }}
 
                             <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
@@ -65,6 +65,14 @@
                                         <strong>{{ $errors->first('alternative_contact') }}</strong>
                                     </span>
                                     @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group ">
+                                <label for="image" class="col-md-4 control-label">Image</label>
+                                <div class=" col-md-6 ">
+                                    <span class="input-group-addon "><i class="fa fa-file"></i></span>
+                                    <input type="file" class="form-control" name="image" id="image" required autofocus>
                                 </div>
                             </div>
 
