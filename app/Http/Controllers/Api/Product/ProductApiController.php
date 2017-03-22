@@ -11,6 +11,7 @@ namespace App\Http\Controllers\Api\Product;
 
 use App\Http\Controllers\Controller;
 use App\Rudraksha\Services\Api\Product\ProductApiService;
+use Illuminate\Http\Request;
 
 class ProductApiController extends Controller
 {
@@ -29,16 +30,20 @@ class ProductApiController extends Controller
     }
 
     /**
+     * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function getProductList()
+    public function getProductList(Request $request)
     {
-        $products = $this->productApiService->getProducts();
+        $category=$request->get('cat', null);
+
+        $products = $this->productApiService->getProducts($category);
 
         return response()->json($products);
     }
 
     /**
+     * @param $id
      * @return \Illuminate\Http\JsonResponse
      */
     public function getProductDetailList($id)

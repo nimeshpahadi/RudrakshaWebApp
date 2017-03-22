@@ -17,7 +17,6 @@ Route::get('/user/list', 'User\UserRegisterController@getUsers')->middleware('au
 Route::post('/user/create', 'User\UserRegisterController@createUser');
 
 Route::get('/product/list', 'Product\ProductApiController@getProductList');
-Route::get('/product/list/{id}', 'Product\ProductApiController@getProductDetailList');
+Route::get('/product/detail/{id}', 'Product\ProductApiController@getProductDetailList');
 
 Route::get('/category/list', 'Category\CategoryApiController@getCategoryList');
-Route::get('/category/list/{id}', 'Category\CategoryApiController@getProductByCategory');

@@ -10,8 +10,8 @@ namespace App\Rudraksha\Services\Api\Product;
 
 
 use App\Rudraksha\Entities\ProductImage;
+use App\Rudraksha\Repositories\Api\Category\CategoryApiRepository;
 use App\Rudraksha\Repositories\Api\Product\ProductApiRepository;
-use App\Rudraksha\Repositories\CategoryRepository;
 
 class ProductApiService
 {
@@ -20,9 +20,9 @@ class ProductApiService
      */
     private $productApiRepository;
     /**
-     * @var CategoryRepository
+     * @var CategoryApiRepository
      */
-    private $categoryRepository;
+    private $categoryApiRepository;
     /**
      * @var ProductImage
      */
@@ -31,26 +31,27 @@ class ProductApiService
     /**
      * ProductApiService constructor.
      * @param ProductApiRepository $productApiRepository
-     * @param CategoryRepository $categoryRepository
+     * @param CategoryApiRepository $categoryApiRepository
      * @param ProductImage $productImage
      */
     public function __construct(ProductApiRepository $productApiRepository,
-                                CategoryRepository $categoryRepository,
+                                CategoryApiRepository $categoryApiRepository,
                                 ProductImage $productImage)
     {
         $this->productApiRepository = $productApiRepository;
-        $this->categoryRepository = $categoryRepository;
+        $this->categoryApiRepository = $categoryApiRepository;
         $this->productImage = $productImage;
     }
 
     /**
+     * @param $name
      * @return array
      */
-    public function getProducts()
+    public function getProducts($name)
     {
         $baseUrl = url('/');
 
-        $categoryData = $this->categoryRepository->getCategory();
+        $categoryData = $this->categoryApiRepository->getCategoryId($name);
 
         $productDetail = [];
 
@@ -95,13 +96,11 @@ class ProductApiService
 
         foreach ($productInfo as $product) {
 
-
             $productDescription = $this->productApiRepository->getProductDescription($product->id);
             $productImages = $this->productApiRepository->getProductImage($product->id);
             $categoryBenefit = $this->productApiRepository->categoryBenefit($product->category_id);
 
             $imageArr = json_decode($productImages->name);
-
 
             foreach ($categoryBenefit as $category) {
 
@@ -109,7 +108,7 @@ class ProductApiService
 
                     $productDetails[]['product_details']= [
 
-                        'productInfo' => [
+                        'product_info' => [
                             'code' => $product->code,
                             'price' => $product->price,
                             'rank' => $product->rank,
@@ -118,17 +117,17 @@ class ProductApiService
                             'quantity_available' => $product->quantity_available,
                         ],
 
-                        'productDescription' => [
+                        'product_description' => [
                             'description' => $description->description,
                             'information' => $description->information,
                         ],
 
-                        'categoryBenefit' => [
+                        'category_benefit' => [
                             'benefit_heading' => $category->benefit_heading,
                             'benefit' => $category->benefit,
                         ],
 
-                        'productsImage' => [
+                        'products_mage' => [
                             'image' => $baseUrl.'/admin/product/storage/product/'.$imageArr[0]
                         ]
                     ];

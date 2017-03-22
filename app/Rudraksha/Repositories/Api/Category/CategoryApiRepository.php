@@ -48,16 +48,18 @@ class CategoryApiRepository
     }
 
     /**
-     * @param $id
+     * @param null $category
      * @return mixed
      */
-    public function getProductsList($id)
+    public function getCategoryId($category=null)
     {
-        $query = $this->category->select('product_infos.*')
-                    ->join('product_infos', 'product_infos.category_id', 'categories.id')
-                    ->where('product_infos.category_id', $id)
-                    ->get();
+        $query= $this->category->select('*');
 
-        return $query;
+        if ($category!=null)
+        {
+            $query->where('name', $category);
+        }
+
+        return $query->get();
     }
 }

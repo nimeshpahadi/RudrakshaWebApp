@@ -62,15 +62,4 @@ class CategoryApiService
         }
         return $categoryDetail;
     }
-
-    /**
-     * @param $id
-     * @return mixed
-     */
-    public function getProducts($id)
-    {
-        $productList = $this->categoryApiRepository->getProductsList($id);
-
-        return $productList;
-    }
 }
