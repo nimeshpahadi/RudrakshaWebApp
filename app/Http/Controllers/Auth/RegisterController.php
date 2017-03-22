@@ -21,16 +21,13 @@ class RegisterController extends Controller
     | provide this functionality without requiring any additional code.
     |
     */
-
     use RegistersUsers;
-
     /**
      * Where to redirect users after registration.
      *
      * @var string
      */
     protected $redirectTo = '/home';
-
     /**
      * Create a new controller instance.
      *
@@ -40,7 +37,6 @@ class RegisterController extends Controller
     {
         $this->middleware('guest');
     }
-
     /**
      * Get a validator for an incoming registration request.
      *
@@ -57,7 +53,6 @@ class RegisterController extends Controller
             'alternative_contact' => 'required|integer',
         ]);
     }
-
     /**
      * Create a new user instance after a valid registration.
      *
@@ -108,10 +103,10 @@ class RegisterController extends Controller
      * @param $token
      * @return \Illuminate\Http\RedirectResponse
      */
+
     public function confirmation($token)
     {
         $user = User::where('token', $token)->first();
-
         if (!is_null($user)) {
             $user->confirmed = 1;
             $user->token = '';
