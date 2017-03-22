@@ -9,6 +9,8 @@
 namespace App\Rudraksha\Repositories\Api\Product;
 
 
+use App\Rudraksha\Entities\Category_benifit;
+use App\Rudraksha\Entities\ProductDescription;
 use App\Rudraksha\Entities\ProductImage;
 use App\Rudraksha\Entities\ProductInfo;
 
@@ -22,16 +24,30 @@ class ProductApiRepository
      * @var ProductImage
      */
     private $productImage;
+    /**
+     * @var ProductDescription
+     */
+    private $productDescription;
+    /**
+     * @var Category_benifit
+     */
+    private $category_benifit;
 
     /**
      * ProductApiRepository constructor.
      * @param ProductInfo $productInfo
      * @param ProductImage $productImage
+     * @param ProductDescription $productDescription
+     * @param Category_benifit $category_benifit
      */
-    public function __construct(ProductInfo $productInfo, ProductImage $productImage)
+    public function __construct(ProductInfo $productInfo,
+                                ProductImage $productImage,
+                                ProductDescription $productDescription, Category_benifit $category_benifit)
     {
         $this->productInfo = $productInfo;
         $this->productImage = $productImage;
+        $this->productDescription = $productDescription;
+        $this->category_benifit = $category_benifit;
     }
 
     /**
@@ -51,14 +67,57 @@ class ProductApiRepository
      */
     public function getCategoryProduct($id)
     {
-        $query = $this->productInfo->select('product_infos.id', 'product_infos.name', 'product_infos.price'
-                                                ,'product_infos.discount')
+        $query = $this->productInfo->select('product_infos.*')
             ->join('categories', 'categories.id', 'product_infos.category_id')
-            ->join('product_images', 'product_images.product_id', 'product_infos.id')
             ->where('product_infos.category_id', $id)
             ->orderBy('product_infos.rank')
-            ->get()->toArray();
+            ->get();
 
         return $query;
     }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function getProductInfo($id)
+    {
+        return $this->productInfo->select('*')
+                    ->where('id', $id)
+                    ->get();
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function getProductDescription($id)
+    {
+        return $this->productDescription->select('*')
+                    ->where('product_id', $id)
+                    ->get();
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function getAllProductImage($id)
+    {
+        return $this->productImage->select('*')
+                    ->where('product_id', $id)
+                    ->get();
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function categoryBenefit($id)
+    {
+        return $this->category_benifit->select('*')
+                    ->where('category_id', $id)
+                    ->get();
+    }
+
 }

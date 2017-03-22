@@ -75,31 +75,39 @@ class RegisterController extends Controller
         ]);
     }
 
+    /**
+     * Customize user create
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function register(Request $request)
     {
         $input = $request->all();
-        $validator = $this->validator($input);
 
-        if ($validator->passes()) {
-            $data = $this->create($input)->toArray();
+        $this->validator($input)->validate();
 
-            $data['token'] = str_random(25);
+        $data = $this->create($input)->toArray();
+        $data['token'] = str_random(25);
 
-            $user = User::find($data['id']);
-            $user->token = $data['token'];
-            $user->save();
+        $user = User::find($data['id']);
+        $user->token = $data['token'];
+        $user->save();
 
-            Mail::send('mails.confirmation', $data, function ($message) use ($data) {
-                $message->to($data['email']);
-                $message->subject('Registration Confirmation');
-            });
+        Mail::send('mails.confirmation', $data, function ($message) use ($data) {
+            $message->to($data['email']);
+            $message->subject('Registration Confirmation');
+        });
 
-            return redirect(route('login'))->with('status', 'Confirmation email has been send. please check your email.');
-        }
-
-        return redirect(route('login'))->with('status', $validator->errors());
+        return redirect(route('login'))->with('status', 'Confirmation email has been send. please check your email.');
     }
 
+    /**
+     * Confirm user for login after register
+     *
+     * @param $token
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function confirmation($token)
     {
         $user = User::where('token', $token)->first();
@@ -108,8 +116,10 @@ class RegisterController extends Controller
             $user->confirmed = 1;
             $user->token = '';
             $user->save();
+
             return redirect(route('login'))->with('status', 'Your activation is completed.');
         }
+
         return redirect(route('login'))->with('status', 'Something went wrong.');
     }
 }

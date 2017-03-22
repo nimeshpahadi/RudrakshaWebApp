@@ -34,6 +34,17 @@ class ProductApiController extends Controller
     public function getProductList()
     {
         $products = $this->productApiService->getProducts();
+
         return response()->json($products);
+    }
+
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getProductDetailList($id)
+    {
+        $productsList = $this->productApiService->getAllProductDetails($id);
+
+        return response()->json($productsList);
     }
 }

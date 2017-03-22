@@ -48,28 +48,94 @@ class ProductApiService
      */
     public function getProducts()
     {
-        $baseUrl=url("/");
+        $baseUrl = url('/');
+
         $categoryData = $this->categoryRepository->getCategory();
+
         $productDetail = [];
-        $i=0;
+
+        $i = 0;
+
         foreach ($categoryData as $category) {
-           $productDetail[$i]=[];
-           $productDetail[$i]["category"]=$category->name;
-           $productDetail[$i]["products"]=[];
-           $products  = $this->productApiRepository->getCategoryProduct($category->id);
+
+           $productDetail[$i]['category']=$category->name;
+
+           $products = $this->productApiRepository->getCategoryProduct($category->id);
+
             foreach ($products as $product) {
-                $image = $this->productApiRepository->getProductImage($product['id']);
+
+                $image = $this->productApiRepository->getProductImage($product->id);
+
                 $imageArr = json_decode($image->name);
-                $productDetail[$i]["products"]=[
-                    "id"=>$product['id'],
-                    "name"=>$product['name'],
-                    "price"=>$product["price"],
-                    "discount"=>$product["discount"],
-                    "image"=>$baseUrl."/admin/product/storage/product/".$imageArr[0]
+
+                $productDetail[$i]['products'][]=[
+                    'id' => $product->id,
+                    'name' => $product->name,
+                    'price' => $product->price,
+                    'discount' => $product->discount,
+                    'image' => $baseUrl.'/admin/product/storage/product/'.$imageArr[0]
                 ];
             }
+
             $i++;
         }
+
         return $productDetail;
+    }
+
+    /**
+     * @return array
+     */
+    public function getAllProductDetails($id)
+    {
+        $baseUrl = url('/');
+        $productDetails= [];
+
+        $productInfo = $this->productApiRepository->getProductInfo($id);
+
+        foreach ($productInfo as $product) {
+
+
+            $productDescription = $this->productApiRepository->getProductDescription($product->id);
+            $productImages = $this->productApiRepository->getProductImage($product->id);
+            $categoryBenefit = $this->productApiRepository->categoryBenefit($product->category_id);
+
+            $imageArr = json_decode($productImages->name);
+
+
+            foreach ($categoryBenefit as $category) {
+
+                foreach ($productDescription as $description) {
+
+                    $productDetails[]['product_details']= [
+
+                        'productInfo' => [
+                            'code' => $product->code,
+                            'price' => $product->price,
+                            'rank' => $product->rank,
+                            'tag' => $product->tag,
+                            'discount' => $product->discount,
+                            'quantity_available' => $product->quantity_available,
+                        ],
+
+                        'productDescription' => [
+                            'description' => $description->description,
+                            'information' => $description->information,
+                        ],
+
+                        'categoryBenefit' => [
+                            'benefit_heading' => $category->benefit_heading,
+                            'benefit' => $category->benefit,
+                        ],
+
+                        'productsImage' => [
+                            'image' => $baseUrl.'/admin/product/storage/product/'.$imageArr[0]
+                        ]
+                    ];
+                }
+            }
+        }
+
+        return $productDetails;
     }
 }
