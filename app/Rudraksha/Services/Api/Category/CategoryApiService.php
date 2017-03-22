@@ -54,7 +54,7 @@ class CategoryApiService
 
                 'benifits' => [
                     'benefit_heading' => $category->benefit_heading,
-                    'benefit' => $category->benefit,
+                    'benefit' => json_encode($category->benefit),
                     'created_at' => $category->created_at,
                     'updated_at' => $category->updated_at,
                 ]
