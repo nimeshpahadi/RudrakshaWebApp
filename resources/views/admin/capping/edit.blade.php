@@ -50,11 +50,14 @@
                     </div>
                 </div>
 
+
                 <div class="form-group ">
                     <label for="design_image" class="col-sm-4 control-label">Design Image</label>
                     <div class=" col-sm-8 ">
-                        <span class="input-group-addon "><i class="fa fa-file"></i></span>
-                        <input type="file" class="form-control" name="design_image" id="design_image" required autofocus>
+                        <span class="input-group-addon ">
+                            <img class="cappingimage" src="{{asset('storage/capping')}}/{{$capping->design_image}}">
+                        </span>
+                        <input type="file" class="form-control" name="design_image" id="design_image" autofocus>
                     </div>
                 </div>
 

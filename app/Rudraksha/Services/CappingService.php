@@ -60,6 +60,10 @@ class CappingService
 
     public function delete_capping($id)
     {
+        $query=$this->cappingRepository->get_cappingid($id);
+        $name=$query->design_image;
+        $path = storage_path().'/app/public/capping/';
+        File::delete($path . $name);
         return $this->cappingRepository->deleteCapping($id);
     }
 }
