@@ -10,6 +10,7 @@
 Route::resource('/category', 'CategoryAdminController');
 Route::resource('/products', 'ProductAdminController');
 Route::resource('/capping', 'CappingAdminController');
+Route::resource('/customer', 'CustomerAdminController');
 
 //category Benefits
 Route::get('/category/{id}/benefit', 'CategoryAdminController@createBenefit')->name('category.benefit');
