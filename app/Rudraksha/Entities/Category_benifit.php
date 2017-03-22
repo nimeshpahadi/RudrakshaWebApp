@@ -13,6 +13,6 @@ class Category_benifit extends Model
     ];
 
     protected $casts = [
-        'benifit' => 'array'
+        'benefit' => 'array'
     ];
 }

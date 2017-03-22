@@ -97,6 +97,11 @@
                     <i class="fa fa-dashboard"></i> <span>Product</span>
                 </a>
             </li>
+            <li class="active">
+                <a href="/admin/capping">
+                    <i class="fa fa-dashboard"></i> <span>Capping</span>
+                </a>
+            </li>
 
 
         </section>

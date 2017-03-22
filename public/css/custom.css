@@ -4,5 +4,9 @@ body{ margin-top:20px; }
 {
     height: 300px;
     width: 300px;
-
+}
+.cappingimage
+{
+    height: 180px;
+    width: 250px;
 }
