@@ -58,7 +58,7 @@ class ProductApiRepository
     {
         return $this->productImage->select('name')
                     ->where('product_id', '=', $id)
-                    ->get()->first();
+                    ->first();
     }
 
     /**
@@ -84,7 +84,7 @@ class ProductApiRepository
     {
         return $this->productInfo->select('*')
                     ->where('id', $id)
-                    ->get();
+                    ->first();
     }
 
     /**
@@ -95,7 +95,7 @@ class ProductApiRepository
     {
         return $this->productDescription->select('*')
                     ->where('product_id', $id)
-                    ->get();
+                    ->first();
     }
 
     /**

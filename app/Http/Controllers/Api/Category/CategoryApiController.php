@@ -36,4 +36,10 @@ class CategoryApiController extends Controller
         $category = $this->categoryApiService->getCategory();
         return response()->json($category);
     }
+
+    public function getCategoryBenefit($id)
+    {
+        $category = $this->categoryApiService->serviceCategoryBenefit($id);
+        return response()->json($category);
+    }
 }

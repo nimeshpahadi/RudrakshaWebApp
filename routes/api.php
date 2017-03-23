@@ -20,3 +20,4 @@ Route::get('/product/list', 'Product\ProductApiController@getProductList');
 Route::get('/product/detail/{id}', 'Product\ProductApiController@getProductDetailList');
 
 Route::get('/category/list', 'Category\CategoryApiController@getCategoryList');
+Route::get('/category/{id}/benefit', 'Category\CategoryApiController@getCategoryBenefit');

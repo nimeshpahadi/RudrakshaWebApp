@@ -10,6 +10,7 @@ namespace App\Rudraksha\Repositories\Api\Category;
 
 
 use App\Rudraksha\Entities\Category;
+use App\Rudraksha\Entities\Category_benifit;
 
 class CategoryApiRepository
 {
@@ -17,14 +18,20 @@ class CategoryApiRepository
      * @var Category
      */
     private $category;
+    /**
+     * @var Category_benifit
+     */
+    private $category_benifit;
 
     /**
      * CategoryApiRepository constructor.
      * @param Category $category
+     * @param Category_benifit $category_benifit
      */
-    public function __construct(Category $category)
+    public function __construct(Category $category, Category_benifit $category_benifit)
     {
         $this->category = $category;
+        $this->category_benifit = $category_benifit;
     }
 
     /**
@@ -61,5 +68,14 @@ class CategoryApiRepository
         }
 
         return $query->get();
+    }
+
+    public function repoCategoryBenifit($id)
+    {
+        $query = $this->category_benifit->select('*')
+                       ->where('category_id', $id)
+                       ->get();
+
+        return $query;
     }
 }

@@ -54,12 +54,29 @@ class CategoryApiService
 
                 'benifits' => [
                     'benefit_heading' => $category->benefit_heading,
-                    'benefit' => json_encode($category->benefit),
+                    'benefit' => $category->benefit,
                     'created_at' => $category->created_at,
                     'updated_at' => $category->updated_at,
                 ]
             ];
         }
         return $categoryDetail;
+    }
+
+    public function serviceCategoryBenefit($id)
+    {
+        $categoryData = $this->categoryApiRepository->repoCategoryBenifit($id);
+
+        $categoryBenefit = [];
+
+        foreach ($categoryData as $category) {
+
+            $categoryBenefit['beneift'][] = [
+                'benefit_heading' => $category->benefit_heading,
+                'benefit' => $category->benefit,
+            ];
+        }
+
+        return $categoryBenefit;
     }
 }

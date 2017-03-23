@@ -67,14 +67,14 @@ class ProductApiService
 
                 $image = $this->productApiRepository->getProductImage($product->id);
 
-                $imageArr = json_decode($image->name);
+                $imageArr = $image->name;
 
                 $productDetail[$i]['products'][]=[
                     'id' => $product->id,
                     'name' => $product->name,
                     'price' => $product->price,
                     'discount' => $product->discount,
-                    'image' => $baseUrl.'/admin/product/storage/product/'.$imageArr[0]
+                    'image' => $baseUrl.'/storage/product/'.$imageArr[0]
                 ];
             }
 
@@ -85,6 +85,7 @@ class ProductApiService
     }
 
     /**
+     * @param $id
      * @return array
      */
     public function getAllProductDetails($id)
@@ -94,46 +95,42 @@ class ProductApiService
 
         $productInfo = $this->productApiRepository->getProductInfo($id);
 
-        foreach ($productInfo as $product) {
+        $productImage = $this->productApiRepository->getProductImage($id);
+        $categoryBenefit = $this->productApiRepository->categoryBenefit($productInfo->category_id);
+        $productDescription = $this->productApiRepository->getProductDescription($id);
 
-            $productDescription = $this->productApiRepository->getProductDescription($product->id);
-            $productImages = $this->productApiRepository->getProductImage($product->id);
-            $categoryBenefit = $this->productApiRepository->categoryBenefit($product->category_id);
+        $benefit = [];
 
-            $imageArr = json_decode($productImages->name);
-
-            foreach ($categoryBenefit as $category) {
-
-                foreach ($productDescription as $description) {
-
-                    $productDetails[]['product_details']= [
-
-                        'product_info' => [
-                            'code' => $product->code,
-                            'price' => $product->price,
-                            'rank' => $product->rank,
-                            'tag' => $product->tag,
-                            'discount' => $product->discount,
-                            'quantity_available' => $product->quantity_available,
-                        ],
-
-                        'product_description' => [
-                            'description' => $description->description,
-                            'information' => $description->information,
-                        ],
-
-                        'category_benefit' => [
-                            'benefit_heading' => $category->benefit_heading,
-                            'benefit' => $category->benefit,
-                        ],
-
-                        'products_mage' => [
-                            'image' => $baseUrl.'/admin/product/storage/product/'.$imageArr[0]
-                        ]
-                    ];
-                }
-            }
+        foreach ($categoryBenefit as $category) {
+            $benefit[]= [
+                'benefit_heading' => $category->benefit_heading,
+                'benefit' => $category->benefit,
+            ];
         }
+
+        $productDetails = [
+
+            'product_info' => [
+                'name' => $productInfo->name,
+                'code' => $productInfo->code,
+                'price' => $productInfo->price,
+                'rank' => $productInfo->rank,
+                'tag' => $productInfo->tag,
+                'discount' => $productInfo->discount,
+                'quantity_available' => $productInfo->quantity_available,
+            ],
+
+            'product_description' => [
+                'description' => $productDescription->description,
+                'information' => $productDescription->information,
+            ],
+
+            'category_benefit' => $benefit,
+
+            'products_mage' => [
+                'image' => $baseUrl.'/storage/product/'.$productImage->name
+            ]
+        ];
 
         return $productDetails;
     }
