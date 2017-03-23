@@ -25,7 +25,7 @@
                         <label for="benifit" class="col-sm-4 control-label"> Health Benifits </label>
                         <div class="col-sm-8">
                             <div class="" id="room_fileds">
-                                @foreach(json_decode($beni->benefit) as $list)
+                                @foreach($beni->benefit as $list)
                                     <input id="more_fields" type="text" class="form-control"
                                            name='benefit[]'
                                            value="{{$list}}" autofocus>

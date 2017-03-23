@@ -5,13 +5,11 @@
     <div class="panel-body">
 
         @include('admin.productAdmin.partials.heading')
-
-
         <div class="row setup-content" id="step-1">
             <div class="col-xs-10">
                 <div class="col-md-12 well text-center">
                     <h1>Product Image</h1>
-                    @if(!isset($product_image))
+                    @if($product_image)
                         Product image already exists
                         <div align="right" style="padding: 10px">
                             <a href="{{route('products.show',$productid)}}">

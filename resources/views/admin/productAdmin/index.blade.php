@@ -38,7 +38,7 @@
                                 <td>{{$item['name'] }}</td>
                                 <td>{{$item['code'] }}</td>
                                 <td>{{$item['quantity_available'] }}</td>
-                                <td>{{ join(",",json_decode($item['tag']))}}</td>
+                                <td>{{ join(",",$item['tag'])}}</td>
                                 <td>{{$item['discount'] }}</td>
                                 <td>{{$item['rank'] }}</td>
                                 <td><a href="{{route('products.show',$item['id'])}}">

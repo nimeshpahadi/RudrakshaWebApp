@@ -41,7 +41,7 @@
             </div>
             <div class="row">
                 <label class="col-sm-6 "> Tags :</label>
-                {{ join(",",json_decode($productid['tag']))}}
+                {{ join(",",$productid['tag'])}}
             </div>
             @if(isset($productid->discount))
                 <div class="row">
@@ -108,7 +108,6 @@
                 </div>
 
             @else
-                @foreach($product_image as $image=>$imagelist)
                     <button type="button" class="btn btn-info  col-md-offset-10" data-toggle="modal"
                             data-target="#myModal">Add Additional Images
                     </button>
@@ -123,7 +122,7 @@
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                                     <h4 class="modal-title">Choose images to upload</h4>
                                 </div>
-                                {!! Form::model($imagelist,array('route'=>['product_image_update',$imagelist->id],'method'=>'PUT', 'enctype'=>'multipart/form-data'))!!}
+                                {!! Form::model($product_image,array('route'=>['product_image_update',$product_image->id],'method'=>'PUT', 'enctype'=>'multipart/form-data'))!!}
                                 {{ Form::hidden('product_id', $productid->id) }}
                                 <div class="form-group ">
                                     <label for="name" class="col-sm-4 control-label">Image</label>
@@ -149,12 +148,12 @@
                         </div>
                     </div>
 
-                    @foreach(json_decode($imagelist->name) as $img)
+                    @foreach($product_image->name as $img)
                         {{--ln -s ~/web/RudrakshaWebbapp/storage/app/public/product ~/web/RudrakshaWebbapp/public/storage/--}}
 
                         <img class="productimage" src="{{asset('storage/product')}}/{{$img}}"
                              style=" border:dotted">
-                        {!! Form::open(['method' => 'DELETE','route' => ['product_image_delete', $imagelist->id,$img]]) !!}
+                        {!! Form::open(['method' => 'DELETE','route' => ['product_image_delete', $product_image->id,$img]]) !!}
 
                         <button type="submit" class="btn btn-danger  glyphicon glyphicon-alert pad"
                                 data-toggle="popover"
@@ -166,9 +165,6 @@
                         {!! Form::close() !!}
 
                     @endforeach
-
-
-                @endforeach
             @endif
         </div>
     </div>

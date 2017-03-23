@@ -54,7 +54,6 @@ class CategoryService
     {
         $formData = $request->all();
         $formData = array_except($formData, ['_token', 'to', 'remove']);
-        $formData['benefit']= json_encode($formData['benefit']);
         $data= $this->categoryRepository->storeCategoryBenefit($formData);
 
         return $data;
@@ -77,7 +76,7 @@ class CategoryService
     {
         $formData = $request->all();
         $formData = array_except($formData, ['_token', 'to', 'remove']);
-        $formData['benefit']= json_encode($formData['benefit']);
+        $formData['benefit']= $formData['benefit'];
         $data= $this->categoryRepository->editCategoryBenefit($formData,$id);
         return $data;
 

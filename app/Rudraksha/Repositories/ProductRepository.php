@@ -132,7 +132,7 @@ class ProductRepository
      */
     public function get_productImage($id)
     {
-        $query = $this->productImage->select('*')->where('product_id', $id)->get();
+        $query = $this->productImage->select('*')->where('product_id', $id)->get()->first();
         return $query;
     }
 
@@ -219,7 +219,7 @@ class ProductRepository
     {
         try {
             $data = ProductRepository::get_productImagebyid($id);
-            $data['name']=json_encode(array_values($namearray));
+            $data['name']=array_values($namearray);
             $data->update();
             $this->log->info("Product Image Deleted",['id'=>$id]);
             return true;
@@ -253,8 +253,7 @@ class ProductRepository
         try {
 
             $data = ProductRepository::get_productImagebyid($id);
-            $p= array_merge( json_decode($data->name),$Formdata['name']);
-            $data->name= json_encode($p);
+            $data->name= array_merge( $data->name,$Formdata['name']);
             $data->update();
             $this->log->info("Product Image added");
             return true;

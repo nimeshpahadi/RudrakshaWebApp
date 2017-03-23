@@ -6,11 +6,19 @@
 
         @include('admin.productAdmin.partials.heading')
 
-        {{--{{dd($productid)}}--}}
         <div class="row setup-content" id="step-1">
             <div class="col-xs-10">
                 <div class="col-md-12 well text-center">
                     <h1>Product Description</h1>
+
+                    @if($productdesc)
+                        Product Description already exists
+                        <div align="right" style="padding: 10px">
+                            <a href="{{route('products.show',$productid)}}">
+                                <span class=" btn btn-sm btn-success" title="Create new category">Show details</span>
+                            </a>
+                        </div>
+                    @else
 
                     {!! Form::open(array('route'=>'product_description_add', 'method'=>'post' ))!!}
 
@@ -57,6 +65,7 @@
                         {!! Form::close() !!}
 
                     </div>
+                        @endif
                 </div>
             </div>
 

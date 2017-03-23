@@ -145,7 +145,7 @@ class CategoryAdminController extends Controller
     {
         if ($product = $this->categoryService->editcategoryBenefit($request, $id)) {
 
-            return back()->withSuccess("Category  Benefit edited!");
+            return redirect()->route('category.index')->withSuccess("Category  Benefit edited!");
         }
         return back()->withErrors('something went wrong');
     }
