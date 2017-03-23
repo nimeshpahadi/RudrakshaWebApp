@@ -21,3 +21,5 @@ Route::get('/product/detail/{id}', 'Product\ProductApiController@getProductDetai
 
 Route::get('/category/list', 'Category\CategoryApiController@getCategoryList');
 Route::get('/category/{id}/benefit', 'Category\CategoryApiController@getCategoryBenefit');
+
+Route::get('/capping/list', 'Capping\CappingApiController@getCappingData');
