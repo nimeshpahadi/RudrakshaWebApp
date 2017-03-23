@@ -73,8 +73,14 @@
                                         {{ csrf_field() }}
                                     </form>
                                 </li>
+                                <li><a href="#">Profile</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">change password</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">My History </a></li>
                             </ul>
                         </li>
+
                     @endif
                 </ul>
             </div>

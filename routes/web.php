@@ -31,3 +31,4 @@ Route::get('/users/confirmation/{token}', 'Auth\RegisterController@confirmation'
 
 //customer
 Route::resource('/customer', 'CustomerController');
+Route::put('/customer/{id}/image', 'CustomerController@updateimage')->name('customer.updateimage');

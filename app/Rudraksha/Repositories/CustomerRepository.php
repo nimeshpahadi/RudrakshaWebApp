@@ -35,6 +35,11 @@ class CustomerRepository
         return $this->user->select('*')->get();
     }
 
+    /**
+     * get user by id
+     * @param $id
+     * @return mixed
+     */
     public function getCustomerId($id)
     {
         return $this->user->select('*')->where('id',$id)->first();

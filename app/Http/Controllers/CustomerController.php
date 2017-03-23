@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Rudraksha\Services\CustomerService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CustomerController extends Controller
 {
@@ -14,6 +15,7 @@ class CustomerController extends Controller
 
     public function __construct(CustomerService $customerService)
     {
+        $this->middleware('auth');
         $this->customerService = $customerService;
     }
 
@@ -24,8 +26,9 @@ class CustomerController extends Controller
      */
     public function index()
     {
-
-       return view('customer.index');
+        $userid=Auth::user()->id ;
+       $customer= $this->customerService->getCustomerId($userid);
+       return view('customer.index',compact('customer'));
     }
 
     /**
@@ -47,6 +50,12 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
         //
+    }
+
+
+    public function updateimage(Request $request,$id)
+    {
+       dd($request->all());
     }
 
     /**

@@ -14,7 +14,7 @@ class Userimage extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->text('image');
+            $table->text('image')->nullable();
         });
     }
 
