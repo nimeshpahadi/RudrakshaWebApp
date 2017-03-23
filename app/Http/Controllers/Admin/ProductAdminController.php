@@ -60,8 +60,9 @@ class ProductAdminController extends Controller
      */
     public function createDesc($productid)
     {
+        $productdesc = $this->productService->get_product_desc($productid);
         $active = "desc";
-        return view('admin/productAdmin/createDesc', compact('productid', 'active'));
+        return view('admin/productAdmin/createDesc', compact('productid', 'active','productdesc'));
     }
 
     /**

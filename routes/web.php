@@ -25,3 +25,9 @@ Route::post('/admin/login', 'Auth\AdminLoginController@login')->name('admin.logi
 Route::get('/admin', 'Admin\AdminController@index')->name('admin.dashboard');
 
 Route::get('/users/confirmation/{token}', 'Auth\RegisterController@confirmation')->name('confirmation');
+
+
+
+
+//customer
+Route::resource('/customer', 'CustomerController');

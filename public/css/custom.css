@@ -10,3 +10,12 @@ body{ margin-top:20px; }
     height: 180px;
     width: 250px;
 }
+header, main, footer {
+    padding-left: 300px;
+}
+
+@media only screen and (max-width : 992px) {
+    header, main, footer {
+        padding-left: 0;
+    }
+}

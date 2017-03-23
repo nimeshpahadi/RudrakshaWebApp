@@ -11,7 +11,6 @@
             <div class="col-xs-10">
                 <div class="col-md-12 well text-center">
                     <h1>Edit Product Info</h1>
-
                     {!! Form::model($pro_id,array('route'=>['products.update',$pro_id->id],'method'=>'PUT' ))!!}
 
                     <div class="form-group{{ $errors->has('category_id') ? ' has-error' : '' }} clearfix">
@@ -66,12 +65,17 @@
                     </div>
 
                     <div class="form-group{{ $errors->has('tag') ? ' has-error' : '' }} clearfix">
-                        <label for="tag" class="col-sm-4 control-label">Tag</label>
+                        <label for="tag" class="col-sm-4 control-label">Tags</label>
 
                         <div class="col-sm-8">
-                            {{ Form::text(('tag'),null,array('class'=>'form-control'))}}
+                            <input id="tag" type="text" class="form-control" name="tag"
+
+                                 value="@foreach($pro_id->tag as $tags){{$tags.','}} @endforeach"
+                                   required
+                                   autofocus placeholder="insert tags seperated by comma (,)">
                         </div>
                     </div>
+
                     <div class="form-group{{ $errors->has('discount') ? ' has-error' : '' }} clearfix">
                         <label for="discount" class="col-sm-4 control-label">Discount</label>
 

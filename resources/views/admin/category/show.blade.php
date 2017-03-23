@@ -59,16 +59,16 @@
 
                 <table>
                     @if(isset($cate_beni))
-                    @foreach($cate_beni as $benifitall=>$val)
+                    @foreach($cate_beni as $benifitall)
                         <thead>
-                        <th><h2> {{$val->benefit_heading}}
-                                <a href="{{route('category.benefit.edit',$val->id)}}">
+                        <th><h2> {{$benifitall->benefit_heading}}
+                                <a href="{{route('category.benefit.edit',$benifitall->id)}}">
                                     <button class="btn btn-warning pad" data-toggle="popover" data-trigger="hover"
                                             data-placement="top" data-content="Edit the current category"><i
                                                 class="fa fa-edit"></i></button>
                                 </a>
                                 <div class="col-md-offset-10">
-                                {!! Form::open(['method' => 'DELETE','route' => ['category.benefit.delete', $val->id]]) !!}
+                                {!! Form::open(['method' => 'DELETE','route' => ['category.benefit.delete', $benifitall->id]]) !!}
                                 <button type="submit" class="btn btn-danger glyphicon glyphicon-trash " data-toggle="popover"
                                         data-trigger="hover"
                                         data-placement="top" data-content="Delete the current product"
@@ -82,7 +82,7 @@
                         </th>
 
                         </thead>
-                        @foreach(json_decode($val->benefit) as $ben)
+                        @foreach($benifitall->benefit as $ben)
                             <tr>
                                 <td>
                                     <li>{{$ben}}</li>
