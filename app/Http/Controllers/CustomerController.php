@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Rudraksha\Services\CustomerAddressService;
 use App\Rudraksha\Services\CustomerService;
+use App\Rudraksha\Services\DeliveryAddressService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,17 +18,21 @@ class CustomerController extends Controller
      * @var CustomerAddressService
      */
     private $customerAddressService;
+    private $deliveryAddressService;
 
     /**
      * CustomerController constructor.
      * @param CustomerService $customerService
      * @param CustomerAddressService $customerAddressService
+     * @param DeliveryAddressService $deliveryAddressService
      */
-    public function __construct(CustomerService $customerService, CustomerAddressService $customerAddressService)
+    public function __construct(CustomerService $customerService, CustomerAddressService $customerAddressService,
+                                DeliveryAddressService $deliveryAddressService)
     {
         $this->middleware('auth');
         $this->customerService = $customerService;
         $this->customerAddressService = $customerAddressService;
+        $this->deliveryAddressService = $deliveryAddressService;
     }
 
     /**
@@ -38,12 +43,12 @@ class CustomerController extends Controller
     public function index()
     {
         $userid=Auth::user()->id ;
-
         $customer= $this->customerService->getCustomerId($userid);
-
         $customerAddress = $this->customerAddressService->getCustomerAddress($userid);
+        $customerDelivery= $this->deliveryAddressService->getdelivery($userid);
 
-        return view('customer.index',compact('customer', 'customerAddress'));
+        return view('customer.index',compact('customer', 'customerAddress','customerDelivery'));
+
     }
 
     /**
@@ -96,7 +101,7 @@ class CustomerController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**

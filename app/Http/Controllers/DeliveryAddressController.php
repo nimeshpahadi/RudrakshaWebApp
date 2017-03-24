@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Rudraksha\Services\DeliveryAddressService;
+
+use App\Rudraksha\Services\CustomerService;
+use App\Rudraksha\Services\DeliveryAddressService;
 use Illuminate\Http\Request;
 
 class DeliveryAddressController extends Controller
@@ -12,10 +14,16 @@ class DeliveryAddressController extends Controller
      * @var DeliveryAddressService
      */
     private $deliveryAddressService;
+    /**
+     * @var CustomerService
+     */
+    private $customerService;
 
-    public function __construct(DeliveryAddressService $deliveryAddressService)
+    public function __construct(DeliveryAddressService $deliveryAddressService,CustomerService $customerService)
     {
+        $this->middleware('auth');
         $this->deliveryAddressService = $deliveryAddressService;
+        $this->customerService = $customerService;
     }
 
     /**
@@ -23,9 +31,10 @@ class DeliveryAddressController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        //
+        $cusid=$this->customerService->getCustomerId($id);
+        return view('customer.delivery.create',compact('cusid'));
     }
 
     /**
@@ -46,7 +55,10 @@ class DeliveryAddressController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($this->deliveryAddressService->store_delivery($request)) {
+            return redirect()->route('customers.index')->withSuccess("Delivery Address added!");
+        }
+        return back()->withErrors("Something went wrong");
     }
 
     /**
@@ -68,7 +80,8 @@ class DeliveryAddressController extends Controller
      */
     public function edit($id)
     {
-        //
+        $customerDelivery= $this->deliveryAddressService->getdeliverybyId($id);
+        return view('customer.delivery.edit',compact('customerDelivery'));
     }
 
     /**
@@ -80,7 +93,10 @@ class DeliveryAddressController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if ($this->deliveryAddressService->update_delivery($request,$id)) {
+            return redirect()->route('customers.index')->withSuccess("Delivery address updated !");
+        }
+        return back()->withErrors("Something went wrong");
     }
 
     /**
@@ -93,4 +109,7 @@ class DeliveryAddressController extends Controller
     {
         //
     }
+
+
+
 }

@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+    @include('layouts.notification')
 
     <div class="container">
         <div class="col-md-12">
@@ -100,9 +101,67 @@
                 @endif
             </div>
 
+            <div class="panel panel-default panel-info col-md-8">
+
+
+                @if(!isset($customerDelivery))
+
+                    <div align="right" style="padding: 10px">
+                        <a href="{{route('deliveryaddress',$customer->id)}}">
+                            <span class=" btn btn-sm btn-success" title="Create new delivery address">Create Delivery Address</span>
+                        </a>
+                    </div>
+
+                @else
+                    <div class="panel-heading">
+                        <h3 class="panel-title ">User Delivery Address</h3>
+                    </div>
+                    <div class="panel-body">
+
+                        <a href="{{route('deliveryaddress.edit',$customerDelivery->id)}}">
+                            <button class="btn btn-warning pad" data-toggle="popover" data-trigger="hover"
+                                    data-placement="top" data-content="Edit the {{$customerDelivery->id}} delivery">
+                                <i class="fa fa-edit">edit</i>
+                            </button>
+                        </a>
+
+
+                        <div class="row">
+                            <label class="col-sm-6 "> Country :</label>
+                            {{$customerDelivery->country}}
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-6 "> State :</label>
+                            {{$customerDelivery->state}}
+                        </div>
+
+                        <div class="row">
+                            <label class="col-sm-6 "> City:</label>
+                            {{$customerDelivery->city}}
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-6 "> Latitude/Longitude:</label>
+                            {{$customerDelivery->latitude_long}}
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-6 "> Address Line1:</label>
+                            {{$customerDelivery->address_line1}}
+                        </div>
+
+                        <div class="row">
+                            <label class="col-sm-6 "> Address Line2:</label>
+                            {{$customerDelivery->address_line2}}
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-6 "> Zip-code:</label>
+                            {{$customerDelivery->zip_code}}
+                        </div>
+
+
+                    </div>
+            </div>
 
         </div>
+        @endif
     </div>
-
 @endsection
-

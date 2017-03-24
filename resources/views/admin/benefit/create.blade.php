@@ -9,7 +9,7 @@
             <div class="col-xs-10">
                 <div class="col-md-12 well text-center">
                     <h1>Category Benifits</h1>
-{{--{{$id}}--}}
+
                     {!! Form::open(array('route'=>'category.benefit.store', 'method'=>'post' ))!!}
 
                     {{ Form::hidden('category_id',$id) }}
