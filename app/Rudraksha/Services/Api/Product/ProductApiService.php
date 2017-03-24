@@ -60,6 +60,7 @@ class ProductApiService
         foreach ($categoryData as $category) {
 
            $productDetail[$i]['category']=$category->name;
+           $productDetail[$i]['category_id']=$category->id;
 
            $products = $this->productApiRepository->getCategoryProduct($category->id);
 
@@ -67,14 +68,12 @@ class ProductApiService
 
                 $image = $this->productApiRepository->getProductImage($product->id);
 
-                $imageArr = $image->name;
-
                 $productDetail[$i]['products'][]=[
                     'id' => $product->id,
                     'name' => $product->name,
                     'price' => $product->price,
                     'discount' => $product->discount,
-                    'image' => $baseUrl.'/storage/product/'.$imageArr[0]
+                    'image' => $baseUrl.'/storage/product/'.$image->name
                 ];
             }
 
@@ -91,11 +90,10 @@ class ProductApiService
     public function getAllProductDetails($id)
     {
         $baseUrl = url('/');
-        $productDetails= [];
 
         $productInfo = $this->productApiRepository->getProductInfo($id);
 
-        $productImage = $this->productApiRepository->getProductImage($id);
+        $productImage = $this->productApiRepository->getAllProductImage($id);
         $categoryBenefit = $this->productApiRepository->categoryBenefit($productInfo->category_id);
         $productDescription = $this->productApiRepository->getProductDescription($id);
 
@@ -127,7 +125,7 @@ class ProductApiService
 
             'category_benefit' => $benefit,
 
-            'products_mage' => [
+            'products_image' => [
                 'image' => $baseUrl.'/storage/product/'.$productImage->name
             ]
         ];

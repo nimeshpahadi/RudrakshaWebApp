@@ -64,12 +64,16 @@ class CategoryApiRepository
 
         if ($category!=null)
         {
-            $query->where('name', $category);
+            $query->where('id', $category);
         }
 
         return $query->get();
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function repoCategoryBenifit($id)
     {
         $query = $this->category_benifit->select('*')

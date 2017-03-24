@@ -106,7 +106,7 @@ class ProductApiRepository
     {
         return $this->productImage->select('*')
                     ->where('product_id', $id)
-                    ->get();
+                    ->first();
     }
 
     /**
