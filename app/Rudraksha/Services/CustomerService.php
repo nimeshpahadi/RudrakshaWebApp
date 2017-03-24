@@ -34,4 +34,16 @@ class CustomerService
     return $this->customerRepository->getCustomerId($id);
     }
 
+    public function updateImage($request, $id)
+    {
+        $formData = $request->all();
+        $formData = array_except($formData, ['_token', 'to', 'remove']);
+        $imagename = $formData['id'] . '_' . rand(0, 10000) . '.' . $formData['image']->getClientOriginalExtension();
+        $destinationPath = storage_path('app/public/users');
+        $formData['image']->move($destinationPath, $imagename);
+        $formData['image'] = $imagename;
+        return $this->customerRepository->upload_image($formData, $id);
+
+    }
+
 }

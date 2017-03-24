@@ -11,6 +11,8 @@ namespace App\Rudraksha\Repositories;
 
 use App\User;
 use Illuminate\Contracts\Logging\Log;
+use Illuminate\Database\QueryException;
+use File;
 
 class CustomerRepository
 {
@@ -42,6 +44,26 @@ class CustomerRepository
      */
     public function getCustomerId($id)
     {
-        return $this->user->select('*')->where('id',$id)->first();
+        return $this->user->select('*')->where('id', $id)->first();
+    }
+
+    public function upload_image($Formdata, $id)
+    {
+        try {
+            $data = User::find($id);
+            $name = $data->image;
+            $path = storage_path() . '/app/public/users/';
+            File::delete($path . $name);
+            $data->image = $Formdata['image'];
+            $data->update();
+            $this->log->info("User Image added");
+            return true;
+
+        } catch (QueryException $e) {
+
+            $this->log->error("User Image Creation Failed : ", [$e->getMessage()]);
+            return false;
+        }
+
     }
 }

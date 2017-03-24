@@ -55,7 +55,11 @@ class CustomerController extends Controller
 
     public function updateimage(Request $request,$id)
     {
-       dd($request->all());
+        if ($this->customerService->updateImage($request, $id))
+        {
+            return back()->withSuccess("Imageuploaded!");
+        }
+        return back()->withErrors('something went wrong');
     }
 
     /**
