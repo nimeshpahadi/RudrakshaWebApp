@@ -2,25 +2,33 @@
 
 namespace App\Http\Controllers;
 
-use App\Rudraksha\Services\CustomeAddressService;
+use App\Http\Requests\AddressRequest;
+use App\Rudraksha\Services\CustomerAddressService;
+use App\Rudraksha\Services\CustomerService;
 use Illuminate\Http\Request;
 
 class CustomerAddressController extends Controller
 {
     /**
-     * @var CustomeAddressService
+     * @var CustomerAddressService
      */
-    private $customeAddressService;
+    private $customerAddressService;
+    /**
+     * @var CustomerService
+     */
+    private $customerService;
 
 
     /**
      * CustomerAddressController constructor.
-     * @param CustomeAddressService $customeAddressService
+     * @param CustomerAddressService $customerAddressService
+     * @param CustomerService $customerService
      */
-    public function __construct(CustomeAddressService $customeAddressService )
+    public function __construct(CustomerAddressService $customerAddressService, CustomerService $customerService)
     {
-
-        $this->customeAddressService = $customeAddressService;
+        $this->middleware('auth');
+        $this->customerAddressService = $customerAddressService;
+        $this->customerService = $customerService;
     }
 
     /**
@@ -28,9 +36,9 @@ class CustomerAddressController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        //
+
     }
 
     /**
@@ -38,20 +46,28 @@ class CustomerAddressController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+        $user = $this->customerService->getCustomerId($id);
+        return view('customer/address/create', compact('user'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param AddressRequest $addressRequest
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AddressRequest $addressRequest)
     {
-        //
+        $data = $addressRequest->all();
+
+        if ($this->customerAddressService->serviceAddressStore($data)) {
+
+            return redirect('/customers')->withSuccess("Customer Address Created!");
+        }
+
+        return back()->withErrors("oops Something went wrong");
     }
 
     /**
@@ -73,7 +89,9 @@ class CustomerAddressController extends Controller
      */
     public function edit($id)
     {
-        //
+        $userId = $this->customerService->getCustomerId($id);
+
+        return view('customer/address/edit', compact('userId'));
     }
 
     /**
@@ -85,7 +103,12 @@ class CustomerAddressController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if ($this->customerAddressService->serviceAddressUpdate($request, $id)) {
+
+            return redirect()->route('customers.index', compact('id'))->withSuccess('Customer Address Updated');
+        }
+
+        return back()->withErrors('something went wrong');
     }
 
     /**

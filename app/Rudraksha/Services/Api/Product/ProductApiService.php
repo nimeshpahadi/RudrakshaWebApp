@@ -73,7 +73,7 @@ class ProductApiService
                     'name' => $product->name,
                     'price' => $product->price,
                     'discount' => $product->discount,
-                    'image' => $baseUrl.'/storage/product/'.$image->name
+                    'image' => $baseUrl.'/storage/product/'.$image->name[0]
                 ];
             }
 
@@ -93,7 +93,17 @@ class ProductApiService
 
         $productInfo = $this->productApiRepository->getProductInfo($id);
 
-        $productImage = $this->productApiRepository->getAllProductImage($id);
+        if ($productInfo==null) {
+
+            $query = [
+                "status" => "false",
+                "message" => "product not found"
+            ];
+
+            return $query;
+        }
+
+        $productImage = $this->productApiRepository->getProductImage($id);
         $categoryBenefit = $this->productApiRepository->categoryBenefit($productInfo->category_id);
         $productDescription = $this->productApiRepository->getProductDescription($id);
 
@@ -126,7 +136,7 @@ class ProductApiService
             'category_benefit' => $benefit,
 
             'products_image' => [
-                'image' => $baseUrl.'/storage/product/'.$productImage->name
+                'image' => $baseUrl.'/storage/product/'.$productImage->name[0]
             ]
         ];
 
