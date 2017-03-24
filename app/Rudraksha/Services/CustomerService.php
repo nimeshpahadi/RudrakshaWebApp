@@ -46,4 +46,11 @@ class CustomerService
 
     }
 
+    public function changePassword( $request,$id)
+    {
+        $data = $this->customerRepository->ChangePassword($request,$id);
+        return $data;
+    }
+
+
 }

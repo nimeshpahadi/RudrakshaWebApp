@@ -66,7 +66,12 @@
                                 <li><a href="#">My History </a></li>
 
                                 <li role="separator" class="divider"></li>
-                                <li><a href="#">change password</a></li>
+                                <li>
+
+                                    {!! Html::linkRoute('password','password',array( Auth::user()->id),array('class'=>''))!!}
+
+
+                                </li>
                                 <li role="separator" class="divider"></li>
 
                                 <li>
@@ -89,7 +94,6 @@
             </div>
         </div>
     </nav>
-
 
 
     @yield('content')

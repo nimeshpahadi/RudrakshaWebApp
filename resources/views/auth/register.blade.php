@@ -68,14 +68,6 @@
                                 </div>
                             </div>
 
-                            <div class="form-group ">
-                                <label for="image" class="col-md-4 control-label">Image</label>
-                                <div class=" col-md-6 ">
-                                    <span class="input-group-addon "><i class="fa fa-file"></i></span>
-                                    <input type="file" class="form-control" name="image" id="image" required autofocus>
-                                </div>
-                            </div>
-
                             <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                                 <label for="password" class="col-md-4 control-label">Password</label>
 

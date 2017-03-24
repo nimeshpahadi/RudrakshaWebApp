@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Rudraksha\Services\CustomerService;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -29,13 +30,19 @@ class RegisterController extends Controller
      */
     protected $redirectTo = '/home';
     /**
+     * @var CustomerService
+     */
+    private $customerService;
+
+    /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct( CustomerService $customerService)
     {
         $this->middleware('guest');
+        $this->customerService = $customerService;
     }
     /**
      * Get a validator for an incoming registration request.
@@ -51,7 +58,6 @@ class RegisterController extends Controller
             'password' => 'required|min:6|confirmed',
             'contact' => 'required|integer',
             'alternative_contact' => 'required|integer',
-            'image' => 'required',
         ]);
     }
     /**
@@ -62,17 +68,13 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $imagename =  $data['name'].'_'.random_int(1,100). '.' . $data['image']->getClientOriginalExtension();
-        $destinationPath = storage_path('app/public/users');
-        $data['image']->move($destinationPath, $imagename);
-        $data['image']=$imagename;
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'contact' => $data['contact'],
             'alternative_contact' => $data['alternative_contact'],
-            'image' => $data['image'],
         ]);
     }
 
@@ -123,4 +125,6 @@ class RegisterController extends Controller
 
         return redirect(route('login'))->with('status', 'Something went wrong.');
     }
+
+
 }

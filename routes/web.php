@@ -30,5 +30,9 @@ Route::get('/users/confirmation/{token}', 'Auth\RegisterController@confirmation'
 
 
 //customer
-Route::resource('/customer', 'CustomerController');
-Route::put('/customer/{id}/image', 'CustomerController@updateimage')->name('customer.updateimage');
+Route::resource('/customers', 'CustomerController');
+Route::put('/customers/{id}/image', 'CustomerController@updateimage')->name('customer.updateimage');
+
+Route::get('/customers/{id}/password', 'CustomerController@password')->name("password");
+Route::patch('/customers/{id}/password', 'CustomerController@changepassword')->name("changepassword");
+

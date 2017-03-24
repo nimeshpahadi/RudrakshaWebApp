@@ -8,7 +8,7 @@
 
 namespace App\Rudraksha\Repositories;
 
-
+use Illuminate\Support\Facades\Hash;
 use App\User;
 use Illuminate\Contracts\Logging\Log;
 use Illuminate\Database\QueryException;
@@ -65,5 +65,23 @@ class CustomerRepository
             return false;
         }
 
+    }
+
+    public function ChangePassword($request, $id)
+    {
+        try {
+            $data  = $this->user->find($id);
+
+            if ( Hash::check($request['oldpassword'],$data->password)) {
+                $data->password = bcrypt($request->password);
+                $data->save();
+                $this->log->error(" Password Changed ", ['id' => $id]);
+                return true;
+            }
+        } catch (QueryException $e) {
+            $this->log->error("Password Changing Failed", ['id' => $id], [$e->getMessage()]);
+
+            return false;
+        }
     }
 }

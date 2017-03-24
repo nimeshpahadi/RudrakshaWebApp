@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-    @include('layouts.navbar')
 
     <div class="container">
+        <div class="col-md-12">
+
+        @include('layouts.navbar')
 
 
-        <div class="row">
-            <div class="col-md-12">
                 <div class=" col-md-3 clearfix">
 
                     {!! Form::model($customer,array('route'=>['customer.updateimage',$customer->id],'method'=>'PUT','enctype'=>'multipart/form-data'  ))!!}
@@ -56,14 +56,12 @@
 
 
             </div>
-        </div>
+            </div>
 
-        <section>
 
-        </section>
         @endsection
-        <script>
-            $(document).on('ready', function () {
-                $("#inputimage").fileinput({showCaption: false});
-            });
-        </script>
+        {{--<script>--}}
+            {{--$(document).on('ready', function () {--}}
+                {{--$("#inputimage").fileinput({showCaption: false});--}}
+            {{--});--}}
+        {{--</script>--}}

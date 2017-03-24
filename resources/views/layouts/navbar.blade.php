@@ -1,4 +1,19 @@
 
+
+<div class="row">
+    {{--<div class="col-md-2">--}}
+
+{{--<div class="list-group">--}}
+    {{--<a href="#" class="list-group-item active">Profile</a>--}}
+    {{--<a href="#" class="list-group-item">User Address</a>--}}
+    {{--<a href="#" class="list-group-item">Delivery Address</a>--}}
+    {{--<a href="#" class="list-group-item">Add Address</a>--}}
+    {{--<a href="#" class="list-group-item"></a>--}}
+{{--</div>--}}
+{{--</div>--}}
+
+
+    <div class="col-md-12">
     <nav class="navbar navbar-default navbar-inverse">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -39,4 +54,8 @@
         </div><!-- /.container-fluid -->
     </nav>
 
+
+
+    </div>
+</div>
 

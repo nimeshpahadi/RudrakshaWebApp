@@ -106,4 +106,28 @@ class CustomerController extends Controller
     {
         //
     }
+    /**
+     * form for password display
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function password($id)
+    {
+        $user = $this->customerService->getCustomerId($id);
+        return view('customer.password',compact('user'));
+    }
+
+    /**
+     * update password
+     * @param Request $request
+     * @param $id
+     * @return $this
+     */
+    public function changepassword(Request $request, $id)
+    {
+        if ($this->customerService->changePassword($request, $id)) {
+            return redirect()->route('customers.index',$id)->withSuccess('password Changed');
+        }
+        return back()->withErrors('old password may be wrong');
+    }
 }
