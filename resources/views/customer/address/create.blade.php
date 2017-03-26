@@ -18,15 +18,18 @@
                 <div class="form-group{{ $errors->has('country') ? ' has-error' : '' }} clearfix">
                     <label for="country" class="col-sm-4 control-label">Country</label>
 
-                    <div class="col-sm-8">
-                        <input id="country" type="text" class="form-control" name="country" value="{{ old('country') }}" required
-                               autofocus>
+                    <?php $x = Config::get('country');?>
 
-                        @if ($errors->has('country'))
-                            <span class="help-block">
-                                        <strong>{{ $errors->first('country') }}</strong>
-                                    </span>
-                        @endif
+                    <div class="col-sm-8">
+                        <select name="country" class="form-control" required>
+                            <option selected="selected" disabled>Choose Country</option>
+                            @foreach($x as $code=>$name)
+                                <option value="{{$code}}">
+                                    {{$name}}
+                                </option>
+                            @endforeach
+
+                        </select>
                     </div>
                 </div>
 

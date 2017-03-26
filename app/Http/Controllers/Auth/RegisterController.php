@@ -123,8 +123,6 @@ class RegisterController extends Controller
             return redirect(route('login'))->with('status', 'Your activation is completed.');
         }
 
-        return redirect(route('login'))->with('status', 'Something went wrong.');
+        return redirect(route('login'))->with('warning', 'Something went wrong.');
     }
-
-
 }
