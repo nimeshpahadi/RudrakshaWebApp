@@ -42,6 +42,6 @@ Route::put('/customers/{id}/address/update', 'CustomerAddressController@update')
 // Customer Delivery Address
 Route::get('/customers/{id}/deliveryaddress', 'DeliveryAddressController@index')->name("deliveryaddress");
 Route::post('/customers/deliveryaddress', 'DeliveryAddressController@store')->name("customers.delivery.store");
-Route::get('/customers/{id}/editdeliveryaddress', 'DeliveryAddressController@edit')->name("deliveryaddress.edit");
-Route::put('/customers/{id}/editdeliveryaddress', 'DeliveryAddressController@update')->name("deliveryaddress.update");
+Route::get('/customers/{id}/delivery/edit', 'DeliveryAddressController@edit')->name("deliveryaddress.edit");
+Route::put('/customers/{id}/delivery/update', 'DeliveryAddressController@update')->name("deliveryaddress.update");
 

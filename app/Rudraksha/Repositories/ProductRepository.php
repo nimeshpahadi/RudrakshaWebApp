@@ -237,7 +237,6 @@ class ProductRepository
             $data = ProductRepository::get_productdescid($id);
             $data->description = $formData['description'];
             $data->information = $formData['information'];
-            $data->benifit = $formData['benifit'];
             $data->update();
             $this->log->info("Product Info Updated", ['id' => $id]);
             return true;

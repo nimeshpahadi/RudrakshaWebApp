@@ -37,7 +37,8 @@
 
                     <div class="clearfix pad"></div>
                     <div align="right">
-                        {{Form::submit('create', array('class'=>'btn btn-bg btn-primary ','title'=>'Save the category'))}}
+                        {{Form::submit('Save changes', array('class'=>'btn btn-bg btn-primary ','title'=>'Save the Changes on Benefits'))}}
+                        <a type="button" class="btn btn-sm btn-warning" href="/admin/category">Cancel</a>
                         {!! Form::close() !!}
                     </div>
                 </div>

@@ -37,7 +37,7 @@
 
                             <div class="" id="room_fileds">
                                 <input id="more_fields" type="text" class="form-control" name='benefit[]'
-                                       autofocus>
+                                       required autofocus>
                             </div>
                             <input type="button" id="more_fields" onclick="add_fields();" value="Add More"/>
 
@@ -47,7 +47,8 @@
 
                     <div class="clearfix pad"></div>
                     <div align="right">
-                        {{Form::submit('create', array('class'=>'btn btn-bg btn-primary ','title'=>'Save the category'))}}
+                        {{Form::submit('create', array('class'=>'btn btn-sm btn-primary ','title'=>'Save the category'))}}
+                        <a type="button" class="btn btn-sm btn-warning" href="/admin/category">Cancel</a>
                         {!! Form::close() !!}
 
                     </div>

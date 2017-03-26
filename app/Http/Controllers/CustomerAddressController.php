@@ -89,8 +89,7 @@ class CustomerAddressController extends Controller
      */
     public function edit($id)
     {
-        $userId = $this->customerService->getCustomerId($id);
-
+        $userId = $this->customerAddressService->getCustomerAddressCid($id);
         return view('customer/address/edit', compact('userId'));
     }
 

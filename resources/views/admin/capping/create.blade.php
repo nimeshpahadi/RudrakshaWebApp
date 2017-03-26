@@ -99,8 +99,8 @@
 
                 <div class="clearfix pad"></div>
                 <div align="right">
-                    {{Form::submit('Create', array('class'=>'btn btn-sm btn-primary ','title'=>'Save the category'))}}
-                    <a type="button" class="btn btn-sm btn-warning" href="/capping">Cancel</a>
+                    {{Form::submit('Create', array('class'=>'btn btn-sm btn-primary ','title'=>'Save the Capping'))}}
+                    <a type="button" class="btn btn-sm btn-warning" href="/admin/capping">Cancel</a>
                     {!! Form::close() !!}
                 </div>
 

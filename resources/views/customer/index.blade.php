@@ -27,7 +27,8 @@
                 </div>
 
             </div>
-            <div class="panel panel-default panel-danger col-md-8">
+            <div class="col-md-9">
+            <div class="panel panel-default panel-danger col-md-12">
                 <div class="panel-heading">
                     <h3 class="panel-title ">User Profile</h3>
                 </div>
@@ -53,7 +54,7 @@
                 </div>
             </div>
 
-            <div class="panel panel-default panel-success col-md-8">
+            <div class="panel panel-default panel-success col-md-12">
                 @if(!isset($customerAddress))
                     <div align="right" style="padding: 10px">
                         <a href="{{route('customers.address', $customer->id)}}">
@@ -90,7 +91,7 @@
                         </div>
 
                         <div>
-                            <a href="{!! route('customers.address.edit',$customerAddress->id)!!}">
+                            <a href="{!! route('customers.address.edit',$customer->id)!!}">
                                             <span class="  btn btn-primary glyphicon glyphicon-pencil"
                                                   data-toggle="popover" data-trigger="hover"
                                                   data-placement="top" data-content="">
@@ -101,7 +102,7 @@
                 @endif
             </div>
 
-            <div class="panel panel-default panel-info col-md-8">
+            <div class="panel panel-default panel-info col-md-12">
 
 
                 @if(!isset($customerDelivery))
@@ -159,9 +160,11 @@
 
 
                     </div>
+                @endif
             </div>
 
         </div>
-        @endif
+
+
     </div>
 @endsection

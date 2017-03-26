@@ -74,8 +74,8 @@
 
 
             <div class="clearfix " align="right">
-                {{Form::submit('Save Changes', array('class'=>'btn btn-primary btn-sm ','title'=>'Save the changes in the product'))}}
-                <a type="button" class="btn btn-warning  btn-sm" href="/product">Cancel</a>
+                {{Form::submit('Save Changes', array('class'=>'btn btn-primary btn-sm ','title'=>'Save  changes on your delivery address'))}}
+                <a type="button" class="btn btn-warning  btn-sm" href="/customers">Cancel</a>
                 {!! Form::close() !!}
             </div>
 

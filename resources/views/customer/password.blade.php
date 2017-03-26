@@ -45,8 +45,8 @@
 
                                 <div class="col-md-offset-4">
                                     {{Form::submit('Save', array('class'=>'btn btn-success margin-top-20', 'title'=>'Save New Password'))}}
-                                    {{--<a type="button" class="btn btn-warning margin-top-20 margin-left-10"--}}
-                                       {{--href="/customer">Cancel</a>--}}
+                                    <a type="button" class="btn btn-warning margin-top-20 margin-left-10"
+                                       href="/customers">Cancel</a>
                                     {!! Form::close() !!}
                                 </div>
 

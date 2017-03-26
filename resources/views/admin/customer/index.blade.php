@@ -29,7 +29,8 @@
                         <td>{{$row->email }}</td>
                         <td>{{$row->contact }}</td>
                         <td>{{$row->alternative_contact }}</td>
-                        <td>@if($row->status==1)Active @else Inactive @endif</td>
+
+                        <td>@if($row->confirmed==1)Active @else Inactive @endif</td>
 
                         <td>
 

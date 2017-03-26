@@ -12,6 +12,7 @@ namespace App\Rudraksha\Repositories;
 use App\Rudraksha\Entities\CustomerAddress;
 use App\User;
 use Illuminate\Contracts\Logging\Log;
+use Illuminate\Database\QueryException;
 
 class CustomerAddressRepository
 {
@@ -95,6 +96,11 @@ class CustomerAddressRepository
             $this->log->error("Customer Address Update Failed", ['id' => $id]);
             return false;
         }
+    }
+
+    public function getCustomerAddress($id)
+    {
+        return $this->customerAddress->select('*')->where('customer_id',$id)->first();
     }
 
 }

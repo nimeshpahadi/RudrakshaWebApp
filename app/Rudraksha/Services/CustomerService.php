@@ -9,6 +9,7 @@
 namespace App\Rudraksha\Services;
 
 
+use App\Rudraksha\Repositories\CustomerAddressRepository;
 use App\Rudraksha\Repositories\CustomerRepository;
 
 class CustomerService
@@ -17,11 +18,16 @@ class CustomerService
      * @var CustomerRepository
      */
     private $customerRepository;
+    /**
+     * @var CustomerAddressRepository
+     */
+    private $customerAddressRepository;
 
-    public function __construct(CustomerRepository $customerRepository)
+    public function __construct(CustomerRepository $customerRepository, CustomerAddressRepository $customerAddressRepository)
  {
 
      $this->customerRepository = $customerRepository;
+     $this->customerAddressRepository = $customerAddressRepository;
  }
 
     public function getCustomer()
@@ -31,7 +37,7 @@ class CustomerService
 
     public function getCustomerId($id)
     {
-    return $this->customerRepository->getCustomerId($id);
+        return $this->customerRepository->getCustomerId($id);
     }
 
     public function updateImage($request, $id)
@@ -51,6 +57,4 @@ class CustomerService
         $data = $this->customerRepository->ChangePassword($request,$id);
         return $data;
     }
-
-
 }

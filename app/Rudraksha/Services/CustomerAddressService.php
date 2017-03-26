@@ -58,4 +58,14 @@ class CustomerAddressService
         return $this->addressRepository->repoAddressUpdate($request, $id);
 
     }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function getCustomerAddressCid($id)
+    {
+        return $this->addressRepository->getCustomerAddress($id);
+    }
+
 }

@@ -57,7 +57,7 @@
                         <span class="input-group-addon ">
                             <img class="cappingimage" src="{{asset('storage/capping')}}/{{$capping->design_image}}">
                         </span>
-                        <input type="file" class="form-control" name="design_image" id="design_image" autofocus>
+                        <input type="file" class="form-control" name="design_image" id="design_image"  autofocus>
                     </div>
                 </div>
 
@@ -82,8 +82,8 @@
 
                 <div class="clearfix pad"></div>
                 <div align="right">
-                    {{Form::submit('Create', array('class'=>'btn btn-sm btn-primary ','title'=>'Save the category'))}}
-                    <a type="button" class="btn btn-sm btn-warning" href="/capping">Cancel</a>
+                    {{Form::submit('Save changes', array('class'=>'btn btn-sm btn-primary ','title'=>'Save the Capping changes'))}}
+                    <a type="button" class="btn btn-sm btn-warning" href="/admin/capping">Cancel</a>
                     {!! Form::close() !!}
                 </div>
 

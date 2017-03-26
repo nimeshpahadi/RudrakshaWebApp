@@ -35,7 +35,7 @@ class ProductInfoRequest extends FormRequest
             'status' => 'required|boolean',
             'rank' => 'required|numeric|unique:product_infos',
             'tag' => 'required|string',
-            'discount' => 'numeric|max:100|min:1',
+            'discount' => 'numeric|max:100|min:0',
             'quantity_available' => 'required|numeric',
 
         ];

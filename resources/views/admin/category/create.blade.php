@@ -123,7 +123,7 @@
                 <div class="clearfix pad"></div>
                 <div align="right">
                     {{Form::submit('Create', array('class'=>'btn btn-sm btn-primary ','title'=>'Save the category'))}}
-                    <a type="button" class="btn btn-sm btn-warning" href="/category">Cancel</a>
+                    <a type="button" class="btn btn-sm btn-warning" href="/admin/category">Cancel</a>
                     {!! Form::close() !!}
                 </div>
 
