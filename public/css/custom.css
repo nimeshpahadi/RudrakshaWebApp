@@ -10,3 +10,7 @@ body{ margin-top:20px; }
     height: 180px;
     width: 250px;
 }
+
+.hidden { display: none; }
+.formfield { float: left; }
+.example-template { clear: left; }

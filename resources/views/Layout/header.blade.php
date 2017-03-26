@@ -18,6 +18,12 @@
     {!! Html::style('css/custom.css') !!}
 
 
+
+    {{--{!! Html::style('css/blue.css') !!}--}}
+    {{--{!! Html::style('css/jquery-jvectormap-1.2.2.css') !!}--}}
+    {{--{!! Html::style('css/bootstrap3-wysihtml5.min.css') !!}--}}
+
+
     <script>
         var app_url = "{{Request::root()}}";
     </script>

@@ -12,13 +12,27 @@
 
 <!-- Bootstrap WYSIHTML5 -->
 {!!Html::script('js/bootstrap3-wysihtml5.all.min.js') !!}
-<!-- Slimscroll -->
 
 <!-- AdminLTE App -->
 {!!Html::script('js/app.min.js') !!}
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 
 {!!Html::script('js/custom.js') !!}
+
+
+
+{{--{!!Html::script('js/jquery.slimscroll.min.js') !!}--}}
+{{--{!!Html::script('js/fastclick.js') !!}--}}
+{{--{!!Html::script('js/jquery.knob.js') !!}--}}
+{{--{!!Html::script('js/dashboard.js') !!}--}}
+{{--{!!Html::script('js/demo.js') !!}--}}
+{{--{!!Html::script('js/dashboard.js') !!}--}}
+{{--{!!Html::script('js/morris.min.js') !!}--}}
+{{--{!!Html::script('js/jquery.sparkline.min.js') !!}--}}
+{{--{!!Html::script('js/jquery-jvectormap-1.2.2.min.js') !!}--}}
+{{--{!!Html::script('js/jquery-jvectormap-world-mill-en.js') !!}--}}
+
+
 
 
 <script>

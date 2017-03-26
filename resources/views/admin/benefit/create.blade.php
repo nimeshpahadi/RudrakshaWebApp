@@ -30,20 +30,44 @@
                     </div>
 
 
-                    <div class="form-group{{ $errors->has('benefit') ? ' has-error' : '' }} clearfix">
+                    {{--<div class="form-group{{ $errors->has('benefit') ? ' has-error' : '' }} clearfix">--}}
+                        {{--<label for="benefit" class="col-sm-4 control-label"> Benifits </label>--}}
+
+                        {{--<div class="col-sm-8">--}}
+
+                            {{--<div class="" id="room_fileds">--}}
+                                {{--<input id="more_fields" type="text" class="form-control" name='benefit[]'--}}
+                                       {{--required autofocus>--}}
+                            {{--</div>--}}
+                            {{--<input type="button" id="more_fields" onclick="add_fields();" value="Add More"/>--}}
+
+                        {{--</div>--}}
+
+                    {{--</div>--}}
+
+
+                    <div class="">
                         <label for="benefit" class="col-sm-4 control-label"> Benifits </label>
+                        <div class="col-sm-7">
+                        <input id="more_fields" type="text" class="form-control" name='benefit[]'
+                        required autofocus>
+                        </div>
 
-                        <div class="col-sm-8">
+                        <div class="example-template">
 
-                            <div class="" id="room_fileds">
+                            <div class="formfield col-sm-offset-4 col-sm-7">
                                 <input id="more_fields" type="text" class="form-control" name='benefit[]'
                                        required autofocus>
                             </div>
-                            <input type="button" id="more_fields" onclick="add_fields();" value="Add More"/>
-
+                            <div class="formfield"><button class="del">-</button></div>
                         </div>
                     </div>
 
+                    <div class="edit-area">
+                        <div class="controls">
+                            <button class="add">+</button>
+                        </div>
+                    </div>
 
                     <div class="clearfix pad"></div>
                     <div align="right">
@@ -57,5 +81,9 @@
 
 
         </div>
+
+
+
+
 
 @endsection

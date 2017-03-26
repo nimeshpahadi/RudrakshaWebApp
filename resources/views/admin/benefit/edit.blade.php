@@ -21,19 +21,37 @@
                         </div>
                     </div>
 
-                    <div class="form-group{{ $errors->has('benifit') ? ' has-error' : '' }} clearfix">
-                        <label for="benifit" class="col-sm-4 control-label"> Health Benifits </label>
-                        <div class="col-sm-8">
-                            <div class="" id="room_fileds">
-                                @foreach($beni->benefit as $list)
+
+                    <div class="">
+                        <label for="benefit" class="col-sm-4 control-label"> Benifits </label>
+
+
+                               @foreach($beni->benefit as $list)
+                            <div class=" formfield  col-sm-offset-4 col-sm-7">
                                     <input id="more_fields" type="text" class="form-control"
                                            name='benefit[]'
                                            value="{{$list}}" autofocus>
-                                @endforeach
                             </div>
-                            <input type="button" id="more_fields" onclick="add_fields();" value="Add More"/>
+                            <div class="formfield"><button class="del">-</button></div>
+
+                        @endforeach
+
+                        <div class="example-template2">
+
+                            <div class="formfield col-sm-offset-4 col-sm-7">
+                                <input id="more_fields" type="text" class="form-control" name='benefit[]'
+                                       required autofocus>
+                            </div>
+                            <div class="formfield"><button class="del">-</button></div>
                         </div>
                     </div>
+
+                    <div class="edit-area2">
+                        <div class="controls">
+                            <button class="add">+</button>
+                        </div>
+                    </div>
+
 
                     <div class="clearfix pad"></div>
                     <div align="right">
