@@ -217,14 +217,9 @@
                                     google.maps.event.addDomListener(window, 'load', initialize);
 
 
-//                                    $('#myModal').on('shown.bs.modal', function () {
-//                                        initializeMap() // with initializeMap function get map.
-//                                    });
                                     $("#myModal").on("shown.bs.modal", function () {initialize();});
 
-//                                    $('#myModal').on('shown', function () {
-//                                        initialize();
-//                                    });
+
                                 </script>
 
 
