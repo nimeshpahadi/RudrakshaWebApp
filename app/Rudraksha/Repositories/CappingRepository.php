@@ -59,11 +59,7 @@ class CappingRepository
         try {
 
             $data = CappingRepository::get_cappingid($id);
-            $name=$data->design_image;
-            $path = storage_path().'/app/public/capping/';
-            File::delete($path . $name);
             $data->type = $formData['type'];
-            $data->design_image = $formData['design_image'];
             $data->price = $formData['price'];
             $data->metal_quantity_used = $formData['metal_quantity_used'];
             $data->description = $formData['description'];
@@ -88,6 +84,26 @@ class CappingRepository
             return true;
         } catch (Exception $e) {
             $this->log->error("Capping Deletion Failed",['id' => $id], [$e->getMessage()]);
+            return false;
+        }
+    }
+
+    public function updateCappingImage($formData, $id)
+    {
+        try {
+
+            $data = CappingRepository::get_cappingid($id);
+            $name=$data->design_image;
+            $path = storage_path().'/app/public/capping/';
+            File::delete($path . $name);
+            $data->design_image= $formData['design_image'];
+            $data->update();
+            $this->log->info("Capping Image updated");
+            return true;
+
+        } catch (QueryException $e) {
+
+            $this->log->error("Capping Image Creation Failed : ",[$e->getMessage()]);
             return false;
         }
     }

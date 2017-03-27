@@ -107,4 +107,14 @@ class CappingAdminController extends Controller
         }
         return back()->withErrors("Something went wrong");
     }
+
+
+    public function updateImage(Request $request,$id)
+    {
+        if ($this->cappingService->edit_capImage($request, $id)) {
+
+            return back()->withSuccess("Capping image edited!");
+        }
+        return back()->withErrors('something went wrong');
+    }
 }

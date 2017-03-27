@@ -136,7 +136,7 @@
 
                                 <div class="clearfix pad"></div>
                                 <div class="modal-footer">
-                                    {{Form::submit('create', array('class'=>'btn btn-bg btn-primary ','title'=>'Save the category'))}}
+                                    {{Form::submit('create', array('class'=>'btn btn-bg btn-primary ','title'=>'Save the image'))}}
                                     {!! Form::close() !!}
 
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close

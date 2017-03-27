@@ -32,7 +32,10 @@ Route::put('/product_image/{id}', 'ProductAdminController@updateImage')->name('p
 
 
 Route::delete('/product_img/{id}/{name}', 'ProductAdminController@deleteImage')->name('product_image_delete');
-
-
 Route::delete('/product_desc/{id}', 'ProductAdminController@deleteDesc')->name('product_desc_delete');
 Route::delete('/category/benefit/{id}/delete', 'CategoryAdminController@deleteBenefit')->name('category.benefit.delete');
+
+//capping image update
+Route::get('/capping/{id}/image', 'CappingAdminController@editImage')->name('capping.editImage');
+Route::put('/capping/{id}/updateimage', 'CappingAdminController@updateImage')->name('capping.updateImage');
+

@@ -19,8 +19,8 @@
                     <div class="col-md-8 ">
                         <select id="type" name="type"
                                 class=" form-control " required>
-                                <option value="Gold">Gold</option>
-                                <option value="Silver">Silver</option>
+                            <option value="Gold">Gold</option>
+                            <option value="Silver">Silver</option>
                         </select>
                     </div>
 
@@ -42,25 +42,13 @@
                     </div>
                 </div>
 
- <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }} clearfix">
+                <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }} clearfix">
                     <label for="description" class="col-sm-4 control-label">Description</label>
 
                     <div class="col-sm-8">
                         {{ Form::text('description',null,array('class'=>'form-control'))}}
                     </div>
                 </div>
-
-
-                <div class="form-group ">
-                    <label for="design_image" class="col-sm-4 control-label">Design Image</label>
-                    <div class=" col-sm-8 ">
-                        <span class="input-group-addon ">
-                            <img class="cappingimage" src="{{asset('storage/capping')}}/{{$capping->design_image}}">
-                        </span>
-                        <input type="file" class="form-control" name="design_image" id="design_image"  autofocus>
-                    </div>
-                </div>
-
 
                 <div class="form-group{{ $errors->has('status') ? ' has-error' : '' }} clearfix">
                     <label for="status" class="col-sm-4 control-label">Status</label>
