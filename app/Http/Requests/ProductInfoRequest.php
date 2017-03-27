@@ -26,7 +26,6 @@ class ProductInfoRequest extends FormRequest
      */
     public function rules()
     {
-//        $pro= ProductInfo::find();
         return [
             'category_id' => 'required',
             'code' => 'required|unique:product_infos',

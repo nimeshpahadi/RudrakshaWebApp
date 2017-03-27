@@ -63,11 +63,13 @@
             geocodePosition(marker.getPosition());
         });
     }
+
+    // Onload handler to fire off the app.
+    google.maps.event.addDomListener(window, 'load', initialize);
+
     $('#myModal').on('shown.bs.modal', function () {
         initialize();
     });
-    // Onload handler to fire off the app.
-    google.maps.event.addDomListener(window, 'load', initialize);
 
 
 </script>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Http\Requests\DeliveryAddressRequest;
 use App\Rudraksha\Services\CustomerService;
 use App\Rudraksha\Services\DeliveryAddressService;
 use Illuminate\Http\Request;
@@ -53,7 +54,7 @@ class DeliveryAddressController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DeliveryAddressRequest $request)
     {
         if ($this->deliveryAddressService->store_delivery($request)) {
             return redirect()->route('customers.index')->withSuccess("Delivery Address added!");
