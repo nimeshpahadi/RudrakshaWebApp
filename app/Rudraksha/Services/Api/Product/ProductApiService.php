@@ -116,6 +116,13 @@ class ProductApiService
             ];
         }
 
+        $allImage = [];
+
+        foreach ($productImage->name as $name) {
+            $imageUrl = $baseUrl.'/storage/product/'.$name;
+            array_push($allImage, $imageUrl);
+        }
+
         $productDetails = [
 
             'product_info' => [
@@ -136,7 +143,7 @@ class ProductApiService
             'category_benefit' => $benefit,
 
             'products_image' => [
-                'image' => $baseUrl.'/storage/product/'.$productImage->name[0]
+                'image' => $allImage
             ]
         ];
 
