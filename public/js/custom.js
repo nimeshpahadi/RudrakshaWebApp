@@ -72,8 +72,15 @@
             row = target.closest('.example-template2');
         row.remove();
     });
+
+
+
+
 }(jQuery));
 
+$( ".del-input" ).click(function() {
+   $(this).parent().remove();
+});
 
 
 

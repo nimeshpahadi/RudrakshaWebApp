@@ -13,15 +13,11 @@
     {!! Html::style('https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css') !!}
     <!-- Theme style -->
     {!! Html::style('css/AdminLTE.min.css') !!}
-    {!! Html::style('css/all.css') !!}
     {!! Html::style('css/_all-skins.min.css') !!}
     {!! Html::style('css/custom.css') !!}
 
 
 
-    {{--{!! Html::style('css/blue.css') !!}--}}
-    {{--{!! Html::style('css/jquery-jvectormap-1.2.2.css') !!}--}}
-    {{--{!! Html::style('css/bootstrap3-wysihtml5.min.css') !!}--}}
 
 
     <script>

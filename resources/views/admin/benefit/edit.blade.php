@@ -31,8 +31,10 @@
                                     <input id="more_fields" type="text" class="form-control"
                                            name='benefit[]'
                                            value="{{$list}}" autofocus>
+
+                               <span class="del btn btn-info del-input">-</span>
                             </div>
-                            <div class="formfield"><button class="del">-</button></div>
+
 
                         @endforeach
 
@@ -42,13 +44,13 @@
                                 <input id="more_fields" type="text" class="form-control" name='benefit[]'
                                        required autofocus>
                             </div>
-                            <div class="formfield"><button class="del">-</button></div>
+                            <div class="formfield"><span class="del btn btn-info ">-</span></div>
                         </div>
                     </div>
 
                     <div class="edit-area2">
                         <div class="controls">
-                            <button class="add">+</button>
+                            <span class="add btn btn-info">+</span>
                         </div>
                     </div>
 
