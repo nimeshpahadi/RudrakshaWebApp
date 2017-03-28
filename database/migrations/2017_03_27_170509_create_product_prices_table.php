@@ -17,11 +17,11 @@ class CreateProductPricesTable extends Migration
             $table->increments('id');
             $table->integer('product_id')->unsigned();
             $table->float('price');
-            $table->string('currency_id')->unsigned();
+            $table->integer('currency_id')->unsigned();
             $table->timestamps();
             $table->foreign('product_id')->references('id')->on('product_infos')
                 ->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('currency_id')->references('id')->on('currency')
+            $table->foreign('currency_id')->references('id')->on('currencies')
                 ->onUpdate('cascade')->onDelete('cascade');
         });
     }
