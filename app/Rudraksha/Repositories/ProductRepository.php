@@ -264,4 +264,9 @@ class ProductRepository
         }
     }
 
+    public function getActiveProduct()
+    {
+        return $this->productInfo->select('*')->get();
+    }
+
 }

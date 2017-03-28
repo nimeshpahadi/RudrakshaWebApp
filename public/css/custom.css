@@ -16,15 +16,3 @@ body{ margin-top:20px; }
 .example-template { clear: left; }
 
 
- #mapCanvas {
-     width: 750px;
-     height: 400px;
-     float: left;
- }
-#infoPanel {
-    float: left;
-    margin-left: 10px;
-}
-#infoPanel div {
-    margin-bottom: 5px;
-}

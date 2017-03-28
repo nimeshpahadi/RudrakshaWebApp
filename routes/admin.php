@@ -11,6 +11,8 @@ Route::resource('/category', 'CategoryAdminController');
 Route::resource('/products', 'ProductAdminController');
 Route::resource('/capping', 'CappingAdminController');
 Route::resource('/customer', 'CustomerAdminController');
+Route::resource('/currency', 'CurrencyAdminController');
+Route::resource('/product_price', 'ProductPriceAdminController');
 
 //category Benefits
 Route::get('/category/{id}/benefit', 'CategoryAdminController@createBenefit')->name('category.benefit');

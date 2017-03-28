@@ -80,7 +80,7 @@
 
             <li class="active">
                 <a href="/admin/category">
-                    <i class="fa fa-dashboard"></i> <span>Category</span>
+                    <i class="fa fa-list"></i> <span>Category</span>
                 </a>
             </li>
             <li class="active">
@@ -90,12 +90,22 @@
             </li>
             <li class="active">
                 <a href="/admin/capping">
-                    <i class="fa fa-dashboard"></i> <span>Capping</span>
+                    <i class="fa fa-industry"></i> <span>Capping</span>
                 </a>
             </li>
             <li class="active">
                 <a href="/admin/customer">
-                    <i class="fa fa-dashboard"></i> <span>Customer</span>
+                    <i class="fa fa-user"></i> <span>Customer</span>
+                </a>
+            </li>
+            <li class="active">
+                <a href="/admin/currency">
+                    <i class="fa fa-dollar"></i> <span>Currency</span>
+                </a>
+            </li>
+            <li class="active">
+                <a href="/admin/product_price">
+                    <i class="fa fa-dollar"></i> <span>Product Price</span>
                 </a>
             </li>
 

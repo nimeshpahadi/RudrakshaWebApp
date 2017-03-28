@@ -67,18 +67,15 @@
 
 
 
-                                <div class="form-group{{ $errors->has('latitude_long') ? ' has-error' : '' }} clearfix">
+                                <div class="form-group clearfix">
                         <label for="latitude_long" class="col-sm-4 control-label">Latitude/Latitude</label>
 
                         <div class="col-sm-8">
-                            <input id="latitude_long" type="text" class="form-control" name="latitude_long"
-                                   value="{{ old('latitude_long') }}" required autofocus>
+                            <input  type="text" class="form-control" name="latitude_long"
+                                   data-toggle="modal"
+                                   data-target="#myModal"
+                                   required autofocus >
 
-                            @if ($errors->has('latitude_long'))
-                                <span class="help-block">
-                                        <strong>{{ $errors->first('latitude_long') }}</strong>
-                                    </span>
-                            @endif
                         </div>
                     </div>
 
@@ -129,33 +126,26 @@
                     </div>
 
 
+                    <!-- Modal -->
+                    <div id="myModal" class="modal fade" role="dialog">
+                        <div class="modal-lg modal-dialog">
 
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Choose location</h4>
+                                    @include('customer.map')
+                                    <button type="button" class="btn btn-primary">Pass
+                                    </button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close
+                                    </button>
+                                </div>
+                                </div>
 
-
-
-                    {{--<button type="button" class="btn btn-info  col-md-offset-10" data-toggle="modal"--}}
-                            {{--data-target="#myModal">Choose location--}}
-                    {{--</button>--}}
-
-                    {{--<!-- Modal -->--}}
-                    {{--<div id="myModal" class="modal fade" role="dialog">--}}
-                        {{--<div class="modal-dialog">--}}
-
-                            {{--<!-- Modal content-->--}}
-                            {{--<div class="modal-content">--}}
-                                {{--<div class="modal-header">--}}
-                                    {{--<button type="button" class="close" data-dismiss="modal">&times;</button>--}}
-                                    {{--<h4 class="modal-title">Choose location</h4>--}}
-                                {{--</div>--}}
-                                            {{--@include('customer.map')--}}
-                                    {{--<button type="button" class="btn btn-default" data-dismiss="modal">Close--}}
-                                    {{--</button>--}}
-
-                                {{--</div>--}}
-
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
+                            </div>
+                        </div>
+                    </div>
 
 
                     <div class="clearfix pad"></div>
@@ -170,5 +160,7 @@
 
 
         </div>
+
+
 
 @endsection

@@ -13,7 +13,10 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-    <!-- Scripts -->
+        {!! Html::style('css/shopcustom.css') !!}
+
+
+<!-- Scripts -->
     <script>
         window.Laravel = {!! json_encode([
             'csrfToken' => csrf_token(),

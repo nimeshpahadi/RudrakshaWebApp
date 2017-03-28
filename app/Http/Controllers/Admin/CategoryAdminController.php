@@ -91,7 +91,7 @@ class CategoryAdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if ($product = $this->categoryService->editcategory($request, $id)) {
+        if ($this->categoryService->editcategory($request, $id)) {
 
             return redirect()->route('category.index')->withSuccess("category edited!");
         }

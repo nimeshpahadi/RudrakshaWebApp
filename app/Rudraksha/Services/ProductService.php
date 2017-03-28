@@ -178,10 +178,10 @@ class ProductService
 
         $data['name']=$images;
         return $this->productRepository->editProductImage($data,$id);
+    }
 
-
-
-
-
+    public function getactiveproduct()
+    {
+        return $this->productRepository->getActiveProduct();
     }
 }
