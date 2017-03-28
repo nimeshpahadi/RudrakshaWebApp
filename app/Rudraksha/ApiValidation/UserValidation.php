@@ -9,10 +9,17 @@
 namespace App\Rudraksha\ApiValidation;
 
 
+use App\User;
 use Illuminate\Support\Facades\Validator;
 
 class UserValidation
 {
+
+    public function authorize()
+    {
+        return true;
+    }
+
     public function check($request)
     {
         $detail = $this->userValidator($request);
@@ -21,9 +28,8 @@ class UserValidation
 
         if (!empty($errors)) {
             $response = [
-                "status"       => "false",
-                "token_status" => "true",
-                "message"      => $errors
+                "status" => "false",
+                "message" => $errors
             ];
             return response()->json($response);
         }
@@ -32,9 +38,69 @@ class UserValidation
     public function userValidator($data)
     {
         return Validator::make($data, [
-            'name'     => 'required|max:255',
-            'email'    => 'required|email|unique:users',
-            'password' => 'required'
+            'firstname' => 'required|max:255',
+            'lastname' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users',
+            'password' => 'required|min:6',
+            'contact' => 'required|integer',
+            'alternative_contact' => 'required|integer',
+        ]);
+    }
+
+    public function infoValidate($request, $id)
+    {
+        $user = User::find($id);
+
+        $detail = $this->infoValidator($request, $user);
+
+        $errors = $detail->errors()->toArray();
+
+        if (!empty($errors)) {
+            $response = [
+                "status" => "false",
+                "message" => $errors
+            ];
+            return response()->json($response);
+        }
+    }
+
+    public function infoValidator($data, $user)
+    {
+        return Validator::make($data, [
+            'firstname' => 'required|max:255',
+            'lastname' => 'required|max:255',
+            'email' => 'required|email|unique:users,email,'.$user->id,
+            'contact' => 'required|integer',
+            'alternative_contact' => 'required|integer',
+        ]);
+    }
+
+    public function imageValidate($request, $id)
+    {
+        $user = User::find($id);
+
+        $detail = $this->imageValidator($request, $user);
+
+        $errors = $detail->errors()->toArray();
+
+        if (!empty($errors)) {
+            $response = [
+                "status" => "false",
+                "message" => $errors
+            ];
+            return response()->json($response);
+        }
+    }
+
+    public function imageValidator($data, $user)
+    {
+        return Validator::make($data, [
+            'firstname' => 'required|max:255',
+            'lastname' => 'required|max:255',
+            'email' => 'required|email|unique:users,email,'.$user->id,
+            'contact' => 'required|integer',
+            'alternative_contact' => 'required|integer',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
     }
 }

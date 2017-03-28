@@ -15,6 +15,8 @@ use Illuminate\Http\Request;
 
 Route::get('/user/list', 'User\UserRegisterController@getUsers')->middleware('auth:api');
 Route::post('/user/create', 'User\UserRegisterController@createUser');
+Route::put('/user/{id}/edit', 'User\UserRegisterController@userInfoUpdate');
+Route::put('/user/{id}/image/edit', 'User\UserRegisterController@userImageUpdate');
 
 Route::get('/product/list', 'Product\ProductApiController@getProductList');
 Route::get('/product/detail/{id}', 'Product\ProductApiController@getProductDetailList');

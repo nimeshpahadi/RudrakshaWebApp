@@ -48,7 +48,7 @@ class CategoryApiService
                 'code' => $category->code,
                 'name' => $category->name,
                 'short_description' => $category->short_description,
-                'infromation' => $category->infromation,
+                'information' => $category->information,
                 'face_no' => $category->face_no,
                 'mantra' => $category->mantra,
 

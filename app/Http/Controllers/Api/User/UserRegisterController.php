@@ -36,6 +36,10 @@ class UserRegisterController extends Controller
         $this->userValidation = $userValidation;
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function createUser(Request $request)
     {
         $data = $request->all();
@@ -47,6 +51,45 @@ class UserRegisterController extends Controller
         }
 
         $response = $this->registerService->createUserService($data);
+
+        return response()->json($response);
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function userInfoUpdate(Request $request, $id)
+    {
+        $data = $request->all();
+
+        $t = $this->userValidation->infoValidate($data, $id);
+
+        if ($t!=null) {
+            return $t;
+        }
+
+        $response = $this->registerService->serviceUserInfoUpdate($data, $id);
+
+        return response()->json($response);
+    }
+
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function userImageUpdate(Request $request, $id)
+    {
+        $data = $request->all();
+
+        $t = $this->userValidation->imageValidate($data, $id);
+
+        if ($t!=null) {
+            return $t;
+        }
+
+        $response = $this->registerService->serviceUserImageUpdate($data, $id);
 
         return response()->json($response);
     }
