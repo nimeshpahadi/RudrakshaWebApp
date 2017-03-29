@@ -40,6 +40,8 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapWebRoutes();
 
         $this->mapAdminRoutes();
+
+        $this->mapShopRoutes();
     }
 
     /**
@@ -83,5 +85,14 @@ class RouteServiceProvider extends ServiceProvider
              ->group(base_path('routes/api.php'));
     }
 
+    /**
+     *Routes for the shop
+     */
+    protected function mapShopRoutes()
+    {
+        Route::middleware('web')
+            ->namespace('App\Http\Controllers\Shop')
+            ->group(base_path('routes/shop.php'));
+    }
     
 }

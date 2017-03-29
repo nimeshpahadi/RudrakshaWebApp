@@ -106,10 +106,10 @@ class ProductRepository
      */
     public function getCategoryProduct($id)
     {
-        $query = $this->productInfo->select('product_infos.*')
+        $query = $this->productInfo->select('product_infos.*','product_images.name as imgname')
             ->join('categories', 'categories.id', 'product_infos.category_id')
+            ->join('product_images', 'product_infos.id', 'product_images.product_id')
             ->where('product_infos.category_id', $id)
-            ->groupBy('product_infos.category_id', 'product_infos.id')
             ->get()->toArray();
         return $query;
 

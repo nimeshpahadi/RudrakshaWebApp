@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Customer;
 
 
 use App\Http\Requests\DeliveryAddressRequest;
 use App\Rudraksha\Services\CustomerService;
 use App\Rudraksha\Services\DeliveryAddressService;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 
 class DeliveryAddressController extends Controller
 {

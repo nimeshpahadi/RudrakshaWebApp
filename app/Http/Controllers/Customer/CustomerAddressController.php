@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Customer;
 
 use App\Http\Requests\AddressRequest;
 use App\Rudraksha\Services\CustomerAddressService;
 use App\Rudraksha\Services\CustomerService;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 
 class CustomerAddressController extends Controller
 {
