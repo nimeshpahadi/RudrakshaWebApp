@@ -35,4 +35,15 @@ class CustomerAddressApiRepository
     {
         return $this->customerAddress->create($data);
     }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function repoCustomerAddressShow($id)
+    {
+        return $this->customerAddress->select('*')
+                            ->where('id', $id)
+                            ->first();
+    }
 }

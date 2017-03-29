@@ -26,4 +26,5 @@ Route::get('/category/{id}/benefit', 'Category\CategoryApiController@getCategory
 
 Route::get('/capping/list', 'Capping\CappingApiController@getCappingData');
 
+Route::get('/customer/{id}/address', 'User\CustomerAddressApiController@customerAddressShow');
 Route::post('/customer/address/create', 'User\CustomerAddressApiController@customerAddressCreate');

@@ -55,4 +55,15 @@ class CustomerAddressApiController extends Controller
 
         return response()->json($response);
     }
+
+    /**
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function customerAddressShow($id)
+    {
+        $addressDetails = $this->customerAddressApiService->serviceCustomerAddressShow($id);
+
+        return response()->json($addressDetails);
+    }
 }

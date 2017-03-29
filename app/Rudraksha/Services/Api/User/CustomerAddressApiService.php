@@ -56,4 +56,24 @@ class CustomerAddressApiService
         ];
         return $respo;
     }
+
+    /**
+     * @param $id
+     * @return array
+     */
+    public function serviceCustomerAddressShow($id)
+    {
+        $address = $this->customerAddressApiRepository->repoCustomerAddressShow($id);
+
+        $data = [
+            "customer_id" => $address['customer_id'],
+            "country" => $address['country'],
+            "state" => $address['state'],
+            "street" => $address['street'],
+            "contact" => $address['contact'],
+            "latitude_long" => $address['latitude_long'],
+        ];
+
+        return $data;
+    }
 }
