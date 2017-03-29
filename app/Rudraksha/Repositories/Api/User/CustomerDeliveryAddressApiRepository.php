@@ -27,8 +27,23 @@ class CustomerDeliveryAddressApiRepository
         $this->deliveryAddress = $deliveryAddress;
     }
 
+    /**
+     * @param $data
+     * @return mixed
+     */
     public function repoCustomerDeliveryAddressCreate($data)
     {
         return $this->deliveryAddress->create($data);
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function repoCustomerDeliveryAddressShow($id)
+    {
+        return $this->deliveryAddress->select('*')
+                        ->where('id', $id)
+                        ->first();
     }
 }

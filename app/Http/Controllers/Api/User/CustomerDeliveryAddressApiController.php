@@ -36,6 +36,10 @@ class CustomerDeliveryAddressApiController extends Controller
         $this->deliveryAddressValidation = $deliveryAddressValidation;
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function customerDeliveryAddressCreate(Request $request)
     {
         $data = $request->all();
@@ -49,5 +53,16 @@ class CustomerDeliveryAddressApiController extends Controller
         $response = $this->deliveryAddressApiService->serviceCustomerDeliveryAddressCreate($data);
 
         return response()->json($response);
+    }
+
+    /**
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function customerDeliveryAddressShow($id)
+    {
+        $addressDetails = $this->deliveryAddressApiService->serviceCustomerDeliveryAddressShow($id);
+
+        return response()->json($addressDetails);
     }
 }

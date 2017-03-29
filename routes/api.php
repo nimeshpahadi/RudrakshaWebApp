@@ -32,4 +32,5 @@ Route::post('/customer/address/create', 'User\CustomerAddressApiController@custo
 Route::put('/customer/address/{id}/edit', 'User\CustomerAddressApiController@customerAddressEdit');
 
 // customer delivery address
+Route::get('/customer/delivery/address/{id}', 'User\CustomerDeliveryAddressApiController@customerDeliveryAddressShow');
 Route::post('/customer/delivery/address/create', 'User\CustomerDeliveryAddressApiController@customerDeliveryAddressCreate');
