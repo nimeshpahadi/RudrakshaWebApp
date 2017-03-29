@@ -44,11 +44,16 @@
                 </div>
             </div>
 
-            <div class="form-group{{ $errors->has('latitude_long') ? ' has-error' : '' }} clearfix">
-                <label for="latitude_long" class="col-sm-4 control-label">Latitude_Long</label>
+            <div class="form-group clearfix">
+                <label for="latitude_long" class="col-sm-4 control-label">Latitude/Latitude</label>
 
                 <div class="col-sm-8">
-                    {{ Form::number('latitude_long',null,array('class'=>'form-control'))}}
+                    <input type="text" class="form-control" name="latitude_long"
+                           placeholder="latitude,longitude"
+                           id="latlong-info"
+                           data-toggle="modal"
+                           data-target="#myModal"
+                           required autofocus>
                 </div>
             </div>
 
@@ -61,4 +66,9 @@
         </div>
 
     </div>
+    @include('customer.map')
+
+    <script type="text/javascript"
+            src="http://maps.google.com/maps/api/js?sensor=false&key=AIzaSyDenLLrWG9iWZSXBXlJAAzqcNLgRlMFsRI"></script>
+    <script src="{{ asset('js/map.js') }}"></script>
 @endsection

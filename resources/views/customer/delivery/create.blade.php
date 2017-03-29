@@ -1,9 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-@include('layouts.navbar')
+    @include('layouts.navbar')
     <div class="panel-body">
-
 
 
         <div class="row setup-content" id="step-1">
@@ -13,7 +12,7 @@
 
                     {!! Form::open(array('route'=>'customers.delivery.store', 'method'=>'post' ))!!}
 
-                        {{ Form::hidden('customer_id',$cusid->id) }}
+                    {{ Form::hidden('customer_id',$cusid->id) }}
 
                     <div class="form-group{{ $errors->has('country') ? ' has-error' : '' }} clearfix">
                         <label for="country" class="col-sm-4 control-label">Country</label>
@@ -21,16 +20,16 @@
                         <?php $x = Config::get('country');?>
 
                         <div class="col-sm-8">
-                        <select name="country" class="form-control" required>
-                            <option selected="selected" disabled>Choose Country</option>
-                            @foreach($x as $code=>$name)
-                                <option value="{{$code}}">
-                                    {{$name}}
-                                </option>
-                            @endforeach
+                            <select name="country" class="form-control" required>
+                                <option selected="selected" disabled>Choose Country</option>
+                                @foreach($x as $code=>$name)
+                                    <option value="{{$code}}">
+                                        {{$name}}
+                                    </option>
+                                @endforeach
 
-                        </select>
-                    </div>
+                            </select>
+                        </div>
                     </div>
 
                     <div class="form-group{{ $errors->has('state') ? ' has-error' : '' }} clearfix">
@@ -66,15 +65,16 @@
                     </div>
 
 
-
-                                <div class="form-group clearfix">
+                    <div class="form-group clearfix">
                         <label for="latitude_long" class="col-sm-4 control-label">Latitude/Latitude</label>
 
                         <div class="col-sm-8">
-                            <input  type="text" class="form-control" name="latitude_long"
+                            <input type="text" class="form-control" name="latitude_long"
+                                   placeholder="latitude,longitude"
+                                   id="latlong-info"
                                    data-toggle="modal"
                                    data-target="#myModal"
-                                   required autofocus >
+                                   required autofocus>
 
                         </div>
                     </div>
@@ -83,9 +83,10 @@
                         <label for="address_line1" class="col-sm-4 control-label">Address Line 1</label>
 
                         <div class="col-sm-8">
-                            <input id="address_line1" type="text" class="form-control" name="address_line1" value="{{ old('address_line1') }}"
+                            <input id="address_line1" type="text" class="form-control" name="address_line1"
+                                   value="{{ old('address_line1') }}"
                                    required
-                                   autofocus >
+                                   autofocus>
 
                             @if ($errors->has('address_line1'))
                                 <span class="help-block">
@@ -98,9 +99,10 @@
                         <label for="address_line2" class="col-sm-4 control-label">Address Line 2</label>
 
                         <div class="col-sm-8">
-                            <input id="address_line2" type="text" class="form-control" name="address_line2" value="{{ old('address_line2') }}"
+                            <input id="address_line2" type="text" class="form-control" name="address_line2"
+                                   value="{{ old('address_line2') }}"
                                    required
-                                   autofocus >
+                                   autofocus>
 
                             @if ($errors->has('address_line2'))
                                 <span class="help-block">
@@ -126,28 +128,6 @@
                     </div>
 
 
-                    <!-- Modal -->
-                    <div id="myModal" class="modal fade" role="dialog">
-                        <div class="modal-lg modal-dialog">
-
-                            <!-- Modal content-->
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <h4 class="modal-title">Choose location</h4>
-                                    @include('customer.map')
-                                    <button type="button" class="btn btn-primary">Pass
-                                    </button>
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close
-                                    </button>
-                                </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-
                     <div class="clearfix pad"></div>
                     <div align="right">
                         {{Form::submit('create', array('class'=>'btn btn-bg btn-primary ','title'=>'Save the Delivery Address'))}}
@@ -162,5 +142,11 @@
         </div>
 
 
+        @include('customer.map')
+
+
+        <script type="text/javascript"
+                src="http://maps.google.com/maps/api/js?sensor=false&key=AIzaSyDenLLrWG9iWZSXBXlJAAzqcNLgRlMFsRI"></script>
+        <script src="{{ asset('js/map.js') }}"></script>
 
 @endsection
