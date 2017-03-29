@@ -30,3 +30,6 @@ Route::get('/capping/list', 'Capping\CappingApiController@getCappingData');
 Route::get('/customer/address/{id}', 'User\CustomerAddressApiController@customerAddressShow');
 Route::post('/customer/address/create', 'User\CustomerAddressApiController@customerAddressCreate');
 Route::put('/customer/address/{id}/edit', 'User\CustomerAddressApiController@customerAddressEdit');
+
+// customer delivery address
+Route::post('/customer/delivery/address/create', 'User\CustomerDeliveryAddressApiController@customerDeliveryAddressCreate');
