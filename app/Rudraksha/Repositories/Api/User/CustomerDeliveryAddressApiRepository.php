@@ -10,6 +10,7 @@ namespace App\Rudraksha\Repositories\Api\User;
 
 
 use App\Rudraksha\Entities\DeliveryAddress;
+use Illuminate\Contracts\Logging\Log;
 
 class CustomerDeliveryAddressApiRepository
 {
@@ -17,14 +18,20 @@ class CustomerDeliveryAddressApiRepository
      * @var DeliveryAddress
      */
     private $deliveryAddress;
+    /**
+     * @var Log
+     */
+    private $log;
 
     /**
      * CustomerDeliveryAddressApiRepository constructor.
      * @param DeliveryAddress $deliveryAddress
+     * @param Log $log
      */
-    public function __construct(DeliveryAddress $deliveryAddress)
+    public function __construct(DeliveryAddress $deliveryAddress, Log $log)
     {
         $this->deliveryAddress = $deliveryAddress;
+        $this->log = $log;
     }
 
     /**
@@ -45,5 +52,32 @@ class CustomerDeliveryAddressApiRepository
         return $this->deliveryAddress->select('*')
                         ->where('id', $id)
                         ->first();
+    }
+
+    /**
+     * @param $request
+     * @param $id
+     * @return bool
+     */
+    public function repoCustomerDeliveryAddressEdit($request, $id)
+    {
+        try {
+            $data = DeliveryAddress::find($id);
+            $data->country = $request['country'];
+            $data->state = $request['state'];
+            $data->latitude_long = $request['latitude_long'];
+            $data->city = $request['city'];
+            $data->address_line1 = $request['address_line1'];
+            $data->address_line2 = $request['address_line2'];
+            $data->zip_code = $request['zip_code'];
+            $data->update();
+            $this->log->info("Customer Delivery Address Updated");
+            return true;
+
+        } catch (QueryException $e) {
+
+            $this->log->error("Customer Delivery Address Update Failed : ", [$e->getMessage()]);
+            return false;
+        }
     }
 }

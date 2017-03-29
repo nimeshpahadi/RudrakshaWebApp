@@ -65,4 +65,24 @@ class CustomerDeliveryAddressApiController extends Controller
 
         return response()->json($addressDetails);
     }
+
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function customerDeliveryAddressEdit(Request $request, $id)
+    {
+        $data = $request->all();
+
+        $t = $this->deliveryAddressValidation->deliveryAddressEditValidate($data);
+
+        if ($t!=null) {
+            return $t;
+        }
+
+        $response = $this->deliveryAddressApiService->serviceCustomerDeliveryAddressEdit($data, $id);
+
+        return response()->json($response);
+    }
 }

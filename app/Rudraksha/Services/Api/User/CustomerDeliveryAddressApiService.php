@@ -84,4 +84,27 @@ class CustomerDeliveryAddressApiService
 
         return $data;
     }
+
+    /**
+     * @param $request
+     * @param $id
+     * @return array
+     */
+    public function serviceCustomerDeliveryAddressEdit($request, $id)
+    {
+        if ($this->deliveryAddressApiRepository->repoCustomerDeliveryAddressEdit($request, $id)) {
+            $respo = [
+                "status" => "true",
+                "message" => "customer delivery address updated successfully !!!"
+            ];
+            return $respo;
+        }
+
+        $respo = [
+            "status" => "false",
+            "message" => "oops !!! something went wrong"
+        ];
+
+        return $respo;
+    }
 }
