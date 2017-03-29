@@ -73,8 +73,6 @@ class CustomerDeliveryAddressApiService
             "customer_id" => $deliveryAddress['customer_id'],
             "country" => $deliveryAddress['country'],
             "state" => $deliveryAddress['state'],
-            "street" => $deliveryAddress['street'],
-            "contact" => $deliveryAddress['contact'],
             "latitude_long" => $deliveryAddress['latitude_long'],
             "city" => $deliveryAddress['city'],
             "address_line1" => $deliveryAddress['address_line1'],
