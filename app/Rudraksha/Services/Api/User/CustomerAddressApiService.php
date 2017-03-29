@@ -76,4 +76,27 @@ class CustomerAddressApiService
 
         return $data;
     }
+
+    /**
+     * @param $request
+     * @param $id
+     * @return array
+     */
+    public function serviceCustomerAddressEdit($request, $id)
+    {
+        if ($this->customerAddressApiRepository->repoCustomerAddressEdit($request, $id)) {
+            $respo = [
+                "status" => "true",
+                "message" => "customer address updated successfully !!!"
+            ];
+            return $respo;
+        }
+
+        $respo = [
+            "status" => "false",
+            "message" => "oops !!! something went wrong"
+        ];
+
+        return $respo;
+    }
 }

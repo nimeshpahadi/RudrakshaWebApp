@@ -66,4 +66,24 @@ class CustomerAddressApiController extends Controller
 
         return response()->json($addressDetails);
     }
+
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function customerAddressEdit(Request $request, $id)
+    {
+        $data = $request->all();
+
+        $t = $this->customerAddressValidation->addressEditValidate($data);
+
+        if ($t!=null) {
+            return $t;
+        }
+
+        $response = $this->customerAddressApiService->serviceCustomerAddressEdit($data, $id);
+
+        return response()->json($response);
+    }
 }

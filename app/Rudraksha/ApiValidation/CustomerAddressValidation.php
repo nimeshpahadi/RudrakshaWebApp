@@ -39,4 +39,30 @@ class CustomerAddressValidation
             'latitude_long' => 'required|integer',
         ]);
     }
+
+    public function addressEditValidate($request)
+    {
+        $detail = $this->addressEditValidator($request);
+
+        $errors = $detail->errors()->toArray();
+
+        if (!empty($errors)) {
+            $response = [
+                "status" => "false",
+                "message" => $errors
+            ];
+            return response()->json($response);
+        }
+    }
+
+    public function addressEditValidator($data)
+    {
+        return Validator::make($data, [
+            'country' => 'required',
+            'state' => 'required',
+            'street' => 'required',
+            'contact' => 'required|integer',
+            'latitude_long' => 'required|integer',
+        ]);
+    }
 }

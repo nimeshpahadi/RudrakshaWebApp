@@ -10,6 +10,7 @@ namespace App\Rudraksha\Repositories\Api\User;
 
 
 use App\Rudraksha\Entities\CustomerAddress;
+use Illuminate\Contracts\Logging\Log;
 
 class CustomerAddressApiRepository
 {
@@ -17,14 +18,20 @@ class CustomerAddressApiRepository
      * @var CustomerAddress
      */
     private $customerAddress;
+    /**
+     * @var Log
+     */
+    private $log;
 
     /**
      * CustomerAddressApiRepository constructor.
      * @param CustomerAddress $customerAddress
+     * @param Log $log
      */
-    public function __construct(CustomerAddress $customerAddress)
+    public function __construct(CustomerAddress $customerAddress, Log $log)
     {
         $this->customerAddress = $customerAddress;
+        $this->log = $log;
     }
 
     /**
@@ -45,5 +52,30 @@ class CustomerAddressApiRepository
         return $this->customerAddress->select('*')
                             ->where('id', $id)
                             ->first();
+    }
+
+    /**
+     * @param $request
+     * @param $id
+     * @return bool
+     */
+    public function repoCustomerAddressEdit($request, $id)
+    {
+        try {
+            $data = CustomerAddress::find($id);
+            $data->country = $request['country'];
+            $data->state = $request['state'];
+            $data->street = $request['street'];
+            $data->contact = $request['contact'];
+            $data->latitude_long = $request['latitude_long'];
+            $data->update();
+            $this->log->info("Customer Address Updated");
+            return true;
+
+        } catch (QueryException $e) {
+
+            $this->log->error("Customer Address Update Failed : ", [$e->getMessage()]);
+            return false;
+        }
     }
 }
