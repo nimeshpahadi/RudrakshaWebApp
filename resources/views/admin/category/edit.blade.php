@@ -38,8 +38,8 @@
             <div class="form-group{{ $errors->has('information') ? ' has-error' : '' }} clearfix">
                 <label for="information" class="col-sm-4 control-label">Information</label>
 
-                <div class="col-sm-8">
-                    {{ Form::textarea('information',null,array('class'=>'form-control'))}}
+                <div class="col-sm-8 ">
+                    {{ Form::textarea('information',null,array('class'=>'form-control', 'style'=>"height: 50px"))}}
                 </div>
             </div>
 
@@ -54,7 +54,7 @@
                 <label for="mantra" class="col-sm-4 control-label">Mantra</label>
 
                 <div class="col-sm-8">
-                    {{ Form::textarea('mantra',null,array('class'=>'form-control'))}}
+                    {{ Form::textarea('mantra',null,array('class'=>'form-control', 'style'=>"height: 50px"))}}
                 </div>
             </div>
 

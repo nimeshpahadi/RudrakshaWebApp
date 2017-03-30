@@ -28,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
     /**
      * @var CustomerService
      */
@@ -127,4 +127,8 @@ class RegisterController extends Controller
 
         return redirect(route('login'))->with('warning', 'Something went wrong.');
     }
+
+
+
+
 }
