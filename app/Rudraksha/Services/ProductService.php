@@ -44,7 +44,13 @@ class ProductService
     public function store_Product($request)
     {
         $formData = $request->all();
-        $tags = explode("," , $formData['tag']);
+        $tags = explode("," , trim($formData['tag']));
+        foreach( $tags as $key => $value )
+        {
+            if( trim($value) == "" ) {
+                unset($tags[$key]);
+            }
+        }
         $formData = array_except($formData, ['_token', 'to', 'remove']);
         $formData['tag'] = $tags;
         $data= $this->productRepository->storeProduct($formData);
@@ -75,7 +81,7 @@ class ProductService
         foreach ($formData['name'] as $img) {
             $imagename = $formData['product_id']. '_' . rand(0,10000) . '.' . $img->getClientOriginalExtension();
             array_push($images,$imagename);
-            $destinationPath = storage_path('app/public/product');
+            $destinationPath = storage_path('app/public/image/product');
             $img->move($destinationPath, $imagename);
         }
 
@@ -148,7 +154,7 @@ class ProductService
         $namearray=($query->name);
         $imageKey=array_search($name,$namearray);
         unset($namearray[$imageKey]);
-        $path = storage_path().'/app/public/product/';
+        $path = storage_path().'/app/public/image/product/';
         File::delete($path . $name);
         $data=$this->productRepository->deleteProductImg($id,$namearray);
         return $data;
@@ -172,7 +178,7 @@ class ProductService
         foreach ($formData['name'] as $img) {
             $imagename = $formData['product_id']. '_' . rand(0,10000) . '.' . $img->getClientOriginalExtension();
             array_push($images,$imagename);
-            $destinationPath = storage_path('app/public/product');
+            $destinationPath = storage_path('app/public/image/product');
             $img->move($destinationPath, $imagename);
         }
 

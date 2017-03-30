@@ -24,7 +24,7 @@
                 @foreach($customer as $row)
                     <tr>
                         {{--ln -s ~/web/RudrakshaWebbapp/storage/app/public/users ~/web/RudrakshaWebbapp/public/storage/--}}
-                        <td><img class="cappingimage" src="{{asset('storage/users')}}/{{$row->image}}"></td>
+                        <td><img class="cappingimage" src="{{asset('storage/image/users')}}/{{$row->image}}"></td>
                         <td>{{$row->name }}</td>
                         <td>{{$row->email }}</td>
                         <td>{{$row->contact }}</td>

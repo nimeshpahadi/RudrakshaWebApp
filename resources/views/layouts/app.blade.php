@@ -67,7 +67,7 @@
 
                             <ul class="dropdown-menu" role="menu">
 
-                                <li><a href="/customers">Profile</a></li>
+                                <li><a href="/profile">Profile</a></li>
                                 <li><a href="#">My History </a></li>
 
                                 <li role="separator" class="divider"></li>

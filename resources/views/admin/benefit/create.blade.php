@@ -12,14 +12,12 @@
                     {!! Form::open(array('route'=>'category.benefit.store', 'method'=>'post' ))!!}
 
                     {{ Form::hidden('category_id',$id) }}
-                    <div class="form-group{{ $errors->has('benefit_heading') ? ' has-error' : '' }} clearfix">
+                    <div class="form-group{{ $errors->has('benefit_heading') ? ' has-error' : '' }} clearfix form-group required">
                         <label for="benefit_heading" class="col-sm-4 control-label">Benefit Head</label>
 
                         <div class="col-sm-8">
                             <input id="benefit_heading" type="text" class="form-control" name="benefit_heading"
-                                   value="{{ old('benefit_heading') }}"
-                                   required
-                                   autofocus>
+                                   value="{{ old('benefit_heading') }}" required autofocus>
                             @if ($errors->has('benefit_heading'))
                                 <span class="help-block">
                                         <strong>{{ $errors->first('benefit_heading') }}</strong>
@@ -28,7 +26,7 @@
                         </div>
                     </div>
 
-                    <div class="">
+                    <div class="form-group required">
                         <label for="benefit" class="col-sm-4 control-label"> Benifits </label>
                         <div class="col-sm-7">
                         <input id="more_fields" type="text" class="form-control" name='benefit[]'

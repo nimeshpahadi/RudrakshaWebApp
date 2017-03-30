@@ -83,13 +83,11 @@ class CustomerAddressRepository
             $query->country = $request->country;
             $query->state = $request->state;
             $query->street = $request->street;
+            $query->city = $request->city;
             $query->contact = $request->contact;
             $query->latitude_long = $request->latitude_long;
-
-            $query->save();
-
+            $query->update();
             $this->log->info("Customer Address Updated", ['id' => $id]);
-
             return true;
 
         } catch (QueryException $e) {

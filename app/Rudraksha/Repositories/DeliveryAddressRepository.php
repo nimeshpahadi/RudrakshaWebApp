@@ -65,6 +65,7 @@ class DeliveryAddressRepository
             $data->address_line1 = $formData['address_line1'];
             $data->address_line2 = $formData['address_line2'];
             $data->zip_code = $formData['zip_code'];
+            $data->address_note = $formData['address_note'];
             $data->update();
             $this->log->info("Delivery Address Updated", ['id' => $id]);
 

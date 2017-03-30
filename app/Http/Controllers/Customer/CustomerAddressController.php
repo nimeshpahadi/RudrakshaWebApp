@@ -65,7 +65,7 @@ class CustomerAddressController extends Controller
 
         if ($this->customerAddressService->serviceAddressStore($data)) {
 
-            return redirect('/customers')->withSuccess("Customer Address Created!");
+            return redirect('/profile')->withSuccess("Customer Address Created!");
         }
 
         return back()->withErrors("oops Something went wrong");
@@ -105,7 +105,7 @@ class CustomerAddressController extends Controller
     {
         if ($this->customerAddressService->serviceAddressUpdate($request, $id)) {
 
-            return redirect()->route('customers.index', compact('id'))->withSuccess('Customer Address Updated');
+            return redirect()->route('profile.index', compact('id'))->withSuccess('Customer Address Updated');
         }
 
         return back()->withErrors('something went wrong');

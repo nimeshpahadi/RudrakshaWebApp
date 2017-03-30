@@ -63,6 +63,19 @@
                         @endif
                     </div>
                 </div>
+                <div class="form-group{{ $errors->has('city') ? ' has-error' : '' }} clearfix">
+                    <label for="city" class="col-sm-4 control-label">City</label>
+
+                    <div class="col-sm-8">
+                        <input id="city" type="text" class="form-control" name="city"
+                               value="{{ old('city') }}" required autofocus>
+                        @if ($errors->has('city'))
+                            <span class="help-block">
+                                        <strong>{{ $errors->first('city') }}</strong>
+                                    </span>
+                        @endif
+                    </div>
+                </div>
 
                 <div class="form-group{{ $errors->has('contact') ? ' has-error' : '' }} clearfix">
                     <label for="contact" class="col-sm-4 control-label">Contact</label>

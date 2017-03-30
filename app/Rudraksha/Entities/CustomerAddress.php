@@ -8,7 +8,7 @@ class CustomerAddress extends Model
 {
     public $table = 'customer_addresses';
     protected $fillable = [
-        'customer_id', 'country','state',
+        'customer_id', 'country','state','city',
         'street', 'contact','latitude_long',
 
     ];

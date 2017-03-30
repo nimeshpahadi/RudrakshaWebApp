@@ -18,7 +18,7 @@
                     <select name="country" class="form-control" required>
                         <option selected="selected" disabled>Choose Country</option>
                         @foreach($x as $code=>$name)
-                            <option  value="{{$code}}">
+                            <option  value="{{$code}}" @if($customerDelivery->country==$code)selected @endif>
                                 {{$name}}
                             </option>
                         @endforeach
@@ -74,10 +74,16 @@
                     {{ Form::text('zip_code',null,array('class'=>'form-control'))}}
                 </div>
             </div>
+            <div class="form-group{{ $errors->has('address_note') ? ' has-error' : '' }} clearfix">
+                <label for="address_note" class="col-sm-4 control-label">Address Note</label>
+                <div class="col-sm-8">
+                    {{ Form::textarea('address_note',null,array('class'=>'form-control', 'style'=>"height: 50px"))}}
+                </div>
+            </div>
 
             <div class="clearfix " align="right">
                 {{Form::submit('Save Changes', array('class'=>'btn btn-primary btn-sm ','title'=>'Save  changes on your delivery address'))}}
-                <a type="button" class="btn btn-warning  btn-sm" href="/customers">Cancel</a>
+                <a type="button" class="btn btn-warning  btn-sm" href="/profile">Cancel</a>
                 {!! Form::close() !!}
             </div>
 

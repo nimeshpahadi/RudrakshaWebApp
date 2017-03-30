@@ -14,8 +14,17 @@
             <div class="form-group{{ $errors->has('country') ? ' has-error' : '' }} clearfix">
                 <label for="country" class="col-sm-4 control-label">Country</label>
 
+                <?php $x = Config::get('country');?>
                 <div class="col-sm-8">
-                    {{ Form::text('country',null,array('class'=>'form-control'))}}
+                    <select name="country" class="form-control" required>
+                        <option selected="selected" disabled>Choose Country</option>
+                        @foreach($x as $code=>$name)
+                            <option  value="{{$code}}" @if($userId->country==$code)selected @endif>
+                                {{$name}}
+                            </option>
+                        @endforeach
+
+                    </select>
                 </div>
             </div>
 
@@ -35,7 +44,13 @@
                     {{ Form::text('street',null,array('class'=>'form-control'))}}
                 </div>
             </div>
+            <div class="form-group{{ $errors->has('city') ? ' has-error' : '' }} clearfix">
+                <label for="city" class="col-sm-4 control-label">City</label>
 
+                <div class="col-sm-8">
+                    {{ Form::text('city',null,array('class'=>'form-control'))}}
+                </div>
+            </div>
             <div class="form-group{{ $errors->has('contact') ? ' has-error' : '' }} clearfix">
                 <label for="contact" class="col-sm-4 control-label">Contact</label>
 

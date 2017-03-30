@@ -52,7 +52,7 @@ class CustomerRepository
         try {
             $data = User::find($id);
             $name = $data->image;
-            $path = storage_path() . '/app/public/users/';
+            $path = storage_path() . '/app/public/image/users/';
             File::delete($path . $name);
             $data->image = $Formdata['image'];
             $data->update();
@@ -71,6 +71,7 @@ class CustomerRepository
     {
         try {
             $data  = $this->user->find($id);
+
 
             if ( Hash::check($request['oldpassword'],$data->password)) {
                 $data->password = bcrypt($request->password);

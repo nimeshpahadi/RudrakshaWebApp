@@ -12,7 +12,7 @@
 
                 {!! Form::open(array('route'=>'product_price.store' ))!!}
 
-                <div class="form-group{{ $errors->has('product_id') ? ' has-error' : '' }} clearfix">
+                <div class="form-group{{ $errors->has('product_id') ? ' has-error' : '' }} clearfix form-group required">
                     <label for="product_id" class="col-sm-4 control-label">Product ID </label>
 
                     <div class="col-md-8 ">
@@ -30,7 +30,7 @@
 
                 </div>
 
-                <div class="form-group{{ $errors->has('currency_id') ? ' has-error' : '' }} clearfix">
+                <div class="form-group{{ $errors->has('currency_id') ? ' has-error' : '' }} clearfix form-group required">
                     <label for="currency_id" class="col-sm-4 control-label">Currency </label>
 
                     <div class="col-md-8 ">
@@ -49,7 +49,7 @@
                 </div>
 
 
-                <div class="form-group{{ $errors->has('price') ? ' has-error' : '' }} clearfix">
+                <div class="form-group{{ $errors->has('price') ? ' has-error' : '' }} clearfix form-group required">
                     <label for="price" class="col-sm-4 control-label">Price</label>
 
                     <div class="col-sm-8">

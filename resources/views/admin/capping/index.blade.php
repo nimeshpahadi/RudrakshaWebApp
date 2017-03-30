@@ -31,9 +31,8 @@
             @foreach($cap as $capping)
                 <tr>
                     <td>{{$capping->type}}</td>
-                    {{--ln -s ~/web/RudrakshaWebbapp/storage/app/public/capping ~/web/RudrakshaWebbapp/public/storage/--}}
                     <td>
-                        <img class="cappingimage" src="{{asset('storage/capping')}}/{{$capping->design_image}}">
+                        <img class="cappingimage" src="{{asset('storage/image/capping')}}/{{$capping->design_image}}">
                         <button type="button" class="btn btn-info  " data-toggle="modal"
                                 data-target="#myModal">change
                         </button>

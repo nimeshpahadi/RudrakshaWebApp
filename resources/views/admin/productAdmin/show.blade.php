@@ -53,6 +53,14 @@
                 <label class="col-sm-6 "> Quantity Available :</label>
                 {{$productid->quantity_available}}
             </div>
+            <div class="row">
+                <label class="col-sm-6 "> Status:</label>
+                @if($productid->status==1)
+                    Active
+                @else
+                    In-active
+                @endif
+            </div>
         </div>
     @endif
 
@@ -151,7 +159,7 @@
                     @foreach($product_image->name as $img)
                         {{--ln -s ~/web/RudrakshaWebbapp/storage/app/public/product ~/web/RudrakshaWebbapp/public/storage/--}}
 
-                        <img class="productimage" src="{{asset('storage/product')}}/{{$img}}"
+                        <img class="productimage" src="{{asset('storage/image/product')}}/{{$img}}"
                              style=" border:dotted">
                         {!! Form::open(['method' => 'DELETE','route' => ['product_image_delete', $product_image->id,$img]]) !!}
 

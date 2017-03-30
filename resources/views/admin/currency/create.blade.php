@@ -12,7 +12,7 @@
 
                 {!! Form::open(array('route'=>'currency.store' ))!!}
 
-                <div class="form-group{{ $errors->has('code') ? ' has-error' : '' }} clearfix">
+                <div class="form-group{{ $errors->has('code') ? ' has-error' : '' }} clearfix form-group required">
                     <label for="code" class="col-sm-4 control-label">Currency Code</label>
 
                     <div class="col-sm-8">
@@ -27,7 +27,7 @@
                     </div>
                 </div>
 
-                <div class="form-group{{ $errors->has('currency') ? ' has-error' : '' }} clearfix">
+                <div class="form-group{{ $errors->has('currency') ? ' has-error' : '' }} clearfix form-group required">
                     <label for="currency" class="col-sm-4 control-label">Currency Name</label>
 
                     <div class="col-sm-8">
@@ -41,7 +41,7 @@
                         @endif
                     </div>
                 </div>
-                <div class="form-group{{ $errors->has('representation') ? ' has-error' : '' }} clearfix">
+                <div class="form-group{{ $errors->has('representation') ? ' has-error' : '' }} clearfix form-group required">
                     <label for="representation" class="col-sm-4 control-label">Currency Representation</label>
 
                     <div class="col-sm-8">

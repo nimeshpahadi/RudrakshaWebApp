@@ -14,7 +14,7 @@
 
                     {!! Form::open(array('route'=>'products.store', 'method'=>'post' ))!!}
 
-                    <div class="form-group{{ $errors->has('category_id') ? ' has-error' : '' }} clearfix">
+                    <div class="form-group{{ $errors->has('category_id') ? ' has-error' : '' }} clearfix form-group required">
                         <label for="category_id" class="col-sm-4 control-label">Category ID </label>
 
                         <div class="col-md-8 ">
@@ -32,13 +32,12 @@
 
                     </div>
 
-                    <div class="form-group{{ $errors->has('code') ? ' has-error' : '' }} clearfix">
+                    <div class="form-group{{ $errors->has('code') ? ' has-error' : '' }} clearfix form-group required">
                         <label for="code" class="col-sm-4 control-label">Code</label>
 
                         <div class="col-sm-8">
                             <input id="code" type="text" class="form-control" name="code" value="{{ old('code') }}"
-                                   required
-                                   autofocus>
+                                   required autofocus>
 
                             @if ($errors->has('code'))
                                 <span class="help-block">
@@ -48,13 +47,12 @@
                         </div>
                     </div>
 
-                    <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }} clearfix">
+                    <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }} clearfix form-group required">
                         <label for="name" class="col-sm-4 control-label">Name</label>
 
                         <div class="col-sm-8">
                             <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}"
-                                   required
-                                   autofocus>
+                                   required autofocus>
 
                             @if ($errors->has('name'))
                                 <span class="help-block">
@@ -65,7 +63,7 @@
                     </div>
 
 
-                    <div class="form-group{{ $errors->has('price') ? ' has-error' : '' }} clearfix">
+                    <div class="form-group{{ $errors->has('price') ? ' has-error' : '' }} clearfix form-group required">
                         <label for="price" class="col-sm-4 control-label">Price</label>
 
                         <div class="col-sm-8">
@@ -80,7 +78,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group{{ $errors->has('rank') ? ' has-error' : '' }} clearfix">
+                    <div class="form-group{{ $errors->has('rank') ? ' has-error' : '' }} clearfix form-group required">
                         <label for="rank" class="col-sm-4 control-label">Rank</label>
 
                         <div class="col-sm-8">
@@ -95,7 +93,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group{{ $errors->has('tag') ? ' has-error' : '' }} clearfix">
+                    <div class="form-group{{ $errors->has('tag') ? ' has-error' : '' }} clearfix form-group required">
                         <label for="tag" class="col-sm-4 control-label">Tags</label>
 
                         <div class="col-sm-8">
@@ -125,7 +123,7 @@
                             @endif
                         </div>
                     </div>
-                    <div class="form-group{{ $errors->has('quantity_available') ? ' has-error' : '' }} clearfix">
+                    <div class="form-group{{ $errors->has('quantity_available') ? ' has-error' : '' }} clearfix form-group required">
                         <label for="quantity_available" class="col-sm-4 control-label">Quantity Available</label>
 
                         <div class="col-sm-8">

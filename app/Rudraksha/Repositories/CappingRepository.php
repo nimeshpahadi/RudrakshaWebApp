@@ -94,7 +94,7 @@ class CappingRepository
 
             $data = CappingRepository::get_cappingid($id);
             $name=$data->design_image;
-            $path = storage_path().'/app/public/capping/';
+            $path = storage_path().'/app/public/image/capping/';
             File::delete($path . $name);
             $data->design_image= $formData['design_image'];
             $data->update();

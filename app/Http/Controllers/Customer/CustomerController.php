@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Customer;
 
+use App\Http\Requests\CustomerRequest;
 use App\Rudraksha\Services\CustomerAddressService;
 use App\Rudraksha\Services\CustomerService;
 use App\Rudraksha\Services\DeliveryAddressService;
@@ -144,10 +145,13 @@ class CustomerController extends Controller
      * @param $id
      * @return $this
      */
-    public function changepassword(Request $request, $id)
+
+
+    public function changepassword(CustomerRequest $request, $id)
     {
+
         if ($this->customerService->changePassword($request, $id)) {
-            return redirect()->route('customers.index',$id)->withSuccess('password Changed');
+            return redirect()->route('profile.index',$id)->withSuccess('password Changed');
         }
         return back()->withErrors('old password may be wrong');
     }

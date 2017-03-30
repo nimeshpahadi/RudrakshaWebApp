@@ -32,7 +32,11 @@
             </div>
             <div class="row">
                 <label class="col-sm-6 "> Status :</label>
-                {{$cate->status}}
+               @if($cate->status==1)
+                    Active
+                @else
+                    In-active
+                   @endif
             </div>
 
             <div class="row">

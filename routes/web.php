@@ -22,22 +22,22 @@ Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
 Route::get('/admin/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
 Route::post('/admin/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
-Route::get('/admin', 'Admin\AdminController@index')->name('admin.dashboard');
+Route::get('/dashboard', 'Admin\AdminController@index')->name('admin.dashboard');
 
 Route::get('/users/confirmation/{token}', 'Auth\RegisterController@confirmation')->name('confirmation');
 
 //customer
-Route::resource('/customers', 'Customer\CustomerController');
-Route::put('/customers/{id}/image', 'Customer\CustomerController@updateimage')->name('customer.updateimage');
+Route::resource('/profile', 'Customer\CustomerController');
+Route::put('/profile/{id}/image', 'Customer\CustomerController@updateimage')->name('customer.updateimage');
 
-Route::get('/customers/{id}/password', 'Customer\CustomerController@password')->name("password");
-Route::patch('/customers/{id}/password', 'Customer\CustomerController@changepassword')->name("changepassword");
+Route::get('/profile/{id}/password', 'Customer\CustomerController@password')->name("password");
+Route::patch('/profile/{id}/password', 'Customer\CustomerController@changepassword')->name("changepassword");
 
 // customer address
-Route::get('/customers/{id}/address', 'Customer\CustomerAddressController@create')->name('customers.address');
-Route::get('/customers/{id}/address/edit', 'Customer\CustomerAddressController@edit')->name('customers.address.edit');
-Route::post('/customers/address', 'Customer\CustomerAddressController@store')->name('customers.address.store');
-Route::put('/customers/{id}/address/update', 'Customer\CustomerAddressController@update')->name('customers.address.update');
+Route::get('/profile/{id}/address', 'Customer\CustomerAddressController@create')->name('customers.address');
+Route::get('/profile/{id}/address/edit', 'Customer\CustomerAddressController@edit')->name('customers.address.edit');
+Route::post('/profile/address', 'Customer\CustomerAddressController@store')->name('customers.address.store');
+Route::put('/profile/{id}/address/update', 'Customer\CustomerAddressController@update')->name('customers.address.update');
 
 // Customer Delivery Address
 Route::get('/customers/{id}/deliveryaddress', 'Customer\DeliveryAddressController@index')->name("deliveryaddress");

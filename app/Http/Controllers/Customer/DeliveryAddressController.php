@@ -58,7 +58,7 @@ class DeliveryAddressController extends Controller
     public function store(DeliveryAddressRequest $request)
     {
         if ($this->deliveryAddressService->store_delivery($request)) {
-            return redirect()->route('customers.index')->withSuccess("Delivery Address added!");
+            return redirect()->route('profile.index')->withSuccess("Delivery Address added!");
         }
         return back()->withErrors("Something went wrong");
     }
@@ -96,7 +96,7 @@ class DeliveryAddressController extends Controller
     public function update(Request $request, $id)
     {
         if ($this->deliveryAddressService->update_delivery($request,$id)) {
-            return redirect()->route('customers.index')->withSuccess("Delivery address updated !");
+            return redirect()->route('profile.index')->withSuccess("Delivery address updated !");
         }
         return back()->withErrors("Something went wrong");
     }

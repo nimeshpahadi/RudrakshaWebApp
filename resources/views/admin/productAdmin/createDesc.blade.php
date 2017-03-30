@@ -24,7 +24,7 @@
 
                     {{ Form::hidden('product_id', $productid) }}
 
-                    <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }} clearfix">
+                    <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }} clearfix form-group required">
                         <label for="description" class="col-sm-4 control-label">Description</label>
 
                         <div class="col-sm-8">
@@ -41,7 +41,7 @@
                     </div>
 
 
-                    <div class="form-group{{ $errors->has('information') ? ' has-error' : '' }} clearfix">
+                    <div class="form-group{{ $errors->has('information') ? ' has-error' : '' }} clearfix form-group required">
                         <label for="information" class="col-sm-4 control-label">Information</label>
 
                         <div class="col-sm-8">
@@ -61,7 +61,7 @@
 
                     <div class="clearfix pad"></div>
                     <div align="right">
-                        {{Form::submit('create', array('class'=>'btn btn-bg btn-primary ','title'=>'Save the category'))}}
+                        {{Form::submit('create', array('class'=>'btn btn-bg btn-primary ','title'=>'Save the Description'))}}
                         {!! Form::close() !!}
 
                     </div>

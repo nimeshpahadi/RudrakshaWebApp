@@ -127,6 +127,22 @@
                         </div>
                     </div>
 
+                    <div class="form-group{{ $errors->has('address_note') ? ' has-error' : '' }} clearfix">
+                        <label for="address_note" class="col-sm-4 control-label">Address Note</label>
+
+                        <div class="col-sm-8">
+                            <textarea id="address_note" type="text" class="form-control" name="address_note"
+                                      value="{{ old('address_note') }}" required autofocus></textarea>
+
+                            @if ($errors->has('address_note'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('address_note') }}</strong>
+                                    </span>
+                            @endif
+                        </div>
+                    </div>
+
+
 
                     <div class="clearfix pad"></div>
                     <div align="right">

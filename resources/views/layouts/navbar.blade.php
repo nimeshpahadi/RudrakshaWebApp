@@ -30,7 +30,7 @@
                         </ul>
                     </li>
                     <li><a href="#">Product</a></li>
-                    <li ><a href="/customers">My Profile </a></li>
+                    <li ><a href="/profile">My Profile </a></li>
                     <li><a href="#">Cart</a></li>
                     <li><a href="#">Checkout</a></li>
 

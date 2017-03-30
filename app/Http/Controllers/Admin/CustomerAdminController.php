@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Rudraksha\Services\CustomerAddressService;
 use App\Rudraksha\Services\CustomerService;
 use Illuminate\Http\Request;
 
@@ -12,11 +13,16 @@ class CustomerAdminController extends Controller
      * @var CustomerService
      */
     private $customerService;
+    /**
+     * @var CustomerAddressService
+     */
+    private $customerAddressService;
 
-    public function __construct(CustomerService $customerService)
+    public function __construct(CustomerService $customerService,CustomerAddressService $customerAddressService)
     {
         $this->middleware('auth:admin');
         $this->customerService = $customerService;
+        $this->customerAddressService = $customerAddressService;
     }
 
     /**
@@ -59,8 +65,9 @@ class CustomerAdminController extends Controller
      */
     public function show($id)
     {
+       $address= $this->customerAddressService->getCustomerAddress($id);
         $customerid=$this->customerService->getCustomerId($id);
-        return view('admin.customer.show',compact('customerid'));
+        return view('admin.customer.show',compact('customerid','address'));
 
 
     }

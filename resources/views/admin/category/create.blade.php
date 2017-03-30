@@ -12,7 +12,7 @@
 
                 {!! Form::open(array('route'=>'category.store' ))!!}
 
-                <div class="form-group{{ $errors->has('code') ? ' has-error' : '' }} clearfix">
+                <div class="form-group{{ $errors->has('code') ? ' has-error' : '' }} clearfix  form-group required">
                     <label for="code" class="col-sm-4 control-label">Code</label>
 
                     <div class="col-sm-8">
@@ -27,7 +27,7 @@
                     </div>
                 </div>
 
-                <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }} clearfix">
+                <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }} clearfix form-group required">
                     <label for="name" class="col-sm-4 control-label">Name</label>
 
                     <div class="col-sm-8">
@@ -43,7 +43,7 @@
                 </div>
 
 
-                <div class="form-group{{ $errors->has('short_description') ? ' has-error' : '' }} clearfix">
+                <div class="form-group{{ $errors->has('short_description') ? ' has-error' : '' }} clearfix form-group required">
                     <label for="short_description" class="col-sm-4 control-label">Short Description</label>
 
                     <div class="col-sm-8">
@@ -58,7 +58,7 @@
                     </div>
                 </div>
 
-                <div class="form-group{{ $errors->has('information') ? ' has-error' : '' }} clearfix">
+                <div class="form-group{{ $errors->has('information') ? ' has-error' : '' }} clearfix form-group required">
                     <label for="information" class="col-sm-4 control-label">Information</label>
 
                     <div class="col-sm-8">
@@ -73,7 +73,7 @@
                     </div>
                 </div>
 
-                <div class="form-group{{ $errors->has('face_no') ? ' has-error' : '' }} clearfix">
+                <div class="form-group{{ $errors->has('face_no') ? ' has-error' : '' }} clearfix form-group required">
                     <label for="face_no" class="col-sm-4 control-label">Face No.</label>
 
                     <div class="col-sm-8">
@@ -89,7 +89,7 @@
                     </div>
                 </div>
 
-                <div class="form-group{{ $errors->has('mantra') ? ' has-error' : '' }} clearfix">
+                <div class="form-group{{ $errors->has('mantra') ? ' has-error' : '' }} clearfix form-group required">
                     <label for="mantra" class="col-sm-4 control-label">Mantra</label>
 
                     <div class="col-sm-8">

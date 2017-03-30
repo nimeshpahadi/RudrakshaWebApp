@@ -12,7 +12,7 @@
 
                 {!! Form::open(array('route'=>'capping.store' ,'enctype'=>'multipart/form-data' ))!!}
 
-                <div class="form-group{{ $errors->has('type') ? ' has-error' : '' }} clearfix">
+                <div class="form-group{{ $errors->has('type') ? ' has-error' : '' }} clearfix form-group required">
                     <label for="type" class="col-sm-4 control-label">Type</label>
 
                     <div class="col-md-8 ">
@@ -25,7 +25,7 @@
 
                 </div>
 
-                <div class="form-group{{ $errors->has('price') ? ' has-error' : '' }} clearfix">
+                <div class="form-group{{ $errors->has('price') ? ' has-error' : '' }} clearfix form-group required">
                     <label for="price" class="col-sm-4 control-label">Price</label>
 
                     <div class="col-sm-8">
@@ -40,7 +40,7 @@
                 </div>
 
 
-                <div class="form-group{{ $errors->has('metal_quantity_used') ? ' has-error' : '' }} clearfix">
+                <div class="form-group{{ $errors->has('metal_quantity_used') ? ' has-error' : '' }} clearfix form-group required">
                     <label for="metal_quantity_used" class="col-sm-4 control-label">Metal Quantity</label>
 
                     <div class="col-sm-8">
@@ -55,7 +55,7 @@
                     </div>
                 </div>
 
-                <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }} clearfix">
+                <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }} clearfix form-group required">
                     <label for="description" class="col-sm-4 control-label">Description</label>
 
                     <div class="col-sm-8">
@@ -71,7 +71,7 @@
                     </div>
                 </div>
 
-                <div class="form-group ">
+                <div class="form-group form-group required ">
                     <label for="design_image" class="col-sm-4 control-label">Design Image</label>
                     <div class=" col-sm-8 ">
                         <span class="input-group-addon "><i class="fa fa-file"></i></span>

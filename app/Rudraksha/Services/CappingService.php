@@ -30,7 +30,7 @@ class CappingService
         $formData = $request->all();
         $formData = array_except($formData, ['_token', 'to', 'remove']);
         $imagename =  $formData['type'].'_'.random_int(1,100). '.' . $formData['design_image']->getClientOriginalExtension();
-        $destinationPath = storage_path('app/public/capping');
+        $destinationPath = storage_path('app/public/image/capping');
         $formData['design_image']->move($destinationPath, $imagename);
         $formData['design_image']=$imagename;
         $data= $this->cappingRepository->storeCapping($formData);
@@ -68,7 +68,7 @@ class CappingService
         $formData = $request->all();
         $formData = array_except($formData, ['_token', 'to', 'remove']);
         $imagename = $formData['type'] . '_' . rand(0, 10000) . '.' . $formData['design_image']->getClientOriginalExtension();
-        $destinationPath = storage_path('app/public/capping');
+        $destinationPath = storage_path('app/public/image/capping');
         $formData['design_image']->move($destinationPath, $imagename);
         $formData['design_image']= $imagename;
         return $this->cappingRepository->updateCappingImage($formData,$id);
