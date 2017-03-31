@@ -82,9 +82,10 @@ class ProductApiRepository
      */
     public function getProductInfo($id)
     {
-        return $this->productInfo->select('*')
-                    ->where('id', $id)
-                    ->first();
+        return $this->productInfo->select('product_infos.*', 'categories.mantra')
+                                ->join('categories', 'categories.id', 'product_infos.category_id')
+                                ->where('product_infos.id', $id)
+                                ->first();
     }
 
     /**
@@ -119,5 +120,4 @@ class ProductApiRepository
                     ->where('category_id', $id)
                     ->get();
     }
-
 }

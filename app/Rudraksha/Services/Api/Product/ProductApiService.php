@@ -133,6 +133,7 @@ class ProductApiService
                 'tag' => $productInfo->tag,
                 'discount' => $productInfo->discount,
                 'quantity_available' => $productInfo->quantity_available,
+                'mantra' => $productInfo->mantra,
             ],
 
             'product_description' => [

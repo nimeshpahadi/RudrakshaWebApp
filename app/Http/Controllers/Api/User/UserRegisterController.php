@@ -83,7 +83,7 @@ class UserRegisterController extends Controller
     {
         $data = $request->all();
 
-        $t = $this->userValidation->imageValidate($data, $id);
+        $t = $this->userValidation->imageValidate($data);
 
         if ($t!=null) {
             return $t;

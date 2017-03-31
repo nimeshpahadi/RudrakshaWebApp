@@ -43,6 +43,9 @@ class CategoryApiService
         $categoryDetail  = [];
 
         foreach ($categoryData as $category) {
+
+            $x = $this->serviceCategoryBenefit($category->id);
+
             $categoryDetail['categories'][] = [
                 'id' => $category->id,
                 'code' => $category->code,
@@ -51,18 +54,16 @@ class CategoryApiService
                 'information' => $category->information,
                 'face_no' => $category->face_no,
                 'mantra' => $category->mantra,
-
-                'benifits' => [
-                    'benefit_heading' => $category->benefit_heading,
-                    'benefit' => $category->benefit,
-                    'created_at' => $category->created_at,
-                    'updated_at' => $category->updated_at,
-                ]
+                'benefits' => isset($x['benefit'])?$x['benefit']:[]
             ];
         }
         return $categoryDetail;
     }
 
+    /**
+     * @param $id
+     * @return array
+     */
     public function serviceCategoryBenefit($id)
     {
         $categoryData = $this->categoryApiRepository->repoCategoryBenifit($id);
@@ -71,7 +72,7 @@ class CategoryApiService
 
         foreach ($categoryData as $category) {
 
-            $categoryBenefit['beneift'][] = [
+            $categoryBenefit['benefit'][] = [
                 'benefit_heading' => $category->benefit_heading,
                 'benefit' => $category->benefit,
             ];

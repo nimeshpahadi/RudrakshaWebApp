@@ -27,11 +27,11 @@ Route::get('/category/{id}/benefit', 'Category\CategoryApiController@getCategory
 Route::get('/capping/list', 'Capping\CappingApiController@getCappingData');
 
 // customer address
-Route::get('/customer/address/{id}', 'User\CustomerAddressApiController@customerAddressShow');
+Route::get('/customer/{customer_id}/address', 'User\CustomerAddressApiController@customerAddressShow')->middleware('auth:api');;
 Route::post('/customer/address/create', 'User\CustomerAddressApiController@customerAddressCreate');
 Route::put('/customer/address/{id}/edit', 'User\CustomerAddressApiController@customerAddressEdit');
 
 // customer delivery address
-Route::get('/customer/delivery/address/{id}', 'User\CustomerDeliveryAddressApiController@customerDeliveryAddressShow');
+Route::get('/customer/{customer_id}/delivery/address', 'User\CustomerDeliveryAddressApiController@customerDeliveryAddressShow')->middleware('auth:api');;
 Route::post('/customer/delivery/address/create', 'User\CustomerDeliveryAddressApiController@customerDeliveryAddressCreate');
 Route::put('/customer/delivery/address/{id}/edit', 'User\CustomerDeliveryAddressApiController@customerDeliveryAddressEdit');

@@ -41,7 +41,19 @@ class UserRegisterRepository
      */
     public function createUserRepository($data)
     {
-        return $this->user->create($data);
+        $userData = $this->user->create($data);
+        $userData['token'] = str_random(25);
+
+        $user = User::find($userData['id']);
+        $user->token = $userData['token'];
+        $user->save();
+
+        Mail::send('mails.confirmation', $userData, function ($message) use ($userData) {
+            $message->to($userData['email']);
+            $message->subject('Registration Confirmation');
+        });
+
+        return true;
     }
 
     /**

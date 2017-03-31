@@ -75,11 +75,9 @@ class UserValidation
         ]);
     }
 
-    public function imageValidate($request, $id)
+    public function imageValidate($request)
     {
-        $user = User::find($id);
-
-        $detail = $this->imageValidator($request, $user);
+        $detail = $this->imageValidator($request);
 
         $errors = $detail->errors()->toArray();
 
@@ -92,14 +90,9 @@ class UserValidation
         }
     }
 
-    public function imageValidator($data, $user)
+    public function imageValidator($data)
     {
         return Validator::make($data, [
-            'firstname' => 'required|max:255',
-            'lastname' => 'required|max:255',
-            'email' => 'required|email|unique:users,email,'.$user->id,
-            'contact' => 'required|integer',
-            'alternative_contact' => 'required|integer',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
     }

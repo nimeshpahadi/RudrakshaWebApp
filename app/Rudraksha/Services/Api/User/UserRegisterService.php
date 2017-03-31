@@ -45,7 +45,8 @@ class UserRegisterService
         if ($this->registerRepository->createUserRepository($details)) {
             $respo = [
                 "status" => "true",
-                "message" => "user created successfully !!!"
+//                "message" => "user created successfully !!!"
+                "message" => "Confirmation email has been send. please check your email."
             ];
             return $respo;
         }

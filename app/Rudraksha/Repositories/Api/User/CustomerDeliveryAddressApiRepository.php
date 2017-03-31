@@ -50,7 +50,7 @@ class CustomerDeliveryAddressApiRepository
     public function repoCustomerDeliveryAddressShow($id)
     {
         return $this->deliveryAddress->select('*')
-                        ->where('id', $id)
+                        ->where('customer_id', $id)
                         ->first();
     }
 

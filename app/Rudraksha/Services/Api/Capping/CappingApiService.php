@@ -32,6 +32,8 @@ class CappingApiService
      */
     public function serviceCappingData()
     {
+        $baseUrl = url('/');
+
         $cappingData = $this->cappingApiRepository->repoCappingData();
 
         $cappingDetail = [];
@@ -40,7 +42,7 @@ class CappingApiService
 
             $cappingDetail[] = [
                 'type' => $data->type,
-                'design_image' => $data->design_image,
+                'design_image' => $baseUrl.'/storage/image/capping/'.$data->design_image,
                 'price' => $data->price,
                 'metal_quantity_used' => $data->metal_quantity_used,
                 'description' => $data->description,
