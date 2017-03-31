@@ -12,6 +12,7 @@ namespace App\Rudraksha\Repositories\Api\User;
 use App\User;
 use File;
 use Illuminate\Contracts\Logging\Log;
+use Illuminate\Support\Facades\Mail;
 
 class UserRegisterRepository
 {
@@ -41,7 +42,7 @@ class UserRegisterRepository
      */
     public function createUserRepository($data)
     {
-        $userData = $this->user->create($data);
+        $userData = $this->user->create($data)->toArray();
         $userData['token'] = str_random(25);
 
         $user = User::find($userData['id']);

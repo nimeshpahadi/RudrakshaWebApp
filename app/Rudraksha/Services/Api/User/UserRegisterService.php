@@ -45,8 +45,7 @@ class UserRegisterService
         if ($this->registerRepository->createUserRepository($details)) {
             $respo = [
                 "status" => "true",
-//                "message" => "user created successfully !!!"
-                "message" => "Confirmation email has been send. please check your email."
+                "message" => "confirmation email has been send. please check your email."
             ];
             return $respo;
         }
@@ -89,6 +88,11 @@ class UserRegisterService
         return $respo;
     }
 
+    /**
+     * @param $request
+     * @param $id
+     * @return array
+     */
     public function serviceUserInfoUpdate($request, $id)
     {
         if ($this->registerRepository->repoUserInfoUpdate($request, $id)) {
