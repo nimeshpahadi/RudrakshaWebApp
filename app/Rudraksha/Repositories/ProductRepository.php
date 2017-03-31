@@ -132,7 +132,7 @@ class ProductRepository
      */
     public function get_productImage($id)
     {
-        $query = $this->productImage->select('*')->where('product_id', $id)->get();
+        $query = $this->productImage->select('*')->where('product_id', $id)->orderBy('rank')->get();
         return $query;
     }
 

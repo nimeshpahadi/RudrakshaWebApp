@@ -44,22 +44,21 @@ class ProductService
     public function store_Product($request)
     {
         $formData = $request->all();
-        $tags = explode("," , trim($formData['tag']));
-        foreach( $tags as $key => $value )
-        {
-            if( trim($value) == "" ) {
+        $tags = explode(",", trim($formData['tag']));
+        foreach ($tags as $key => $value) {
+            if (trim($value) == "") {
                 unset($tags[$key]);
             }
         }
         $formData = array_except($formData, ['_token', 'to', 'remove']);
         $formData['tag'] = $tags;
-        $data= $this->productRepository->storeProduct($formData);
-       return $data;
+        $data = $this->productRepository->storeProduct($formData);
+        return $data;
     }
 
     public function get_product($id)
     {
-        $data=$this->productRepository->get_productbyId($id);
+        $data = $this->productRepository->get_productbyId($id);
         return $data;
     }
 
@@ -67,7 +66,7 @@ class ProductService
     {
         $formData = $request->all();
         $formData = array_except($formData, ['_token', 'to', 'remove']);
-        $data= $this->productRepository->storeProductDesc($formData);
+        $data = $this->productRepository->storeProductDesc($formData);
         return $data;
     }
 
@@ -75,10 +74,10 @@ class ProductService
     {
         $formData = $request->all();
         $formData = array_except($formData, ['_token', 'to', 'remove']);
-        $imagename = $formData['product_id']. '_' . rand(0,10000) . '.' . $formData['image']->getClientOriginalExtension();
+        $imagename = $formData['product_id'] . '_' . rand(0, 10000) . '.' . $formData['image']->getClientOriginalExtension();
         $destinationPath = storage_path('app/public/image/product');
         $formData['image']->move($destinationPath, $imagename);
-        $formData['image']=$imagename;
+        $formData['image'] = $imagename;
         return $this->productRepository->storeProductImage($formData);
 
     }
@@ -91,30 +90,30 @@ class ProductService
     {
 
         $data = [];
-        $cat=$this->categoryRepository->getCategory();
+        $cat = $this->categoryRepository->getCategory();
         foreach ($cat as $cate) {
             $data[$cate->name] = [];
             $data[$cate->name]["product"] = $this->productRepository->getCategoryProduct($cate->id);
-            }
+        }
         return $data;
     }
 
     public function get_product_desc($id)
     {
-        $data=$this->productRepository->get_productDesc($id);
+        $data = $this->productRepository->get_productDesc($id);
         return $data;
     }
 
     public function get_product_image($id)
     {
-        $data=$this->productRepository->get_productImage($id);
+        $data = $this->productRepository->get_productImage($id);
 
         return $data;
     }
 
     public function allProduct()
     {
-        $data=$this->productRepository->all_product();
+        $data = $this->productRepository->all_product();
         return $data;
     }
 
@@ -122,33 +121,33 @@ class ProductService
     {
 
         $formData = $request->all();
-        $tags = explode("," , $formData['tag']);
+        $tags = explode(",", $formData['tag']);
         $formData = array_except($formData, ['_token', 'to', 'remove']);
         $formData['tag'] = $tags;
-        $data=$this->productRepository->editProductInfo($formData,$id);
+        $data = $this->productRepository->editProductInfo($formData, $id);
         return $data;
     }
 
     public function deleteproductInfo($id)
     {
-        $data=$this->productRepository->deleteProductInfo($id);
+        $data = $this->productRepository->deleteProductInfo($id);
         return $data;
     }
 
     public function deleteproductDesc($id)
     {
-        $descid=$this->productRepository->get_productDesc($id);
-        $data=$this->productRepository->deleteProductDesc($descid->id);
+        $descid = $this->productRepository->get_productDesc($id);
+        $data = $this->productRepository->deleteProductDesc($descid->id);
         return $data;
     }
 
     public function deleteproductImage($id)
     {
         $query = $this->productRepository->get_productImagebyid($id);
-        $imagename=$query->image;
-        $path = storage_path().'/app/public/image/product/';
+        $imagename = $query->image;
+        $path = storage_path() . '/app/public/image/product/';
         File::delete($path . $imagename);
-        $data=$this->productRepository->deleteProductImg($id);
+        $data = $this->productRepository->deleteProductImg($id);
         return $data;
     }
 
@@ -156,7 +155,7 @@ class ProductService
     {
         $formData = $request->all();
         $formData = array_except($formData, ['_token', 'to', 'remove']);
-        $data= $this->productRepository->editProductDesc($formData,$id);
+        $data = $this->productRepository->editProductDesc($formData, $id);
         return $data;
     }
 
@@ -168,10 +167,14 @@ class ProductService
 
     public function get_product_image_rank($productid)
     {
-        $data=$this->productRepository->get_productImage($productid);
-        foreach($data as $img)
-            $x[] = $img->rank ;
-       $a=array_diff(config('imagerank'),$x);
-        return $a;
+        $data = $this->productRepository->get_productImage($productid)->toArray();
+        $imgRank = [];
+        foreach ($data as $d) {
+
+            $imgRank[] = $d['rank'];
+        }
+        $rank = array_diff(config('imagerank'), $imgRank);
+        return $rank;
+
     }
 }

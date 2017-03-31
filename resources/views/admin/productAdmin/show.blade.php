@@ -108,67 +108,73 @@
     <div class="panel panel-info">
         <div class="panel-heading">Product Image</div>
         <div class="panel-body">
+
+
             @if(empty($product_image))
-                <div align="right" style="padding: 10px">
-                    <a href="{{route('product_image',$productid->id)}}">
-                        <span class=" btn btn-sm btn-success" title="Create new category">Add Image</span>
-                    </a>
-                </div>
-
+                @if(count($img->rank)!=5)
+                    <div align="right" style="padding: 10px">
+                        <a href="{{route('product_image',$productid->id)}}">
+                            <span class=" btn btn-sm btn-success" title="Create new category">Add Image</span>
+                        </a>
+                    </div>
+                @endif
             @else
-                    <button type="button" class="btn btn-info  col-md-offset-10" data-toggle="modal"
-                            data-target="#myModal">Add Additional Images
-                    </button>
+                <button type="button" class="btn btn-info  col-md-offset-10" data-toggle="modal"
+                        data-target="#myModal">Add Additional Images
+                </button>
 
-                    <!-- Modal -->
-                    <div id="myModal" class="modal fade" role="dialog">
-                        <div class="modal-dialog">
+                <!-- Modal -->
+                <div id="myModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
 
-                            <!-- Modal content-->
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <h4 class="modal-title">Choose images to upload</h4>
-                                </div>
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Choose images to upload</h4>
+                            </div>
 
-                                {!! Form::open(array('route'=>'product_image_add', 'method'=>'post','enctype'=>'multipart/form-data' ))!!}
+                            {!! Form::open(array('route'=>'product_image_add', 'method'=>'post','enctype'=>'multipart/form-data' ))!!}
 
-                                {{ Form::hidden('product_id', $productid->id) }}
-                                <div class="form-group ">
+                            {{ Form::hidden('product_id', $productid->id) }}
+                            <div class="form-group ">
 
-                                    <label for="rank" class="col-sm-4 control-label">Rank</label>
-                                    <div class=" col-sm-8 ">
-                                        <select id="rank" name="rank"
-                                                class=" form-control " required>
+                                <label for="rank" class="col-sm-4 control-label">Rank</label>
+                                <div class=" col-sm-8 ">
+                                    <select id="rank" name="rank"
+                                            class=" form-control " required>
+                                        @if(isset($product_imagerank))
                                             @foreach($product_imagerank as $pro)
-                                                <option value="{{$pro}}" >{{$pro}}</option>
+                                                <option value="{{$pro}}">{{$pro}}</option>
                                             @endforeach
-                                        </select>
-                                    </div>
+                                        @endif
+                                    </select>
                                 </div>
-                                <div class="form-group ">
-                                    <label for="image" class="col-sm-4 control-label">Image</label>
-                                    <div class=" col-sm-8 ">
-                                        <span class="input-group-addon "><i class="fa fa-file"></i></span>
-                                        <input type="file" class="form-control" name="image" id="image" required autofocus>
-                                    </div>
+                            </div>
+                            <div class="form-group ">
+                                <label for="image" class="col-sm-4 control-label">Image</label>
+                                <div class=" col-sm-8 ">
+                                    <span class="input-group-addon "><i class="fa fa-file"></i></span>
+                                    <input type="file" class="form-control" name="image" id="image" required autofocus>
                                 </div>
+                            </div>
 
-                                <div class="clearfix pad"></div>
-                                <div align="right">
-                                    {{Form::submit('create', array('class'=>'btn btn-bg btn-primary ','title'=>'Save the category'))}}
-                                    {!! Form::close() !!}
+                            <div class="clearfix pad"></div>
+                            <div align="right">
+                                {{Form::submit('create', array('class'=>'btn btn-bg btn-primary ','title'=>'Save the category'))}}
+                                {!! Form::close() !!}
 
-
-                                </div>
 
                             </div>
+
                         </div>
                     </div>
+                </div>
 
-                    @foreach($product_image as $img)
-                        {{--ln -s ~/web/RudrakshaWebbapp/storage/app/public/product ~/web/RudrakshaWebbapp/public/storage/--}}
-
+                @foreach($product_image as $img)
+                    {{--ln -s ~/web/RudrakshaWebbapp/storage/app/public/product ~/web/RudrakshaWebbapp/public/storage/--}}
+                    <div class="col-lg-4">
+                        {{$img->rank}}
                         <img class="productimage" src="{{asset('storage/image/product')}}/{{$img->image}}"
                              style=" border:dotted">
                         {!! Form::open(['method' => 'DELETE','route' => ['product_image_delete', $img->id]]) !!}
@@ -181,8 +187,9 @@
 
                         </button>
                         {!! Form::close() !!}
+                    </div>
 
-                    @endforeach
+                @endforeach
             @endif
         </div>
     </div>

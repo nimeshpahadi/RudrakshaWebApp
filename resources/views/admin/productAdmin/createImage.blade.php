@@ -20,10 +20,11 @@
                             <div class=" col-sm-8 ">
                                 <select id="rank" name="rank"
                                     class=" form-control " required>
-
+                                    @if(isset($product_image))
                                     @foreach($product_image as $pro)
                                         <option value="{{$pro}}" >{{$pro}}</option>
                                         @endforeach
+                                        @endif
                             </select>
                         </div>
                         </div>
