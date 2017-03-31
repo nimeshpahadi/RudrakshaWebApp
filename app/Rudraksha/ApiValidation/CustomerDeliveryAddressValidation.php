@@ -64,6 +64,8 @@ class CustomerDeliveryAddressValidation
         return Validator::make($data, [
             'country' => 'required',
             'state' => 'required',
+            'street' => 'required',
+            'contact' => 'required|integer',
             'latitude_long' => 'required|integer',
             'city' => 'required',
             'address_line1' => 'required',
