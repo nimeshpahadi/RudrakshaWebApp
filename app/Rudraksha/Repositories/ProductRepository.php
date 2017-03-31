@@ -87,7 +87,6 @@ class ProductRepository
     public function storeProductImage($formData)
     {
         try {
-
             $t = $this->productImage->create($formData);
             $this->log->info("Product Image added");
             return $t;
@@ -106,9 +105,10 @@ class ProductRepository
      */
     public function getCategoryProduct($id)
     {
-        $query = $this->productInfo->select('product_infos.*','product_images.name as imgname')
+        $query = $this->productInfo->select('product_infos.*')
             ->join('categories', 'categories.id', 'product_infos.category_id')
             ->join('product_images', 'product_infos.id', 'product_images.product_id')
+            ->groupBy('product_infos.id')
             ->where('product_infos.category_id', $id)
             ->get()->toArray();
         return $query;
@@ -132,7 +132,7 @@ class ProductRepository
      */
     public function get_productImage($id)
     {
-        $query = $this->productImage->select('*')->where('product_id', $id)->get()->first();
+        $query = $this->productImage->select('*')->where('product_id', $id)->get();
         return $query;
     }
 
@@ -215,12 +215,12 @@ class ProductRepository
         }
     }
 
-    public function deleteProductImg($id,$namearray)
+    public function deleteProductImg($id)
     {
         try {
-            $data = ProductRepository::get_productImagebyid($id);
-            $data['name']=array_values($namearray);
-            $data->update();
+            $query = ProductRepository::get_productImagebyid($id);
+            $query->delete();
+            $query;
             $this->log->info("Product Image Deleted",['id'=>$id]);
             return true;
 
@@ -247,22 +247,6 @@ class ProductRepository
         }
     }
 
-    public function editProductImage($Formdata, $id)
-    {
-        try {
-
-            $data = ProductRepository::get_productImagebyid($id);
-            $data->name= array_merge( $data->name,$Formdata['name']);
-            $data->update();
-            $this->log->info("Product Image added");
-            return true;
-
-        } catch (QueryException $e) {
-
-            $this->log->error("Product Image Creation Failed : ",[$e->getMessage()]);
-            return false;
-        }
-    }
 
     public function getActiveProduct()
     {

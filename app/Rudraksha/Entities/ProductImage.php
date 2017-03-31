@@ -8,11 +8,9 @@ class ProductImage extends Model
 {
     public $table = 'product_images';
     protected $fillable = [
-         'name','product_id'
+         'image','product_id','rank'
     ];
-    protected $casts = [
-        'name' => 'array'
-    ];
+
     protected $hidden = [
        'product_id'
     ];

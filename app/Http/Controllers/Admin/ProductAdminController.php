@@ -88,7 +88,7 @@ class ProductAdminController extends Controller
      */
     public function createImage($productid)
     {
-        $product_image = $this->productService->get_product_image($productid);
+        $product_image = $this->productService->get_product_image_rank($productid);
         $active = "image";
         return view('admin/productAdmin/createImage', compact('productid', 'active', 'product_image'));
     }
@@ -135,7 +135,9 @@ class ProductAdminController extends Controller
         $productid = $this->productService->get_product($id);
         $product_desc = $this->productService->get_product_desc($id);
         $product_image = $this->productService->get_product_image($id);
-        return view('admin/productAdmin/show', compact('productid', 'product_desc', 'product_image'));
+        $product_imagerank = $this->productService->get_product_image_rank($id);
+
+        return view('admin/productAdmin/show', compact('productid', 'product_desc', 'product_image','product_imagerank'));
     }
 
     /**
@@ -219,24 +221,14 @@ class ProductAdminController extends Controller
 
     }
 
-
-    public function updateImage(ProductImageRequest $request, $id)
-    {
-        if ($this->productService->edit_productImage($request, $id)) {
-
-            return back()->withSuccess("Product edited!");
-        }
-        return back()->withErrors('something went wrong');
-    }
-
     /**
      * delete the image of product
      * @param $id
      * @return $this
      */
-    public function deleteImage($id,$name)
+    public function deleteImage($id)
     {
-        if ($this->productService->deleteproductImage($id,$name)) {
+        if ($this->productService->deleteproductImage($id)) {
             return back()->withSuccess('Product Image Deleted');
         }
         return back()->withErrors('something went wrong');

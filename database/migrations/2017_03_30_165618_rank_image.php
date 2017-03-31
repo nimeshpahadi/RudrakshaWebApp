@@ -14,7 +14,9 @@ class RankImage extends Migration
     public function up()
     {
         Schema::table('product_images', function (Blueprint $table) {
-            $table->integer('rank')->unique();
+            $table->dropColumn('name');
+            $table->integer('rank');
+            $table->text('image');
         });
     }
 
@@ -27,6 +29,8 @@ class RankImage extends Migration
     {
         Schema::table('product_images', function (Blueprint $table) {
             $table->dropColumn('rank');
+            $table->dropColumn('image');
+            $table->json('name');
         });
 
     }

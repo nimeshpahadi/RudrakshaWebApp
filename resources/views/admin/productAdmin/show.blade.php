@@ -130,25 +130,35 @@
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                                     <h4 class="modal-title">Choose images to upload</h4>
                                 </div>
-                                {!! Form::model($product_image,array('route'=>['product_image_update',$product_image->id],'method'=>'PUT', 'enctype'=>'multipart/form-data'))!!}
+
+                                {!! Form::open(array('route'=>'product_image_add', 'method'=>'post','enctype'=>'multipart/form-data' ))!!}
+
                                 {{ Form::hidden('product_id', $productid->id) }}
                                 <div class="form-group ">
-                                    <label for="name" class="col-sm-4 control-label">Image</label>
-                                    <div class=" col-sm-8 ">
 
+                                    <label for="rank" class="col-sm-4 control-label">Rank</label>
+                                    <div class=" col-sm-8 ">
+                                        <select id="rank" name="rank"
+                                                class=" form-control " required>
+                                            @foreach($product_imagerank as $pro)
+                                                <option value="{{$pro}}" >{{$pro}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group ">
+                                    <label for="image" class="col-sm-4 control-label">Image</label>
+                                    <div class=" col-sm-8 ">
                                         <span class="input-group-addon "><i class="fa fa-file"></i></span>
-                                        <input type="file" class="form-control" name="name[]" id="name" required
-                                               autofocus multiple>
+                                        <input type="file" class="form-control" name="image" id="image" required autofocus>
                                     </div>
                                 </div>
 
                                 <div class="clearfix pad"></div>
-                                <div class="modal-footer">
-                                    {{Form::submit('create', array('class'=>'btn btn-bg btn-primary ','title'=>'Save the image'))}}
+                                <div align="right">
+                                    {{Form::submit('create', array('class'=>'btn btn-bg btn-primary ','title'=>'Save the category'))}}
                                     {!! Form::close() !!}
 
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close
-                                    </button>
 
                                 </div>
 
@@ -156,12 +166,12 @@
                         </div>
                     </div>
 
-                    @foreach($product_image->name as $img)
+                    @foreach($product_image as $img)
                         {{--ln -s ~/web/RudrakshaWebbapp/storage/app/public/product ~/web/RudrakshaWebbapp/public/storage/--}}
 
-                        <img class="productimage" src="{{asset('storage/image/product')}}/{{$img}}"
+                        <img class="productimage" src="{{asset('storage/image/product')}}/{{$img->image}}"
                              style=" border:dotted">
-                        {!! Form::open(['method' => 'DELETE','route' => ['product_image_delete', $product_image->id,$img]]) !!}
+                        {!! Form::open(['method' => 'DELETE','route' => ['product_image_delete', $img->id]]) !!}
 
                         <button type="submit" class="btn btn-danger  glyphicon glyphicon-alert pad"
                                 data-toggle="popover"

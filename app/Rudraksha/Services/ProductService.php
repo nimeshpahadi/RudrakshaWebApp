@@ -75,18 +75,11 @@ class ProductService
     {
         $formData = $request->all();
         $formData = array_except($formData, ['_token', 'to', 'remove']);
-        $data =[];
-        $images=[];
-        $data['product_id'] =$formData['product_id'];
-        foreach ($formData['name'] as $img) {
-            $imagename = $formData['product_id']. '_' . rand(0,10000) . '.' . $img->getClientOriginalExtension();
-            array_push($images,$imagename);
-            $destinationPath = storage_path('app/public/image/product');
-            $img->move($destinationPath, $imagename);
-        }
-
-        $data['name']=$images;
-        return $this->productRepository->storeProductImage($data);
+        $imagename = $formData['product_id']. '_' . rand(0,10000) . '.' . $formData['image']->getClientOriginalExtension();
+        $destinationPath = storage_path('app/public/image/product');
+        $formData['image']->move($destinationPath, $imagename);
+        $formData['image']=$imagename;
+        return $this->productRepository->storeProductImage($formData);
 
     }
 
@@ -115,6 +108,7 @@ class ProductService
     public function get_product_image($id)
     {
         $data=$this->productRepository->get_productImage($id);
+
         return $data;
     }
 
@@ -148,15 +142,13 @@ class ProductService
         return $data;
     }
 
-    public function deleteproductImage($id,$name)
+    public function deleteproductImage($id)
     {
         $query = $this->productRepository->get_productImagebyid($id);
-        $namearray=($query->name);
-        $imageKey=array_search($name,$namearray);
-        unset($namearray[$imageKey]);
+        $imagename=$query->image;
         $path = storage_path().'/app/public/image/product/';
-        File::delete($path . $name);
-        $data=$this->productRepository->deleteProductImg($id,$namearray);
+        File::delete($path . $imagename);
+        $data=$this->productRepository->deleteProductImg($id);
         return $data;
     }
 
@@ -168,26 +160,18 @@ class ProductService
         return $data;
     }
 
-    public function edit_productImage($request, $id)
-    {
-
-        $formData = $request->all();
-        $formData = array_except($formData, ['_token', 'to', 'remove']);
-        $data =[];
-        $images=[];
-        foreach ($formData['name'] as $img) {
-            $imagename = $formData['product_id']. '_' . rand(0,10000) . '.' . $img->getClientOriginalExtension();
-            array_push($images,$imagename);
-            $destinationPath = storage_path('app/public/image/product');
-            $img->move($destinationPath, $imagename);
-        }
-
-        $data['name']=$images;
-        return $this->productRepository->editProductImage($data,$id);
-    }
 
     public function getactiveproduct()
     {
         return $this->productRepository->getActiveProduct();
+    }
+
+    public function get_product_image_rank($productid)
+    {
+        $data=$this->productRepository->get_productImage($productid);
+        foreach($data as $img)
+            $x[] = $img->rank ;
+       $a=array_diff(config('imagerank'),$x);
+        return $a;
     }
 }

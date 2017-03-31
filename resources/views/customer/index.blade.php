@@ -45,10 +45,12 @@
                             <label class="col-sm-6 "> Email :</label>
                             {{$customer->email}}
                         </div>
-                        <div class="row">
+                        @if(isset($customer->contact))
+                            <div class="row">
                             <label class="col-sm-6 "> Contact :</label>
                             {{$customer->contact}}
                         </div>
+                        @endif
 
                         <div class="row">
                             <label class="col-sm-6 "> Created At :</label>
