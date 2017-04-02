@@ -13,6 +13,7 @@ use App\Rudraksha\Entities\Category_benifit;
 use App\Rudraksha\Entities\ProductDescription;
 use App\Rudraksha\Entities\ProductImage;
 use App\Rudraksha\Entities\ProductInfo;
+use App\Rudraksha\Entities\ProductPrice;
 
 class ProductApiRepository
 {
@@ -32,6 +33,10 @@ class ProductApiRepository
      * @var Category_benifit
      */
     private $category_benifit;
+    /**
+     * @var ProductPrice
+     */
+    private $productPrice;
 
     /**
      * ProductApiRepository constructor.
@@ -39,15 +44,18 @@ class ProductApiRepository
      * @param ProductImage $productImage
      * @param ProductDescription $productDescription
      * @param Category_benifit $category_benifit
+     * @param ProductPrice $productPrice
      */
     public function __construct(ProductInfo $productInfo,
                                 ProductImage $productImage,
-                                ProductDescription $productDescription, Category_benifit $category_benifit)
+                                ProductDescription $productDescription,
+                                Category_benifit $category_benifit, ProductPrice $productPrice)
     {
         $this->productInfo = $productInfo;
         $this->productImage = $productImage;
         $this->productDescription = $productDescription;
         $this->category_benifit = $category_benifit;
+        $this->productPrice = $productPrice;
     }
 
     /**
@@ -59,6 +67,18 @@ class ProductApiRepository
         return $this->productImage->select('image')
                     ->where('product_id', '=', $id)
                     ->orderBy('rank')
+                    ->get();
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function getProductPrice($id)
+    {
+        return $this->productPrice->select('product_prices.price', 'currencies.representation')
+                    ->join('currencies', 'currencies.id', 'product_prices.currency_id')
+                    ->where('product_id', $id)
                     ->get();
     }
 

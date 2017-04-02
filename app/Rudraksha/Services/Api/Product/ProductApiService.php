@@ -69,15 +69,23 @@ class ProductApiService
                 $productImage = $this->productApiRepository->getProductImage($product->id);
 
                 $images = [];
-                
+
                 foreach ($productImage as $image) {
                     $images = $baseUrl.'/storage/image/product/'.$image->image;
+                }
+
+                $productPrice = $this->productApiRepository->getProductPrice($product->id);
+
+                $currency = [];
+
+                foreach ($productPrice as $item) {
+                    $currency[$item->representation] = $item->price;
                 }
 
                 $productDetail[$i]['products'][]=[
                     'id' => $product->id,
                     'name' => $product->name,
-                    'price' => $product->price,
+                    'price' => $currency,
                     'discount' => $product->discount,
                     'image' => $images
                 ];
@@ -128,12 +136,20 @@ class ProductApiService
             $images[] = $baseUrl.'/storage/image/product/'.$image->image;
         }
 
+        $productPrice = $this->productApiRepository->getProductPrice($id);
+
+        $currency = [];
+
+        foreach ($productPrice as $item) {
+            $currency[$item->representation] = $item->price;
+        }
+
         $productDetails = [
 
             'product_info' => [
                 'name' => $productInfo->name,
                 'code' => $productInfo->code,
-                'price' => $productInfo->price,
+                'price' => $currency,
                 'rank' => $productInfo->rank,
                 'tag' => $productInfo->tag,
                 'discount' => $productInfo->discount,
