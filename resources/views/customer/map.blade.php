@@ -8,11 +8,9 @@
                 <h4 class="modal-title">Choose location</h4>
                 <div id="mapCanvas"></div>
                 <div id="infoPanel">
-                    <b>Marker:</b>
-                    <div id="markerStatus"><i>Drag the marker.</i></div>
-                    <b>Current position:</b>
-                    <div id="info"></div>
-                    <b>Closest matching address:</b>
+                    <div id="markerStatus"><i></i></div>
+
+
                     <div id="address"></div>
 
                 </div>

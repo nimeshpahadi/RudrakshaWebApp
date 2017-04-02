@@ -62,12 +62,13 @@
                                             <li class="DocumentItem">
                                        <span>
 
+{{--                                           {{dd($item['name'])}}--}}
                                            {{--@foreach($item['imgname'] as $img)--}}
                                                {{--<img class="productimageshop"--}}
                                                     {{--src="{{asset('storage/product')}}/{{$img}}"><br>--}}
 
                                            {{--@endforeach--}}
-                                           Name:{{($item['name']) }}<br>
+{{--                                           Name:{{($item['name']) }}<br>--}}
                                                Code: {{$item['code'] }}<br>
                                                Price: {{$item['price'] }}<br>
 

@@ -105,12 +105,13 @@ class ProductRepository
      */
     public function getCategoryProduct($id)
     {
-        $query = $this->productInfo->select('product_infos.*')
+        $query = $this->productInfo->select(DB::raw('product_infos.*'))
             ->join('categories', 'categories.id', 'product_infos.category_id')
-            ->join('product_images', 'product_infos.id', 'product_images.product_id')
-//            ->groupBy('product_infos.id','product_images.image')
+            ->leftjoin('product_images', 'product_infos.id', 'product_images.product_id')
             ->where('product_infos.category_id', $id)
+            ->groupBy('product_infos.id')
             ->get()->toArray();
+
         return $query;
 
     }

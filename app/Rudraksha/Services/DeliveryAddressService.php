@@ -26,6 +26,11 @@ class DeliveryAddressService
     public function store_delivery($request)
     {
         $formData = $request->all();
+        $x=explode(',',$formData['latitude_long']);
+        $t['latitude']=$x[0];
+        $t['longitude']=trim($x[1]);
+        $formData['latitude_long']= $t;
+
         return $this->deliveryAddressRepository->storeDelivery($formData);
     }
 

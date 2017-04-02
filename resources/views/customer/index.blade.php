@@ -100,7 +100,10 @@
 
                             <div class="row">
                                 <label class="col-sm-6 "> Latitude_Long :</label>
-                                {{$customerAddress->latitude_long}}
+                                @foreach($customerAddress->latitude_long as $x=>$latlong)
+                                    {{$x}} = {{$latlong}}<br>
+                                @endforeach
+
                             </div>
 
                             <div>
@@ -157,8 +160,11 @@
                                 {{$customerDelivery->city}}
                             </div>
                             <div class="row">
-                                <label class="col-sm-6 "> Latitude/Longitude:</label>
-                                {{$customerDelivery->latitude_long}}
+                                <label class="col-sm-6 "> Latitude_Long :</label>
+                                @foreach($customerDelivery->latitude_long as $x=>$latlong)
+                                    {{$x}} = {{$latlong}}<br>
+                                @endforeach
+
                             </div>
                             <div class="row">
                                 <label class="col-sm-6 "> Address Line1:</label>

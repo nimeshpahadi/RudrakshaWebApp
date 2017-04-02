@@ -54,7 +54,7 @@ class CustomerAddressRepository
             $this->log->info("Customer Address Created");
             return true;
         } catch (QueryException $e) {
-            $this->log->error("Customer Address Creation Failed");
+            $this->log->error("Customer Address Creation Failed", [$e->getMessage()]);
             return false;
         }
     }

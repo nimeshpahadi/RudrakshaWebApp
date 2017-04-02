@@ -34,8 +34,13 @@ class CustomerAddressService
      */
     public function serviceAddressStore($request)
     {
+        $x=explode(',',$request['latitude_long']);
+        $t['latitude']=$x[0];
+        $t['longitude']=trim($x[1]);
+        $request['latitude_long']= $t;
+        $request = array_except($request, ['_token', 'to', 'remove']);
+
         $storeAddress = $this->addressRepository->repoAddressStore($request);
-        dd($storeAddress);
         return $storeAddress;
     }
 

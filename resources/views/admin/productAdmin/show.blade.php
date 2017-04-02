@@ -172,7 +172,7 @@
                 </div>
 
                 @foreach($product_image as $img)
-                    {{--ln -s ~/web/RudrakshaWebbapp/storage/app/public/product ~/web/RudrakshaWebbapp/public/storage/--}}
+                    {{--ln -s ~/web/RudrakshaWebbapp/storage/app/public/image ~/web/RudrakshaWebbapp/public/storage/--}}
                     <div class="col-lg-4">
                         {{$img->rank}}
                         <img class="productimage" src="{{asset('storage/image/product')}}/{{$img->image}}"

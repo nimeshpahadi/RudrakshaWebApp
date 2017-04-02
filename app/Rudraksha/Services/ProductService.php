@@ -94,6 +94,7 @@ class ProductService
         foreach ($cat as $cate) {
             $data[$cate->name] = [];
             $data[$cate->name]["product"] = $this->productRepository->getCategoryProduct($cate->id);
+
         }
         return $data;
     }

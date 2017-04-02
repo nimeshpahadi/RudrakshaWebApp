@@ -13,7 +13,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand active"  href="/home" >Home</a>
+                <a class="navbar-brand active"  href="/" >Home</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->

@@ -147,7 +147,7 @@
                     <div class="clearfix pad"></div>
                     <div align="right">
                         {{Form::submit('create', array('class'=>'btn btn-bg btn-primary ','title'=>'Save the Delivery Address'))}}
-                        <a type="button" class="btn btn-sm btn-warning" href="/customers">Cancel</a>
+                        <a type="button" class="btn btn-sm btn-warning" href="/profile">Cancel</a>
                         {!! Form::close() !!}
 
                     </div>
