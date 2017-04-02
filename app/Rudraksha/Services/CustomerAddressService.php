@@ -35,7 +35,7 @@ class CustomerAddressService
     public function serviceAddressStore($request)
     {
         $storeAddress = $this->addressRepository->repoAddressStore($request);
-
+        dd($storeAddress);
         return $storeAddress;
     }
 

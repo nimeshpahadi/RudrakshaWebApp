@@ -62,11 +62,11 @@
                                             <li class="DocumentItem">
                                        <span>
 
-                                           @foreach(json_decode($item['imgname']) as $img)
-                                               <img class="productimageshop"
-                                                    src="{{asset('storage/product')}}/{{$img}}"><br>
-                                               <?php break;?>
-                                           @endforeach
+                                           {{--@foreach($item['imgname'] as $img)--}}
+                                               {{--<img class="productimageshop"--}}
+                                                    {{--src="{{asset('storage/product')}}/{{$img}}"><br>--}}
+
+                                           {{--@endforeach--}}
                                            Name:{{($item['name']) }}<br>
                                                Code: {{$item['code'] }}<br>
                                                Price: {{$item['price'] }}<br>

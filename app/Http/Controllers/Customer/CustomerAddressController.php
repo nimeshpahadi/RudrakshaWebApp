@@ -62,12 +62,9 @@ class CustomerAddressController extends Controller
     public function store(AddressRequest $addressRequest)
     {
         $data = $addressRequest->all();
-
         if ($this->customerAddressService->serviceAddressStore($data)) {
-
             return redirect('/profile')->withSuccess("Customer Address Created!");
         }
-
         return back()->withErrors("oops Something went wrong");
     }
 
