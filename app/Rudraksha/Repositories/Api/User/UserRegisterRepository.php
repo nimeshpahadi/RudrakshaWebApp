@@ -12,6 +12,7 @@ namespace App\Rudraksha\Repositories\Api\User;
 use App\User;
 use File;
 use Illuminate\Contracts\Logging\Log;
+use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Mail;
 
 class UserRegisterRepository

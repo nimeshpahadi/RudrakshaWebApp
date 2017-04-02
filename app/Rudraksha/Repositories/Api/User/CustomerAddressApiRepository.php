@@ -11,6 +11,7 @@ namespace App\Rudraksha\Repositories\Api\User;
 
 use App\Rudraksha\Entities\CustomerAddress;
 use Illuminate\Contracts\Logging\Log;
+use Illuminate\Database\QueryException;
 
 class CustomerAddressApiRepository
 {
@@ -40,7 +41,14 @@ class CustomerAddressApiRepository
      */
     public function repoCustomerAddressCreate($data)
     {
-        return $this->customerAddress->create($data);
+        try {
+            $this->log->info("Customer Address Creted");
+            return $this->customerAddress->create($data);
+        } catch (QueryException $e) {
+
+            $this->log->error("Customer Address Create Failed : ", [$e->getMessage()]);
+            return false;
+        }
     }
 
     /**
@@ -64,6 +72,7 @@ class CustomerAddressApiRepository
         try {
             $data = CustomerAddress::find($id);
             $data->country = $request['country'];
+            $data->city = $request['city'];
             $data->state = $request['state'];
             $data->street = $request['street'];
             $data->contact = $request['contact'];

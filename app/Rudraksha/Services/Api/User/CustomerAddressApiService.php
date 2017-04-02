@@ -36,6 +36,7 @@ class CustomerAddressApiService
         $details = [
             "customer_id" => $customerAddress['customer_id'],
             "country" => $customerAddress['country'],
+            "city" => $customerAddress['city'],
             "state" => $customerAddress['state'],
             "street" => $customerAddress['street'],
             "contact" => $customerAddress['contact'],
@@ -68,6 +69,7 @@ class CustomerAddressApiService
         $data = [
             "customer_id" => $address['customer_id'],
             "country" => $address['country'],
+            "city" => $address['city'],
             "state" => $address['state'],
             "street" => $address['street'],
             "contact" => $address['contact'],

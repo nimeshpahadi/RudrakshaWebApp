@@ -11,6 +11,7 @@ namespace App\Rudraksha\Repositories\Api\User;
 
 use App\Rudraksha\Entities\DeliveryAddress;
 use Illuminate\Contracts\Logging\Log;
+use Illuminate\Database\QueryException;
 
 class CustomerDeliveryAddressApiRepository
 {

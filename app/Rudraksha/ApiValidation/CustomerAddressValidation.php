@@ -34,6 +34,7 @@ class CustomerAddressValidation
             'customer_id' => 'required|integer',
             'country' => 'required',
             'state' => 'required',
+            'city' => 'required',
             'street' => 'required',
             'contact' => 'required|integer',
             'latitude_long' => 'required|integer',
@@ -60,6 +61,7 @@ class CustomerAddressValidation
         return Validator::make($data, [
             'country' => 'required',
             'state' => 'required',
+            'city' => 'required',
             'street' => 'required',
             'contact' => 'required|integer',
             'latitude_long' => 'required|integer',

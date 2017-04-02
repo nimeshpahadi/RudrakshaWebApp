@@ -68,10 +68,8 @@ class ProductApiService
 
                 $productImage = $this->productApiRepository->getProductImage($product->id);
 
-                $images = [];
-
                 foreach ($productImage as $image) {
-                    $images[] = $baseUrl.'/storage/image/product/'.$image->image;
+                    $images = $baseUrl.'/storage/image/product/'.$image->image;
                 }
 
                 $productDetail[$i]['products'][]=[
