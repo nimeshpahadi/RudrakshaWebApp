@@ -56,9 +56,10 @@ class ProductApiRepository
      */
     public function getProductImage($id)
     {
-        return $this->productImage->select('name')
+        return $this->productImage->select('image')
                     ->where('product_id', '=', $id)
-                    ->first();
+                    ->orderBy('rank')
+                    ->get();
     }
 
     /**
