@@ -43,19 +43,27 @@ class UserRegisterRepository
      */
     public function createUserRepository($data)
     {
-        $userData = $this->user->create($data)->toArray();
-        $userData['token'] = str_random(25);
+        try {
+            $userData = $this->user->create($data)->toArray();
+            $userData['token'] = str_random(25);
 
-        $user = User::find($userData['id']);
-        $user->token = $userData['token'];
-        $user->save();
+            $user = User::find($userData['id']);
+            $user->token = $userData['token'];
+            $user->save();
 
-        Mail::send('mails.confirmation', $userData, function ($message) use ($userData) {
-            $message->to($userData['email']);
-            $message->subject('Registration Confirmation');
-        });
+            Mail::send('mails.confirmation', $userData, function ($message) use ($userData) {
+                $message->to($userData['email']);
+                $message->subject('Registration Confirmation');
+            });
 
-        return true;
+            $this->log->info("User Created");
+
+            return true;
+
+        } catch (QueryException $e) {
+            $this->log->error("User Image Creation Failed : ", [$e->getMessage()]);
+            return false;
+        }
     }
 
     /**
@@ -68,16 +76,17 @@ class UserRegisterRepository
         try {
             $data = User::find($id);
             $name = $data->image;
-            $path = storage_path() . '/app/public/users/';
+            $path = storage_path() . '/app/public/image/users/';
             File::delete($path . $name);
             $data->image = $imageData['image'];
             $data->update();
+
             $this->log->info("User Image added");
+
             return true;
 
         } catch (QueryException $e) {
-
-            $this->log->error("User Image Creation Failed : ", [$e->getMessage()]);
+            $this->log->error("User Image Update Failed : ", [$e->getMessage()]);
             return false;
         }
     }
@@ -97,12 +106,13 @@ class UserRegisterRepository
             $data->contact = $request['contact'];
             $data->alternative_contact = $request['alternative_contact'];
             $data->update();
+
             $this->log->info("User Info updated");
+
             return true;
 
         } catch (QueryException $e) {
-
-            $this->log->error("User info update Failed : ", [$e->getMessage()]);
+            $this->log->error("User Info Update Failed : ", [$e->getMessage()]);
             return false;
         }
     }

@@ -47,11 +47,11 @@ class ProductApiService
      * @param $name
      * @return array
      */
-    public function getProducts($name)
+    public function getProducts($id)
     {
         $baseUrl = url('/');
 
-        $categoryData = $this->categoryApiRepository->getCategoryId($name);
+        $categoryData = $this->categoryApiRepository->getCategoryId($id);
 
         $productDetail = [];
 
@@ -68,6 +68,8 @@ class ProductApiService
 
                 $productImage = $this->productApiRepository->getProductImage($product->id);
 
+                $images = [];
+                
                 foreach ($productImage as $image) {
                     $images = $baseUrl.'/storage/image/product/'.$image->image;
                 }

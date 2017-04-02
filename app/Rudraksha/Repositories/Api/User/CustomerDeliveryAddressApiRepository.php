@@ -41,7 +41,14 @@ class CustomerDeliveryAddressApiRepository
      */
     public function repoCustomerDeliveryAddressCreate($data)
     {
-        return $this->deliveryAddress->create($data);
+        try {
+            $this->log->info("Customer Delivery Address Created");
+            return $this->deliveryAddress->create($data);
+
+        } catch (QueryException $e) {
+            $this->log->error("Customer Delivery Address Create Failed : ", [$e->getMessage()]);
+            return false;
+        }
     }
 
     /**
@@ -72,11 +79,12 @@ class CustomerDeliveryAddressApiRepository
             $data->address_line2 = $request['address_line2'];
             $data->zip_code = $request['zip_code'];
             $data->update();
+
             $this->log->info("Customer Delivery Address Updated");
+
             return true;
 
         } catch (QueryException $e) {
-
             $this->log->error("Customer Delivery Address Update Failed : ", [$e->getMessage()]);
             return false;
         }

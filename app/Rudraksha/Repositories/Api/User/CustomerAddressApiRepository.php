@@ -42,10 +42,10 @@ class CustomerAddressApiRepository
     public function repoCustomerAddressCreate($data)
     {
         try {
-            $this->log->info("Customer Address Creted");
+            $this->log->info("Customer Address Created");
             return $this->customerAddress->create($data);
-        } catch (QueryException $e) {
 
+        } catch (QueryException $e) {
             $this->log->error("Customer Address Create Failed : ", [$e->getMessage()]);
             return false;
         }
@@ -78,11 +78,12 @@ class CustomerAddressApiRepository
             $data->contact = $request['contact'];
             $data->latitude_long = $request['latitude_long'];
             $data->update();
+
             $this->log->info("Customer Address Updated");
+
             return true;
 
         } catch (QueryException $e) {
-
             $this->log->error("Customer Address Update Failed : ", [$e->getMessage()]);
             return false;
         }
