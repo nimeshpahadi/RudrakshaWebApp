@@ -28,7 +28,6 @@ class ShopController extends Controller
     public function index()
     {
         $category=$this->productService->getProductasCategory();
-//        $image=$this->productService->get_product_image($category->id);
         return view('shop.home',compact('category'));
     }
 

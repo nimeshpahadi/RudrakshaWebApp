@@ -50,7 +50,6 @@
 
                 </div>
 
-
                 @foreach($category as $cat=>$value)
                     <div class="panel panel-default">
                         <div class="row">
@@ -61,14 +60,12 @@
                                         @foreach($value['product'] as $prodCat=>$item)
                                             <li class="DocumentItem">
                                        <span>
-
-{{--                                           {{dd($item['name'])}}--}}
-                                           {{--@foreach($item['imgname'] as $img)--}}
-                                               {{--<img class="productimageshop"--}}
-                                                    {{--src="{{asset('storage/product')}}/{{$img}}"><br>--}}
-
-                                           {{--@endforeach--}}
-{{--                                           Name:{{($item['name']) }}<br>--}}
+                                           @foreach($item['image'] as $img)
+                                               <img class="productimageshop"
+                                                    src="{{asset('storage/image/product')}}/{{$img['image']}}"><br>
+                                                    <?php break; ?>
+                                           @endforeach
+                                           Name:{{($item['name']) }}<br>
                                                Code: {{$item['code'] }}<br>
                                                Price: {{$item['price'] }}<br>
 
@@ -84,4 +81,5 @@
             </div>
         </div>
     </div>
+
 @endsection

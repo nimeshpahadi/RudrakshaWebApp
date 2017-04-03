@@ -93,7 +93,22 @@ class ProductService
         $cat = $this->categoryRepository->getCategory();
         foreach ($cat as $cate) {
             $data[$cate->name] = [];
-            $data[$cate->name]["product"] = $this->productRepository->getCategoryProduct($cate->id);
+            $products = $this->productRepository->getCategoryProduct($cate->id);
+            foreach ($products as $product)
+            {
+                $images = $this->productRepository->get_productImage($product['id'])->toArray();
+                $data[$cate->name]["product"][]=[
+                    "id"=>$product['id'],
+                    "name"=>$product['name'],
+                    "price"=>$product['price'],
+                    "code"=>$product['code'],
+                    "quantity_available"=>$product['quantity_available'],
+                    "tag"=>$product['tag'],
+                    "discount"=>$product['discount'],
+                    "rank"=>$product['rank'],
+                    "image"=>$images
+                ];
+            }
 
         }
         return $data;

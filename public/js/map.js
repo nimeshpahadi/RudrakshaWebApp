@@ -18,7 +18,6 @@ function updateMarkerStatus(str) {
 }
 
 function updateMarkerPosition(latLng) {
-    console.log(document.getElementById('latlong-info'),latLng.lat());
     document.getElementById('latlong-info').value = [
         latLng.lat(),
         latLng.lng()

@@ -1,8 +1,12 @@
+
 @extends('layouts.app')
 
 @section('content')
     @include('layouts.navbar')
     @include('layouts.notification')
+
+
+
 
     <div class="panel-body">
 
@@ -18,18 +22,35 @@
                 <div class="form-group{{ $errors->has('country') ? ' has-error' : '' }} clearfix">
                     <label for="country" class="col-sm-4 control-label">Country</label>
 
-                    <?php $x = Config::get('country');?>
 
+
+                    <?php $x = Config::get('country');?>
                     <div class="col-sm-8">
-                        <select name="country" class="form-control" required>
+                        <select id="country_code" name="country" class="form-control" required>
                             <option selected="selected" disabled>Choose Country</option>
                             @foreach($x as $code=>$name)
                                 <option value="{{$code}}">
                                     {{$name}}
                                 </option>
                             @endforeach
-
                         </select>
+                    </div>
+                </div>
+
+
+                <?php $y = Config::get('country_code');?>
+                <div class="form-group{{ $errors->has('contact') ? ' has-error' : '' }} clearfix">
+                    <label for="contact" class="col-sm-4 control-label">Contact</label>
+                    <div class="col-sm-8">
+                        <p class="col-sm-2 " id="country_dial"></p>
+                        <input  type="number" class="form-control col-sm-6" name="contact"
+                               value="{{ old('contact') }}" required autofocus >
+
+                        @if ($errors->has('contact'))
+                            <span class="help-block">
+                                        <strong>{{ $errors->first('contact') }}</strong>
+                                    </span>
+                        @endif
                     </div>
                 </div>
 
@@ -77,19 +98,7 @@
                     </div>
                 </div>
 
-                <div class="form-group{{ $errors->has('contact') ? ' has-error' : '' }} clearfix">
-                    <label for="contact" class="col-sm-4 control-label">Contact</label>
 
-                    <div class="col-sm-8">
-                <input id="contact" type="number" class="form-control" name="contact"
-                          value="{{ old('contact') }}" required autofocus>
-                        @if ($errors->has('contact'))
-                            <span class="help-block">
-                                        <strong>{{ $errors->first('contact') }}</strong>
-                                    </span>
-                        @endif
-                    </div>
-                </div>
 
                 <div class="form-group clearfix">
                     <label for="latitude_long" class="col-sm-4 control-label">Latitude/Latitude</label>
@@ -105,6 +114,7 @@
                     </div>
                 </div>
 
+
                 <div class="clearfix pad"></div>
                 <div align="right">
                     {{Form::submit('Create', array('class'=>'btn btn-sm btn-primary ','title'=>'create customer address'))}}
@@ -115,8 +125,18 @@
             </div>
 
             @include('customer.map')
+            <script>
+                var countryCode = {!! json_encode(config('country_code')) !!};
 
+
+            </script>
             <script type="text/javascript"
                     src="http://maps.google.com/maps/api/js?sensor=false&key=AIzaSyDenLLrWG9iWZSXBXlJAAzqcNLgRlMFsRI"></script>
             <script src="{{ asset('js/map.js') }}"></script>
+
+
+
+
+
+
 @endsection
