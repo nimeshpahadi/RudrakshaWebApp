@@ -110,9 +110,4 @@ class UserRegisterService
 
         return $respo;
     }
-
-    public function getUsersService()
-    {
-        return $this->registerRepository->getUsersRepo();
-    }
 }

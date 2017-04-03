@@ -79,7 +79,12 @@ class ProductApiService
                 $currency = [];
 
                 foreach ($productPrice as $item) {
-                    $currency[$item->representation] = $item->price;
+                    $currency[] = [
+                        'product_price' => $item->price,
+                        'currency' => $item->currency,
+                        'code' => $item->code,
+                        'representation' => $item->representation,
+                    ];
                 }
 
                 $productDetail[$i]['products'][]=[
@@ -141,7 +146,12 @@ class ProductApiService
         $currency = [];
 
         foreach ($productPrice as $item) {
-            $currency[$item->representation] = $item->price;
+            $currency[] = [
+                'product_price' => $item->price,
+                'currency' => $item->currency,
+                'code' => $item->code,
+                'representation' => $item->representation,
+            ];
         }
 
         $productDetails = [

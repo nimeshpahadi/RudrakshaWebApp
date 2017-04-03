@@ -13,15 +13,15 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/user/list', 'User\UserLoginController@getUserId')->middleware('auth:api');
-Route::get('/user/details/{id}', 'User\UserLoginController@getUserDetails')->middleware('auth:api');
+Route::get('/user_id', 'User\UserLoginController@userId')->middleware('auth:api');
+Route::get('/user/details/{id}', 'User\UserLoginController@userDetails')->middleware('auth:api');
 Route::post('/user/create', 'User\UserRegisterController@createUser');
 Route::post('/user/login', 'User\UserLoginController@issueToken');
 Route::put('/user/{id}/edit', 'User\UserRegisterController@userInfoUpdate');
 Route::put('/user/{id}/image/edit', 'User\UserRegisterController@userImageUpdate');
 
 Route::get('/product/list', 'Product\ProductApiController@getProductList');
-Route::get('/product/detail/{id}', 'Product\ProductApiController@getProductDetailList');
+Route::get('/product/details/{id}', 'Product\ProductApiController@getProductDetailList');
 
 Route::get('/category/list', 'Category\CategoryApiController@getCategoryList');
 Route::get('/category/{id}/benefit', 'Category\CategoryApiController@getCategoryBenefit');

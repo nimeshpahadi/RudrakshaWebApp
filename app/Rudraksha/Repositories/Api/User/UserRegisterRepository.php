@@ -116,9 +116,4 @@ class UserRegisterRepository
             return false;
         }
     }
-
-    public function getUsersRepo()
-    {
-        return $this->user->all();
-    }
 }

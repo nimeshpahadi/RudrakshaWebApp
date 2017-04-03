@@ -93,10 +93,4 @@ class UserRegisterController extends Controller
 
         return response()->json($response);
     }
-
-    public function getUsers()
-    {
-        $users = $this->registerService->getUsersService();
-        return response()->json($users);
-    }
 }

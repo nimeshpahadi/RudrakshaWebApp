@@ -76,7 +76,7 @@ class ProductApiRepository
      */
     public function getProductPrice($id)
     {
-        return $this->productPrice->select('product_prices.price', 'currencies.representation')
+        return $this->productPrice->select('product_prices.price', 'currencies.*')
                     ->join('currencies', 'currencies.id', 'product_prices.currency_id')
                     ->where('product_id', $id)
                     ->get();
