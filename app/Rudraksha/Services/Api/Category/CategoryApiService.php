@@ -36,9 +36,9 @@ class CategoryApiService
     /**
      * @return array
      */
-    public function getCategory()
+    public function getCategoryList()
     {
-        $categoryData = $this->categoryApiRepository->getCategoryBenifit();
+        $categoryData = $this->categoryApiRepository->getAllCategoryBenifit();
 
         $categoryDetail  = [];
 
@@ -66,7 +66,7 @@ class CategoryApiService
      */
     public function serviceCategoryBenefit($id)
     {
-        $categoryData = $this->categoryApiRepository->repoCategoryBenifit($id);
+        $categoryData = $this->categoryApiRepository->getCategoryBenifit($id);
 
         $categoryBenefit = [];
 

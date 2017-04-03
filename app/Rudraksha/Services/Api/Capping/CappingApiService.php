@@ -34,7 +34,7 @@ class CappingApiService
     {
         $baseUrl = url('/');
 
-        $cappingData = $this->cappingApiRepository->repoCappingData();
+        $cappingData = $this->cappingApiRepository->getCappingData();
 
         $cappingDetail = [];
 

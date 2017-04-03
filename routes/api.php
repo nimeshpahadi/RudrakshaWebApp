@@ -20,13 +20,13 @@ Route::post('/user/login', 'User\UserLoginController@issueToken');
 Route::put('/user/{id}/edit', 'User\UserRegisterController@userInfoUpdate');
 Route::put('/user/{id}/image/edit', 'User\UserRegisterController@userImageUpdate');
 
-Route::get('/product/list', 'Product\ProductApiController@getProductList');
-Route::get('/product/details/{id}', 'Product\ProductApiController@getProductDetailList');
+Route::get('/product/list', 'Product\ProductApiController@productList');
+Route::get('/product/details/{id}', 'Product\ProductApiController@productDetailList');
 
-Route::get('/category/list', 'Category\CategoryApiController@getCategoryList');
-Route::get('/category/{id}/benefit', 'Category\CategoryApiController@getCategoryBenefit');
+Route::get('/category/list', 'Category\CategoryApiController@categoryList');
+Route::get('/category/{id}/benefit', 'Category\CategoryApiController@categoryBenefit');
 
-Route::get('/capping/list', 'Capping\CappingApiController@getCappingData');
+Route::get('/capping/list', 'Capping\CappingApiController@cappingData');
 
 // customer address
 Route::get('/customer/{customer_id}/address', 'User\CustomerAddressApiController@customerAddressShow')->middleware('auth:api');;

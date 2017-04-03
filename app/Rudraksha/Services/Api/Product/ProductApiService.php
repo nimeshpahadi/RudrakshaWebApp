@@ -47,7 +47,7 @@ class ProductApiService
      * @param $name
      * @return array
      */
-    public function getProducts($id)
+    public function getProductsList($id)
     {
         $baseUrl = url('/');
 
@@ -106,7 +106,7 @@ class ProductApiService
      * @param $id
      * @return array
      */
-    public function getAllProductDetails($id)
+    public function getProductDetailList($id)
     {
         $baseUrl = url('/');
 
@@ -123,7 +123,7 @@ class ProductApiService
         }
 
         $productImage = $this->productApiRepository->getProductImage($id);
-        $categoryBenefit = $this->productApiRepository->categoryBenefit($productInfo->category_id);
+        $categoryBenefit = $this->productApiRepository->getCategoryBenefit($productInfo->category_id);
         $productDescription = $this->productApiRepository->getProductDescription($id);
 
         $benefit = [];

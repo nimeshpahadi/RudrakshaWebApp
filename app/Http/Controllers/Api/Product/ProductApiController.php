@@ -33,11 +33,11 @@ class ProductApiController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function getProductList(Request $request)
+    public function productList(Request $request)
     {
         $category=$request->get('cat', null);
 
-        $products = $this->productApiService->getProducts($category);
+        $products = $this->productApiService->getProductsList($category);
 
         return response()->json($products);
     }
@@ -46,9 +46,9 @@ class ProductApiController extends Controller
      * @param $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function getProductDetailList($id)
+    public function productDetailList($id)
     {
-        $productsList = $this->productApiService->getAllProductDetails($id);
+        $productsList = $this->productApiService->getProductDetailList($id);
 
         return response()->json($productsList);
     }

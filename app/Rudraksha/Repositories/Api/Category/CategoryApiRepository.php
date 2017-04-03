@@ -45,7 +45,7 @@ class CategoryApiRepository
     /**
      * @return mixed
      */
-    public function getCategoryBenifit()
+    public function getAllCategoryBenifit()
     {
         $query = $this->category->select('categories.*', 'category_benifits.*')
                     ->join('category_benifits', 'category_benifits.category_id', 'categories.id')
@@ -74,7 +74,7 @@ class CategoryApiRepository
      * @param $id
      * @return mixed
      */
-    public function repoCategoryBenifit($id)
+    public function getCategoryBenifit($id)
     {
         $query = $this->category_benifit->select('*')
                        ->where('category_id', $id)

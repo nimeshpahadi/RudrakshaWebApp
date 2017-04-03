@@ -135,7 +135,7 @@ class ProductApiRepository
      * @param $id
      * @return mixed
      */
-    public function categoryBenefit($id)
+    public function getCategoryBenefit($id)
     {
         return $this->category_benifit->select('*')
                     ->where('category_id', $id)

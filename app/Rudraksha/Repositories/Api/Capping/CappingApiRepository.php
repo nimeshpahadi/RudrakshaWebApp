@@ -30,7 +30,7 @@ class CappingApiRepository
     /**
      * @return mixed
      */
-    public function repoCappingData()
+    public function getCappingData()
     {
         return $this->capping->select('*')
                     ->where('status', 1)

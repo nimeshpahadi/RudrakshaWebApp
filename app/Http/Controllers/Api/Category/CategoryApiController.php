@@ -31,13 +31,13 @@ class CategoryApiController extends Controller
     /**
      * @return \Illuminate\Http\JsonResponse
      */
-    public function getCategoryList()
+    public function categoryList()
     {
-        $category = $this->categoryApiService->getCategory();
+        $category = $this->categoryApiService->getCategoryList();
         return response()->json($category);
     }
 
-    public function getCategoryBenefit($id)
+    public function categoryBenefit($id)
     {
         $category = $this->categoryApiService->serviceCategoryBenefit($id);
         return response()->json($category);

@@ -31,7 +31,7 @@ class CappingApiController extends Controller
     /**
      * @return \Illuminate\Http\JsonResponse
      */
-    public function getCappingData()
+    public function cappingData()
     {
         $capping = $this->cappingApiService->serviceCappingData();
 
