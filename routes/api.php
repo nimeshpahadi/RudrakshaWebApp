@@ -13,7 +13,8 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/user/list', 'User\UserRegisterController@getUsers')->middleware('auth:api');
+Route::get('/user/list', 'User\UserLoginController@getUserId')->middleware('auth:api');
+Route::get('/user/details/{id}', 'User\UserLoginController@getUserDetails')->middleware('auth:api');
 Route::post('/user/create', 'User\UserRegisterController@createUser');
 Route::post('/user/login', 'User\UserLoginController@issueToken');
 Route::put('/user/{id}/edit', 'User\UserRegisterController@userInfoUpdate');
