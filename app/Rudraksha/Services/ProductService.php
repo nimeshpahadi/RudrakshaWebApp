@@ -100,7 +100,6 @@ class ProductService
                 $data[$cate->name]["product"][]=[
                     "id"=>$product['id'],
                     "name"=>$product['name'],
-                    "price"=>$product['price'],
                     "code"=>$product['code'],
                     "quantity_available"=>$product['quantity_available'],
                     "tag"=>$product['tag'],

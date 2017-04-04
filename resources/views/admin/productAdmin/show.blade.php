@@ -31,10 +31,7 @@
                 <label class="col-sm-6 "> Name :</label>
                 {{$productid->name}}
             </div>
-            <div class="row">
-                <label class="col-sm-6 "> Price:</label>
-                {{$productid->price}}
-            </div>
+
             <div class="row">
                 <label class="col-sm-6 "> Rank :</label>
                 {{$productid->rank}}

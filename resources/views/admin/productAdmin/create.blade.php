@@ -63,21 +63,6 @@
                     </div>
 
 
-                    <div class="form-group{{ $errors->has('price') ? ' has-error' : '' }} clearfix form-group required">
-                        <label for="price" class="col-sm-4 control-label">Price</label>
-
-                        <div class="col-sm-8">
-                            <input id="price" type="number" class="form-control" name="price"
-                                   value="{{ old('price') }}" required autofocus>
-
-                            @if ($errors->has('price'))
-                                <span class="help-block">
-                                        <strong>{{ $errors->first('price') }}</strong>
-                                    </span>
-                            @endif
-                        </div>
-                    </div>
-
                     <div class="form-group{{ $errors->has('rank') ? ' has-error' : '' }} clearfix form-group required">
                         <label for="rank" class="col-sm-4 control-label">Rank</label>
 

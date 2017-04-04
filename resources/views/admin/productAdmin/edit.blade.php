@@ -48,14 +48,6 @@
                         </div>
                     </div>
 
-                    <div class="form-group{{ $errors->has('price') ? ' has-error' : '' }} clearfix">
-                        <label for="price" class="col-sm-4 control-label">Price</label>
-
-                        <div class="col-sm-8">
-                            {{ Form::text('price',null,array('class'=>'form-control'))}}
-                        </div>
-                    </div>
-
                     <div class="form-group{{ $errors->has('rank') ? ' has-error' : '' }} clearfix">
                         <label for="rank" class="col-sm-4 control-label">Rank</label>
 

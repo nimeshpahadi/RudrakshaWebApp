@@ -171,7 +171,6 @@ class ProductRepository
             $data->category_id = $formData['category_id'];
             $data->code = $formData['code'];
             $data->name = $formData['name'];
-            $data->price = $formData['price'];
             $data->rank = $formData['rank'];
             $data->status = $formData['status'];
             $data->tag = $formData['tag'];
