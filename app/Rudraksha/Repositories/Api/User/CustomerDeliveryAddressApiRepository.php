@@ -78,6 +78,8 @@ class CustomerDeliveryAddressApiRepository
             $data->address_line1 = $request['address_line1'];
             $data->address_line2 = $request['address_line2'];
             $data->zip_code = $request['zip_code'];
+            $data->address_note = $request['address_note'];
+            $data->contact = $request['contact'];
             $data->update();
 
             $this->log->info("Customer Delivery Address Updated");

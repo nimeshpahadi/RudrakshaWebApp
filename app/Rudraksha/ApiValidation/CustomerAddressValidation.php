@@ -37,7 +37,7 @@ class CustomerAddressValidation
             'city' => 'required',
             'street' => 'required',
             'contact' => 'required|integer',
-            'latitude_long' => 'required|integer',
+            'latitude_long' => 'required',
         ]);
     }
 
@@ -64,7 +64,7 @@ class CustomerAddressValidation
             'city' => 'required',
             'street' => 'required',
             'contact' => 'required|integer',
-            'latitude_long' => 'required|integer',
+            'latitude_long' => 'required',
         ]);
     }
 }

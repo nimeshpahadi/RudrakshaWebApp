@@ -33,6 +33,11 @@ class CustomerAddressApiService
      */
     public function serviceCustomerAddressCreate($customerAddress)
     {
+        $x=explode(',',$customerAddress['latitude_long']);
+        $t['latitude']=$x[0];
+        $t['longitude']=trim($x[1]);
+        $customerAddress['latitude_long']= $t;
+
         $details = [
             "customer_id" => $customerAddress['customer_id'],
             "country" => $customerAddress['country'],
@@ -73,7 +78,7 @@ class CustomerAddressApiService
             "state" => $address['state'],
             "street" => $address['street'],
             "contact" => $address['contact'],
-            "latitude_long" => $address['latitude_long'],
+            "location" => $address['latitude_long'],
         ];
 
         return $data;
@@ -86,6 +91,11 @@ class CustomerAddressApiService
      */
     public function serviceCustomerAddressEdit($request, $id)
     {
+        $x=explode(',',$request['latitude_long']);
+        $t['latitude']=$x[0];
+        $t['longitude']=trim($x[1]);
+        $request['latitude_long']= $t;
+
         if ($this->customerAddressApiRepository->repoCustomerAddressEdit($request, $id)) {
             $respo = [
                 "status" => "true",

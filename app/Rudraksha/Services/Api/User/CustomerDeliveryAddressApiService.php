@@ -33,23 +33,29 @@ class CustomerDeliveryAddressApiService
      */
     public function serviceCustomerDeliveryAddressCreate($deliveryAddress)
     {
+        $x=explode(',',$deliveryAddress['latitude_long']);
+        $t['latitude']=$x[0];
+        $t['longitude']=trim($x[1]);
+        $deliveryAddress['latitude_long']= $t;
+
         $details = [
             "customer_id" => $deliveryAddress['customer_id'],
             "country" => $deliveryAddress['country'],
             "state" => $deliveryAddress['state'],
-            "street" => $deliveryAddress['street'],
-            "contact" => $deliveryAddress['contact'],
             "latitude_long" => $deliveryAddress['latitude_long'],
             "city" => $deliveryAddress['city'],
             "address_line1" => $deliveryAddress['address_line1'],
             "address_line2" => $deliveryAddress['address_line2'],
             "zip_code" => $deliveryAddress['zip_code'],
+            "address_note" => $deliveryAddress['address_note'],
+            "contact" => $deliveryAddress['contact'],
+
         ];
 
         if ($this->deliveryAddressApiRepository->repoCustomerDeliveryAddressCreate($details)) {
             $respo = [
                 "status" => "true",
-                "message" => "customer address created successfully !!!"
+                "message" => "customer delivery address created successfully !!!"
             ];
             return $respo;
         }
@@ -73,11 +79,14 @@ class CustomerDeliveryAddressApiService
             "customer_id" => $deliveryAddress['customer_id'],
             "country" => $deliveryAddress['country'],
             "state" => $deliveryAddress['state'],
-            "latitude_long" => $deliveryAddress['latitude_long'],
+            "location" => $deliveryAddress['latitude_long'],
             "city" => $deliveryAddress['city'],
             "address_line1" => $deliveryAddress['address_line1'],
             "address_line2" => $deliveryAddress['address_line2'],
             "zip_code" => $deliveryAddress['zip_code'],
+            "address_note" => $deliveryAddress['address_note'],
+            "contact" => $deliveryAddress['contact'],
+
         ];
 
         return $data;
@@ -90,6 +99,11 @@ class CustomerDeliveryAddressApiService
      */
     public function serviceCustomerDeliveryAddressEdit($request, $id)
     {
+        $x=explode(',',$request['latitude_long']);
+        $t['latitude']=$x[0];
+        $t['longitude']=trim($x[1]);
+        $request['latitude_long']= $t;
+
         if ($this->deliveryAddressApiRepository->repoCustomerDeliveryAddressEdit($request, $id)) {
             $respo = [
                 "status" => "true",

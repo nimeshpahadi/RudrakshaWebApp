@@ -36,11 +36,12 @@ class CustomerDeliveryAddressValidation
             'state' => 'required',
             'street' => 'required',
             'contact' => 'required|integer',
-            'latitude_long' => 'required|integer',
+            'latitude_long' => 'required',
             'city' => 'required',
             'address_line1' => 'required',
             'address_line2' => 'required',
             'zip_code' => 'required|integer',
+            'address_note' => 'required',
         ]);
     }
 
@@ -66,11 +67,12 @@ class CustomerDeliveryAddressValidation
             'state' => 'required',
             'street' => 'required',
             'contact' => 'required|integer',
-            'latitude_long' => 'required|integer',
+            'latitude_long' => 'required',
             'city' => 'required',
             'address_line1' => 'required',
             'address_line2' => 'required',
             'zip_code' => 'required|integer',
+            'address_note' => 'required',
         ]);
     }
 }
