@@ -10,6 +10,7 @@ namespace App\Rudraksha\Services;
 
 
 use App\Rudraksha\Repositories\CategoryRepository;
+use App\Rudraksha\Repositories\ProductPriceRepository;
 use App\Rudraksha\Repositories\ProductRepository;
 use File;
 
@@ -24,16 +25,21 @@ class ProductService
      * @var CategoryRepository
      */
     private $categoryRepository;
+    /**
+     * @var ProductPriceRepository
+     */
+    private $productPriceRepository;
 
     /**
      * ProductService constructor.
      * @param ProductRepository $productRepository
      * @param CategoryRepository $categoryRepository
      */
-    public function __construct(ProductRepository $productRepository, CategoryRepository $categoryRepository)
+    public function __construct(ProductRepository $productRepository, CategoryRepository $categoryRepository,ProductPriceRepository $productPriceRepository)
     {
         $this->productRepository = $productRepository;
         $this->categoryRepository = $categoryRepository;
+        $this->productPriceRepository = $productPriceRepository;
     }
 
     /**
@@ -96,7 +102,10 @@ class ProductService
             $products = $this->productRepository->getCategoryProduct($cate->id);
             foreach ($products as $product)
             {
+                $price = $this->productPriceRepository->getProductPricebyProductId($product['id'])->toArray();
+//dd($price);
                 $images = $this->productRepository->get_productImage($product['id'])->toArray();
+//                dd($images);
                 $data[$cate->name]["product"][]=[
                     "id"=>$product['id'],
                     "name"=>$product['name'],
@@ -105,7 +114,10 @@ class ProductService
                     "tag"=>$product['tag'],
                     "discount"=>$product['discount'],
                     "rank"=>$product['rank'],
-                    "image"=>$images
+                    "image"=>$images,
+                    "price" =>$price
+
+
                 ];
             }
 

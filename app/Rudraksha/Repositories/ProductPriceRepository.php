@@ -94,4 +94,14 @@ class ProductPriceRepository
 
     }
 
+    public function getProductPricebyProductId($id)
+    {
+        $query=$this->productPrice->select('product_prices.*','currencies.*')
+            ->join('product_infos','product_infos.id','product_prices.product_id')
+            ->join('currencies','currencies.id','currency_id')
+            ->where('product_infos.id',$id)
+            ->get();
+        return $query;
+    }
+
 }

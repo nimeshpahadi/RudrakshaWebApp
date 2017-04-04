@@ -60,9 +60,12 @@
                                                     <?php break; ?>
                                                 @endforeach
 
+                                                @foreach($item['price'] as $price)
+                                                    <h4> {{$price['code']}}:{{$price['representation']}} {{$price['price']}}  </h4>
+                                                @endforeach
                                                 <h3>{{($item['name']) }} </h3>
                                                 <h3>{{$item['code'] }}</h3>
-                                                <span> Price : 100 </span>
+
                                                 <div class="rateyo-readonly-widg"></div>
                                                 <a href=""> quick view </a>
                                             </div>
