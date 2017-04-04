@@ -60,6 +60,11 @@ class CustomerAddressService
      */
     public function serviceAddressUpdate($request, $id)
     {
+        $x=explode(',',$request['latitude_long']);
+        $t['latitude']=$x[0];
+        $t['longitude']=trim($x[1]);
+        $request['latitude_long']= $t;
+        $request = array_except($request, ['_token', 'to', 'remove']);
         return $this->addressRepository->repoAddressUpdate($request, $id);
 
     }

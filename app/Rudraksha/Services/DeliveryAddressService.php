@@ -46,8 +46,12 @@ class DeliveryAddressService
 
     public function update_delivery($request, $id)
     {
-        $formData = $request->all();
-        return $this->deliveryAddressRepository->updateDelivery($formData,$id);
+        $x=explode(',',$request['latitude_long']);
+        $t['latitude']=$x[0];
+        $t['longitude']=trim($x[1]);
+        $request['latitude_long']= $t;
+        $request = array_except($request, ['_token', 'to', 'remove']);
+        return $this->deliveryAddressRepository->updateDelivery($request,$id);
 
     }
 

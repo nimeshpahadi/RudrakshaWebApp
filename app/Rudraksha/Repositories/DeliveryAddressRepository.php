@@ -53,14 +53,15 @@ class DeliveryAddressRepository
         return $this->deliveryAddress->select('*')->where('id',$id)->first();
     }
 
-    public function updateDelivery($formData, $id)
+    public function updateDelivery($request, $id)
     {
         try {
-
+            $formData=$request->all();
             $data = DeliveryAddress::find($id);
             $data->country = $formData['country'];
             $data->state = $formData['state'];
             $data->city = $formData['city'];
+            $data->contact = $formData['contact'];
             $data->latitude_long = $formData['latitude_long'];
             $data->address_line1 = $formData['address_line1'];
             $data->address_line2 = $formData['address_line2'];

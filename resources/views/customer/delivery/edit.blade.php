@@ -42,6 +42,12 @@
                     {{ Form::text('city',null,array('class'=>'form-control'))}}
                 </div>
             </div>
+            <div class="form-group{{ $errors->has('contact') ? ' has-error' : '' }} clearfix">
+                <label for="contact" class="col-sm-4 control-label">Contact</label>
+                <div class="col-sm-8">
+                    {{ Form::number('contact',null,array('class'=>'form-control'))}}
+                </div>
+            </div>
 
             <div class="form-group clearfix">
                 <label for="latitude_long" class="col-sm-4 control-label">Latitude/Latitude</label>
@@ -62,6 +68,7 @@
                     {{ Form::text('address_line1',null,array('class'=>'form-control'))}}
                 </div>
             </div>
+
             <div class="form-group{{ $errors->has('address_line2') ? ' has-error' : '' }} clearfix">
                 <label for="address_line2" class="col-sm-4 control-label">Address line 2</label>
                 <div class="col-sm-8">
@@ -71,9 +78,10 @@
             <div class="form-group{{ $errors->has('zip_code') ? ' has-error' : '' }} clearfix">
                 <label for="zip_code" class="col-sm-4 control-label">Zip-code</label>
                 <div class="col-sm-8">
-                    {{ Form::text('zip_code',null,array('class'=>'form-control'))}}
+                    {{ Form::number('zip_code',null,array('class'=>'form-control'))}}
                 </div>
             </div>
+
             <div class="form-group{{ $errors->has('address_note') ? ' has-error' : '' }} clearfix">
                 <label for="address_note" class="col-sm-4 control-label">Address Note</label>
                 <div class="col-sm-8">

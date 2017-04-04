@@ -9,7 +9,7 @@ class DeliveryAddress extends Model
 
     public $table = 'delivery_addresses';
     protected $fillable = [
-        'customer_id', 'country','state',
+        'customer_id', 'country','state','contact',
         'city', 'latitude_long','address_note',
         'address_line1', 'address_line2','zip_code',
     ];

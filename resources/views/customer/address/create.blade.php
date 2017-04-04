@@ -125,16 +125,14 @@
             </div>
 
             @include('customer.map')
-            <script>
-                var countryCode = {!! json_encode(config('country_code')) !!};
 
-
-            </script>
             <script type="text/javascript"
-                    src="http://maps.google.com/maps/api/js?sensor=false&key=AIzaSyDenLLrWG9iWZSXBXlJAAzqcNLgRlMFsRI"></script>
+                    src="http://maps.google.com/maps/api/js?key=AIzaSyDenLLrWG9iWZSXBXlJAAzqcNLgRlMFsRI"></script>
             <script src="{{ asset('js/map.js') }}"></script>
 
-
+            <script>
+                var countryCode = {!! json_encode(config('country_code')) !!};
+            </script>
 
 
 

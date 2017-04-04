@@ -154,6 +154,10 @@
                                 <label class="col-sm-6 "> State :</label>
                                 {{$customerDelivery->state}}
                             </div>
+                            <div class="row">
+                                <label class="col-sm-6 "> Contact :</label>
+                                {{$customerDelivery->contact}}
+                            </div>
 
                             <div class="row">
                                 <label class="col-sm-6 "> City:</label>

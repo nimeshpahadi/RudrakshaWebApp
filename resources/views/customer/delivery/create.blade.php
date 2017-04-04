@@ -16,19 +16,32 @@
 
                     <div class="form-group{{ $errors->has('country') ? ' has-error' : '' }} clearfix">
                         <label for="country" class="col-sm-4 control-label">Country</label>
-
                         <?php $x = Config::get('country');?>
-
                         <div class="col-sm-8">
-                            <select name="country" class="form-control" required>
+                            <select id="country_code" name="country" class="form-control" required>
                                 <option selected="selected" disabled>Choose Country</option>
                                 @foreach($x as $code=>$name)
                                     <option value="{{$code}}">
                                         {{$name}}
                                     </option>
                                 @endforeach
-
                             </select>
+                        </div>
+                    </div>
+
+                    <?php $y = Config::get('country_code');?>
+                    <div class="form-group{{ $errors->has('contact') ? ' has-error' : '' }} clearfix">
+                        <label for="contact" class="col-sm-4 control-label">Contact</label>
+                        <div class="col-sm-8">
+                            <p class="col-sm-2 " id="country_dial"></p>
+                            <input type="number" class="form-control col-sm-6" name="contact"
+                                   value="{{ old('contact') }}" required autofocus>
+
+                            @if ($errors->has('contact'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('contact') }}</strong>
+                                    </span>
+                            @endif
                         </div>
                     </div>
 
@@ -143,7 +156,6 @@
                     </div>
 
 
-
                     <div class="clearfix pad"></div>
                     <div align="right">
                         {{Form::submit('create', array('class'=>'btn btn-bg btn-primary ','title'=>'Save the Delivery Address'))}}
@@ -162,7 +174,11 @@
 
 
         <script type="text/javascript"
-                src="http://maps.google.com/maps/api/js?sensor=false&key=AIzaSyDenLLrWG9iWZSXBXlJAAzqcNLgRlMFsRI"></script>
+                src="http://maps.google.com/maps/api/js?key=AIzaSyDenLLrWG9iWZSXBXlJAAzqcNLgRlMFsRI"></script>
         <script src="{{ asset('js/map.js') }}"></script>
+        <script>
+            var countryCode = {!! json_encode(config('country_code')) !!};
+        </script>
+
 
 @endsection
