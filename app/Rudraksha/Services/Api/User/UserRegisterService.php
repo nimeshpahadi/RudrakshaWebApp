@@ -37,8 +37,6 @@ class UserRegisterService
             "firstname" => $userDetails['firstname'],
             "lastname" => $userDetails['lastname'],
             "email" => $userDetails['email'],
-            "contact" => $userDetails['contact'],
-            "alternative_contact" => $userDetails['alternative_contact'],
             "password" => bcrypt($userDetails['password']),
         ];
 

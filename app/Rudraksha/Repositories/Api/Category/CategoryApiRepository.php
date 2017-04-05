@@ -39,19 +39,9 @@ class CategoryApiRepository
      */
     public function getCategoryData()
     {
-        return $this->category->select('*')->get();
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getAllCategoryBenifit()
-    {
-        $query = $this->category->select('categories.*', 'category_benifits.*')
-                    ->join('category_benifits', 'category_benifits.category_id', 'categories.id')
+        return $this->category->select('*')
+                    ->where('status', 1)
                     ->get();
-
-        return $query;
     }
 
     /**

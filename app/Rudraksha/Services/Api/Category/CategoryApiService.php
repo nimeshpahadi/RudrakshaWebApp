@@ -38,7 +38,7 @@ class CategoryApiService
      */
     public function getCategoryList()
     {
-        $categoryData = $this->categoryApiRepository->getAllCategoryBenifit();
+        $categoryData = $this->categoryApiRepository->getCategoryData();
 
         $categoryDetail  = [];
 

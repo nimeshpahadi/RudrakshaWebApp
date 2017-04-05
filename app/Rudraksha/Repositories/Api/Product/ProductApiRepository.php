@@ -91,6 +91,7 @@ class ProductApiRepository
         $query = $this->productInfo->select('product_infos.*')
             ->join('categories', 'categories.id', 'product_infos.category_id')
             ->where('product_infos.category_id', $id)
+            ->where('product_infos.status', 1)
             ->orderBy('product_infos.rank')
             ->get();
 
@@ -106,6 +107,7 @@ class ProductApiRepository
         return $this->productInfo->select('product_infos.*', 'categories.mantra')
                                 ->join('categories', 'categories.id', 'product_infos.category_id')
                                 ->where('product_infos.id', $id)
+                                ->where('product_infos.status', 1)
                                 ->first();
     }
 
@@ -116,17 +118,6 @@ class ProductApiRepository
     public function getProductDescription($id)
     {
         return $this->productDescription->select('*')
-                    ->where('product_id', $id)
-                    ->first();
-    }
-
-    /**
-     * @param $id
-     * @return mixed
-     */
-    public function getAllProductImage($id)
-    {
-        return $this->productImage->select('*')
                     ->where('product_id', $id)
                     ->first();
     }

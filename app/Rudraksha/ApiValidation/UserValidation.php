@@ -42,8 +42,7 @@ class UserValidation
             'lastname' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6',
-            'contact' => 'required|integer',
-            'alternative_contact' => 'required|integer',
+
         ]);
     }
 
@@ -93,7 +92,7 @@ class UserValidation
     public function imageValidator($data)
     {
         return Validator::make($data, [
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
     }
 }
