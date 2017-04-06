@@ -21,6 +21,8 @@ Route::get('/category/benefit/{id}/edit', 'CategoryAdminController@editBenefit')
 Route::put('/category/benefit/{id}', 'CategoryAdminController@updateBenefit')->name('category.benefit.update');
 
 
+Route::put('/products/{id}/status', 'ProductAdminController@updateInfoStatus')->name('product.status.update');
+
 
 // productdescription
 Route::get('/products/{id}/description', 'ProductAdminController@createDesc')->name('product_description');
@@ -30,7 +32,6 @@ Route::put('/product_desc/{id}', 'ProductAdminController@updateDesc')->name('pro
 //image
 Route::get('/products/{id}/image', 'ProductAdminController@createImage')->name('product_image');
 Route::post('/products/image', 'ProductAdminController@storeImage')->name('product_image_add');
-//Route::put('/product_image/{id}', 'ProductAdminController@updateImage')->name('product_image_update');
 
 
 Route::delete('/product_img/{id}', 'ProductAdminController@deleteImage')->name('product_image_delete');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductImageRequest;
 use App\Http\Requests\ProductInfoRequest;
+use App\Rudraksha\Entities\ProductInfo;
 use App\Rudraksha\Services\CategoryService;
 use App\Rudraksha\Services\ProductService;
 use Illuminate\Http\Request;
@@ -230,6 +231,15 @@ class ProductAdminController extends Controller
     {
         if ($this->productService->deleteproductImage($id)) {
             return back()->withSuccess('Product Image Deleted');
+        }
+        return back()->withErrors('something went wrong');
+
+    }
+    public function updateInfoStatus(Request $request,$id)
+    {
+        if ($this->productService->updateStatus($request, $id)) {
+
+            return redirect()->route('products.show',$id)->withSuccess("Product status edited!");
         }
         return back()->withErrors('something went wrong');
 

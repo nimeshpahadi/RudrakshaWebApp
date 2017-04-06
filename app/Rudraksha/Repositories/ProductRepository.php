@@ -75,7 +75,15 @@ class ProductRepository
     public function storeProductDesc($formData)
     {
         try {
+
             $data = $this->productDescription->insert($formData);
+            $prodimage=$this->productImage->select('*')->where('product_id',$formData['product_id'])->first();
+
+            if (isset($data)) {
+                if (!empty($prodimage)){
+                    $this->updatestatus($formData['product_id']);
+                }
+            }
             $this->log->info("Product Description Added");
             return $data;
         } catch (QueryException $e) {
@@ -88,6 +96,13 @@ class ProductRepository
     {
         try {
             $t = $this->productImage->create($formData);
+            $proddesc=$this->productDescription->select('*')->where('product_id',$t->product_id)->first();
+            if (!empty($t)) {
+                if (!empty($proddesc)){
+                    $this->updatestatus($t->product_id);
+                }
+            }
+
             $this->log->info("Product Image added");
             return $t;
 
@@ -97,6 +112,24 @@ class ProductRepository
             return false;
         }
     }
+
+
+    private function updatestatus($id)
+    {
+        try {
+            $data = ProductRepository::get_productbyId($id);
+            $data->status = 1;
+            $data->update();
+            $this->log->info("Product Info status Updated", ['id' => $id]);
+
+            return true;
+        } catch (QueryException $e) {
+            $this->log->error("Product status Update  Failed %s", ['id' => $id], [$e->getMessage()]);
+
+            return false;
+        }
+    }
+
 
     /**
      * get the product as per category
@@ -253,5 +286,22 @@ class ProductRepository
     {
         return $this->productInfo->select('*')->get();
     }
+
+    public function updateProductStatus($formData, $id)
+    {
+        try {
+
+            $data = ProductInfo::find($id);
+            $data->status = $formData['status'];
+            $data->update();
+            $this->log->info("Product Info status Updated", ['id' => $id]);
+            return true;
+        } catch (QueryException $e) {
+            $this->log->error("Product status Update  Failed %s", ['id' => $id], [$e->getMessage()]);
+
+            return false;
+        }
+    }
+
 
 }

@@ -55,9 +55,27 @@
                 @if($productid->status==1)
                     Active
                 @else
-                    In-active
+                    Inactive
                 @endif
+
+                <div style="background-color: #a6e1ec" class=" col-sm-3 col-sm-offset-6 form-group{{ $errors->has('status') ? ' has-error' : ''  }} clearfix">
+                    {!! Form::model($productid,array('route'=>['product.status.update',$productid->id],'method'=>'PUT' ))!!}
+
+                        <label>
+                            <input name="status" type="radio" value="1" @if($productid->status==1) checked @endif>
+                            Active
+                        </label>
+                        <label>
+                            <input name="status" type="radio" value="0" @if($productid->status==0) checked @endif>
+                            Inactive
+                        </label>
+                {{Form::submit('Change', array('class'=>'btn btn-sm btn-primary '))}}
+                {!! Form::close() !!}
+
+                </div>
             </div>
+
+
         </div>
     @endif
 
@@ -68,21 +86,21 @@
             @if(!isset($product_desc))
                 <div align="right" style="padding: 10px">
                     <a href="{{route('product_description',$productid->id)}}">
-                        <span class=" btn btn-sm btn-success" title="Create new category">Add Description</span>
+                        <span class=" btn btn-sm btn-success" title="Create new Description">Add Description</span>
                     </a>
                 </div>
             @else
                 <div class="row">
                     <a href="{{route('product_desc_edit',$productid->id)}}">
                         <button class="btn btn-warning pad" data-toggle="popover" data-trigger="hover"
-                                data-placement="top" data-content="Edit the current category"><i class="fa fa-edit"></i>
+                                data-placement="top" data-content="Edit the current Description"><i class="fa fa-edit"></i>
                         </button>
                     </a>
 
                     {!! Form::open(['method' => 'DELETE','route' => ['product_desc_delete', $productid->id]]) !!}
                     <button type="submit" class="btn btn-danger glyphicon glyphicon-trash pad" data-toggle="popover"
                             data-trigger="hover"
-                            data-placement="top" data-content="Delete the current product"
+                            data-placement="top" data-content="Delete the current product description"
                             onclick="return confirm('Are you sure you want to delete this item?');">
 
                     </button>

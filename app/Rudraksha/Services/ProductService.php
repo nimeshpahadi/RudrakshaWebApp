@@ -84,6 +84,8 @@ class ProductService
         $destinationPath = storage_path('app/public/image/product');
         $formData['image']->move($destinationPath, $imagename);
         $formData['image'] = $imagename;
+
+
         return $this->productRepository->storeProductImage($formData);
 
     }
@@ -202,5 +204,13 @@ class ProductService
         $rank = array_diff(config('imagerank'), $imgRank);
         return $rank;
 
+    }
+
+    public function updateStatus($request, $id)
+    {
+        $formData = $request->all();
+        $formData = array_except($formData, ['_token', 'to', 'remove']);
+        $data = $this->productRepository->updateProductStatus($formData, $id);
+        return $data;
     }
 }

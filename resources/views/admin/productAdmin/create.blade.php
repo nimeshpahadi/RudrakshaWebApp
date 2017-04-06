@@ -13,7 +13,7 @@
                     <h1>Product Info</h1>
 
                     {!! Form::open(array('route'=>'products.store', 'method'=>'post' ))!!}
-
+                        {!! Form::hidden('status',0) !!}
                     <div class="form-group{{ $errors->has('category_id') ? ' has-error' : '' }} clearfix form-group required">
                         <label for="category_id" class="col-sm-4 control-label">Category ID </label>
 
@@ -123,24 +123,6 @@
                             @endif
                         </div>
                     </div>
-
-
-                    <div class="form-group{{ $errors->has('status') ? ' has-error' : '' }} clearfix">
-                        <label for="status" class="col-sm-4 control-label">Status</label>
-
-                        <div class="checkbox col-sm-8">
-
-                            <label>
-                                <input name="status" type="radio" value="1" checked>
-                                Active
-                            </label>
-                            <label>
-                                <input name="status" type="radio" value="0">
-                                Inactive
-                            </label>
-                        </div>
-                    </div>
-
 
                     <div class="clearfix pad"></div>
                     <div align="right">
