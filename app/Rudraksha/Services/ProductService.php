@@ -103,9 +103,7 @@ class ProductService
             foreach ($products as $product)
             {
                 $price = $this->productPriceRepository->getProductPricebyProductId($product['id'])->toArray();
-//dd($price);
                 $images = $this->productRepository->get_productImage($product['id'])->toArray();
-//                dd($images);
                 $data[$cate->name]["product"][]=[
                     "id"=>$product['id'],
                     "name"=>$product['name'],
@@ -114,6 +112,7 @@ class ProductService
                     "tag"=>$product['tag'],
                     "discount"=>$product['discount'],
                     "rank"=>$product['rank'],
+                    "status"=>$product['status'],
                     "image"=>$images,
                     "price" =>$price
 

@@ -51,4 +51,9 @@ class ProductPriceService
         return $this->productPriceRepository->updateProductPrice($formData,$id);
     }
 
+    public function deleteprice($id)
+    {
+        return $this->productPriceRepository->deletePrice($id);
+    }
+
 }

@@ -60,7 +60,7 @@ jQuery( document ).ready(function( $ ) {
         $('.service_detail').owlCarousel({
           margin: 10,
           nav: true,
-          loop: true,
+          loop: false,
           responsive: {
             0: {
               items: 1
@@ -73,10 +73,10 @@ jQuery( document ).ready(function( $ ) {
             }
           }
         })
-        $('#service_detail1').owlCarousel({
+        $('.service_detail1').owlCarousel({
           margin: 10,
           nav: true,
-          loop: true,
+          loop: false,
           responsive: {
             0: {
               items: 1

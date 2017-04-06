@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Shop;
 
+use App\Rudraksha\Services\CustomerAddressService;
 use App\Rudraksha\Services\ProductService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+
 
 class ShopController extends Controller
 {
@@ -14,20 +16,27 @@ class ShopController extends Controller
      * @var ProductService
      */
     private $productService;
+    /**
+     * @var CustomerAddressService
+     */
+    private $customerAddressService;
 
-    public function __construct(ProductService $productService)
+    public function __construct(ProductService $productService,CustomerAddressService $customerAddressService)
     {
         $this->productService = $productService;
+        $this->customerAddressService = $customerAddressService;
     }
 
     /**
-     * Display a listing of the resource.
+     * Display a home page.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
         $category=$this->productService->getProductasCategory();
+//        $category=$this->productService->getProductasCategory()->paginate(2);
+
         return view('shop.home',compact('category'));
     }
 

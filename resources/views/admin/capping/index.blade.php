@@ -74,7 +74,7 @@
                     <td>{{$capping->price}}</td>
                     <td>{{$capping->metal_quantity_used}}</td>
                     <td>{{$capping->description}}</td>
-                    <td>{{$capping->status}}</td>
+                    <td>@if($capping->status==1)Active @else Inactive @endif</td>
                     <td>
                         <a href="{{route('capping.edit',$capping->id)}}">
                             <button class="btn btn-warning pad" data-toggle="popover" data-trigger="hover"

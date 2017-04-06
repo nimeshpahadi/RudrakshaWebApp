@@ -101,7 +101,8 @@ class ProductAdminController extends Controller
     public function storeImage(ProductImageRequest $request)
     {
         if ($data = $this->productService->store_ProductImage($request)) {
-            return redirect()->route('products.index')->withSuccess("Product Image added!");
+            $pid=$request->all();
+            return redirect()->route('products.show',$pid['product_id'])->withSuccess("Product Image added!");
         }
         return back()->withErrors("Something went wrong");
 
@@ -163,9 +164,8 @@ class ProductAdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if ($product = $this->productService->edit_productInfo($request, $id)) {
-
-            return redirect()->route('products.index')->withSuccess("Product edited!");
+        if ( $this->productService->edit_productInfo($request, $id)) {
+            return redirect()->route('products.show',$id)->withSuccess("Product edited!");
         }
         return back()->withErrors('something went wrong');
     }
@@ -200,9 +200,9 @@ class ProductAdminController extends Controller
 
     public function updateDesc(Request $request, $id)
     {
-        if ($product = $this->productService->edit_productDesc($request, $id)) {
-
-            return redirect()->route('products.index')->withSuccess("Product edited!");
+        if ($this->productService->edit_productDesc($request, $id)) {
+            $pid=  $request->all();
+            return redirect()->route('products.show',$pid['product_id'])->withSuccess("Product edited!");
         }
         return back()->withErrors('something went wrong');
     }

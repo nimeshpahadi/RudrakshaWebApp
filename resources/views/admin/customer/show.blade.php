@@ -68,9 +68,12 @@
             {{$address->contact}}
         </div>
 
+{{--        {{dd($address->latitude_long)}}--}}
         <div class="row">
-            <label class="col-sm-6 "> Latitude_Long :</label>
-            {{$address->latitude_long}}
+            <label class="col-sm-6 "> Location:</label>
+            @foreach($address->latitude_long as $x=>$latlong)
+                {{$x}} = {{$latlong}}<br>
+            @endforeach
         </div>
 
         <div>

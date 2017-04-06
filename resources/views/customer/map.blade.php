@@ -1,4 +1,4 @@
-<div id="myModal" class="modal fade" role="dialog">
+<div id="myModal" class="modal fade in" role="dialog">
     <div class="modal-lg modal-dialog">
 
         <!-- Modal content-->
@@ -8,7 +8,7 @@
                 <h4 class="modal-title">Choose location</h4>
                 <div id="mapCanvas"></div>
                 <div id="infoPanel">
-                    <div id="markerStatus"><i></i></div>
+                    <div id="markerStatus"></div>
 
 
                     <div id="address"></div>

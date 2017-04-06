@@ -3,7 +3,7 @@
 @section('main-content')
 
     <div class=" col-md-8 col-md-offset-2">
-        <h3>Edit Currency</h3>
+        <h3>Edit Product Price</h3>
         <div class="box box-info clearfix pad">
 
             {!! Form::model($prod_price,array('route'=>['product_price.update',$prod_price->id],'method'=>'PUT' ))!!}
@@ -27,7 +27,6 @@
                 </div>
 
             </div>
-            @if(isset($prod_price->pname)) {{$prod_price->pname}},{{$prod_price->currency}} @endif
 
             <div class="form-group{{ $errors->has('currency_id') ? ' has-error' : '' }} clearfix">
                 <label for="currency_id" class="col-sm-4 control-label">Currency </label>
@@ -59,8 +58,8 @@
 
 
             <div class="clearfix " align="right">
-                {{Form::submit('Save Changes', array('class'=>'btn btn-primary btn-sm ','title'=>'Save the changes in the Currency'))}}
-                <a type="button" class="btn btn-warning  btn-sm" href="/admin/currency">Cancel</a>
+                {{Form::submit('Save Changes', array('class'=>'btn btn-primary btn-sm ','title'=>'Save the changes in the Product Price'))}}
+                <a type="button" class="btn btn-warning  btn-sm" href="/admin/product_price">Cancel</a>
                 {!! Form::close() !!}
             </div>
 

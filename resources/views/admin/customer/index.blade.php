@@ -25,7 +25,7 @@
                     <tr>
                         {{--ln -s ~/web/RudrakshaWebbapp/storage/app/public/users ~/web/RudrakshaWebbapp/public/storage/--}}
                         <td><img class="cappingimage" src="{{asset('storage/image/users')}}/{{$row->image}}"></td>
-                        <td>{{$row->name }}</td>
+                        <td>{{$row->firstname }} {{$row->lastname }}</td>
                         <td>{{$row->email }}</td>
                         <td>{{$row->contact }}</td>
                         <td>{{$row->alternative_contact }}</td>

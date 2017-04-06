@@ -28,20 +28,20 @@ Route::get('/users/confirmation/{token}', 'Auth\RegisterController@confirmation'
 
 //customer
 Route::resource('/profile', 'Customer\CustomerController');
-Route::put('/profile/{id}/image', 'Customer\CustomerController@updateimage')->name('customer.updateimage');
 
-Route::get('/profile/{id}/password', 'Customer\CustomerController@password')->name("password");
-Route::patch('/profile/{id}/password', 'Customer\CustomerController@changepassword')->name("changepassword");
+Route::put('/profile/{customer_id}/image', 'Customer\CustomerController@updateimage')->name('customer.updateimage');
+Route::get('/profile/{customer_id}/password', 'Customer\CustomerController@password')->name("password");
+Route::patch('/profile/{customer_id}/password', 'Customer\CustomerController@changepassword')->name("changepassword");
 
 // customer address
-Route::get('/profile/{id}/address', 'Customer\CustomerAddressController@create')->name('customers.address');
-Route::get('/profile/{id}/address/edit', 'Customer\CustomerAddressController@edit')->name('customers.address.edit');
+Route::get('/profile/{customer_id}/address', 'Customer\CustomerAddressController@create')->name('customers.address');
+Route::get('/profile/{customer_id}/address/edit', 'Customer\CustomerAddressController@edit')->name('customers.address.edit');
 Route::post('/profile/address', 'Customer\CustomerAddressController@store')->name('customers.address.store');
-Route::put('/profile/{id}/address/update', 'Customer\CustomerAddressController@update')->name('customers.address.update');
+Route::put('/profile/{customer_id}/address/update', 'Customer\CustomerAddressController@update')->name('customers.address.update');
 
 // Customer Delivery Address
-Route::get('/customers/{id}/deliveryaddress', 'Customer\DeliveryAddressController@index')->name("deliveryaddress");
-Route::post('/customers/deliveryaddress', 'Customer\DeliveryAddressController@store')->name("customers.delivery.store");
-Route::get('/customers/{id}/delivery/edit', 'Customer\DeliveryAddressController@edit')->name("deliveryaddress.edit");
-Route::put('/customers/{id}/delivery/update', 'Customer\DeliveryAddressController@update')->name("deliveryaddress.update");
+Route::get('/profile/{customer_id}/deliveryaddress', 'Customer\DeliveryAddressController@index')->name("deliveryaddress");
+Route::post('/profile/deliveryaddress', 'Customer\DeliveryAddressController@store')->name("customers.delivery.store");
+Route::get('/profile/{customer_id}/delivery/edit', 'Customer\DeliveryAddressController@edit')->name("deliveryaddress.edit");
+Route::put('/profile/{customer_id}/delivery/update', 'Customer\DeliveryAddressController@update')->name("deliveryaddress.update");
 

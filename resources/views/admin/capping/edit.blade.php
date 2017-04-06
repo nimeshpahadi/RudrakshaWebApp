@@ -49,7 +49,6 @@
                         {{ Form::text('description',null,array('class'=>'form-control'))}}
                     </div>
                 </div>
-
                 <div class="form-group{{ $errors->has('status') ? ' has-error' : '' }} clearfix">
                     <label for="status" class="col-sm-4 control-label">Status</label>
 
@@ -57,12 +56,12 @@
 
                         <label>
 
-                            <input name="status" type="radio" value="1" @if($capping->status==true) checked @endif>
+                            <input name="status" type="radio" value="1" @if($capping->status==1) checked @endif>
                             Active
                         </label>
 
                         <label>
-                            <input name="status" type="radio" value="0" @if($capping->status==false) checked @endif>
+                            <input name="status" type="radio" value="0" @if($capping->status==0) checked @endif>
                             Inactive
                         </label>
                     </div>

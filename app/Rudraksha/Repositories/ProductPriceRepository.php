@@ -104,4 +104,18 @@ class ProductPriceRepository
         return $query;
     }
 
+    public function deletePrice($id)
+    {
+        try {
+            $query = $this->productPrice->find($id);
+            $query->delete();
+            $query;
+            $this->log->info("Product Price  Deleted",['id'=>$id]);
+            return true;
+        } catch (QueryException $e) {
+            $this->log->error("Product Price Deletion Failed",['id' => $id], [$e->getMessage()]);
+            return false;
+        }
+    }
+
 }

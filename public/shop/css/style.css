@@ -130,8 +130,8 @@ h2::after  {
     height: 2px;
     margin: 10px 0;
     position: relative;
-    width: 250px;
-    max-width: 80%;
+    width: 1170px;
+    max-width: 100%;
 }
 
 /* =------------------------------GLOBAL-------------------------------------- */

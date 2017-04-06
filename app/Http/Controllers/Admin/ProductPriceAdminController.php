@@ -127,6 +127,9 @@ class ProductPriceAdminController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if ($this->productPriceService->deleteprice($id)) {
+            return back()->withSuccess('Product Price Deleted');
+        }
+        return back()->withErrors('something went wrong');
     }
 }

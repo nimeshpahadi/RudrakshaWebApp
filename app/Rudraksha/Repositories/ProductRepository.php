@@ -110,6 +110,7 @@ class ProductRepository
             ->leftjoin('product_images', 'product_infos.id', 'product_images.product_id')
             ->where('product_infos.category_id', $id)
             ->groupBy('product_infos.id')
+            ->orderBy('product_infos.rank')
             ->get()->toArray();
 
         return $query;

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CurrencyRequest;
 use App\Rudraksha\Services\CurrencyService;
 use Illuminate\Http\Request;
 
@@ -47,7 +48,7 @@ class CurrencyAdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CurrencyRequest $request)
     {
         if ($this->currencyService->store_currency($request)) {
             return redirect()->route('currency.index')->withSuccess("currency added!");

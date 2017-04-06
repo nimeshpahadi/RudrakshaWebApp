@@ -68,7 +68,7 @@
                 <div class="clearfix pad"></div>
                 <div align="right">
                     {{Form::submit('Create', array('class'=>'btn btn-sm btn-primary ','title'=>'Save the Currency'))}}
-                    <a type="button" class="btn btn-sm btn-warning" href="/admin/currency">Cancel</a>
+                    <a type="button" class="btn btn-sm btn-warning" href="/admin/product_price">Cancel</a>
                     {!! Form::close() !!}
                 </div>
 
