@@ -69,34 +69,16 @@ class ShopController extends Controller
         $perPage = 2;
         $currentPageSearchResults = $col->slice(($currentPage - 1) * $perPage, $perPage)->all();
         $entries = new LengthAwarePaginator($currentPageSearchResults, count($col), $perPage);
-        if($request->ajax()) {
-            return [
-                'entries' => view('shop.index',compact('entries'))->render(),
-                'next_page' => $entries->nextPageUrl()
-            ];
+        if ($request->ajax()) {
+
+            $view = view('shop.index',compact('entries'))->render();
+            return response()->json(['html'=>$view]);
         }
 
         return view('shop.home',compact('entries'));
 
     }
 
-    public function fetchNextPostsSet($page) {
-
-
-
-    }
-//    public function index()
-//    {
-//
-//        $currentPage = LengthAwarePaginator::resolveCurrentPage();
-//        $category=$this->productService->getProductasCategory();
-//        $col = new Collection($category);
-//        $perPage = 2;
-//        $currentPageSearchResults = $col->slice(($currentPage - 1) * $perPage, $perPage)->all();
-//        $entries = new LengthAwarePaginator($currentPageSearchResults, count($col), $perPage);
-////        dd($entries);
-//        return view('shop.home',compact('entries'));
-//    }
 
 
     public function detail($id)
