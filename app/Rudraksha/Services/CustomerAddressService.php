@@ -34,11 +34,15 @@ class CustomerAddressService
      */
     public function serviceAddressStore($request)
     {
+
+        $formData=$request->all();
+        $code= isset(config('country_code')[$formData["country"]])?config('country_code')[$formData["country"]]:"";
         $x=explode(',',$request['latitude_long']);
         $t['latitude']=$x[0];
         $t['longitude']=trim($x[1]);
         $request['latitude_long']= $t;
         $request = array_except($request, ['_token', 'to', 'remove']);
+        $request['contact']=$code." ".$formData['contact'];
 
         $storeAddress = $this->addressRepository->repoAddressStore($request);
         return $storeAddress;
@@ -60,11 +64,15 @@ class CustomerAddressService
      */
     public function serviceAddressUpdate($request, $id)
     {
+        $formData=$request->all();
+        $code= isset(config('country_code')[$formData["country"]])?config('country_code')[$formData["country"]]:"";
         $x=explode(',',$request['latitude_long']);
         $t['latitude']=$x[0];
         $t['longitude']=trim($x[1]);
         $request['latitude_long']= $t;
         $request = array_except($request, ['_token', 'to', 'remove']);
+        $request['contact']=$code." ".$formData['contact'];
+
         return $this->addressRepository->repoAddressUpdate($request, $id);
 
     }
@@ -75,7 +83,10 @@ class CustomerAddressService
      */
     public function getCustomerAddressCid($id)
     {
-        return $this->addressRepository->getCustomerAddress($id);
+       $data= $this->addressRepository->getCustomerAddress($id);
+        $realcontact = explode(" ", ($data->contact));
+        $data->contact=$realcontact[1];
+       return $data;
     }
 
 }

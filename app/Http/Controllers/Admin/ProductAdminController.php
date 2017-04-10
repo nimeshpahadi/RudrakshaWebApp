@@ -244,4 +244,14 @@ class ProductAdminController extends Controller
         return back()->withErrors('something went wrong');
 
     }
+    public  function rankImage(Request $request, $id)
+    {
+        if ($this->productService->updateimagerank($request, $id)) {
+
+            return redirect()->route('products.show',$request->product_id)->withSuccess("Product image rank edited!");
+        }
+        return back()->withErrors('something went wrong');
+
+
+    }
 }

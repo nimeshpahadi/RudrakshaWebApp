@@ -24,7 +24,7 @@ class AddressRequest extends FormRequest
             'country' => 'required',
             'state' => 'required',
             'street' => 'required',
-            'contact' => 'required',
+            'contact' => 'required|max:25',
             'latitude_long' => 'required',
 
         ];

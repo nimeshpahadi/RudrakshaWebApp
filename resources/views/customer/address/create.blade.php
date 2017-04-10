@@ -21,9 +21,6 @@
 
                 <div class="form-group{{ $errors->has('country') ? ' has-error' : '' }} clearfix">
                     <label for="country" class="col-sm-4 control-label">Country</label>
-
-
-
                     <?php $x = Config::get('country');?>
                     <div class="col-sm-8">
                         <select id="country_code" name="country" class="form-control" required>
@@ -37,23 +34,6 @@
                     </div>
                 </div>
 
-
-                <?php $y = Config::get('country_code');?>
-                <div class="form-group{{ $errors->has('contact') ? ' has-error' : '' }} clearfix">
-                    <label for="contact" class="col-sm-4 control-label">Contact</label>
-                    <div class="col-sm-8">
-                        <p class="col-sm-2 " id="country_dial"></p>
-                        <input  type="number" class="form-control col-sm-6" name="contact"
-                               value="{{ old('contact') }}" required autofocus>
-
-
-                        @if ($errors->has('contact'))
-                            <span class="help-block">
-                                        <strong>{{ $errors->first('contact') }}</strong>
-                                    </span>
-                        @endif
-                    </div>
-                </div>
 
                 <div class="form-group{{ $errors->has('state') ? ' has-error' : '' }} clearfix">
                     <label for="state" class="col-sm-4 control-label">State</label>
@@ -94,6 +74,21 @@
                         @if ($errors->has('city'))
                             <span class="help-block">
                                         <strong>{{ $errors->first('city') }}</strong>
+                                    </span>
+                        @endif
+                    </div>
+                </div>
+                <?php $y = Config::get('country_code');?>
+                <div class="form-group{{ $errors->has('contact') ? ' has-error' : '' }} clearfix">
+                    <label for="contact" class="col-sm-4 control-label">Contact</label>
+                    <div class="col-sm-8">
+                        <input  type="number" class="form-control col-sm-6" name="contact"
+                                value="{{ old('contact') }}" required autofocus>
+
+
+                        @if ($errors->has('contact'))
+                            <span class="help-block">
+                                        <strong>{{ $errors->first('contact') }}</strong>
                                     </span>
                         @endif
                     </div>

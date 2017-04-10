@@ -303,5 +303,20 @@ class ProductRepository
         }
     }
 
+    public function updateProductImageRank($formData, $id)
+    {
+        try {
+            $data = ProductImage::find($id);
+            $data->rank = $formData['rank'];
+            $data->update();
+            $this->log->info("Product Image Rank Updated", ['id' => $id]);
+            return true;
+        } catch (QueryException $e) {
+            $this->log->error("Product image rank Update  Failed %s", ['id' => $id], [$e->getMessage()]);
+
+            return false;
+        }
+    }
+
 
 }

@@ -189,19 +189,67 @@
                 @foreach($product_image as $img)
                     {{--ln -s ~/web/RudrakshaWebbapp/storage/app/public/image ~/web/RudrakshaWebbapp/public/storage/--}}
                     <div class="col-lg-4">
-                        {{$img->rank}}
                         <img class="productimage" src="{{asset('storage/image/product')}}/{{$img->image}}"
                              style=" border:dotted">
+
+                        <!-- Rank modal -->
+
+
+                        <div class="modal bs-example-modal-sm{{$img->id}}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                            <div class="modal-dialog modal-sm">
+                                <div class="modal-content">
+                                    <h3 class="pad"> Edit rank of image</h3>
+
+                                    {!! Form::model($img,array('route'=>['product_image.rank.edit',$img->id],'method'=>'PUT' ))!!}
+
+                               {{ Form::hidden('product_id', $img->product_id) }}
+                                    <div class="form-group ">
+
+                                        <label for="rank" class="col-sm-4 control-label">Rank</label>
+                                         Previous Rank: {{$img->rank}}
+                                        <div class=" col-sm-8 ">
+                                            <select id="rank" name="rank"
+                                                    class=" form-control " required>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+
+
+                                            {{--@if(isset($product_imagerank))--}}
+                                                    {{--@foreach($product_imagerank as $pro)--}}
+                                                        {{--<option value="{{$pro}}">{{$pro}}</option>--}}
+                                                    {{--@endforeach--}}
+                                                {{--@endif--}}
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    {{ Form::submit('Change', array('class'=>'btn btn-sm btn-primary pad'))}}
+                                    {!! Form::close() !!}
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 row">
+                        <div class="col-md-2 col-md-offset-2">
+
+                        <button type="button" class="btn btn-lg btn-primary " title="edit rank" data-toggle="modal" data-target=".bs-example-modal-sm{{$img->id}}"><i class="fa fa-edit"></i></button>
+                        </div>
+                            <div class="col-md-2 col-md-offset-4">
                         {!! Form::open(['method' => 'DELETE','route' => ['product_image_delete', $img->id]]) !!}
 
-                        <button type="submit" class="btn btn-danger  glyphicon glyphicon-alert pad"
+                        <button type="submit" class="btn btn-sm btn-danger  glyphicon glyphicon-alert pad "
                                 data-toggle="popover"
                                 data-trigger="hover"
                                 data-placement="top" data-content="Delete the current product"
-                                onclick="return confirm('Are you sure you want to delete this item?');">Delete
+                                onclick="return confirm('Are you sure you want to delete this item?');">Del
 
                         </button>
                         {!! Form::close() !!}
+                        </div>
+                        </div>
                     </div>
 
                 @endforeach
@@ -210,3 +258,8 @@
     </div>
 
 @endsection
+
+<script>$('#myModal1').on('shown.bs.modal', function () {
+        $('#myInput').focus()
+    })</script>
+

@@ -102,6 +102,7 @@
 <script src="{{ asset('shop/js/jquery-ui.js') }}"></script>
 <script src="{{ asset('shop/js/plugin.js') }}"></script>
 <script src="{{ asset('shop/js/owl.carousel.js') }}"></script>
+<script src="{{ asset('shop/js/jquery.zoom.min.js') }}"></script>
 <script src="{{ asset('shop/js/script.js') }}"></script>
 <script src="{{ asset('shop/js/jquery.rateyo.js') }}"></script>
 

@@ -213,4 +213,11 @@ class ProductService
         $data = $this->productRepository->updateProductStatus($formData, $id);
         return $data;
     }
+
+    public function updateimagerank($request, $id)
+    {
+        $formData = $request->all();
+        $data = $this->productRepository->updateProductImageRank($formData, $id);
+        return $data;
+    }
 }

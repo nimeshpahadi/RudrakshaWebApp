@@ -1,5 +1,6 @@
 @extends('shop.layout.app')
 
+
 @section('main-content')
 
     <!-- Banner -->
@@ -41,13 +42,13 @@
     </div> <!-- #banner-carasul -->
 
     <!-- one muki rudrakxya -->
-    <div class="infinite-scroll">
-    @foreach($category as $cat=>$value)
+    <div class= "posts endless-pagination" data-next-page="{{ $entries->nextPageUrl() }}">
+    @foreach($entries as $cat=>$value)
         <section id="rudrax-wrapper">
             <div class="container">
                 <div class="row clearfix">
                     <div class="col-sm-12 rudrakxya-inn_header">
-                        <h2 class="info-holder" align="center">{{strtoupper($cat)}}</span> </h2>
+                        <h2 class="info-holder" align="center">{{strtoupper($cat)}}</h2>
                         <div class="row slider-holder">
 
 
@@ -67,13 +68,13 @@
 
                                                 @foreach($item['price'] as $price)
                                                     <h4> {{$price['code']}}:{{$price['representation']}} {{$price['price']}}  </h4>
+                                                    <?php break;?>
                                                 @endforeach
                                                 <h3>{{($item['name']) }} </h3>
                                                 <h3>{{$item['code'] }}</h3>
-                                                <h3>{{$item['rank'] }}</h3>
 
                                                 <div class="rateyo-readonly-widg"></div>
-                                                <a href=""> quick view </a>
+                                                <a href="{{route('product.detail',$item['id'])}}"> quick view </a>
                                             </div>
                                         </div>
                                         @endif
@@ -86,28 +87,45 @@
             </div> <!-- container -->
         </section><!-- rudrax -->
     @endforeach
+
+
     </div>
-
-
-
-
-
 @endsection
-<script src="{{ asset('js/jscroll/jquery.jscroll.min.js') }}"></script>
 
-<script type="text/javascript">
-    $('ul.pagination').hide();
-    $(function() {
-        $('.infinite-scroll').jscroll({
-            autoTrigger: true,
-            loadingHtml: '<img class="center-block" src="loading.gif" alt="Loading..." />', // MAKE SURE THAT YOU PUT THE CORRECT IMG PATH
-            padding: 0,
-            nextSelector: '.pagination li.active + li a',
-            contentSelector: 'div.infinite-scroll',
-            callback: function() {
-                $('ul.pagination').remove();
-            }
-        });
+<script>
+    var page = 1;
+    console.log("hello")
+
+    $(window).scroll(function() {
+        if($(window).scrollTop() + $(window).height() >= $(document).height()) {
+            page++;
+            loadMoreData(page);
+        }
     });
+    function loadMoreData(page){
+        $.ajax(
+            {
+                url: '?page=' + page,
+                type: "get",
+                beforeSend: function()
+                {
+                    $('.ajax-load').show();
+                }
+            })
+            .done(function(data)
+            {
+                if(data.html == " "){
+                    $('.ajax-load').html("No more records found");
+                    return;
+                }
+                $('.ajax-load').hide();
+                $("#post-data").append(data.html);
+            })
+            .fail(function(jqXHR, ajaxOptions, thrownError)
+            {
+                alert('server not responding...');
+            });
+    }
 </script>
+
 

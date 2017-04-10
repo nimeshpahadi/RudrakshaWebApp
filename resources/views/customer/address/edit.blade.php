@@ -55,7 +55,7 @@
                 <label for="contact" class="col-sm-4 control-label">Contact</label>
 
                 <div class="col-sm-8">
-                    {{ Form::number('contact', null, array('class'=>'form-control'))}}
+                    {{ Form::text('contact', null, array('class'=>'form-control'))}}
                 </div>
             </div>
 

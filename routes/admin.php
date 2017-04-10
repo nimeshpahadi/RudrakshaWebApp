@@ -32,6 +32,7 @@ Route::put('/product_desc/{id}', 'ProductAdminController@updateDesc')->name('pro
 //image
 Route::get('/products/{id}/image', 'ProductAdminController@createImage')->name('product_image');
 Route::post('/products/image', 'ProductAdminController@storeImage')->name('product_image_add');
+Route::put('/products/image/{id}/rank_update', 'ProductAdminController@rankImage')->name('product_image.rank.edit');
 
 
 Route::delete('/product_img/{id}', 'ProductAdminController@deleteImage')->name('product_image_delete');
