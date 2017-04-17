@@ -74,7 +74,7 @@ jQuery( document ).ready(function( $ ) {
     $('.service_detail').owlCarousel({
         margin: 10,
         nav: true,
-        loop: true,
+        loop: false,
         responsive: {
             0: {
                 items: 1

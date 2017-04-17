@@ -2,23 +2,22 @@
 
 namespace App\Http\Controllers\Shop;
 
+use Illuminate\Http\Request;
+
+use App\Http\Requests;
 use App\Rudraksha\Services\CappingService;
 use App\Rudraksha\Services\CategoryService;
 use App\Rudraksha\Services\CustomerAddressService;
 use App\Rudraksha\Services\ProductPriceService;
 use App\Rudraksha\Services\ProductService;
-//use Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+
 use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
 
 
 class ShopController extends Controller
 {
-
-
     /**
      * @var ProductService
      */
@@ -60,8 +59,6 @@ class ShopController extends Controller
      * @return array
      */
 
-
-
     public function index(Request $request) {
         $currentPage = LengthAwarePaginator::resolveCurrentPage();
         $category=$this->productService->getProductasCategory();
@@ -70,11 +67,9 @@ class ShopController extends Controller
         $currentPageSearchResults = $col->slice(($currentPage - 1) * $perPage, $perPage)->all();
         $entries = new LengthAwarePaginator($currentPageSearchResults, count($col), $perPage);
         if ($request->ajax()) {
-
             $view = view('shop.index',compact('entries'))->render();
             return response()->json(['html'=>$view]);
         }
-
         return view('shop.home',compact('entries'));
 
     }

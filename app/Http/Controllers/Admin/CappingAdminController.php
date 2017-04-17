@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CappingRequest;
 use App\Rudraksha\Services\CappingService;
 use Illuminate\Http\Request;
 
@@ -47,7 +48,7 @@ class CappingAdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CappingRequest $request)
     {
         if ($this->cappingService->store_capping($request)) {
             return redirect()->route('capping.index')->withSuccess("Capping added!");
@@ -109,7 +110,7 @@ class CappingAdminController extends Controller
     }
 
 
-    public function updateImage(Request $request,$id)
+    public function updateImage(CappingRequest $request,$id)
     {
         if ($this->cappingService->edit_capImage($request, $id)) {
 

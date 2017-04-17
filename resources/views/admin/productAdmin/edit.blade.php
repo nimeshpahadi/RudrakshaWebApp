@@ -12,9 +12,9 @@
                 <div class="col-md-12 well text-center">
                     <h1>Edit Product Info</h1>
                     {!! Form::model($pro_id,array('route'=>['products.update',$pro_id->id],'method'=>'PUT' ))!!}
-
+                        {{Form::hidden('id',$pro_id->id)}}
                     <div class="form-group{{ $errors->has('category_id') ? ' has-error' : '' }} clearfix">
-                        <label for="category_id" class="col-sm-4 control-label">Warehouse </label>
+                        <label for="category_id" class="col-sm-4 control-label">Category </label>
 
                         <div class="col-md-8 warehouse">
                             <select id="category_id" name="category_id"
@@ -22,7 +22,7 @@
 
                                 @foreach ($category as $cat)
 
-                                    <option value="{{$cat->id}}">
+                                    <option value="{{$cat->id}}" @if($cat->id==$pro_id->category_id)selected @endif>
                                         {{$cat->name}}
                                     </option>
                                 @endforeach

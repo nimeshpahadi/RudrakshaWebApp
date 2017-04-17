@@ -33,7 +33,6 @@
                     <div class="form-group{{ $errors->has('contact') ? ' has-error' : '' }} clearfix">
                         <label for="contact" class="col-sm-4 control-label">Contact</label>
                         <div class="col-sm-8">
-                            <p class="col-sm-2 " id="country_dial"></p>
                             <input type="number" class="form-control col-sm-6" name="contact"
                                    value="{{ old('contact') }}" required autofocus>
 

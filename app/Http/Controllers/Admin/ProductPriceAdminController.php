@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\ProductPriceRequest;
 use App\Rudraksha\Services\CurrencyService;
 use App\Rudraksha\Services\ProductPriceService;
 use App\Rudraksha\Services\ProductService;
@@ -69,7 +70,7 @@ class ProductPriceAdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductPriceRequest $request)
     {
         if ($this->productPriceService->store_productprice($request)) {
             return redirect()->route('product_price.index')->withSuccess("Product Price added!");
@@ -99,7 +100,8 @@ class ProductPriceAdminController extends Controller
     {
         $currency=$this->currencyService->getCurrency();
         $product=$this->productService->getactiveproduct();
-        $prod_price= $this->productPriceService->getproductpriceId($id);
+        $prod_price= $this->productPriceService->getproductpricebyId($id);
+//        dd($prod_price);
        return view('admin.product_price.edit',compact('prod_price','product','currency'));
     }
 
@@ -110,8 +112,9 @@ class ProductPriceAdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProductPriceRequest $request, $id)
     {
+
         if ($this->productPriceService->updateproductprice($request, $id)) {
 
             return redirect()->route('product_price.index')->withSuccess("Product price updated!");

@@ -8,7 +8,7 @@
 
             {!! Form::model($currencyid,array('route'=>['currency.update',$currencyid->id],'method'=>'PUT' ))!!}
             {{ csrf_field() }}
-
+            {{Form::hidden('id',$currencyid->id)}}
 
             <div class="form-group{{ $errors->has('code') ? ' has-error' : '' }} clearfix">
                 <label for="code" class="col-sm-4 control-label">Code</label>

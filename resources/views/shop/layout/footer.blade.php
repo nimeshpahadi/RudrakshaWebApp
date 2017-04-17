@@ -107,9 +107,5 @@
 <script src="{{ asset('shop/js/jquery.rateyo.js') }}"></script>
 
 
-
-
-
-
 </body>
 </html>

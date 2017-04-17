@@ -11,7 +11,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CurrencyRequest extends FormRequest
+class CappingRequest extends FormRequest
 {
     public function authorize()
     {
@@ -25,43 +25,33 @@ class CurrencyRequest extends FormRequest
      */
     public function rules()
     {
+
         switch ($this->method()) {
             case 'POST': {
 
                 return [
-                    'code' => 'required|unique:currencies|max:20|min:2',
-                    'representation' => 'required|unique:currencies|max:10',
-                    'currency' => 'required|unique:currencies|max:20',
-                ];
 
+                    'type' => 'required|max:255',
+                    'design_image' => 'image|required|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                    'price' => 'required|numeric',
+                    'metal_quantity_used' => 'string',
+                    'status' => 'required|boolean',
+                    'description' => 'required|string',
+
+                ];
 
             }
 
             case 'PUT': {
-
                 return [
-                    'code' => 'required|max:20|min:2|unique:currencies,code,'. $this->get('id'),
-                    'representation' => 'required|max:10|unique:currencies,representation,'. $this->get('id'),
-                    'currency' => 'required|max:20|unique:currencies,currency,'. $this->get('id'),
+                    'design_image' => 'image|required|mimes:jpeg,png,jpg,gif,svg|max:2048',
                 ];
             }
 
             default:
                 break;
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
+
 
 }

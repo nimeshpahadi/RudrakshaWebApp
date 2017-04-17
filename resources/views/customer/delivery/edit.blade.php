@@ -8,8 +8,8 @@
 
             {!! Form::model($customerDelivery,array('route'=>['deliveryaddress.update',$customerDelivery->id],'method'=>'PUT' ))!!}
             {{ csrf_field() }}
-
-
+{{--{{dd($customerDelivery)}}--}}
+{{Form::hidden('customer_id',$customerDelivery->customer_id)}}
             <div class="form-group{{ $errors->has('country') ? ' has-error' : '' }} clearfix">
                 <label for="country" class="col-sm-4 control-label">Country</label>
 

@@ -20,11 +20,12 @@ class AddressRequest extends FormRequest
 
     public function rules()
     {
+
         return [
-            'country' => 'required',
-            'state' => 'required',
-            'street' => 'required',
-            'contact' => 'required|max:25',
+            'country' => 'required|string',
+            'state' => 'required|string',
+            'street' => 'required|string',
+            'contact' => 'required|numeric|min:5',
             'latitude_long' => 'required',
 
         ];

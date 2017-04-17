@@ -6,9 +6,9 @@
         <h3>Edit Product Price</h3>
         <div class="box box-info clearfix pad">
 
-            {!! Form::model($prod_price,array('route'=>['product_price.update',$prod_price->id],'method'=>'PUT' ))!!}
+            {!! Form::model($prod_price,array('route'=>['product_price.update',$prod_price->priceid],'method'=>'PUT' ))!!}
             {{ csrf_field() }}
-
+{{--{{dd($prod_price)}}--}}
 
             <div class="form-group{{ $errors->has('product_id') ? ' has-error' : '' }} clearfix">
                 <label for="product_id" class="col-sm-4 control-label">Product ID </label>
@@ -18,8 +18,7 @@
                             class=" form-control " required>
 
                         @foreach ($product as $pro)
-
-                            <option value="{{$pro->id}}">
+                            <option value="{{$pro->id}}" @if($pro->id==$prod_price->prodid)selected @endif>
                                 {{$pro->name}}
                             </option>
                         @endforeach
@@ -36,7 +35,7 @@
                             class=" form-control " required>
 
                         @foreach ($currency as $curen)
-                            <option value="{{$curen->id}}">
+                            <option value="{{$curen->id}}" @if($curen->id==$prod_price->cid)selected @endif>
                                 {{$curen->currency}}
                             </option>
                         @endforeach
@@ -52,7 +51,7 @@
                 <label for="price" class="col-sm-4 control-label">Price</label>
 
                 <div class="col-sm-8">
-                    {{ Form::text('price',null,array('class'=>'form-control'))}}
+                    {{ Form::number('price',null,array('class'=>'form-control'))}}
                 </div>
             </div>
 

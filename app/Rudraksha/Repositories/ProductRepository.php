@@ -318,5 +318,11 @@ class ProductRepository
         }
     }
 
+    public function getproductcatid($id)
+    {
+         $data=$this->productInfo->select('*')->where('category_id',$id)->get()->toArray();
+         return $data;
+    }
+
 
 }

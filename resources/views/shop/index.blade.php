@@ -1,12 +1,12 @@
-@foreach($entries as $cat=>$value)
+
+    @foreach($entries as $cat=>$value)
     <section id="rudrax-wrapper">
         <div class="container">
             <div class="row clearfix">
+                <div class="infinite-scroll">
                 <div class="col-sm-12 rudrakxya-inn_header">
                     <h2 class="info-holder" align="center">{{strtoupper($cat)}} </h2>
                     <div class="row slider-holder">
-
-
                         <div class="owl-carousel owl-theme service_detail">
                             @if(isset($value['product']))
 
@@ -18,12 +18,10 @@
                                                 @foreach($item['image'] as $img)
                                                     <img src="{{asset('storage/image/product')}}/{{$img['image']}}"
                                                          height="200px"><br>
-                                                    <?php break; ?>
                                                 @endforeach
 
                                                 @foreach($item['price'] as $price)
                                                     <h4> {{$price['code']}}:{{$price['representation']}} {{$price['price']}}  </h4>
-                                                    <?php break;?>
                                                 @endforeach
                                                 <h3>{{($item['name']) }} </h3>
                                                 <h3>{{$item['code'] }}</h3>
@@ -38,7 +36,9 @@
                         </div>
                     </div>
                 </div><!-- col-sm-12 -->
+                </div>
             </div> <!-- row -->
         </div> <!-- container -->
     </section><!-- rudrax -->
 @endforeach
+

@@ -25,15 +25,38 @@ class CategoryRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'name' => 'required|unique:categories|max:255|min:5',
-            'code' => 'required|unique:categories',
-            'short_description' => 'required|max:500',
-            'information' => 'required',
-            'status' => 'required',
-            'face_no' => 'required',
 
-        ];
+        switch ($this->method()) {
+            case 'POST': {
+
+                return [
+                    'name' => 'required|unique:categories|max:255|min:5',
+                    'code' => 'required|unique:categories',
+                    'short_description' => 'required|max:500',
+                    'information' => 'required',
+                    'status' => 'required|boolean',
+                    'face_no' => 'required|numeric',
+
+                ];
+
+            }
+
+            case 'PUT': {
+                return [
+                    'name' => 'required|max:255|min:5|unique:categories,name,' . $this->get('id'),
+                    'code' => 'required|unique:categories,code,' . $this->get('id'),
+                    'short_description' => 'required|max:500',
+                    'information' => 'required',
+                    'status' => 'required|boolean',
+                    'face_no' => 'required|numeric',
+
+                ];
+            }
+
+            default:
+                break;
+        }
     }
+
 
 }

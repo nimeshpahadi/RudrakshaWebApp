@@ -9,7 +9,7 @@
             {!! Form::model($cat_id,array('route'=>['category.update',$cat_id->id],'method'=>'PUT' ))!!}
             {{ csrf_field() }}
 
-
+            {!! Form::hidden('id', $cat_id->id) !!}
             <div class="form-group{{ $errors->has('code') ? ' has-error' : '' }} clearfix">
                 <label for="code" class="col-sm-4 control-label">Code</label>
 

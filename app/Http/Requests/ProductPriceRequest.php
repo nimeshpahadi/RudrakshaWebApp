@@ -12,7 +12,7 @@ namespace App\Http\Requests;
 use App\Rudraksha\Entities\ProductInfo;
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProductImageRequest extends FormRequest
+class ProductPriceRequest extends FormRequest
 {
     public function authorize()
     {
@@ -24,25 +24,27 @@ class ProductImageRequest extends FormRequest
      *
      * @return array
      */
+
+
     public function rules()
     {
-        return [
-            'rank' => 'required|numeric',
-            'image' => 'image|required|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                return [
 
-        ];
-
-
+                    'product_id' => 'required',
+                    'price' => 'required|numeric',
+                    'currency_id' => 'required',
 
 
-
-
-
-
-
-
-
+                ];
 
     }
+    }
 
-}
+
+
+
+
+
+
+
+

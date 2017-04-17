@@ -28,8 +28,8 @@ class DeliveryAddressRequest extends FormRequest
         return [
             'customer_id' => 'required|numeric',
             'country' => 'required|string',
-            'contact' => 'required|string',
-            'city' => 'required|max:255|min:3',
+            'contact' => 'required|string|min:5',
+            'city' => 'required|string',
             'state' => 'required|string',
             'latitude_long' => 'required|string',
             'address_line1' => 'required|string',

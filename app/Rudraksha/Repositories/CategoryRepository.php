@@ -144,4 +144,18 @@ class CategoryRepository
         }
     }
 
+    public function DeleteCategory($id)
+    {
+        try {
+            $query = $this->category->find($id);
+
+            $query->delete();
+            $this->log->info("Category  Deleted",['id'=>$id]);
+            return true;
+        } catch (QueryException $e) {
+            $this->log->error("Category Deletion Failed",['id' => $id], [$e->getMessage()]);
+            return false;
+        }
+    }
+
 }

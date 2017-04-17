@@ -89,7 +89,7 @@ class CategoryAdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CategoryRequest $request, $id)
     {
         if ($this->categoryService->editcategory($request, $id)) {
 
@@ -171,6 +171,10 @@ class CategoryAdminController extends Controller
      */
     public function destroy($id)
     {
+        if ($this->categoryService->deletecategory($id)) {
+            return redirect()->route('category.index')->withSuccess('Category Deleted');
+        }
+        return back()->withErrors('The category cannot be deleted as it has product');
 
     }
 }

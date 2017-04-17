@@ -46,6 +46,8 @@
                                     </div>
                                     {!! Form::model($capping,array('route'=>['capping.updateImage',$capping->id],'method'=>'PUT', 'enctype'=>'multipart/form-data'))!!}
                                     {{ Form::hidden('type', $capping->type) }}
+                                    {{ Form::hidden('id', $capping->id) }}
+
                                     <div class="form-group ">
                                         <label for="design_image" class="col-sm-4 control-label">Image</label>
                                         <div class=" col-sm-8 ">

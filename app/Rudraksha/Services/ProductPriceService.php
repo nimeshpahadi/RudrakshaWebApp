@@ -56,4 +56,9 @@ class ProductPriceService
         return $this->productPriceRepository->deletePrice($id);
     }
 
+    public function getproductpricebyId($id)
+    {
+        return $this->productPriceRepository->getProductPricebyid($id);
+    }
+
 }

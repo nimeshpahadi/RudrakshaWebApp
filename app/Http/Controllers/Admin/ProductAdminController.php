@@ -163,7 +163,7 @@ class ProductAdminController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProductInfoRequest $request, $id)
     {
         if ( $this->productService->edit_productInfo($request, $id)) {
             return redirect()->route('products.show',$id)->withSuccess("Product edited!");

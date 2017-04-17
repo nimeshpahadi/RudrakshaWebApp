@@ -10,6 +10,7 @@ namespace App\Rudraksha\Services;
 
 
 use App\Rudraksha\Repositories\CategoryRepository;
+use App\Rudraksha\Repositories\ProductRepository;
 
 class CategoryService
 {
@@ -18,10 +19,15 @@ class CategoryService
      * @var CategoryRepository
      */
     private $categoryRepository;
+    /**
+     * @var ProductRepository
+     */
+    private $productRepository;
 
-    public function __construct(CategoryRepository $categoryRepository)
+    public function __construct(CategoryRepository $categoryRepository,ProductRepository $productRepository)
     {
         $this->categoryRepository = $categoryRepository;
+        $this->productRepository = $productRepository;
     }
 
     public function store_category($request)
@@ -86,5 +92,16 @@ class CategoryService
     {
         $data= $this->categoryRepository->delete_benefit_heading($id);
         return $data;
+    }
+
+    public function deletecategory($id)
+    {
+        $data=$this->productRepository->getproductcatid($id);
+        if (empty($data)) {
+            return $this->categoryRepository->DeleteCategory($id);
+        }
+        else{
+            return false;
+        }
     }
 }

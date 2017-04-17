@@ -35,7 +35,7 @@ class CustomerAddressService
     public function serviceAddressStore($request)
     {
 
-        $formData=$request->all();
+        $formData=$request;
         $code= isset(config('country_code')[$formData["country"]])?config('country_code')[$formData["country"]]:"";
         $x=explode(',',$request['latitude_long']);
         $t['latitude']=$x[0];
@@ -85,6 +85,7 @@ class CustomerAddressService
     {
        $data= $this->addressRepository->getCustomerAddress($id);
         $realcontact = explode(" ", ($data->contact));
+//        dd($realcontact);
         $data->contact=$realcontact[1];
        return $data;
     }
