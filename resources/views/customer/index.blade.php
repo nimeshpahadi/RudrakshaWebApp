@@ -1,200 +1,105 @@
-@extends('layouts.app')
+@extends('shop.layout.app')
 
-@section('content')
-    @include('layouts.notification')
+@section('main-content')
+    @include('shop.layout.breadcrum')
 
-    <div class="container" xmlns="http://www.w3.org/1999/html">
-        <div class="col-md-12">
+    <section id="user-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-sm-4 user-left">
+                            <div class="user_fa">
 
-            @include('layouts.navbar')
+                                {!! Form::model($customer,array('route'=>['customer.updateimage',$customer->id],'method'=>'PUT','enctype'=>'multipart/form-data'  ))!!}
 
-            <div class=" col-md-3 clearfix">
+                                {{ Form::hidden('id',$customer->id  ) }}
+                                <figure class="user-image">
+                                    <img @if(isset($customer->image)) src="{{asset('storage/image/users')}}/{{$customer->image}}"
+                                     style="width: 80%"
+                                     @else
+                                     src="noavatar.png"
+                                    @endif>
+                                </figure>
+                                <input id="inputimage" name="image" type="file" class="file-loading">
 
-                {!! Form::model($customer,array('route'=>['customer.updateimage',$customer->id],'method'=>'PUT','enctype'=>'multipart/form-data'  ))!!}
 
-                {{ Form::hidden('id',$customer->id  ) }}
-                <span class="input-group-addon" style="height: 200px ">
-                    <img @if(isset($customer->image)) src="{{asset('storage/image/users')}}/{{$customer->image}}"
-                         style="width: 100%"
-                         @else src="noavatar.png"
-                         @endif class="img-responsive"
-                         alt="Profile Image"></span>
-                <input id="inputimage" name="image" type="file" class="file-loading">
+                                {{Form::submit('Post', array('class'=>'btn btn-primary ','title'=>'Upload image'))}}
+                                {!! Form::close() !!}
 
-                <div align="right">
-                    {{Form::submit('Post', array('class'=>'btn btn-sm btn-primary ','title'=>'Upload image'))}}
-                    {!! Form::close() !!}
-                </div>
 
-            </div>
-            <div class="col-md-9">
-                <div class="panel panel-default panel-danger col-md-12">
-                    <div class="panel-heading">
-                        <h3 class="panel-title ">User Profile</h3>
-                    </div>
-                    <div class="panel-body">
-                        <div class="row">
-                            <label class="col-sm-6 "> First Name :</label>
-                            {{$customer->firstname}}
-                        </div>
-                        <div class="row">
-                            <label class="col-sm-6 "> Last Name :</label>
-                            {{$customer->lastname}}
-                        </div>
-                        <div class="row">
-                            <label class="col-sm-6 "> Email :</label>
-                            {{$customer->email}}
-                        </div>
-                        @if(isset($customer->contact))
-                            <div class="row">
-                            <label class="col-sm-6 "> Contact :</label>
-                            {{$customer->contact}}
-                        </div>
-                        @endif
-
-                        <div class="row">
-                            <label class="col-sm-6 "> Created At :</label>
-                            {{$customer->created_at}}
+                                <figcaption class="user-name">
+                                    {{ucfirst($customer->firstname)}} {{ucfirst($customer->lastname)}}
+                                </figcaption>
+                            </div>
+                            <ul class="user-setting">
+                                <li><i class="fa fa-truck"></i> <a href=""> Delivery address </a></li>
+                                <li><i class="fa fa-pencil-square-o"></i> <a href=""> Change password </a></li>
+                                <li><i class="fa fa-history"></i> <a href=""> History </a></li>
+                                <li><i class="fa fa-sign-out"></i> <a href=""> Log out </a></li>
+                            </ul>
                         </div>
 
-                    </div>
-                </div>
+                        <div class="col-sm-8 user-right">
+                            <div class="row">
+                                <div class="user-top">
+                                    <h3 class="user-title"> User profile </h3>
+                                    <ul class=" user-details">
+                                        <li> First Name :{{$customer->firstname}}</li>
+                                        <li> Last Name : {{$customer->lastname}}</li>
+                                        <li> Email : {{$customer->email}} </li>
+                                        @if(isset($customer->contact))
+                                            <li> Contact : {{$customer->contact}} </li>
+                                        @endif
+                                        @if(isset($customer->alternative_contact))
+                                            <li> Alternative contact : {{$customer->alternative_contact}} </li>
+                                        @endif
+                                        <li>Joined on : {{$customer->created_at}} </li>
+                                    </ul>
+                                </div>
 
-                <div class="panel panel-default panel-success col-md-12">
-                    @if(!isset($customerAddress))
-                        <div align="right" style="padding: 10px">
-                            <a href="{{route('customers.address', $customer->id)}}">
-                                <span class=" btn btn-sm btn-success" title="Create New Address">Create Address</span>
-                            </a>
+                                <div class="col-sm-7 user-bottom">
+                                    <div class="row">
+                                        <h3 class="user-title"> User address </h3>
+                                        <a href="{!! route('customers.address.edit',$customer->id)!!}">
+                                                    <span class="btn btn-primary glyphicon glyphicon-pencil"
+                                                          data-toggle="popover" data-trigger="hover"
+                                                          data-placement="top" data-content="">
+                                                    </span>
+                                        </a>
+
+                                        <ul class=" user-details">
+                                            <li> Country : <?php $x = Config::get('country');?>
+                                                @foreach($x as $code=>$name)
+                                                    @if($customerAddress->country==$code){{$name}} @endif
+                                                @endforeach</li>
+                                            <li> State : {{$customerAddress->state}} </li>
+                                            <li> Street : {{$customerAddress->street}} </li>
+                                            <li> City : {{$customerAddress->city}} </li>
+                                            <li> Contact : {{$customerAddress->contact}}</li>
+                                            <li>@foreach($customerAddress->latitude_long as $x=>$latlong)
+                                                    {{$x}} = {{$latlong}}<br>
+                                                @endforeach</li>
+
+
+                                        </ul>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-5 user-bottom-tight">
+                                    <div class="row">
+                                        <h3 class="user-title"> Map </h3>
+                                        <iframe width="560" height="180"
+                                                src="https://www.youtube.com/embed/1YBl3Zbt80A?ecver=1" frameborder="0"
+                                                allowfullscreen></iframe>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-
-                    @else
-                        <div class="panel-heading">
-                            <h3 class="panel-title ">User Address</h3>
-                        </div>
-                        <div class="panel-body">
-                            <div class="row">
-                                <label class="col-sm-6 "> Country :</label>
-                                <?php $x = Config::get('country');?>
-                                @foreach($x as $code=>$name)
-                                    @if($customerAddress->country==$code){{$name}} @endif
-                                @endforeach
-                            </div>
-                            <div class="row">
-                                <label class="col-sm-6 "> State :</label>
-                                {{$customerAddress->state}}
-                            </div>
-                            <div class="row">
-                                <label class="col-sm-6 "> Street :</label>
-                                {{$customerAddress->street}}
-                            </div>
-                            <div class="row">
-                                <label class="col-sm-6 "> City :</label>
-                                {{$customerAddress->city}}
-                            </div>
-
-                            <div class="row">
-                                <label class="col-sm-6 "> Contact At :</label>
-                                {{$customerAddress->contact}}
-                            </div>
-
-                            <div class="row">
-                                <label class="col-sm-6 "> Latitude_Long :</label>
-                                @foreach($customerAddress->latitude_long as $x=>$latlong)
-                                    {{$x}} = {{$latlong}}<br>
-                                @endforeach
-
-                            </div>
-
-                            <div>
-                                <a href="{!! route('customers.address.edit',$customer->id)!!}">
-                                            <span class="  btn btn-primary glyphicon glyphicon-pencil"
-                                                  data-toggle="popover" data-trigger="hover"
-                                                  data-placement="top" data-content="">
-                                            </span>
-                                </a>
-                            </div>
-                        </div>
-                    @endif
-                </div>
-
-                <div class="panel panel-default panel-info col-md-12">
-
-
-                    @if(!isset($customerDelivery))
-
-                        <div align="right" style="padding: 10px">
-                            <a href="{{route('deliveryaddress',$customer->id)}}">
-                                <span class=" btn btn-sm btn-success" title="Create new delivery address">Create Delivery Address</span>
-                            </a>
-                        </div>
-
-                    @else
-                        <div class="panel-heading">
-                            <h3 class="panel-title ">User Delivery Address</h3>
-                        </div>
-                        <div class="panel-body">
-
-                            <a href="{{route('deliveryaddress.edit',$customerDelivery->id)}}">
-                                <button class="btn btn-warning pad" data-toggle="popover" data-trigger="hover"
-                                        data-placement="top" data-content="Edit the {{$customerDelivery->id}} delivery">
-                                    <i class="fa fa-edit">edit</i>
-                                </button>
-                            </a>
-
-
-                            <div class="row">
-                                <label class="col-sm-6 "> Country :</label>
-                                <?php $x = Config::get('country');?>
-                                @foreach($x as $code=>$name)
-                                    @if($customerDelivery->country==$code){{$name}} @endif
-                                @endforeach
-                            </div>
-                            <div class="row">
-                                <label class="col-sm-6 "> State :</label>
-                                {{$customerDelivery->state}}
-                            </div>
-                            <div class="row">
-                                <label class="col-sm-6 "> Contact :</label>
-                                {{$customerDelivery->contact}}
-                            </div>
-
-                            <div class="row">
-                                <label class="col-sm-6 "> City:</label>
-                                {{$customerDelivery->city}}
-                            </div>
-                            <div class="row">
-                                <label class="col-sm-6 "> Latitude_Long :</label>
-                                @foreach($customerDelivery->latitude_long as $x=>$latlong)
-                                    {{$x}} = {{$latlong}}<br>
-                                @endforeach
-
-                            </div>
-                            <div class="row">
-                                <label class="col-sm-6 "> Address Line1:</label>
-                                {{$customerDelivery->address_line1}}
-                            </div>
-
-                            <div class="row">
-                                <label class="col-sm-6 "> Address Line2:</label>
-                                {{$customerDelivery->address_line2}}
-                            </div>
-                            <div class="row">
-                                <label class="col-sm-6 "> Zip-code:</label>
-                                {{$customerDelivery->zip_code}}
-                            </div>
-                            <div class="row">
-                                <label class="col-sm-6 "> Address Note:</label>
-                                <textarea class="col-md-6" >{{$customerDelivery->address_note}}</textarea>
-                            </div>
-
-
-                        </div>
-                    @endif
-                </div>
-
-            </div>
-
-
-        </div>
+                    </div> <!-- row -->
+                </div> <!-- sm-12 -->
+            </div> <!-- row -->
+        </div> <!-- container -->
+    </section> <!-- user-wrapper -->
 @endsection

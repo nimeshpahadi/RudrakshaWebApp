@@ -88,4 +88,18 @@ class ShopController extends Controller
         return view('shop.detail',compact('productid','product_desc',
             'product_image','product_imagerank','product_price','capping','benefits'));
     }
+    public function aboutUs()
+    {
+        return view('shop.about_us');
+    }
+
+    public function contact()
+    {
+        return view('shop.contact');
+    }
+
+    public function faq()
+    {
+        return view('shop.faq');
+    }
 }

@@ -2,24 +2,7 @@
 
 @section('main-content')
 
-    <!-- Banner -->
-    <!-- breadcom -->
-    <section id="breadcom-wrapper">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="row">
-                        <ul class="breadcrumb">
-                            <h2 class="info-holder">Two muki Rudraxya </span> </h2>
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">Products</a></li>
-                            <li class="active">Detail</li>
-                        </ul>
-                    </div><!-- row -->
-                </div> <!-- col -->
-            </div> <!-- row -->
-        </div> <!-- container -->
-    </section> <!-- breadcom-wrapper -->
+    @include('shop.layout.breadcrum')
 
     <section id="detail-wrapper" style="width: auto; height: auto; display: block;">
         <div class="container">

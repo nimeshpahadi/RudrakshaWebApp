@@ -1,5 +1,5 @@
-@font-face {
-    font-family: 'active';
+@font-face {                     
+    font-family: 'active'; 
     src: url(../fonts/active.LobsterTwo-BoldItalic_0.otf);
     font-style:normal;
 }
@@ -7,7 +7,7 @@
 
 /* =Reset    
 ----------------------------------------------- */
-html, body, div, span, applet, object, iframe,
+html, body, div, span, applet, object, iframe, 
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, font, ins, kbd, q, s, samp,
@@ -47,11 +47,11 @@ ol, ul {
 }
 
 table { /* tables still need 'cellspacing="0"' in the markup */
-    border-collapse: collapse;
-    border-spacing: 0;
-    margin-left: 10px;
-    margin-top: 30px;
-    width: 95%;
+border-collapse: collapse;
+border-spacing: 0;
+margin-left: 10px;
+margin-top: 30px;
+width: 95%;
 }
 
 th {
@@ -95,13 +95,13 @@ button::-moz-focus-inner {
 
 input:focus, a:visited {
     outline:0!important;
-    box-shadow:0 0 0 #000!important;
+    box-shadow:0 0 0 #000!important;    
 }
 
-img{
+img{ 
     opacity: 0.9;
     filter: alpha(opacity=90); /* For IE8 and earlier*/
-}
+} 
 
 p{
     font-size: 16px;
@@ -130,15 +130,15 @@ h2::after  {
     height: 2px;
     margin: 10px 0;
     position: relative;
-    width: 250px;
-    max-width: 80%;
+    width:100%;
+    max-width: 100%;
 }
 
 /* =------------------------------GLOBAL-------------------------------------- */
 
 body {
     font-family: 'Roboto', sans-serif;
-    background:#fff;
+    background:#fff;    
 }
 .container{
     width: 1170px;
@@ -146,8 +146,8 @@ body {
 }
 
 /* = Header (logo, ph-num, menu)
---------------------------------*/
-/*header wrapper*/
+--------------------------------*/ 
+/*header wrapper*/ 
 #header-wrapper {
     border-bottom: 1px solid #616b76;
     padding: 13px 0;
@@ -264,14 +264,14 @@ body {
     margin-top: 0;
     z-index: 22;
 }
-.main-navigation .search-box:after {
+.main-navigation .search-box:after { 
     top: -8px;
-    width: 0;
+    width: 0; 
     height: 0;
     right: 8px;
-    z-index: 2;
-    content: " ";
-    display: block;
+    z-index: 2; 
+    content: " "; 
+    display: block; 
     position: absolute;
     border-bottom: 8px solid #e6400c;
     border-right: 8px solid transparent;
@@ -398,7 +398,7 @@ body {
 /*banner*/
 #owl-demo{
     display: inline-block;
-    overflow: hidden;
+    overflow: hidden; 
 }
 .caradul-wrapper .owl-prev::before {
     content: "\f104";
@@ -603,7 +603,7 @@ body {
 .footer-address > span, .footer-address a{
     position: relative;
     padding-left: 0px;
-
+    
 }
 
 .footer-address > span::before, .footer-address a::before{
@@ -801,81 +801,81 @@ ul.social-network li {
     font-weight: 600;
 }
 .funkyradio div {
-    clear: both;
-    overflow: hidden;
+  clear: both;
+  overflow: hidden;
 }
 
 .funkyradio label {
-    width: 90%;
-    border-radius: 3px;
-    border: 1px solid #D1D3D4;
-    font-weight: normal;
+  width: 90%;
+  border-radius: 3px;
+  border: 1px solid #D1D3D4;
+  font-weight: normal;
 }
 
 .funkyradio input[type="radio"]:empty,
 .funkyradio input[type="checkbox"]:empty {
-    display: none;
+  display: none;
 }
 
 .funkyradio input[type="radio"]:empty ~ label,
 .funkyradio input[type="checkbox"]:empty ~ label {
-    position: relative;
-    line-height: 3em;
-    text-indent: 3.8em;
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+  position: relative;
+  line-height: 3em;
+  text-indent: 3.8em;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 .funkyradio input[type="radio"]:empty ~ label:before,
 .funkyradio input[type="checkbox"]:empty ~ label:before {
-    position: absolute;
-    display: block;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    content: '';
-    width: 3em;
-    background: #D1D3D4;
-    border-radius: 3px 0 0 3px;
+  position: absolute;
+  display: block;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  content: '';
+  width: 3em;
+  background: #D1D3D4;
+  border-radius: 3px 0 0 3px;
 }
 
 .funkyradio input[type="radio"]:hover:not(:checked) ~ label,
 .funkyradio input[type="checkbox"]:hover:not(:checked) ~ label {
-    color: #888;
+  color: #888;
 }
 
 .funkyradio input[type="radio"]:hover:not(:checked) ~ label:before,
 .funkyradio input[type="checkbox"]:hover:not(:checked) ~ label:before {
-    content: '\2714';
-    text-indent: .9em;
-    color: #C2C2C2;
+  content: '\2714';
+  text-indent: .9em;
+  color: #C2C2C2;
 }
 
 .funkyradio input[type="radio"]:checked ~ label,
 .funkyradio input[type="checkbox"]:checked ~ label {
-    color: #777;
+  color: #777;
 }
 
 .funkyradio input[type="radio"]:checked ~ label:before,
 .funkyradio input[type="checkbox"]:checked ~ label:before {
-    content: '\2714';
-    text-indent: .9em;
-    color: #333;
-    background-color: #ccc;
+  content: '\2714';
+  text-indent: .9em;
+  color: #333;
+  background-color: #ccc;
 }
 
 .funkyradio input[type="radio"]:focus ~ label:before,
 .funkyradio input[type="checkbox"]:focus ~ label:before {
-    box-shadow: 0 0 0 3px #999;
+  box-shadow: 0 0 0 3px #999;
 }
 
 .funkyradio-default input[type="radio"]:checked ~ label:before,
 .funkyradio-default input[type="checkbox"]:checked ~ label:before {
-    color: #333;
-    background-color: #ccc;
+  color: #333;
+  background-color: #ccc;
 }
 
 /*tab of detail  page*/
@@ -887,7 +887,7 @@ ul.social-network li {
     background: #eae9e8;
     padding-bottom: 30px;
     margin-bottom: 20px;
-    padding-left: 18px;
+        padding-left: 18px;
 }
 .nav-tabs {
     border-bottom: 1px solid #ff5400;
@@ -964,7 +964,7 @@ label {
     width: 75px;
     margin: 0 0 0 15px;
 }
-.goods-page-price strong,
+.goods-page-price strong, 
 .goods-page-total strong {
     color: #e84d1c;
     font-size: 16px;
@@ -1067,12 +1067,12 @@ label {
 }
 /*css for plus and minus*/
 .count-input input {
-    width: 45%;
-    border: 1px solid #ccc;
-    border-radius: 2px;
-    text-align: center;
-    height: 35px;
-    float: left;
+  width: 45%;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  text-align: center;
+  height: 35px;
+  float: left;
 }
 .goods-page-quantity.count-input.space-bottom {
     width: 120px;
@@ -1091,14 +1091,15 @@ label {
 }
 
 .count-input input {
-    width: 45%;
-    border: 1px solid #ccc;
-    border-radius: 2px;
-    text-align: center;
-    height: 35px;
-    float: left;
-    padding: 0;
+  width: 45%;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  text-align: center;
+  height: 35px;
+  float: left;
+  padding: 0;
 }
+
 /*contact page*/
 .adv-inner-page-slider-content.contact-page-content-holder {
     background: #eae9e8;
@@ -1107,11 +1108,11 @@ label {
     margin-bottom: 20px;
 }
 
-.group            {
-    position:relative;
-    margin-bottom:20px;
-    width: 50%;
-    float: left;
+.group            { 
+  position:relative; 
+  margin-bottom:20px; 
+  width: 50%;
+  float: left;
 }
 .group.group1 {
     width: 100%;
@@ -1132,27 +1133,27 @@ textarea               {
     border: none;
     border: 1px solid #757575;
 }
-input:focus
+input:focus,
 textarea:focus{
-    outline:none;
+ outline:none; 
 }
 label {
-    color:#999;
-    font-size:18px;
-    font-weight:normal;
-    position:absolute;
-    /*pointer-events:none;*/
-    left:5px;
-    top:10px;
-    transition:0.2s ease all;
-    -moz-transition:0.2s ease all;
-    -webkit-transition:0.2s ease all;
+  color:#999; 
+  font-size:18px;
+  font-weight:normal;
+  position:absolute;
+  /*pointer-events:none;*/
+  left:5px;
+  top:10px;
+  transition:0.2s ease all; 
+  -moz-transition:0.2s ease all; 
+  -webkit-transition:0.2s ease all;
 }
 input:focus ~ label, input:valid ~ label,
 textarea:focus ~ label, textarea:valid ~ label {
-    top:-7px;
-    font-size:14px;
-    color:#5264AE;
+  top:-7px;
+  font-size:14px;
+  color:#5264AE;
 }
 
 .adv-contact-info-text p{
@@ -1161,40 +1162,40 @@ textarea:focus ~ label, textarea:valid ~ label {
     font-weight: 400;
     margin-bottom:15px;
 }
-.bar    {
-    position:relative;
-    display:block;
-    width:95%;
+.bar    { 
+    position:relative; 
+    display:block; 
+    width:95%; 
 }
 .bar:before, .bar:after     {
-    content:'';
-    height:2px;
-    width:0;
-    bottom:1px;
-    position:absolute;
-    background:#5264AE;
-    transition:0.2s ease all;
-    -moz-transition:0.2s ease all;
-    -webkit-transition:0.2s ease all;
+  content:'';
+  height:2px; 
+  width:0;
+  bottom:1px; 
+  position:absolute;
+  background:#5264AE; 
+  transition:0.2s ease all; 
+  -moz-transition:0.2s ease all; 
+  -webkit-transition:0.2s ease all;
 }
 .bar:before {
-    left:50%;
+  left:50%;
 }
 .bar:after {
-    right:50%;
+  right:50%; 
 }
 input:focus ~ .bar:before, input:focus ~ .bar:after,
 textarea:focus ~ .bar:before, textarea:focus ~ .bar:after {
-    width:50%;
+  width:50%;
 }
 .highlight {
-    position:absolute;
-    height:60%;
-    width:100px;
-    top:25%;
-    left:0;
-    pointer-events:none;
-    opacity:0.5;
+  position:absolute;
+  height:60%; 
+  width:100px; 
+  top:25%; 
+  left:0;
+  pointer-events:none;
+  opacity:0.5;
 }
 .button {
     width: 25%;
@@ -1203,21 +1204,21 @@ textarea:focus ~ .bar:before, textarea:focus ~ .bar:after {
     color: #fff;
 }
 input:focus ~ .highlight {
-    -webkit-animation:inputHighlighter 0.3s ease;
-    -moz-animation:inputHighlighter 0.3s ease;
-    animation:inputHighlighter 0.3s ease;
+  -webkit-animation:inputHighlighter 0.3s ease;
+  -moz-animation:inputHighlighter 0.3s ease;
+  animation:inputHighlighter 0.3s ease;
 }
 @-webkit-keyframes inputHighlighter {
     from { background:#5264AE; }
-    to    { width:0; background:transparent; }
+  to    { width:0; background:transparent; }
 }
 @-moz-keyframes inputHighlighter {
     from { background:#5264AE; }
-    to    { width:0; background:transparent; }
+  to    { width:0; background:transparent; }
 }
 @keyframes inputHighlighter {
     from { background:#5264AE; }
-    to    { width:0; background:transparent; }
+  to    { width:0; background:transparent; }
 }
 .footer-address.footer-address1 span,
 .footer-address.footer-address1 span a {
@@ -1291,6 +1292,70 @@ input:focus ~ .highlight {
 .button.secondary1 img{
     width: 20%;
 }
+/*user page*/
+#user-wrapper {
+    margin: 40px 0 30px;
+}
+.user_fa {
+    text-align: center;
+    background: #e1e3e4;
+}
+.user-image img {
+    margin: 15px 0;
+    width: 75%;
+}
+.user-name {
+    padding: 15px 0 15px 0;
+    border-top: 6px solid #ff8400;
+    font-size: 20px;
+    font-weight: 600;
+}
+.user-setting {
+    background: #ff8400;
+}
+.user-setting > li{
+    color: #fff;
+}
+.user-setting > li {
+    padding: 10px 0;
+    border-bottom: 2px solid #e1e3e4;
+    font-size: 20px;
+    font-weight: 600;
+}
+.user-setting > li >a {
+    color: #fff;
+}
+.user-setting > li >i {
+    margin: 0 25px 0 20px;
+}
+
+.user-right {
+    background: #e1e3e4;
+}
+.user-top {
+    border-bottom: 20px solid #fff;
+    padding: 20px;
+}
+.user-details > li {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 27px;
+}
+.user-bottom,
+.user-bottom-tight {
+    padding-top: 20px;
+    padding-left: 33px;
+}
+.user-bottom-tight {
+    padding: 20px 30px 20px 0;
+}
+.user-title {
+    font-weight: 600;
+    padding-bottom: 6px;
+    font-size: 22px;
+}
+/*annamation*/
+
 
 
 
@@ -1420,7 +1485,7 @@ input:focus ~ .highlight {
     }
 }
 
-@media only screen and (max-width:767px){
+  @media only screen and (max-width:767px){
     .cart-header {
         left: 50%;
         position: absolute;
@@ -1467,7 +1532,13 @@ input:focus ~ .highlight {
     .funkyradio label {
         width: 100%;
     }
-
+    .user-right {
+        margin-top: 20px;
+    }
+    
+    .user-bottom-tight {
+        padding: 20px 30px 20px 30px;
+    }
 }
 
 @media only screen and (max-width:640px){
@@ -1490,7 +1561,7 @@ input:focus ~ .highlight {
     .product-other-images img {
         width: 52px;
     }
-
+    
 }
 @media only screen and (max-width:480px){
     .cart-header {
@@ -1551,7 +1622,7 @@ input:focus ~ .highlight {
 }
 
 @media only screen and (max-width:320px){
-    .top-cart-info a {
+   .top-cart-info a {
         font-size: 11px;
     }
     .cart-header {
@@ -1617,7 +1688,7 @@ input:focus ~ .highlight {
     .goods-data a {
         font-size: 13px;
     }
-
+    
 }
 
 

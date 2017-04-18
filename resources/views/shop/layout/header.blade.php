@@ -3,17 +3,14 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Rudrax </title>
-    <!-- Responsive menu -->
 
-{!! Html::style('shop/css/meanmenu.css') !!}
-{!! Html::style('shop/fonts/fontIcon/css/font-awesome.css') !!}
-{!! Html::style('shop/css/bootstrap.min.css') !!}
-{!! Html::style('shop/css/owl.carousel.css') !!}
-{!! Html::style('shop/css/owl.theme.css') !!}
-{!! Html::style('shop/css/jquery.rateyo.min.css') !!}
+    {!! Html::style('shop/css/meanmenu.css') !!}
+    {!! Html::style('shop/fonts/fontIcon/css/font-awesome.css') !!}
+    {!! Html::style('shop/css/bootstrap.min.css') !!}
+    {!! Html::style('shop/css/owl.carousel.css') !!}
+    {!! Html::style('shop/css/owl.theme.css') !!}
+    {!! Html::style('shop/css/jquery.rateyo.min.css') !!}
 
-
-<!-- fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
     {!! Html::style('shop/css/style.css') !!}
@@ -43,8 +40,48 @@
                             <div class="col-sm-6 col-xs-6 additional-nav">
                                 <div class="row">
                                     <ul class="list-unstyle list-inline right-part pull-right">
-                                        <li><a href="/profile">My Account</a></li>
-                                        <li><a href="">Log In</a></li>
+                                            <!-- Authentication Links -->
+                                            @if (Auth::guest())
+                                                <li><a href="{{ route('login') }}">Login</a></li>
+                                                <li><a href="{{ route('register') }}">Register</a></li>
+                                            @else
+                                                <li class="dropdown">
+                                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                                       aria-expanded="false">
+                                                        {{'Hi,'. ucfirst( Auth::user()->firstname) }} <span class="caret"></span>
+                                                    </a>
+
+                                                    <ul class="dropdown-menu" role="menu">
+
+                                                        <li><a href="/profile">Profile</a></li>
+                                                        <li><a href="#">My History </a></li>
+
+                                                        <li role="separator" class="divider"></li>
+                                                        <li>
+
+                                                            {!! Html::linkRoute('password','password',array( Auth::user()->id),array('class'=>''))!!}
+
+
+                                                        </li>
+                                                        <li role="separator" class="divider"></li>
+
+                                                        <li>
+                                                            <a href="{{ route('logout') }}"
+                                                               onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                                                Logout
+                                                            </a>
+
+                                                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                                                  style="display: none;">
+                                                                {{ csrf_field() }}
+                                                            </form>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+
+                                            @endif
+
                                     </ul>
                                 </div>
                             </div>
@@ -64,18 +101,16 @@
                     <div class="row">
                         <!-- logo -->
                         <div class="col-sm-2 col-xs-3 logo">
-                            <a class="site-logo" href=""><img src="{{asset('shop/images/logo-shop-red.png')}}" alt="Metronic Shop UI" ></a>
+                            <a class="site-logo" href="/"><img src="{{asset('shop/images/logo-shop-red.png')}}" alt="Metronic Shop UI" ></a>
                         </div>
                         <!-- nav -->
                         <div class="col-sm-8 col-xs-4">
                             <nav class="main-navigation ">
                                 <ul>
-                                    <li> <a class="active" href="">home</a></li>
-                                    <li> <a href="">about us</a></li>
-                                    <li> <a href="">our services</a></li>
-                                    <li> <a href="">our projects</a></li>
-                                    <li> <a href="">careers</a></li>
-                                    <li> <a href="">contacts</a></li>
+                                    <li> <a class="active" href="/">home</a></li>
+                                    <li> <a href="/aboutus">about us</a></li>
+
+                                    <li> <a href="/contact">contacts</a></li>
                                     <li class="menu-search">
                                         <span class="sep"></span>
                                         <i class="fa fa-search search-btn"></i>

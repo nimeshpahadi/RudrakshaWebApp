@@ -105,7 +105,9 @@ class CategoryRepository
      */
     public function getCategoryBenifit($id)
     {
-       return $this->category_benifit->select('*')->where('category_id',$id)->get();
+       return $this->category_benifit->select('category_benifits.*','categories.name as catname')
+           ->join('categories','categories.id','category_benifits.category_id')
+           ->where('category_benifits.category_id',$id)->get();
     }
 
     public function getCatBenifit($id)

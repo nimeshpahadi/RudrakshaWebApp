@@ -3,18 +3,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title> {{ config('app.name') }}</title>
-    <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <!-- Bootstrap 3.3.6 -->
-{!! Html::style('css/bootstrap.min.css') !!}
-<!-- Font Awesome -->
-{!! Html::style('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css') !!}
-<!-- Ionicons -->
-{!! Html::style('https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css') !!}
-<!-- Theme style -->
-    {!! Html::style('css/AdminLTE.min.css') !!}
-    {!! Html::style('css/_all-skins.min.css') !!}
-    {!! Html::style('css/custom.css') !!}
+    {!! Html::style('css/bootstrap.min.css') !!}
+    {!! Html::style('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css') !!}
+    {!! Html::style('https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css') !!}
+        {!! Html::style('css/AdminLTE.min.css') !!}
+        {!! Html::style('css/_all-skins.min.css') !!}
+        {!! Html::style('css/custom.css') !!}
 
 
     <script>
@@ -59,7 +54,7 @@
                                         </a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                              {{--style="display: none;"--}}>
+                                                {{--style="display: none;"--}}>
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
