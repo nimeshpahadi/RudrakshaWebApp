@@ -48,21 +48,16 @@
                                         <p> &emsp;&emsp;* &ensp;{{$product_desc->information}}</p>
                                     @endif
 
-                                        {!! Form::open(array('route'=>'order.store', 'method'=>'post' ))!!}
 
-                                        {{ Form::hidden('product_id',$productid->id) }}
-                                        @if(isset(Auth::user()->id))
-                                        {{ Form::hidden('customer_id', Auth::user()->id) }}
-                                        @endif
-                                        {{ Form::hidden('order_status','cart') }}
-                                        {{ Form::hidden('currency_id',1) }}
+                                    {!! Form::model($orderid,array('route'=>['order.update',$orderid->id],'method'=>'PUT' ))!!}
 
-                                        <h3> Quantity </h3>
-                                        <div class="quantity">
-                                            <input step="1" min="1" max="{{$productid->quantity_available}}"
-                                                   name="quantity"  title="Qty" class="input-text qty text" value="1"
-                                                   size="4" pattern="[0-9]*" inputmode="numeric" type="number">
-                                        </div>
+                                    <h3> Quantity </h3>
+                                    <div class="quantity">
+                                        <input step="1" min="1" max="{{$productid->quantity_available}}"
+                                               name="quantity" title="Qty" class="input-text qty text"
+                                               value="{{$orderid->quantity}}"
+                                               size="4" pattern="[0-9]*" inputmode="numeric" type="number">
+                                    </div>
                                     <h3> Buy rudrax with </h3>
 
                                 </div>
@@ -72,17 +67,21 @@
                                 <div class="funkyradio">
                                     <div class="funkyradio-default ">
                                         <input type="radio" name="capping_id" class="oddtick-box" id="radio{{$cap->id}}"
-                                               value="{{$cap->id}}"/>
+                                               @if($cap->id==$orderid->capping_id) checked
+                                               @endif  value="{{$cap->id}}"/>
                                         <label for="radio{{$cap->id}}">{{$cap->type}} Capping</label>
                                     </div>
                                 </div>
                             @endforeach
 
                             <div class="product-page-cart">
-                                {{Form::submit('Add to cart', array('class'=>'btn btn-bg col-md-2 btn-primary ','title'=>'Save to Cart'))}}
-                                    {!! Form::close() !!}
-
+                                {{Form::submit('Save Changes', array('class'=>'btn btn-primary col-md-2 btn-sm ','title'=>'Save  changes on your cart item'))}}
+                                <a class="btn btn-warning  btn-sm" href="#">Cancel</a>
+                                {!! Form::close() !!}
                             </div>
+
+
+                            <div class="sticker sticker-sale"></div>
                         </div>
                     </div>
                 </div>

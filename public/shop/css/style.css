@@ -110,7 +110,6 @@ p{
 
 h3{
     font-size: 20px;
-    text-transform: capitalize;
     color: #333333;
 }
 
@@ -130,7 +129,7 @@ h2::after  {
     height: 2px;
     margin: 10px 0;
     position: relative;
-    width:100%;
+    width: 100%;
     max-width: 100%;
 }
 
@@ -221,7 +220,6 @@ body {
     padding-bottom: 8px;
 }
 
-/*search*/
 /* Top Search */
 .main-navigation li.menu-search {
     position: relative;
@@ -790,8 +788,15 @@ ul.social-network li {
     margin-bottom: 20px;
 }
 /*end css for zoom*/
+.input-text.qty.text {
+    width: 20%;
+    padding: 1px 4px 1px 9px;
+}
 .price h3 {
-    margin: 29px 0 10px;
+    margin: 0px;
+    float: left;
+    display: inline-block;
+    padding: 15px 15px 15px 0;
 }
 .price span {
     margin: 0 10px;
@@ -799,6 +804,10 @@ ul.social-network li {
 }
 .price strong {
     font-weight: 600;
+}
+.funkyradio h3 {
+    margin-bottom: 10px;
+    margin-top: 10px;
 }
 .funkyradio div {
   clear: both;
@@ -1078,7 +1087,7 @@ label {
     width: 120px;
 }
 .quantity {
-    padding: 0;
+    padding: 15px 0;
 }
 .incr-btn {
     width: 20%;
@@ -1142,7 +1151,6 @@ label {
   font-size:18px;
   font-weight:normal;
   position:absolute;
-  /*pointer-events:none;*/
   left:5px;
   top:10px;
   transition:0.2s ease all; 
@@ -1162,12 +1170,12 @@ textarea:focus ~ label, textarea:valid ~ label {
     font-weight: 400;
     margin-bottom:15px;
 }
-.bar    { 
+.bar { 
     position:relative; 
     display:block; 
     width:95%; 
 }
-.bar:before, .bar:after     {
+.bar:before, .bar:after {
   content:'';
   height:2px; 
   width:0;
@@ -1347,16 +1355,63 @@ input:focus ~ .highlight {
     padding-left: 33px;
 }
 .user-bottom-tight {
-    padding: 20px 30px 20px 0;
+    padding: 20px 30px 20px 15px;
 }
 .user-title {
     font-weight: 600;
     padding-bottom: 6px;
     font-size: 22px;
+    float: left;
 }
-/*annamation*/
+.edit-right {
+    float: right;
+    display: inline-block;
+    margin-right: 35px;
+    text-transform: capitalize;
+    color: #ff8400;
+    font-weight: 600;
+}
+.user-details {
+    width: 100%;
+    display: inline-block;
+}
+/*forget password*/
+.group.frg_psw1 {
+    width: 100%;
+}
+.creative {
+    font-size: 13px;
+    margin: 10px 0;
+}
+.psw-right {
+    margin-bottom: 15px;
+    display: inline-block;
+}
+#forgot-wrapper {
+    margin: 35px 0 40px 0;
+}
+.forgot-password{
+    background: #eae9e8;
+}
+/*change password*/
+.change-password {
+    background: #eae9e8;
+    margin: 35px 0 20px 0;
+    padding: 15px 10px 35px 15px;
+}
+.group.frg_psw input[type="text"] {
+    width: 97.6%;
+}
+.group.frg_psw {
+    width: 100%;
+}
 
-
+/*delevary page*/
+.edit-right.delevary {
+    background: #ff8400;
+    padding: 10px 25px;
+    color: #fff;
+}
 
 
 
@@ -1561,6 +1616,12 @@ input:focus ~ .highlight {
     .product-other-images img {
         width: 52px;
     }
+    .group {
+        width: 100%;
+    }
+    .group.frg_psw input[type="text"] {
+        width: 95%;
+    }
     
 }
 @media only screen and (max-width:480px){
@@ -1594,6 +1655,12 @@ input:focus ~ .highlight {
     .incr-btn {
         padding: 0px 0px 0px 2px;
     }
+    label {
+        font-size: 15px;
+    }
+    textarea.form-control {
+        height: 170px;
+    }
 }
 
 
@@ -1618,6 +1685,12 @@ input:focus ~ .highlight {
     }
     h2 {
         font-size: 18px;
+    }
+    .button {
+        width: 36%;
+    }
+    input, textarea {
+        padding: 10px 10px 10px 5px;
     }
 }
 
@@ -1687,6 +1760,12 @@ input:focus ~ .highlight {
     }
     .goods-data a {
         font-size: 13px;
+    }
+    .button {
+        width: 49%;
+    }
+    textarea.form-control {
+        height: 115px;
     }
     
 }

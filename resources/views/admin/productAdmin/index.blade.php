@@ -42,7 +42,7 @@
                                 <td>{{$item['discount'] }}</td>
                                 <td>{{$item['rank'] }}</td>
                                 <td><a href="{{route('products.show',$item['id'])}}">
-                                        <button class="btn btn-sm btn-success" title="View the order details">View
+                                        <button class="btn btn-sm btn-success" title="View the product details">View
                                         </button>
                                     </a></td>
                             </tr>
