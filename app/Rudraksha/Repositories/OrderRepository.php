@@ -36,6 +36,11 @@ class OrderRepository
      $this->capping = $capping;
  }
 
+    /**
+     * place the order item in cart
+     * @param $data
+     * @return bool
+     */
     public function OrderItemStore($data)
     {
         try {
@@ -48,12 +53,15 @@ class OrderRepository
         }
     }
 
+    /**
+     * generate the items in the cart for specific user login
+     * @param $id
+     * @return mixed
+     */
     public function getOrderItembyCustomerId($id)
     {
         $query=$this->orderItem->select('order_items.*','product_infos.name as prodname',
-            'product_prices.price as prodprice','product_images.image'
-            )
-          //  ->join('cappings','cappings.id','order_items.capping_id')
+            'product_prices.price as prodprice','product_images.image')
             ->join('product_infos','product_infos.id','order_items.product_id')
             ->join('product_prices','product_infos.id','product_prices.product_id')
             ->join('product_images','product_infos.id','product_images.product_id')
@@ -62,19 +70,13 @@ class OrderRepository
             ->get()->toArray();
         return $query;
 
-//        $query=$this->orderItem->select('order_items.*','product_infos.name as prodname',
-//            'product_prices.price as prodprice','product_images.image')
-//            ->join('product_infos','product_infos.id','order_items.product_id')
-//            ->join('product_prices','product_infos.id','product_prices.product_id')
-//            ->join('product_images','product_infos.id','product_images.product_id')
-//            ->where('customer_id',$id)
-//            ->where('order_status','cart')
-//            ->get()->toArray();
-//
-
-//        return $query;
     }
 
+    /**
+     * get order item  by its id
+     * @param $oid
+     * @return mixed
+     */
     public function getOrderItembyid($oid)
     {
         return $this->orderItem->select('*')->where('id',$oid)->first();
@@ -96,6 +98,11 @@ class OrderRepository
         }
     }
 
+    /**
+     * delete single cart item from the current cart
+     * @param $id
+     * @return bool
+     */
     public function deleteCartItem($id)
     {
         try {
@@ -109,6 +116,11 @@ class OrderRepository
         }
     }
 
+    /**
+     * clear all the items from the cart of loggedin user
+     * @param $ids
+     * @return bool
+     */
     public function deleteallCartItem($ids)
     {
         try {

@@ -47,25 +47,6 @@ class OrderController extends Controller
         $this->cappingService = $cappingService;
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-//return view('shop.contact');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -82,16 +63,6 @@ class OrderController extends Controller
         return back()->withErrors("oops Something went wrong");
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -142,14 +113,22 @@ class OrderController extends Controller
         }
         return back()->withErrors('something went wrong');
     }
+
+    /**
+     * view the cart items
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function cart()
     {
-
         $orderitem=$this->orderService->getorderbyCustomerid(Auth::user()->id);
-//        dd($orderitem);
-        return view('shop.order.cart',compact('orderitem','cap'));
+        return view('shop.order.cart',compact('orderitem'));
     }
 
+    /**
+     * clear all the cart item
+     * @param $id
+     * @return $this
+     */
     public  function  clearall($id)
     {
         if ($this->orderService->deleteallcartitem($id)) {

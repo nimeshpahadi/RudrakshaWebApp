@@ -55,7 +55,7 @@ class ShopController extends Controller
 
     /**
      * Display a home page.
-     *
+     * pagination apply
      * @return array
      */
 
@@ -75,7 +75,11 @@ class ShopController extends Controller
     }
 
 
-
+    /**
+     * view the detail page of rudrakshya product
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function detail($id)
     {
         $productid = $this->productService->get_product($id);
@@ -88,16 +92,29 @@ class ShopController extends Controller
         return view('shop.detail',compact('productid','product_desc',
             'product_image','product_imagerank','product_price','capping','benefits'));
     }
+
+    /**
+     * view the about us page in the shop page
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function aboutUs()
     {
         return view('shop.about_us');
     }
 
+    /**
+     * view the contact page in shop page
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function contact()
     {
         return view('shop.contact');
     }
 
+    /**
+     * view the FAQ page in shop page
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function faq()
     {
         return view('shop.faq');

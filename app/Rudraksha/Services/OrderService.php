@@ -40,6 +40,11 @@ class OrderService
         return $this->orderRepository->OrderItemStore($data);
     }
 
+    /**
+     * get the orders added to cart also with capping
+     * @param $id
+     * @return array
+     */
     public function getorderbyCustomerid($id)
     {
         $data = [];
