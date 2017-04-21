@@ -13,10 +13,11 @@
 
 
                         <div class="group frg_psw">
-                            <input id="oldpassword" type="password"  name="oldpassword"required>
+
+                            <input id="oldpassword" type="password"  name="oldpassword" style="width: 97.5%;" required>
                             <span class="highlight"></span>
                             <span class="bar"></span>
-                            <label>Current Password </label>
+                            <label for="oldpassword">Current Password </label>
                         </div>
 
 
