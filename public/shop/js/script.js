@@ -74,22 +74,6 @@ jQuery( document ).ready(function( $ ) {
         $('.service_detail').owlCarousel({
           margin: 10,
           nav: true,
-          loop: false,
-          responsive: {
-            0: {
-              items: 1
-            },
-            600: {
-              items: 3
-            },
-            1000: {
-              items: 5
-            }
-          }
-        })
-        $('#service_detail1').owlCarousel({
-          margin: 10,
-          nav: true,
           loop: true,
           responsive: {
             0: {
@@ -103,6 +87,7 @@ jQuery( document ).ready(function( $ ) {
             }
           }
         })
+
 
         $('#zoom-click').owlCarousel({
           items: 1,

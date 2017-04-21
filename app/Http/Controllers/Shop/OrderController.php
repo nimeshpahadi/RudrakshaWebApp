@@ -47,6 +47,10 @@ class OrderController extends Controller
         $this->cappingService = $cappingService;
     }
 
+    public function index()
+    {
+        return redirect()->route('cart');
+    }
 
     /**
      * Store a newly created resource in storage.

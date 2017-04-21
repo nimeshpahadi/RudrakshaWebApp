@@ -10,10 +10,16 @@
     {!! Html::style('shop/css/owl.carousel.css') !!}
     {!! Html::style('shop/css/owl.theme.css') !!}
     {!! Html::style('shop/css/jquery.rateyo.min.css') !!}
+    {!! Html::style('shop/css/bootstrap-select.css') !!}
 
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+
+
+    {!! Html::style('css/app.css') !!}
+    {!! Html::style('css/customshop.css') !!}
     {!! Html::style('shop/css/style.css') !!}
+
 
 </head>
 <body>
@@ -134,8 +140,11 @@
                                 <div class="top-cart-block">
                                     <div class="top-cart-info">
                                         <a href="" class="top-cart-info-count">
-                                            @if(isset($orderitem)) {{count($orderitem)}}@else 0 @endif items</a>
-                                        <a href="" class="top-cart-info-value"> @if(isset($y)){{$y}}@else 0 @endif</a>
+                                           0  items</a>
+                                        <a href="" class="top-cart-info-value"> 0 </a>
+                                        {{--<a href="" class="top-cart-info-count">--}}
+                                            {{--@if(isset($orderitem)) {{count($orderitem)}}@else 0 @endif items</a>--}}
+                                        {{--<a href="" class="top-cart-info-value"> @if(isset($y)){{$y}}@else 0 @endif</a>--}}
                                     </div>
                                     <i class="fa fa-shopping-cart"></i>
 

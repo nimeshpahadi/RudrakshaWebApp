@@ -116,7 +116,7 @@
                             </div>
                         </div>
                         <a class="btn btn-default" href="/">Continue shopping <i class="fa fa-shopping-cart"></i></a>
-                        <button class="btn btn-primary" type="submit">Checkout <i class="fa fa-check"></i></button>
+                        <button class="btn btn-primary" type="submit">Confirm Your Order <i class="fa fa-check"></i></button>
                     </div>
 
 

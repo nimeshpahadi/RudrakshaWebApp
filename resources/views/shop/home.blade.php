@@ -5,6 +5,8 @@
 
 @include('shop.layout.banner')
 
+{{--{{dd($entries)}}--}}
+
     @if (count($entries) > 0)
     <div class="infinite-scroll">
         @foreach($entries as $cat=>$value)
@@ -17,10 +19,13 @@
                                 <div class="owl-carousel owl-theme service_detail">
                                     @if(isset($value['product']))
                                         @foreach($value['product'] as $prodCat=>$item)
-                                            @if($item['status']==1)
+
+                                        @if($item['status']==1)
+
                                                 <div class="item">
                                                     <div class="product-item">
                                                         @foreach($item['image'] as $img)
+{{--                                                            {{dd($img['image'])}}--}}
                                                             <img src="{{asset('storage/image/product')}}/{{$img['image']}}"
                                                                  height="200px"><br>
                                                             <?php break; ?>

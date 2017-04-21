@@ -105,6 +105,7 @@
 <script src="{{ asset('shop/js/jquery.zoom.min.js') }}"></script>
 <script src="{{ asset('shop/js/script.js') }}"></script>
 <script src="{{ asset('shop/js/jquery.rateyo.js') }}"></script>
+<script src="{{ asset('shop/js/bootstrap-select.js') }}"></script>
 
 
 </body>

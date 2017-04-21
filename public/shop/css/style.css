@@ -132,6 +132,17 @@ h2::after  {
     width: 100%;
     max-width: 100%;
 }
+.info_holder::after  {
+    background: #ff5400 none repeat scroll 0 0;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 2px;
+    margin: 10px 0;
+    position: relative;
+    width: 300px;
+    max-width: 80%;
+}
 
 /* =------------------------------GLOBAL-------------------------------------- */
 
@@ -955,7 +966,7 @@ label {
 .goods-data th {
     text-transform: uppercase;
     border-bottom: solid 1px #e94d1c;
-    padding: 16px 10px;
+    padding: 16px 8px;
     border-right: 0px solid #fff;
     border-left: 0px solid #fff;
 }
@@ -1270,15 +1281,12 @@ input:focus ~ .highlight {
     border-radius: 0 4px 0 0;
     color: #fff;
 }
-
-
 .fa.fa-map-marker,
 .fa.fa-gavel,
 .fa.fa-camera {
     color: #323232;
     margin-right: 10px;
 }
-
 .panel-body > a {
     text-transform: capitalize;
     margin-top: 20px;
@@ -1302,7 +1310,7 @@ input:focus ~ .highlight {
 }
 /*user page*/
 #user-wrapper {
-    margin: 40px 0 30px;
+    margin: 35px 0 30px;
 }
 .user_fa {
     text-align: center;
@@ -1392,6 +1400,7 @@ input:focus ~ .highlight {
 }
 .forgot-password{
     background: #eae9e8;
+    padding: 25px 0 0 25px;
 }
 /*change password*/
 .change-password {
@@ -1405,6 +1414,12 @@ input:focus ~ .highlight {
 .group.frg_psw {
     width: 100%;
 }
+#detail-wrapper {
+    margin-top: 17px;
+}
+#cart-wrapper {
+    margin: 35px 0 40px;
+}
 
 /*delevary page*/
 .edit-right.delevary {
@@ -1412,8 +1427,92 @@ input:focus ~ .highlight {
     padding: 10px 25px;
     color: #fff;
 }
-
-
+/*delevary page form*/
+.delivery-detail {
+    background: #eae9e8;
+    margin: 30px 0 15px 0;
+    padding: 20px 39px;
+}
+.dropdown-menu.inner {
+    height: 155px;
+}
+.dropdown-menu.open {
+    width: 100%;
+    border-radius: 0;
+    top: 37px;
+}
+.bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+    width: 98%;
+    margin-bottom: 20px;
+}
+.btn-group.open .dropdown-toggle {
+    -webkit-box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+    box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+    height: 40px;
+}
+.btn-group > .btn:first-child {
+    margin-left: 0;
+    height: 40px;
+}
+.country-name {
+    position: static;
+    color: #000;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+.level_wrapper {
+    width: 50%;
+    float: left;
+    line-height: 1;
+}
+.level_wrapper input[type="text"],
+.level_wrapper input[type="number"]{
+    width: 98%;
+    height: 40px;
+    padding: 0 0 0 10px;
+    font-size: 15px;
+    color: #000;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+.message_wrapper {
+    display: inline-block;
+    overflow: hidden;
+    width: 104%;
+}
+.delivery-control {
+    height: 200px;
+}
+.btn.btn-primary.btn_delivery {
+    padding: 12px 27px;
+    margin-top: 20px;
+    font-size: 20px;
+}
+.delivery-star {
+    color: #ff8400;
+    margin-left: 8px;
+    font-weight: bold;
+}
+.shopping-total.cart-list {
+    width: 100%;
+}
+/*checkout page css*/
+.goods-data table {
+    width: 100%;
+    margin-left: 0px;
+}
+.cleckout-right {
+    border: 2px solid #000;
+    padding-bottom: 20px;
+    display: inline-block;
+}
+.checkout-product,
+.checkout-unit,
+.checkout-price {
+    background: #eae9e8;
+    border-top: 1px solid #eae9e8;
+}
 
 
 /*top scroll*/
@@ -1622,6 +1721,9 @@ input:focus ~ .highlight {
     .group.frg_psw input[type="text"] {
         width: 95%;
     }
+    .level_wrapper {
+        width: 100%;
+    }
     
 }
 @media only screen and (max-width:480px){
@@ -1660,6 +1762,9 @@ input:focus ~ .highlight {
     }
     textarea.form-control {
         height: 170px;
+    }
+    .delivery-control {
+        height: 150px;
     }
 }
 
@@ -1767,7 +1872,6 @@ input:focus ~ .highlight {
     textarea.form-control {
         height: 115px;
     }
-    
 }
 
 

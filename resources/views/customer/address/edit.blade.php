@@ -1,89 +1,91 @@
-@extends('layouts.app')
+@extends('shop.layout.app')
 
-@section('content')
-    @include('layouts.navbar')
-    @include('layouts.notification')
+@section('main-content')
+    @include('shop.layout.breadcrum')
+    <section id="delivery-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 delivery-detail">
+                    <div class="row">
 
-    <div class=" col-md-8 col-md-offset-2">
         <h3>Edit Customer Address</h3>
         <div class="box box-info clearfix pad">
 
             {!! Form::model($userId, array('route'=>['customers.address.update', $userId->id], 'method'=>'PUT' ))!!}
             {{ csrf_field() }}
 
-            <div class="form-group{{ $errors->has('country') ? ' has-error' : '' }} clearfix">
-                <label for="country" class="col-sm-4 control-label">Country</label>
 
-                <?php $x = Config::get('country');?>
-                <div class="col-sm-8">
-                    <select name="country" class="form-control" required>
+
+            <div class="form-group{{ $errors->has('country') ? ' has-error' : '' }} ">
+                <p class="level_wrapper">
+                    <label class="country-name" for="country">Country name <span
+                                class="delivery-star"> * </span></label>
+                    </br>
+
+                    <?php $x = Config::get('country');?>
+                    <select id="first-disabled" class="selectpicker" data-hide-disabled="true"
+                            data-live-search="true" name="country">
                         <option selected="selected" disabled>Choose Country</option>
                         @foreach($x as $code=>$name)
                             <option  value="{{$code}}" @if($userId->country==$code)selected @endif>
                                 {{$name}}
                             </option>
                         @endforeach
-
                     </select>
-                </div>
+
+                </p>
             </div>
 
-            <div class="form-group{{ $errors->has('state') ? ' has-error' : '' }} clearfix">
-                <label for="state" class="col-sm-4 control-label">State</label>
-
-                <div class="col-sm-8">
-                    {{ Form::text('state',null,array('class'=>'form-control'))}}
-                </div>
+            <div class="form-group{{ $errors->has('state') ? ' has-error' : '' }} ">
+                <p class="level_wrapper">
+                    <label for="state" class="country-name">State<span class="delivery-star"> * </span></label>
+                    {{ Form::text('state',null,array('class'=>''))}}
+                </p>
+            </div>
+            <div class="form-group{{ $errors->has('city') ? ' has-error' : '' }} ">
+                <p class="level_wrapper">
+                    <label for="city" class="country-name">City<span class="delivery-star"> * </span></label>
+                    {{ Form::text('city',null,array('class'=>''))}}
+                </p>
+            </div>
+            <div class="form-group{{ $errors->has('street') ? ' has-error' : '' }} ">
+                <p class="level_wrapper">
+                    <label for="street" class="country-name">Street<span class="delivery-star"> * </span></label>
+                    {{ Form::text('street',null,array('class'=>''))}}
+                </p>
+            </div>
+            <div class="form-group{{ $errors->has('contact') ? ' has-error' : '' }} ">
+                <p class="level_wrapper">
+                    <label for="contact" class="country-name">Contact<span class="delivery-star"> * </span></label>
+                    {{ Form::number('contact',null,array('placeholder'=>'Without the country code'))}}
+                </p>
             </div>
 
-
-            <div class="form-group{{ $errors->has('street') ? ' has-error' : '' }} clearfix">
-                <label for="street" class="col-sm-4 control-label">Street</label>
-
-                <div class="col-sm-8">
-                    {{ Form::text('street',null,array('class'=>'form-control'))}}
-                </div>
-            </div>
-            <div class="form-group{{ $errors->has('city') ? ' has-error' : '' }} clearfix">
-                <label for="city" class="col-sm-4 control-label">City</label>
-
-                <div class="col-sm-8">
-                    {{ Form::text('city',null,array('class'=>'form-control'))}}
-                </div>
-            </div>
-            <div class="form-group{{ $errors->has('contact') ? ' has-error' : '' }} clearfix">
-                <label for="contact" class="col-sm-4 control-label">Contact</label>
-
-                <div class="col-sm-8">
-                    {{ Form::text('contact', null, array('class'=>'form-control'))}}
-                </div>
-            </div>
-
-            <div class="form-group clearfix">
-                <label for="latitude_long" class="col-sm-4 control-label">Latitude/Latitude</label>
-
-                <div class="col-sm-8">
+            <div class="form-group ">
+                <p class="level_wrapper">
+                    <label for="latitude_long" class="country-name" >Geo-Coordinate</label>
                     <input type="text" class="form-control" name="latitude_long"
                            placeholder="latitude,longitude"
                            id="latlong-info"
                            data-toggle="modal"
                            data-target="#myModal"
                            required autofocus>
-                </div>
+                </p>
             </div>
 
-            <div class="clearfix " align="right">
-                {{Form::submit('Save Changes', array('class'=>'btn btn-primary btn-sm ','title'=>'Save the changes in the address'))}}
-                <a type="button" class="btn btn-warning  btn-sm" href="/profile">Cancel</a>
-                {!! Form::close() !!}
-            </div>
 
+            {{Form::submit('Save Changes', array('class'=>'btn btn-primary col-sm-2 ','title'=>'Save  changes on your delivery address'))}}
+            <a type="button" class="btn btn-warning " href="/profile">Cancel</a>
+            {!! Form::close() !!}
         </div>
 
-    </div>
-    @include('customer.map')
+                    </div>
+                    @include('customer.map')
 
-    <script type="text/javascript"
-            src="http://maps.google.com/maps/api/js?sensor=false&key=AIzaSyDenLLrWG9iWZSXBXlJAAzqcNLgRlMFsRI"></script>
-    <script src="{{ asset('js/map.js') }}"></script>
-@endsection
+                    <script type="text/javascript"
+                            src="http://maps.google.com/maps/api/js?sensor=false&key=AIzaSyDenLLrWG9iWZSXBXlJAAzqcNLgRlMFsRI"></script>
+                    <script src="{{ asset('js/map.js') }}"></script>
+                    @endsection
+
+
+
