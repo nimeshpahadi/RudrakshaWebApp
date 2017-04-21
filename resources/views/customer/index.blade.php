@@ -16,10 +16,10 @@
                                 {{ Form::hidden('id',$customer->id  ) }}
                                 <figure class="user-image">
                                     <img @if(isset($customer->image)) src="{{asset('storage/image/users')}}/{{$customer->image}}"
-                                     style="width: 80%"
-                                     @else
-                                     src="noavatar.png"
-                                    @endif>
+                                         style="width: 80%"
+                                         @else
+                                         src="noavatar.png"
+                                            @endif>
                                 </figure>
                                 <input id="inputimage" name="image" type="file" class="file-loading">
 
@@ -33,15 +33,14 @@
                                 </figcaption>
                             </div>
                             <ul class="user-setting">
-                                {{--<li><i class="fa fa-truck"></i> <a href="/profile/{{$customer->id}}/deliveryaddress"> Delivery address </a></li>--}}
-                                <li><i class="fa fa-pencil-square-o"></i> <a href="/profile/{{$customer->id}}/password"> Change password </a></li>
+                                <li><i class="fa fa-pencil-square-o"></i> <a href="/profile/{{$customer->id}}/password">
+                                        Change password </a></li>
                                 <li><i class="fa fa-history"></i> <a href=""> History </a></li>
-                                <li><i class="fa fa-sign-out"></i>  <a href="{{ route('logout') }}"
-                                                                       onclick="event.preventDefault();
+                                <li><i class="fa fa-sign-out"></i> <a href="{{ route('logout') }}"
+                                                                      onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         Log out
                                     </a>
-
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                           style="display: none;">
                                         {{ csrf_field() }}
@@ -68,22 +67,24 @@
                                     </ul>
                                 </div>
 
-                                <div class="col-sm-7 user-bottom">
-                                    <div class="row">
-                                        <h3 class="user-title"> User address </h3>
 
-                                        @if(!isset($customerAddress))
-                                            <a href="{{route('customers.address',$customer->id)}}">
+                                <div class="col-sm-7 user-bottom">
+                                    <h3 class="user-title"> User address </h3>
+
+                                    @if(!isset($customerAddress))
+                                        <a href="{{route('customers.address',$customer->id)}}">
                                                     <span class=" fa fa-plus-circle col-sm-5"
                                                           data-toggle="popover" data-trigger="hover"
-                                                          data-placement="top" data-content="create the {{$customer->id}} address">
+                                                          data-placement="top"
+                                                          data-content="create the {{$customer->id}} address">
                                                     </span>
-                                            </a>
-                                        @else
+                                        </a>
+                                    @else
                                         <a href="{!! route('customers.address.edit',$customer->id)!!}">
                                                     <span class=" fa fa-pencil col-sm-5"
                                                           data-toggle="popover" data-trigger="hover"
-                                                          data-placement="top" data-content="Edit the {{$customer->id}} address">
+                                                          data-placement="top"
+                                                          data-content="Edit the {{$customer->id}} address">
                                                     </span>
                                         </a>
 
@@ -96,90 +97,56 @@
                                             <li> Street : {{$customerAddress->street}} </li>
                                             <li> City : {{$customerAddress->city}} </li>
                                             <li> Contact : {{$customerAddress->contact}}</li>
-
-
                                         </ul>
 
+                                    @endif
 
-                                    </div>
                                 </div>
-                                <div class="col-sm-5 user-bottom-tight">
-                                    <div class="row">
-
-                                        <h3 class="user-title"> Map </h3>
-                                        <ul class=" user-details">
-                                            <li>@foreach($customerAddress->latitude_long as $x=>$latlong)
-                                                    {{$x}} = {{$latlong}}<br>
-                                                @endforeach</li>
-                                        </ul>
-
-                                    </div>
-                                </div>
-                                @endif
 
 
-
-                            </div>
-                        </div>
-
-                        <div class="col-sm-8 user-right">
-                            <div class="row">
-
-                                <div class="user-top">
-
-                                    <h3 class="user-title"> Delivery address  </h3>
+                                <div class="col-sm-7 user-bottom">
+                                    <h3 class="user-title"> Delivery address </h3>
 
                                     @if(!isset($customerDelivery))
-                                    <a href="{{route('deliveryaddress',$customer->id)}}">
+                                        <a href="{{route('deliveryaddress',$customer->id)}}">
                                                     <span class=" fa fa-plus-circle col-sm-5"
                                                           data-toggle="popover" data-trigger="hover"
-                                                          data-placement="top" data-content="create the {{$customer->id}} delivery">
+                                                          data-placement="top"
+                                                          data-content="create the {{$customer->id}} delivery">
                                                     </span>
-                                    </a>
+                                        </a>
                                     @else
-                                    <a href="{{route('deliveryaddress.edit',$customerDelivery->id)}}">
+                                        <a href="{{route('deliveryaddress.edit',$customerDelivery->id)}}">
                                                     <span class=" fa fa-pencil col-sm-5"
                                                           data-toggle="popover" data-trigger="hover"
-                                                          data-placement="top" data-content="Edit the {{$customerDelivery->id}} delivery">
+                                                          data-placement="top"
+                                                          data-content="Edit the {{$customerDelivery->id}} delivery">
                                                     </span>
-                                    </a>
-                                    <ul class=" user-details">
-                                        <li>
-                                             Country :
-                                            <?php $x = Config::get('country');?>
-                                            @foreach($x as $code=>$name)
-                                                @if($customerDelivery->country==$code){{$name}} @endif
-                                            @endforeach</li>
-                                        <li> State :{{$customerDelivery->state}}</li>
-                                        <li> City :{{$customerDelivery->city}}</li>
-                                        <li> Contact :{{$customerDelivery->contact}}</li>
+                                        </a>
+                                        <ul class=" user-details">
+                                            <li>
+                                                Country :
+                                                <?php $x = Config::get('country');?>
+                                                @foreach($x as $code=>$name)
+                                                    @if($customerDelivery->country==$code){{$name}} @endif
+                                                @endforeach</li>
+                                            <li> State :{{$customerDelivery->state}}</li>
+                                            <li> City :{{$customerDelivery->city}}</li>
+                                            <li> Contact :{{$customerDelivery->contact}}</li>
 
 
-                                        <li>Address Line1 : {{$customerDelivery->address_line1}} </li>
-                                        <li>Address Line2 :  {{$customerDelivery->address_line2}} </li>
-                                        <li>Address Note :  {{$customerDelivery->address_note}} </li>
-                                    </ul>
-
-                                    {{--<div class="col-sm-5 user-bottom-tight">--}}
-                                        {{--<h3 class="user-title"> Map </h3>--}}
-                                        {{--<ul class=" user-details">--}}
-                                            {{--<li>--}}
-                                            {{--@foreach($customerDelivery->latitude_long as $x=>$latlong)--}}
-                                            {{--{{$x}} = {{$latlong}}<br>--}}
-                                            {{--@endforeach--}}
-                                            {{--</li>--}}
-                                        {{--</ul>--}}
-                                    {{--</div>--}}
+                                            <li>Address Line1 : {{$customerDelivery->address_line1}} </li>
+                                            <li>Address Line2 : {{$customerDelivery->address_line2}} </li>
+                                            <li>Address Note : {{$customerDelivery->address_note}} </li>
+                                        </ul>
 
                                     @endif
                                 </div>
-
                             </div>
                         </div>
-
-                    </div> <!-- row -->
-                </div> <!-- sm-12 -->
-            </div> <!-- row -->
-        </div> <!-- container -->
+                        <!-- row -->
+                    </div> <!-- sm-12 -->
+                </div> <!-- row -->
+            </div> <!-- container -->
     </section> <!-- user-wrapper -->
 @endsection
