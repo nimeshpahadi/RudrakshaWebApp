@@ -37,3 +37,10 @@ Route::put('/customer/address/{id}/edit', 'User\CustomerAddressApiController@cus
 Route::get('/customer/{customer_id}/delivery/address', 'User\CustomerDeliveryAddressApiController@customerDeliveryAddressShow')->middleware('auth:api');;
 Route::post('/customer/delivery/address/create', 'User\CustomerDeliveryAddressApiController@customerDeliveryAddressCreate');
 Route::put('/customer/delivery/address/{id}/edit', 'User\CustomerDeliveryAddressApiController@customerDeliveryAddressEdit');
+
+// order item
+Route::get('/order/{customer_id}', 'Order\OrderApiController@show');
+Route::post('/order/create', 'Order\OrderApiController@create');
+Route::put('/order/{id}/edit/', 'Order\OrderApiController@edit');
+Route::delete('/order/{id}/delete', 'Order\OrderApiController@destroy');
+Route::delete('{customer_id}/cart/deleteall', 'Order\OrderApiController@deleteAll');

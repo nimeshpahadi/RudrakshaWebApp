@@ -68,7 +68,7 @@ class CappingRepository
             $this->log->info("Capping Updated", ['id' => $id]);
 
             return true;
-        } catch (Exception $e) {
+        } catch (QueryException $e) {
             $this->log->error("Capping Update Failed %s", ['id' => $id], [$e->getMessage()]);
             return false;
         }

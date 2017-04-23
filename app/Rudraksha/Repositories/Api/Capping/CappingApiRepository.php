@@ -36,4 +36,13 @@ class CappingApiRepository
                     ->where('status', 1)
                     ->get();
     }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function getCappingId($id)
+    {
+        return $this->capping->select('*')->where('id',$id)->first();
+    }
 }
