@@ -104,6 +104,11 @@
                         <i class="fa fa-money"></i> <span>Product Price</span>
                     </a>
                 </li>
+                <li class="treeview">
+                    <a href="/admin/order/list">
+                        <i class="fa fa-money"></i> <span>Order List</span>
+                    </a>
+                </li>
 
             </ul>
         </section>

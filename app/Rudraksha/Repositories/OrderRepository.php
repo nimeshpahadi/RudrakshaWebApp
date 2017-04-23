@@ -10,6 +10,7 @@ namespace App\Rudraksha\Repositories;
 
 
 use App\Rudraksha\Entities\Capping;
+use App\Rudraksha\Entities\OrderGroup;
 use App\Rudraksha\Entities\OrderItem;
 use Illuminate\Database\QueryException;
 use Illuminate\Contracts\Logging\Log;
@@ -28,12 +29,17 @@ class OrderRepository
      * @var Capping
      */
     private $capping;
+    /**
+     * @var OrderGroup
+     */
+    private $orderGroup;
 
-    public function  __construct(OrderItem $orderItem,Log $log, Capping $capping)
+    public function  __construct(OrderItem $orderItem,Log $log, Capping $capping, OrderGroup $orderGroup)
  {
      $this->orderItem = $orderItem;
      $this->log = $log;
      $this->capping = $capping;
+     $this->orderGroup = $orderGroup;
  }
 
     /**
@@ -80,6 +86,23 @@ class OrderRepository
     public function getOrderItembyid($oid)
     {
         return $this->orderItem->select('*')->where('id',$oid)->first();
+    }
+
+    public function getOrderItembycartid($id)
+    {
+        $query=$this->orderItem->select('order_items.*','product_infos.name as prodname',
+            'product_prices.price as prodprice','product_images.image',
+            'currencies.representation as cname','users.firstname as customername','users.lastname as customerlname')
+            ->join('product_infos','product_infos.id','order_items.product_id')
+            ->join('users','users.id','order_items.customer_id')
+            ->join('currencies','currencies.id','order_items.currency_id')
+            ->join('product_prices','product_infos.id','product_prices.product_id')
+            ->join('product_images','product_infos.id','product_images.product_id')
+            ->where('order_items.id',$id)
+            ->where('order_status','processing')
+            ->get()->toArray();
+        return $query;
+
     }
 
     public function orderItemUpdate($data, $id)
@@ -132,6 +155,54 @@ class OrderRepository
             return true;
         } catch (QueryException $e) {
             $this->log->error("Cart Item Clear  Failed", [$e->getMessage()]);
+            return false;
+        }
+    }
+
+    public function CartGroupStore($data)
+    {
+        try {
+            $this->orderGroup->create($data);
+            $this->log->info("Order group created successfully");
+            return true;
+        } catch (QueryException $e) {
+            $this->log->error("Order group not placed ", [$e->getMessage()]);
+            return false;
+        }
+
+
+    }
+
+    public function getorderGroup()
+    {
+        return $this->orderGroup->select('*')->get()->toArray();
+    }
+
+    public function getallgroups()
+    {
+        $query = $this->orderGroup->select('order_groups.*','users.firstname','users.lastname')
+                                                ->where('group_status','processing')
+                                                ->join('users','users.id','order_groups.customer_id')
+                                                ->get()->toArray();
+        return $query;
+    }
+
+    public function getorderGroupbyid($id)
+    {
+        return $this->orderGroup->select('*')->where('id',$id)->first()->toArray();
+    }
+
+    public function updatestatus($orderid)
+    {
+        try {
+            $data= OrderItem::find($orderid);
+
+            $data->order_status= 'processing';
+            $data->update();
+            $this->log->info("Order status Updated", ['id' => $orderid]);
+            return true;
+        } catch (QueryException $e) {
+            $this->log->error("Order Update Failed %s", ['id' => $orderid], [$e->getMessage()]);
             return false;
         }
     }

@@ -64,8 +64,8 @@ class OrderService
                 "prodname" => $order['prodname'],
                 "prodprice" => $order['prodprice'],
                 "image" => $order['image'],
-                "captype" => isset($capping['type'])?$capping['type']:'',
-                "capprice" => isset($capping['price'])?$capping['price']:'',
+                "captype" => isset($capping['type']) ? $capping['type'] : '',
+                "capprice" => isset($capping['price']) ? $capping['price'] : '',
             ];
         }
         return $data;
@@ -93,6 +93,61 @@ class OrderService
         return $this->orderRepository->deleteallCartItem($cartids);
 
 
+    }
+
+
+    public function cartGroupStore($data)
+    {
+        foreach($data['order_items_id'] as $orderid)
+        {
+            $this->orderRepository->updatestatus($orderid);
+        }
+        return $this->orderRepository->CartGroupStore($data);
+    }
+
+
+    public function getordergroupall()
+    {
+        return $this->orderRepository->getallgroups();
+    }
+
+    public function getordergroupbyGroupid($id)
+    {
+        $detail = [];
+        $data = $this->orderRepository->getorderGroupbyid($id);
+            $detail[$data['id']]=[];
+
+            foreach ($data['order_items_id'] as $orderid) {
+                $orders = $this->orderRepository->getOrderItembycartid($orderid);
+
+                foreach ($orders as $order) {
+                    $capping = $this->cappingRepository->get_cappingid($order['capping_id']);
+                    $detail[$data['id']][] = [
+                        "group_id" => $data['id'],
+                        "cart_id" => $order['id'],
+                        "order_group" => $data['order_group'],
+                        "customer_id" => $data['customer_id'],
+                        "group_status" => $data['group_status'],
+                        "product_id" => $order['product_id'],
+                        "quantity" => $order['quantity'],
+                        "capping_id" => $order['capping_id'],
+                        "currency_id" => $order['currency_id'],
+                        "order_status" => $order['order_status'],
+                        "created_at" => $order['created_at'],
+                        "updated_at" => $order['updated_at'],
+                        "prodname" => $order['prodname'],
+                        "prodprice" => $order['prodprice'],
+                        "customername" => $order['customername'],
+                        "cname" => $order['cname'],
+                        "customerlname" => $order['customerlname'],
+                        "image" => $order['image'],
+                        "captype" => isset($capping['type']) ? $capping['type'] : '',
+                        "capprice" => isset($capping['price']) ? $capping['price'] : '',
+                    ];
+                }
+            }
+//dd($detail);
+        return $detail;
     }
 
 

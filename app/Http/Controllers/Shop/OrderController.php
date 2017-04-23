@@ -140,4 +140,12 @@ class OrderController extends Controller
         }
         return back()->withErrors('something went wrong');
     }
+   public  function cartGroup(Request $request)
+   {
+       $data = $request->all();
+       if ($this->orderService->cartGroupStore($data)) {
+           return redirect('/')->withSuccess("Order has been Confimed!");
+       }
+       return back()->withErrors("oops Something went wrong");
+   }
 }

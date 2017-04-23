@@ -30,10 +30,10 @@
                         <td>{{$row->currency }}</td>
                         <td>{{$row->price }}</td>
 
-                        <td><a href="{{route('product_price.edit',$row->id)}}">
-                                <button class="btn btn-warning pad" title="Edit the {{$row->id}} currency"><i
-                                            class="fa fa-edit"></i></button>
-                            </a>
+                            <td><a href="{{route('product_price.edit',$row->id)}}">
+                                    <button class="btn btn-warning pad" title="Edit the {{$row->id}} currency"><i
+                                                class="fa fa-edit"></i></button>
+                                </a>
                             {!! Form::open(['method' => 'DELETE','route' => ['product_price.destroy', $row->id]]) !!}
 
                             <button type="submit" class="btn btn-danger  glyphicon glyphicon-trash pad"

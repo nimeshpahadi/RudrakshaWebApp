@@ -43,3 +43,7 @@ Route::delete('/category/benefit/{id}/delete', 'CategoryAdminController@deleteBe
 Route::get('/capping/{id}/image', 'CappingAdminController@editImage')->name('capping.editImage');
 Route::put('/capping/{id}/updateimage', 'CappingAdminController@updateImage')->name('capping.updateImage');
 
+//order
+Route::get('/order/list', 'OrderAdminController@index')->name('order.list');
+Route::get('/order/{groupid}/detail', 'OrderAdminController@detail')->name('order.detail');
+

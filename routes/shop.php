@@ -11,6 +11,8 @@ Route::resource('/order','OrderController');
 
 Route::get('/cart','OrderController@cart' )->name('cart');
 Route::delete('customerid={customer_id}/cart/clearall','OrderController@clearall' )->name('cart.clear');
+Route::post('/cart/group','OrderController@cartGroup' )->name('cart.group');
+
 
 
 
