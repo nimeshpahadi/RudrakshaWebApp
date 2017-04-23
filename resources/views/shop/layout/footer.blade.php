@@ -9,7 +9,7 @@
                 <!-- BEGIN BOTTOM INFO BLOCK -->
                 <div class="col-md-3 col-sm-6 pre-footer-col">
                     <h3>About us</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam sit nonummy nibh euismod tincidunt ut laoreet dolore magna aliquarm erat sit volutpat. Nostrud exerci tation ullamcorper </p>
+                    <p>Lorem ipsum dolor sit amet Nostrud exerci tation ullamcorper </p>
                 </div>
                 <!-- END INFO BLOCK -->
 
@@ -17,9 +17,7 @@
                     <h3>Information</h3>
                     <ul class="list-unstyled">
                         <li><i class="fa fa-angle-right"></i> <a href="">about us</a></li>
-                        <li><i class="fa fa-angle-right"></i> <a href="">my account</a></li>
-                        <li><i class="fa fa-angle-right"></i> <a href="">Orders history</a></li>
-                        <li><i class="fa fa-angle-right"></i> <a href="">advanced &amp; search</a></li>
+
                     </ul>
                 </div>
 
@@ -28,10 +26,7 @@
                     <h3>Information</h3>
                     <ul class="list-unstyled">
                         <li><i class="fa fa-angle-right"></i> <a href="">FAQ</a></li>
-                        <li><i class="fa fa-angle-right"></i> <a href="">Contact us</a></li>
-                        <li><i class="fa fa-angle-right"></i> <a href="">how it works</a></li>
-                        <li><i class="fa fa-angle-right"></i> <a href="">store locator</a></li>
-                        <li><i class="fa fa-angle-right"></i> <a href="">testimonial</a></li>
+
                     </ul>
                 </div>
                 <!-- END TWITTER BLOCK -->
@@ -41,8 +36,8 @@
                     <h3>Our Contacts</h3>
                     <address class="footer-address">
                         <span class="address location"> 8903 Tonstall Road, <br> Epsom surrey, UK </span> <br>
-                        <span class="address tel"> Phone: +986879-8705, +760-7483-349 </span> <br>
-                        <span class="address email ">  <a href="#"> Email:resturant@demo.com </a></span>
+                        {{--<span class="address tel"> Phone: +986879-8705, +760-7483-349 </span> <br>--}}
+                        {{--<span class="address email ">  <a href="#"> Email:resturant@demo.com </a></span>--}}
                     </address>
 
                 </div>

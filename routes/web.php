@@ -31,6 +31,8 @@ Route::resource('/profile', 'Customer\CustomerController');
 
 Route::put('/profile/{customer_id}/image', 'Customer\CustomerController@updateimage')->name('customer.updateimage');
 Route::get('/profile/{customer_id}/password', 'Customer\CustomerController@password')->name("password");
+Route::get('/profile/{customer_id}/history', 'Customer\CustomerController@history')->name("history");
+Route::get('/order/{group_id}/view', 'Customer\CustomerController@view')->name("history.view");
 Route::patch('/profile/{customer_id}/password', 'Customer\CustomerController@changepassword')->name("changepassword");
 
 // customer address

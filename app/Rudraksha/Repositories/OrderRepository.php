@@ -196,7 +196,6 @@ class OrderRepository
     {
         try {
             $data= OrderItem::find($orderid);
-
             $data->order_status= 'processing';
             $data->update();
             $this->log->info("Order status Updated", ['id' => $orderid]);
@@ -205,6 +204,16 @@ class OrderRepository
             $this->log->error("Order Update Failed %s", ['id' => $orderid], [$e->getMessage()]);
             return false;
         }
+    }
+
+    public function getOrdergroupbyCusId($id)
+    {
+
+       return $this->orderGroup->select('order_groups.*','users.firstname','users.lastname')
+            ->where('customer_id',$id)
+            ->join('users','users.id','order_groups.customer_id')
+            ->get()->toArray();
+
     }
 
 

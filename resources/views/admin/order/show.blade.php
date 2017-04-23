@@ -23,9 +23,7 @@
             <tbody>
 
             @foreach($data as $val)
-{{--                {{dd($data)}}--}}
                 @foreach($val as $value)
-{{--                    {{dd($value)}}--}}
             <tr>
                 <td>{{($value['cart_id'])}}</td>
 
@@ -36,10 +34,10 @@
                 <td>{{($value['quantity'])}}</td>
             </tr>
                 @endforeach
-                {{--<h2>{{($value['order_group'])}} ::{{($value['group_status'])}}</h2>--}}
-                {{--<h3>Customer Name: {{($value['customername'])}}  {{($value['customerlname'])}}</h3>--}}
-                {{--<h3>Ordered On: {{($value['created_at'])}}</h3>--}}
-                {{--<h4>Currency:   {{($value['cname'])}}</h4>--}}
+                <h2>{{($value['order_group'])}} ::{{($value['group_status'])}}</h2>
+                <h3>Customer Name: {{($value['customername'])}}  {{($value['customerlname'])}}</h3>
+                <h3>Ordered On: {{($value['created_at'])}}</h3>
+                <h4>Currency:   {{($value['cname'])}}</h4>
                 @endforeach
 
             </tbody>

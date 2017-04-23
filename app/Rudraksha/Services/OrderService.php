@@ -146,8 +146,12 @@ class OrderService
                     ];
                 }
             }
-//dd($detail);
         return $detail;
+    }
+
+    public function getordergroupbycustomerid($id)
+    {
+        return $this->orderRepository->getOrdergroupbyCusId($id);
     }
 
 

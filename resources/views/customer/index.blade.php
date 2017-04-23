@@ -35,7 +35,7 @@
                             <ul class="user-setting">
                                 <li><i class="fa fa-pencil-square-o"></i> <a href="/profile/{{$customer->id}}/password">
                                         Change password </a></li>
-                                <li><i class="fa fa-history"></i> <a href=""> History </a></li>
+                                <li><i class="fa fa-history"></i> <a href="/profile/{{$customer->id}}/history"> History </a></li>
                                 <li><i class="fa fa-sign-out"></i> <a href="{{ route('logout') }}"
                                                                       onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
