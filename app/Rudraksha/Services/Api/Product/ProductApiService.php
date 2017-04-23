@@ -10,6 +10,7 @@ namespace App\Rudraksha\Services\Api\Product;
 
 
 use App\Rudraksha\Entities\ProductImage;
+use App\Rudraksha\Repositories\Api\Capping\CappingApiRepository;
 use App\Rudraksha\Repositories\Api\Category\CategoryApiRepository;
 use App\Rudraksha\Repositories\Api\Product\ProductApiRepository;
 
@@ -27,20 +28,27 @@ class ProductApiService
      * @var ProductImage
      */
     private $productImage;
+    /**
+     * @var CappingApiRepository
+     */
+    private $cappingApiRepository;
 
     /**
      * ProductApiService constructor.
      * @param ProductApiRepository $productApiRepository
      * @param CategoryApiRepository $categoryApiRepository
      * @param ProductImage $productImage
+     * @param CappingApiRepository $cappingApiRepository
      */
     public function __construct(ProductApiRepository $productApiRepository,
                                 CategoryApiRepository $categoryApiRepository,
-                                ProductImage $productImage)
+                                ProductImage $productImage,
+                                CappingApiRepository $cappingApiRepository)
     {
         $this->productApiRepository = $productApiRepository;
         $this->categoryApiRepository = $categoryApiRepository;
         $this->productImage = $productImage;
+        $this->cappingApiRepository = $cappingApiRepository;
     }
 
     /**
@@ -125,6 +133,7 @@ class ProductApiService
         $productImage = $this->productApiRepository->getProductImage($id);
         $categoryBenefit = $this->productApiRepository->getCategoryBenefit($productInfo->category_id);
         $productDescription = $this->productApiRepository->getProductDescription($id);
+        $cappingData = $this->cappingApiRepository->getCappingData();
 
         $benefit = [];
 
@@ -144,13 +153,21 @@ class ProductApiService
         $productPrice = $this->productApiRepository->getProductPrice($id);
 
         $currency = [];
-
         foreach ($productPrice as $item) {
             $currency[] = [
                 'product_price' => $item->price,
+                'currency_id' => $item->id,
                 'currency' => $item->currency,
                 'code' => $item->code,
                 'representation' => $item->representation,
+            ];
+        }
+
+        $cappingDetail = [];
+        foreach ($cappingData as $capping) {
+            $cappingDetail[] = [
+                'capping_id' => $capping->id,
+                'capping_type' => $capping->type,
             ];
         }
 
@@ -174,7 +191,9 @@ class ProductApiService
 
             'category_benefit' => $benefit,
 
-            'products_image' => $images
+            'products_image' => $images,
+
+            'capping_detail' => $cappingDetail
         ];
 
         return $productDetails;
