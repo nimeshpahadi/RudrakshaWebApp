@@ -24,6 +24,7 @@
 
             @foreach($data as $val)
                 @foreach($val as $value)
+
             <tr>
                 <td>{{($value['cart_id'])}}</td>
 
@@ -32,6 +33,15 @@
                 <td>{{($value['captype'])}}</td>
                 <td>{{($value['capprice'])}}</td>
                 <td>{{($value['quantity'])}}</td>
+                <td>   <a class=" fa fa-pencil" style="color: #2ab27b"
+                          href="{{route('admin.order.edit',$value['cart_id'])}}"></a>
+                    {!! Form::open(['method' => 'DELETE','route' => ['order.destroy',$value['cart_id']]]) !!}
+                    <button class="fa fa-trash"
+                            onclick="return confirm('Are you sure you want to delete this cart item?');">
+                    </button>
+                    {!! Form::close() !!}
+                </td>
+
             </tr>
                 @endforeach
                 <h2>{{($value['order_group'])}} ::{{($value['group_status'])}}</h2>

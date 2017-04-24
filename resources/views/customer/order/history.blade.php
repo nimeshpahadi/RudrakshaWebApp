@@ -17,7 +17,6 @@
                             <th>Order Group</th>
                             <th>Customer</th>
                             <th>Group Status</th>
-                            <th>CartIds</th>
                             <th>Order Placed On</th>
                             <th>Remarks</th>
 
@@ -31,11 +30,6 @@
                                 <td>{{($group['order_group'])}}</td>
                                 <td>{{($group['firstname'])}} {{($group['lastname'])}}</td>
                                 <td>{{($group['group_status'])}}</td>
-                                <td>
-                                    @foreach($group['order_items_id'] as $cartid)
-                                        {{$cartid}},
-                                    @endforeach
-                                </td>
                                 <td>{{($group['created_at'])}}</td>
                                 <td><a href="{{route('history.view',$group['id'])}}">
                                         <button class="btn btn-warning pad" title="View the {{$group['id']}} order"><i

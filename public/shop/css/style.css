@@ -3,7 +3,7 @@
     src: url(../fonts/active.LobsterTwo-BoldItalic_0.otf);
     font-style:normal;
 }
-
+ 
 
 /* =Reset    
 ----------------------------------------------- */
@@ -298,23 +298,18 @@ body {
     float: right;
     margin-top: 30px;
     position: relative;
-    font: 400 13px 'Open Sans', Arial, sans-serif;
 }
 .top-cart-info {
     background: #717171;
     color: #595f65;
     border: solid 1px #ececec;
     border-radius: 16px !important;
-    /*float: left;*/
     padding: 8px 39px 6px 13px;
     line-height: 1.2;
 }
 .top-cart-info a {
     color: #fff;
 }
-/*.top-cart-info-count {
-    float: left;
-}*/
 
 .top-cart-info-value {
     border-left: solid 1px #a5aab0;
@@ -399,6 +394,7 @@ body {
     margin: 10px 0 0 5px;
     line-height: 1;
     font-size: 12px;
+    border: none;
 }
 .top-cart-content-wrapper {
     position: absolute;
@@ -871,7 +867,7 @@ ul.social-network li {
 .funkyradio input[type="checkbox"]:hover:not(:checked) ~ label:before {
   content: '\2714';
   text-indent: .9em;
-  color: #C2C2C2;
+  color: #ccc;
 }
 
 .funkyradio input[type="radio"]:checked ~ label,
@@ -986,7 +982,7 @@ label {
 }
 .goods-page-price strong, 
 .goods-page-total strong {
-    color: #e84d1c;
+    color: #333333;
     font-size: 16px;
     font-weight: normal;
 }
@@ -1003,7 +999,7 @@ label {
     margin-bottom: 2px;
 }
 .goods-data a {
-    color: #e6400c;
+    color: #333333;
     font-size: 18px;
     text-decoration: none;
 }
@@ -1017,10 +1013,10 @@ label {
     background: #5ea8dc;
     color: #fff;
 }
-.goods-page .btn-default:hover {
+/*.goods-page .btn-default:hover {
     border: 1px solid #408cc2;
     background: #408cc2;
-}
+}*/
 .goods-page .btn-primary {
     float: right;
     margin-right: 10px;
@@ -1084,6 +1080,10 @@ label {
 .table-wrapper-responsive {
     padding-bottom: 19px;
     background: #fff;
+}
+.cart_detail{
+    margin: 0px;
+    width:5px;
 }
 /*css for plus and minus*/
 .count-input input {
@@ -1466,7 +1466,7 @@ input:focus ~ .highlight {
     line-height: 1;
 }
 .level_wrapper input[type="text"],
-.level_wrapper input[type="number"]{
+.level_wrapper input[type="number1"] {
     width: 98%;
     height: 40px;
     padding: 0 0 0 10px;
@@ -1482,7 +1482,7 @@ input:focus ~ .highlight {
     width: 104%;
 }
 .delivery-control {
-    height: 200px;
+    height: 120px;
 }
 .btn.btn-primary.btn_delivery {
     padding: 12px 27px;
@@ -1513,6 +1513,140 @@ input:focus ~ .highlight {
     background: #eae9e8;
     border-top: 1px solid #eae9e8;
 }
+
+.level_wrapper.checkout-form {
+    width: 100%;
+    float: left;
+    line-height: 1;
+}
+
+#inlineCheckbox2 {
+    float: left;
+    margin-left: -117px;
+    margin-top: 7px;
+}
+.chng_pasword{
+    font-size: 14px;
+    margin-left: 15px;
+}
+
+/*history page*/
+.histry-wrapper {
+    background: #ccc;
+    padding: 35px;
+}
+.histry-header {
+    border-right: 1px solid #fff;
+    padding: 15px;
+}
+.histry-detail {
+    border-right: 1px solid #fff;
+    padding: 15px;
+}
+.histry-detail a {
+    background: #ff5400;
+    padding: 5px 15px;
+    color: #fff;
+}
+
+/*login*/
+.content {
+    padding: 16px 15px 23px;
+}
+.account-container {
+    width: 380px;
+    display: block;
+    margin: 60px auto 0 auto;
+    background: #f9f9f9;
+    border: 1px solid #d5d5d5;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 2px #dadada, inset 0px -3px 0px #e6e6e6;
+}
+.login-fields .field {
+    margin-bottom: 1.25em;
+}
+.login-fields label {
+    display: none;
+}
+.login-fields input {
+    font-size: 13px;
+    color: #000;
+    padding: 11px 15px 10px 50px;
+    background-color: #fdfdfd;
+    /*width: 255px;*/
+    display: block;
+    margin: 0;
+    box-shadow: inset 2px 2px 4px #f1f1f1;
+}
+.username-field {
+    background: url(../images/user.png) no-repeat;
+}
+.password-field {
+    background: url(../images/password.png) no-repeat;
+}
+.login-actions {
+    float: left;
+    width: 100%;
+    margin-top: -1em;
+    margin-bottom: 1.25em;
+}
+span.login-checkbox {
+    float: left;
+    margin-top: 15px;
+    width: 55%;
+    margin-left: 10px;
+}
+.button.btn.login_botom {
+    float: right;
+    margin: 15px 15px 0 0;
+}
+.button.btn.login_botom:hover {
+    color: #fff;
+    background: #286090;
+    transition: all 0.3s ease 0.2s;
+    border: 1px solid #286090;
+}
+.login-extra {
+    display: block;
+    width: 300px;
+    margin: 1.5em auto;
+    text-align: left;
+    line-height: 19px;
+    text-shadow: 1px 1px 0px #fff;
+}
+.login-fields p {
+    font-size: 14px;
+    margin: 13px 0;
+}
+
+/*sign in*/
+.register .login-fields input {
+    padding-left: 6px;
+}
+.login-fields input {
+    font-size: 13px;
+    color: #000;
+    padding: 11px 15px 10px 50px;
+    background-color: #fdfdfd;
+    display: block;
+    margin: 0;
+    box-shadow: inset 2px 2px 4px #f1f1f1;
+}
+
+.login-extra{
+    font-size: 14px;
+}
+#Field {
+    float: left;
+    margin-right: 9px;
+    width: 14px;
+}
+.login-checkbox p{
+    font-size: 16px;
+}
+
 
 
 /*top scroll*/
@@ -1693,6 +1827,13 @@ input:focus ~ .highlight {
     .user-bottom-tight {
         padding: 20px 30px 20px 30px;
     }
+    .checkout-left {
+        margin-bottom: 32px;
+    }
+    .cleckout-right {
+        margin-top: 30px;
+    }
+
 }
 
 @media only screen and (max-width:640px){
@@ -1723,6 +1864,9 @@ input:focus ~ .highlight {
     }
     .level_wrapper {
         width: 100%;
+    }
+    .table-wrapper-responsive {
+        padding-bottom: 0px;
     }
     
 }
@@ -1764,7 +1908,11 @@ input:focus ~ .highlight {
         height: 170px;
     }
     .delivery-control {
-        height: 150px;
+        height: 100px;
+    }
+    .account-container {
+        width: 280px;
+        margin-top: 35px;
     }
 }
 

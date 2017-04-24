@@ -22,7 +22,8 @@
                                                 <th class="goods-page-price">Unit price</th>
                                                 <th class="goods-page-price">Capping Type</th>
                                                 <th class="goods-page-price">Capping Price</th>
-                                                <th class="goods-page-total" colspan="2">Total</th>
+                                                <th class="goods-page-total">Total</th>
+                                                <th class="goods-page-total" colspan="2">remark</th>
                                             </tr>
                                             <?php $y = 0;?>
 
@@ -59,12 +60,13 @@
                                                         <strong><span></span>{{$x=$orders['quantity']*$orders['prodprice']+$orders['capprice']}}
                                                         </strong>
                                                     </td>
-                                                    <td class="del-goods-col">
+                                                    <td class="edit-goods">
 
                                                         <a class=" fa fa-pencil" style="color: #2ab27b"
                                                            href="{{route('order.edit',$orders['id'])}}"></a>
-
-                                                        {!! Form::open(['method' => 'DELETE','route' => ['order.destroy',$orders['id']]]) !!}
+                                                    </td>
+                                                    <td  class="edit-goods">
+                                                        {!! Form::open(['method' => 'DELETE','class'=>'cart_detail','route' => ['order.destroy',$orders['id']]]) !!}
                                                         <button class="del-goods"
                                                                 onclick="return confirm('Are you sure you want to delete this cart item?');">
                                                         </button>

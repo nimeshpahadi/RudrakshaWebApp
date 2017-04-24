@@ -60,7 +60,8 @@
                                                     <ul class="dropdown-menu" role="menu">
 
                                                         <li><a href="/profile">Profile</a></li>
-                                                        <li><a href="#">My History </a></li>
+                                                        <li><a href="/profile/{{Auth::user()->id}}/history">My History </a></li>
+
 
                                                         <li role="separator" class="divider"></li>
                                                         <li>

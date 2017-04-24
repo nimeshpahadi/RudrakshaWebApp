@@ -36,7 +36,7 @@
                     <td>{{($group['created_at'])}}</td>
                     <td><a href="{{route('order.detail',$group['id'])}}">
                             <button class="btn btn-warning pad" title="View the {{$group['id']}} order"><i
-                                        class="fa fa-vine"></i></button>
+                                        class="fa fa-share"></i></button>
                         </a></td>
 
             @endforeach
