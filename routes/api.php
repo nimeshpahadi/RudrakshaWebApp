@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 |
 */
 
+// user
 Route::get('/user_id', 'User\UserLoginController@userId')->middleware('auth:api');
 Route::get('/user/details/{id}', 'User\UserLoginController@userDetails')->middleware('auth:api');
 Route::post('/user/create', 'User\UserRegisterController@createUser');
@@ -20,12 +21,15 @@ Route::post('/user/login', 'User\UserLoginController@issueToken');
 Route::put('/user/{id}/edit', 'User\UserRegisterController@userInfoUpdate');
 Route::put('/user/{id}/image/edit', 'User\UserRegisterController@userImageUpdate');
 
+// product
 Route::get('/product/list', 'Product\ProductApiController@productList');
 Route::get('/product/details/{id}', 'Product\ProductApiController@productDetailList');
 
+// category
 Route::get('/category/list', 'Category\CategoryApiController@categoryList');
 Route::get('/category/{id}/benefit', 'Category\CategoryApiController@categoryBenefit');
 
+// capping
 Route::get('/capping/list', 'Capping\CappingApiController@cappingData');
 
 // customer address
@@ -44,3 +48,6 @@ Route::post('/order/create', 'Order\OrderApiController@create');
 Route::put('/order/{id}/edit/', 'Order\OrderApiController@edit');
 Route::delete('/order/{id}/delete', 'Order\OrderApiController@destroy');
 Route::delete('{customer_id}/cart/deleteall', 'Order\OrderApiController@deleteAll');
+
+// order group
+Route::post('/cart/group/create','Order\OrderGroupApiController@create');

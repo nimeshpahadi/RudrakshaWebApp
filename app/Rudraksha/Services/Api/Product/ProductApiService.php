@@ -89,6 +89,7 @@ class ProductApiService
                 foreach ($productPrice as $item) {
                     $currency[] = [
                         'product_price' => $item->price,
+                        'currency_id' => $item->id,
                         'currency' => $item->currency,
                         'code' => $item->code,
                         'representation' => $item->representation,
