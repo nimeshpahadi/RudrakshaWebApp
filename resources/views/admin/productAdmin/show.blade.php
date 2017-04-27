@@ -170,11 +170,11 @@
 
                         <div class="row">
                             <label class="col-sm-6 "> Information :</label>
-                            {{$product_desc->information}}
+                            <p class="col-md-6"> {{$product_desc->information}}</p>
                         </div>
                         <div class="row">
                             <label class="col-sm-6 "> Description :</label>
-                            {{$product_desc->description}}
+                            <p class="col-md-6"> {{$product_desc->description}}</p>
                         </div>
                         </div>
                     @endif
