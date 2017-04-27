@@ -22,14 +22,18 @@
                 <label class="col-sm-6 "> Email:</label>
                 {{$customerid->email}}
             </div>
+            @if(isset($customerid->contact))
             <div class="row">
                 <label class="col-sm-6 "> Contact :</label>
                 {{$customerid->contact}}
             </div>
+            @endif
+            @if(isset($customerid->alternative_contact))
             <div class="row">
                 <label class="col-sm-6 "> Alternative Contact :</label>
                 {{$customerid->alternative_contact}}
             </div>
+            @endif
 
             <div class="row">
                 <label class="col-sm-6 "> Status:</label>
@@ -42,6 +46,7 @@
     <div class="panel-heading">
         <h3 class="panel-title ">User Address</h3>
     </div>
+        @if(isset($address))
     <div class="panel-body">
         <div class="row">
             <label class="col-sm-6 "> Country :</label>
@@ -68,7 +73,6 @@
             {{$address->contact}}
         </div>
 
-{{--        {{dd($address->latitude_long)}}--}}
         <div class="row">
             <label class="col-sm-6 "> Location:</label>
             @foreach($address->latitude_long as $x=>$latlong)
@@ -79,6 +83,7 @@
         <div>
         </div>
     </div>
+            @endif
     </div>
 
 

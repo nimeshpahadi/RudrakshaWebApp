@@ -39,7 +39,7 @@
                                 <input id="more_fields" type="text" class="form-control" name='benefit[]'
                                        required autofocus>
                             </div>
-                            <div class="formfield"><span class="del btn btn-info">-</span></div>
+                            <div class="formfield"><span class="del btn btn-danger minus">-</span></div>
                         </div>
                     </div>
 

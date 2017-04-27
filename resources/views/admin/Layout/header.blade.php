@@ -17,7 +17,7 @@
     </script>
 
 </head>
-<body class="hold-transition skin-yellow sidebar-mini">
+<body class="hold-transition skin-red sidebar-mini">
 <div class="wrapper ">
 
     <header class="main-header ">

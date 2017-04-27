@@ -10,12 +10,13 @@
             <thead>
             <tr>
 
-                <th>CartIds </th>
+                <th>CartIds</th>
                 <th>Product</th>
                 <th>Product Price</th>
                 <th>Capping</th>
                 <th>Capping Price</th>
                 <th>Quantity</th>
+                <th>Remarks</th>
 
 
             </tr>
@@ -25,30 +26,43 @@
             @foreach($data as $val)
                 @foreach($val as $value)
 
-            <tr>
-                <td>{{($value['cart_id'])}}</td>
+                    <tr>
+                        <td>{{($value['cart_id'])}}</td>
+                        <td>{{($value['prodname'])}}</td>
+                        <td>{{($value['prodprice'])}}</td>
+                        <td>{{($value['captype'])}}</td>
+                        <td>{{($value['capprice'])}}</td>
+                        <td>{{($value['quantity'])}}</td>
+                        <td>
+                            <div class="panel-heading category">
+                                <ul>
+                                    <li>
+                                        <a class="btn btn-warning pad"
+                                           href="{{route('admin.order.edit',$value['cart_id'])}}">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        {!! Form::open(['method' => 'DELETE','route' => ['order.destroy',$value['cart_id']]]) !!}
+                                        <button type="submit" class="btn btn-danger pad"
+                                                data-toggle="popover"
+                                                data-trigger="hover"
+                                                data-placement="top" data-content="Delete the current currency"
+                                                onclick="return confirm('Are you sure you want to delete this item?');">
+                                            <i class="fa fa-trash"></i>
+                                        {!! Form::close() !!}
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
 
-                <td>{{($value['prodname'])}}</td>
-                <td>{{($value['prodprice'])}}</td>
-                <td>{{($value['captype'])}}</td>
-                <td>{{($value['capprice'])}}</td>
-                <td>{{($value['quantity'])}}</td>
-                <td>   <a class=" fa fa-pencil" style="color: #2ab27b"
-                          href="{{route('admin.order.edit',$value['cart_id'])}}"></a>
-                    {!! Form::open(['method' => 'DELETE','route' => ['order.destroy',$value['cart_id']]]) !!}
-                    <button class="fa fa-trash"
-                            onclick="return confirm('Are you sure you want to delete this cart item?');">
-                    </button>
-                    {!! Form::close() !!}
-                </td>
-
-            </tr>
+                    </tr>
                 @endforeach
                 <h2>{{($value['order_group'])}} ::{{($value['group_status'])}}</h2>
                 <h3>Customer Name: {{($value['customername'])}}  {{($value['customerlname'])}}</h3>
                 <h3>Ordered On: {{($value['created_at'])}}</h3>
-                <h4>Currency:   {{($value['cname'])}}</h4>
-                @endforeach
+                <h4>Currency: {{($value['cname'])}}</h4>
+            @endforeach
 
             </tbody>
 

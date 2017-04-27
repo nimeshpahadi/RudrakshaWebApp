@@ -16,7 +16,7 @@
             <tr>
 
                 <th>Type</th>
-                <th>design_image</th>
+                <th>Design Image</th>
                 <th>Price</th>
                 <th>Metal Quantity</th>
                 <th>Description</th>
@@ -31,7 +31,7 @@
             @foreach($cap as $capping)
                 <tr>
                     <td>{{$capping->type}}</td>
-                    <td>
+                    <td class="design_image">
                         <img class="cappingimage" src="{{asset('storage/image/capping')}}/{{$capping->design_image}}">
                         <button type="button" class="btn btn-info  " data-toggle="modal"
                                 data-target="#myModal">change
@@ -78,21 +78,29 @@
                     <td>{{$capping->description}}</td>
                     <td>@if($capping->status==1)Active @else Inactive @endif</td>
                     <td>
+                        <div class="panel-heading category">
+                            <ul>
+                                <li>
                         <a href="{{route('capping.edit',$capping->id)}}">
                             <button class="btn btn-warning pad" data-toggle="popover" data-trigger="hover"
                                     data-placement="top" data-content="Edit the {{$capping->id}} capping"><i
                                         class="fa fa-edit"></i>
                             </button>
                         </a>
+                                </li>
+                                <li>
 
                         {!! Form::open(['method' => 'DELETE','route' => ['capping.destroy', $capping->id]]) !!}
-                        <button type="submit" class="btn btn-danger glyphicon glyphicon-trash pad" data-toggle="popover"
+                        <button type="submit" class="btn btn-danger pad " data-toggle="popover"
                                 data-trigger="hover"
                                 data-placement="top" data-content="Delete the current product"
                                 onclick="return confirm('Are you sure you want to delete this item?');">
-
+                            <i
+                                    class="fa fa-trash"></i>
                         </button>
                         {!! Form::close() !!}
+                                </li>
+                            </ul>
                     </td>
                 </tr>
             @endforeach

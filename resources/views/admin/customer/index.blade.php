@@ -23,12 +23,11 @@
             @if(isset($customer))
                 @foreach($customer as $row)
                     <tr>
-                        {{--ln -s ~/web/RudrakshaWebbapp/storage/app/public/users ~/web/RudrakshaWebbapp/public/storage/--}}
                         <td><img class="cappingimage" src="{{asset('storage/image/users')}}/{{$row->image}}"></td>
                         <td>{{$row->firstname }} {{$row->lastname }}</td>
                         <td>{{$row->email }}</td>
-                        <td>{{$row->contact }}</td>
-                        <td>{{$row->alternative_contact }}</td>
+                        <td>@if(isset($row->contact)){{$row->contact }}@else -- @endif</td>
+                        <td>@if(isset($row->alternative_contact)){{$row->alternative_contact }}@else -- @endif</td>
 
                         <td>@if($row->confirmed==1)Active @else Inactive @endif</td>
 

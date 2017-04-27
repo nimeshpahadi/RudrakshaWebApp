@@ -4,7 +4,7 @@
 
     <div align="right" style="padding: 10px">
         <a href="{{route('products.create')}}">
-            <span class=" btn btn-sm btn-success" title="Create new category">Create Product</span>
+            <span class=" btn btn-sm btn-info" title="Create new category">Create Product</span>
         </a>
     </div>
     <div class="panel-body">
@@ -12,7 +12,7 @@
         @if(isset($catprod))
             @foreach($catprod as $cat=>$value)
 
-                <td><h2 class="" style="background-color: #8c8c8c">{{strtoupper($cat)}} </h2></td>
+                <td><h2 ><b>{{strtoupper($cat)}}</b> </h2></td>
 
                 <table id="example1"
                        class="table table-striped table-bordered dt-responsive  table-responsive "

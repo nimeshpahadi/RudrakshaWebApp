@@ -2,8 +2,8 @@ body{ margin-top:20px; }
 
 .productimage
 {
-    height: 300px;
-    width: 300px;
+    width: 100%;
+    height: 175px;
 }
 .cappingimage
 {
@@ -12,11 +12,106 @@ body{ margin-top:20px; }
 }
 
 .hidden { display: none; }
-.formfield { float: left; }
+.formfield {
+    margin-top: 10px;
+    display: inline-block;
+}
 .example-template { clear: left; }
 
 
 .form-group.required .control-label:after {
     content:"*";
     color:red;
+    margin-left: 8px;
+}
+
+
+/*admin page css*/
+.view {
+    width: 81px;
+    margin-top: 5px;
+}
+.view_detail{
+    width: 10%;
+}
+.content h2{
+    float: left;
+    margin: 20px;
+}
+
+.form-category {
+    padding-top: 14px;
+}
+.minus{
+    width:34px;
+}
+ .panel-heading.category h4{
+           float:left;
+ }
+
+.panel-heading.category  > ul > li{
+        display: inline-block;
+    float: left;
+    list-style: none;
+}
+
+.panel-heading.category  > ul{
+    float: right;
+}
+.panel-heading.category {
+    overflow: hidden;
+}
+
+
+.panel-heading.category1 h4{
+    float:left;
+      width: 50px;
+}
+
+.panel-heading.category1  > ul > li{
+        display: inline-block;
+    float: left;
+    list-style: none;
+    margin-bottom:-5px;
+    margin-top: 5px;
+}
+
+.panel-heading.category1 {
+    overflow: hidden;
+}
+
+.cat_form{
+    margin: 0;
+}
+.cat_benefit  {
+    padding: 0 30px;
+}
+.ben > td > li {
+        padding-left: 150px;
+        display: inline-block;
+        clear: fixed;
+        overflow: hidden;
+        margin-left: 96px;
+}
+.category_edit {
+        margin-left: 181px;
+}
+.benef_del{
+    position: absolute;
+    top: 0%;
+    right: -50px;
+    width: 33px;
+}
+
+.panel-info {
+        border-color: #bce8f1  ;
+        overflow: hidden;
+}
+
+.panel-heading.category.prod_image {
+        float: left;
+        margin-left: 90px;
+}
+.design_image{
+    width: 165px;
 }

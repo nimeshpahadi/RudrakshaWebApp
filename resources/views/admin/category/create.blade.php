@@ -10,7 +10,7 @@
             <h3>Create Category</h3>
             <div class="box box-info clearfix pad ">
 
-                {!! Form::open(array('route'=>'category.store' ))!!}
+                {!! Form::open(array('route'=>'category.store' ,'class'=>'form-category'))!!}
 
                 <div class="form-group{{ $errors->has('code') ? ' has-error' : '' }} clearfix  form-group required">
                     <label for="code" class="col-sm-4 control-label">Code</label>
@@ -57,6 +57,22 @@
                         @endif
                     </div>
                 </div>
+                <div class="form-group{{ $errors->has('face_no') ? ' has-error' : '' }} clearfix form-group required">
+                    <label for="face_no" class="col-sm-4 control-label">Face No.</label>
+
+                    <div class="col-sm-8">
+                        <input id="face_no" type="number" class="form-control" name="face_no"
+                               value="{{ old('face_no') }}" required
+                               autofocus>
+
+                        @if ($errors->has('face_no'))
+                            <span class="help-block">
+                                        <strong>{{ $errors->first('face_no') }}</strong>
+                                    </span>
+                        @endif
+                    </div>
+                </div>
+
 
                 <div class="form-group{{ $errors->has('information') ? ' has-error' : '' }} clearfix form-group required">
                     <label for="information" class="col-sm-4 control-label">Information</label>
@@ -73,21 +89,6 @@
                     </div>
                 </div>
 
-                <div class="form-group{{ $errors->has('face_no') ? ' has-error' : '' }} clearfix form-group required">
-                    <label for="face_no" class="col-sm-4 control-label">Face No.</label>
-
-                    <div class="col-sm-8">
-                        <input id="face_no" type="number" class="form-control" name="face_no"
-                               value="{{ old('face_no') }}" required
-                               autofocus>
-
-                        @if ($errors->has('face_no'))
-                            <span class="help-block">
-                                        <strong>{{ $errors->first('face_no') }}</strong>
-                                    </span>
-                        @endif
-                    </div>
-                </div>
 
                 <div class="form-group{{ $errors->has('mantra') ? ' has-error' : '' }} clearfix form-group required">
                     <label for="mantra" class="col-sm-4 control-label">Mantra</label>
@@ -120,8 +121,7 @@
                 </div>
 
 
-                <div class="clearfix pad"></div>
-                <div align="right">
+                <div  class="" align="right">
                     {{Form::submit('Create', array('class'=>'btn btn-sm btn-primary ','title'=>'Save the category'))}}
                     <a type="button" class="btn btn-sm btn-warning" href="/admin/category">Cancel</a>
                     {!! Form::close() !!}

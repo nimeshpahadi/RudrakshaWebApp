@@ -31,20 +31,29 @@
                         <td>{{$row->code }}</td>
                         <td>{{$row->representation }}</td>
 
-                        <td><a href="{{route('currency.edit',$row->id)}}">
+                        <td>
+                            <div class="panel-heading category">
+                                <ul>
+                                    <li>
+                                        <a href="{{route('currency.edit',$row->id)}}">
                                 <button class="btn btn-warning pad" title="Edit the {{$row->currency}} currency"><i
                                             class="fa fa-edit"></i></button>
                             </a>
+                                    </li>
+                                    <li>
                             {!! Form::open(['method' => 'DELETE','route' => ['currency.destroy', $row->id]]) !!}
 
-                            <button type="submit" class="btn btn-danger  glyphicon glyphicon-trash pad"
+                            <button type="submit" class="btn btn-danger pad"
                                     data-toggle="popover"
                                     data-trigger="hover"
                                     data-placement="top" data-content="Delete the current currency"
                                     onclick="return confirm('Are you sure you want to delete this item?');">
-
+                                <i class="fa fa-trash"></i>
                             </button>
                             {!! Form::close() !!}
+                                    </li>
+                                </ul>
+                            </div>
                         </td>
                     </tr>
                 @endforeach

@@ -25,7 +25,6 @@
                                                 <div class="item">
                                                     <div class="product-item">
                                                         @foreach($item['image'] as $img)
-{{--                                                            {{dd($img['image'])}}--}}
                                                             <img src="{{asset('storage/image/product')}}/{{$img['image']}}"
                                                                  height="200px"><br>
                                                             <?php break; ?>
@@ -37,7 +36,6 @@
                                                                 <?php break; ?>
                                                         @endforeach
                                                         <h3>{{($item['name']) }} </h3>
-                                                        <h3>{{$item['code'] }}</h3>
 
                                                         <div class="rateyo-readonly-widg"></div>
                                                         <a href="{{route('product.detail',$item['id'])}}"> quick

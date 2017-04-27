@@ -14,7 +14,7 @@
                     {{ Form::hidden('category_id',$beni->category_id) }}
 
                     <div class="form-group{{ $errors->has('benefit_heading') ? ' has-error' : '' }} clearfix">
-                        <label for="benefit_heading" class="col-sm-4 control-label">Benefit Head</label>
+                        <label for="benefit_heading" class="col-sm-3 control-label">Benefit Head</label>
 
                         <div class="col-sm-8">
                             {{ Form::text('benefit_heading',null,array('class'=>'form-control'))}}
@@ -22,37 +22,36 @@
                     </div>
 
 
-                    <div class="">
-                        <label for="benefit" class="col-sm-4 control-label"> Benifits </label>
 
+                        <label for="benefit" class="col-sm-3 control-label"> Benifits </label>
 
+                        <div class="edit-area2">
+                            <div class="controls">
+                                <span class="add btn btn-info" style="float: right; margin-right: 17px">+</span>
+                            </div>
+                        </div>
                                @foreach($beni->benefit as $list)
-                            <div class=" formfield  col-sm-offset-4 col-sm-7">
+                            <div class=" formfield  col-sm-offset-3 col-sm-8">
                                     <input id="more_fields" type="text" class="form-control"
                                            name='benefit[]'
                                            value="{{$list}}" autofocus>
 
-                               <span class="del btn btn-info del-input">-</span>
+                                <span class=" del btn btn-danger del-input benef_del">-</span>
                             </div>
-
-
                         @endforeach
+
 
                         <div class="example-template2">
 
-                            <div class="formfield col-sm-offset-4 col-sm-7">
+                            <div class="formfield col-sm-offset-3 col-sm-8">
                                 <input id="more_fields" type="text" class="form-control" name='benefit[]'
                                        required autofocus>
                             </div>
-                            <div class="formfield"><span class="del btn btn-info ">-</span></div>
+                            <div class="formfield"><span class="del btn btn-danger ben_del ">-</span></div>
                         </div>
-                    </div>
 
-                    <div class="edit-area2">
-                        <div class="controls">
-                            <span class="add btn btn-info">+</span>
-                        </div>
-                    </div>
+
+
 
 
                     <div class="clearfix pad"></div>

@@ -22,6 +22,7 @@
             </tr>
             </thead>
             <tbody>
+            @if(isset($data))
             @foreach($data as $group)
                 <tr>
                 <td>{{($group['id'])}}</td>
@@ -40,6 +41,8 @@
                         </a></td>
 
             @endforeach
+
+                @endif
 
             </tbody>
 
