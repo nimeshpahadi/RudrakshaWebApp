@@ -101,7 +101,6 @@ class ProductPriceAdminController extends Controller
         $currency=$this->currencyService->getCurrency();
         $product=$this->productService->getactiveproduct();
         $prod_price= $this->productPriceService->getproductpricebyId($id);
-//        dd($prod_price);
        return view('admin.product_price.edit',compact('prod_price','product','currency'));
     }
 

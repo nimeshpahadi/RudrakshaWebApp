@@ -61,4 +61,9 @@ class ProductPriceService
         return $this->productPriceRepository->getProductPricebyid($id);
     }
 
+    public function getproductpricebyproductId($id)
+    {
+        return $this->productPriceRepository->getPricebyProductId($id);
+    }
+
 }

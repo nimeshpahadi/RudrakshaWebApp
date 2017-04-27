@@ -89,14 +89,13 @@
                 </div>
                 </div>
             @endif
-
-            @if(isset($productid))
+            @if(isset($product_price))
                     <div class="col-md-6">
                 <div class="panel panel-danger  pad ">
-                    <div class="panel-heading category"><h4>Product Info</h4>
+                    <div class="panel-heading category"><h4>Product Price</h4>
                         <ul>
                             <li>
-                                <a href="{{route('products.edit',$productid->id)}}">
+                                <a href="{{route('product_price.edit',$product_price->priceid)}}">
                                     <button class="btn btn-warning " data-toggle="popover" data-trigger="hover"
                                             data-placement="top" data-content="Edit the current category"><i
                                                 class="fa fa-edit"></i>
@@ -104,7 +103,7 @@
                                 </a>
                             </li>
                             <li>
-                                {!! Form::open(['method' => 'DELETE','route' => ['products.destroy', $productid->id]]) !!}
+                                {!! Form::open(['method' => 'DELETE','route' => ['product_price.destroy', $product_price->priceid]]) !!}
                                 <button type="submit" class="btn btn-danger" data-toggle="popover"
                                         data-trigger="hover"
                                         data-placement="top" data-content="Delete the current product"
@@ -116,13 +115,13 @@
                         </ul>
                     </div>
                     <div class="row">
-                        <label class="col-sm-6 "> Price :</label>
-                        <p class="col-md-6">{{$productid->code}}</p>
+                        <label class="col-sm-6 "> Currency :</label>
+                        <p class="col-md-6">{{$product_price->currency}}</p>
                     </div>
 
                     <div class="row">
-                        <label class="col-sm-6 "> Currency :</label>
-                        <p class="col-md-6"> {{$productid->name}}</p>
+                        <label class="col-sm-6 "> Price :</label>
+                        <p class="col-md-6"> {{$product_price->price}}</p>
                     </div>
 
 

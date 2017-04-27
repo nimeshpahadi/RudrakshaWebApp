@@ -7,6 +7,7 @@ use App\Http\Requests\ProductImageRequest;
 use App\Http\Requests\ProductInfoRequest;
 use App\Rudraksha\Entities\ProductInfo;
 use App\Rudraksha\Services\CategoryService;
+use App\Rudraksha\Services\ProductPriceService;
 use App\Rudraksha\Services\ProductService;
 use Illuminate\Http\Request;
 
@@ -22,12 +23,17 @@ class ProductAdminController extends Controller
      * @var CategoryService
      */
     private $categoryService;
+    /**
+     * @var ProductPriceService
+     */
+    private $productPriceService;
 
-    public function __construct(ProductService $productService, CategoryService $categoryService)
+    public function __construct(ProductService $productService, CategoryService $categoryService,ProductPriceService $productPriceService)
     {
         $this->middleware('auth:admin');
         $this->productService = $productService;
         $this->categoryService = $categoryService;
+        $this->productPriceService = $productPriceService;
     }
 
     /**
@@ -138,8 +144,9 @@ class ProductAdminController extends Controller
         $product_desc = $this->productService->get_product_desc($id);
         $product_image = $this->productService->get_product_image($id);
         $product_imagerank = $this->productService->get_product_image_rank($id);
+        $product_price=$this->productPriceService->getproductpricebyproductId($id);
 
-        return view('admin/productAdmin/show', compact('productid', 'product_desc', 'product_image','product_imagerank'));
+        return view('admin/productAdmin/show', compact('productid', 'product_desc', 'product_image','product_imagerank','product_price'));
     }
 
     /**
