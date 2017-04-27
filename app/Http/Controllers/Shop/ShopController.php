@@ -70,7 +70,8 @@ class ShopController extends Controller
             $view = view('shop.index',compact('entries'))->render();
             return response()->json(['html'=>$view]);
         }
-        return view('shop.home',compact('entries'));
+        $page='home';
+        return view('shop.home',compact('entries','page'));
 
     }
 
@@ -89,8 +90,9 @@ class ShopController extends Controller
         $product_imagerank = $this->productService->get_product_image_rank($id);
         $capping=$this->cappingService->getallcap();
         $benefits=$this->categoryService->get_category_benefit($productid->category_id);
+        $page='cart';
         return view('shop.detail',compact('productid','product_desc',
-            'product_image','product_imagerank','product_price','capping','benefits'));
+            'product_image','product_imagerank','product_price','capping','benefits','page'));
     }
 
     /**
@@ -99,7 +101,8 @@ class ShopController extends Controller
      */
     public function aboutUs()
     {
-        return view('shop.about_us');
+        $page='aboutus';
+        return view('shop.about_us',compact('page'));
     }
 
     /**
@@ -108,7 +111,8 @@ class ShopController extends Controller
      */
     public function contact()
     {
-        return view('shop.contact');
+        $page='contact';
+        return view('shop.contact',compact('page'));
     }
 
     /**

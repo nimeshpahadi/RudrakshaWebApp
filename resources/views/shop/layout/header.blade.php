@@ -110,14 +110,19 @@
                         <div class="col-sm-2 col-xs-3 logo">
                             <a class="site-logo" href="/"><img src="{{asset('shop/images/logo-shop-red.png')}}" alt="Metronic Shop UI" ></a>
                         </div>
+
+
                         <!-- nav -->
                         <div class="col-sm-8 col-xs-4">
                             <nav class="main-navigation ">
                                 <ul>
-                                    <li> <a class="active" href="/">home</a></li>
-                                    <li> <a href="/cart">Cart</a></li>
-                                    <li> <a href="/aboutus">about us</a></li>
-                                    <li> <a href="/contact">contacts</a></li>
+                                    @if(isset($page))
+                                    <li> <a class="{{ $page == "home" ? "active" : "" }}" href="{{ url("/") }}">Home</a></li>
+                                    <li> <a class="{{ $page == "cart" ? "active" : "" }}" href="{{ url("/cart") }}" >Cart</a></li>
+                                    <li> <a class="{{ $page == "aboutus" ? "active" : "" }}" href="{{ url("/aboutus") }}" >About us</a></li>
+                                    <li> <a class="{{ $page == "contact" ? "active" : "" }}" href="{{ url("/contact") }}" >Contact</a></li>
+                                    @endif
+
                                     <li class="menu-search">
                                         <span class="sep"></span>
                                         <i class="fa fa-search search-btn"></i>

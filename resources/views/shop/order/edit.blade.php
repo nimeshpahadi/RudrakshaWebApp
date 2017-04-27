@@ -2,7 +2,6 @@
 
 @section('main-content')
 
-    @include('shop.layout.breadcrum')
 
     <section id="detail-wrapper" style="width: auto; height: auto; display: block;">
         <div class="container">

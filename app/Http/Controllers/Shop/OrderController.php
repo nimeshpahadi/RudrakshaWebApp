@@ -125,7 +125,8 @@ class OrderController extends Controller
     public function cart()
     {
         $orderitem=$this->orderService->getorderbyCustomerid(Auth::user()->id);
-        return view('shop.order.cart',compact('orderitem'));
+        $page='cart';
+        return view('shop.order.cart',compact('orderitem','page'));
     }
 
     /**

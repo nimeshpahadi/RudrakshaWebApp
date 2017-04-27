@@ -2,7 +2,6 @@
 
 @section('main-content')
 
-    @include('shop.layout.breadcrum')
     <section class="adv-innerpage-content">
         <div class="container">
             <div class="adv-inner-page-slider-content contact-page-content-holder">

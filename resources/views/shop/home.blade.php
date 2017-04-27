@@ -5,7 +5,6 @@
 
 @include('shop.layout.banner')
 
-{{--{{dd($entries)}}--}}
 
     @if (count($entries) > 0)
     <div class="infinite-scroll">

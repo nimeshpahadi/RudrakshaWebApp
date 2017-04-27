@@ -1,7 +1,6 @@
 @extends('shop.layout.app')
 
 @section('main-content')
-    @include('shop.layout.breadcrum')
     <section id="cart-wrapper">
         <div class="container">
             <div class="col-md-12 col-sm-12 histry-wrapper">

@@ -2,7 +2,6 @@
 
 @section('main-content')
 
-    @include('shop.layout.breadcrum')
 
     <section id="cart-wrapper">
         <div class="container">
