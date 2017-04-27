@@ -2,7 +2,6 @@
 
 @section('main-content')
 
-    @include('shop.layout.breadcrum')
 
     <!-- contact -->
     <section class="adv-innerpage-content">

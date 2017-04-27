@@ -1,7 +1,6 @@
 @extends('shop.layout.app')
 
 @section('main-content')
-    @include('shop.layout.breadcrum')
     <section id="change-wrapper">
         <div class="container">
             <div class="row clearfix">
