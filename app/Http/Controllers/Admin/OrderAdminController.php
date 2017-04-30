@@ -79,7 +79,7 @@ class OrderAdminController extends Controller
          $data=$request->all();
 
          if ($this->orderService->ordergroupstatusUpdate($data, $id)) {
-             return redirect()->route('order.list')->withSuccess('Order Group status Updated');
+             return back()->withSuccess('Order Group status Updated');
          }
          return back()->withErrors('something went wrong');
      }
