@@ -149,4 +149,15 @@ class OrderController extends Controller
        }
        return back()->withErrors("oops Something went wrong");
    }
+
+
+    public function cartSummary()
+    {
+        $user = Auth::user();
+        $userId = $user->id;
+        $data=$this->orderService->getorderbyCustomerid($userId);
+        return view('shop.layout.cartsummary',compact('data'));
+    }
+
+
 }

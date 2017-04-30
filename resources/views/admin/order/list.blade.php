@@ -10,7 +10,7 @@
             <thead>
             <tr>
 
-                <th>ID </th>
+                <th>ID</th>
                 <th>Order Group</th>
                 <th>Customer</th>
                 <th>Group Status</th>
@@ -23,26 +23,31 @@
             </thead>
             <tbody>
             @if(isset($data))
-            @foreach($data as $group)
-                <tr>
-                <td>{{($group['id'])}}</td>
-                <td>{{($group['order_group'])}}</td>
-                <td>{{($group['firstname'])}} {{($group['lastname'])}}</td>
-                <td>{{($group['group_status'])}}</td>
-                   <td>
-                       @foreach($group['order_items_id'] as $cartid)
-                       {{$cartid}},
-                       @endforeach
+                @foreach($data as $group)
+                    <tr>
+                        <td>{{($group['id'])}}</td>
+                        <td>{{($group['order_group'])}}</td>
+                        <td>{{($group['firstname'])}} {{($group['lastname'])}}</td>
+                        <td>{{($group['group_status'])}}
+
+
                         </td>
-                    <td>{{($group['created_at'])}}</td>
-                    <td><a href="{{route('order.detail',$group['id'])}}">
-                            <button class="btn btn-warning pad" title="View the {{$group['id']}} order"><i
-                                        class="fa fa-share"></i></button>
-                        </a></td>
+                        <td>
+                            @foreach($group['order_items_id'] as $cartid)
+                                {{$cartid}},
+                            @endforeach
+                        </td>
+                        <td>{{($group['created_at'])}}</td>
+                        <td>
+                            <a href="{{route('order.detail',$group['id'])}}">
+                                <button class="btn btn-warning pad" title="View the {{$group['id']}} order"><i
+                                            class="fa fa-share"></i></button>
+                            </a>
+                        </td>
 
-            @endforeach
+                @endforeach
 
-                @endif
+            @endif
 
             </tbody>
 

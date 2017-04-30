@@ -154,5 +154,10 @@ class OrderService
         return $this->orderRepository->getOrdergroupbyCusId($id);
     }
 
+    public function ordergroupstatusUpdate($data, $id)
+    {
+        return $this->orderRepository->orderGroupStatusUpdate($data, $id);
+    }
+
 
 }

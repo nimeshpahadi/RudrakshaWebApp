@@ -78,7 +78,7 @@
                             @endforeach
 
                             <div class="product-page-cart">
-                                {{Form::submit('Add to cart', array('class'=>'btn btn-bg col-md-2 btn-primary ','title'=>'Save to Cart'))}}
+                                {{Form::submit('Add to cart', array('class'=>'btn  col-md-2 btn-primary add_cart ','title'=>'Save to Cart'))}}
                                     {!! Form::close() !!}
 
                             </div>

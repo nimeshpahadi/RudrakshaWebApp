@@ -15,4 +15,6 @@ Route::post('/cart/group','OrderController@cartGroup' )->name('cart.group');
 
 
 
-
+// ajax call
+Route::get('/cart/summary', 'OrderController@cartSummary')->name('cartSummary');
+Route::get('/cart/count', 'OrderController@cartCount')->name('cartCount');

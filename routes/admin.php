@@ -49,3 +49,6 @@ Route::get('/order/{id}/edit', 'OrderAdminController@edit')->name('admin.order.e
 Route::put('/order/{id}/update', 'OrderAdminController@update')->name('admin.order.update');
 Route::get('/order/{groupid}/detail', 'OrderAdminController@detail')->name('order.detail');
 
+Route::put('/ordergroup/{id}/status/update', 'OrderAdminController@statusupdate')->name('admin.ordergroup.status.update');
+
+

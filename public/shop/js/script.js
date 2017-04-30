@@ -200,10 +200,6 @@ jQuery( document ).ready(function( $ ) {
         
       }
 
-  
-      
-   
-
 //smooth scroll to top
 
   var offset = 300,
@@ -230,6 +226,37 @@ jQuery( document ).ready(function( $ ) {
     );
   });
 
+// using ajax  for cart
 
 
 });
+
+
+
+
+
+
+$('.top-cart-info').hover(function () {
+   $.ajax({
+      type:'GET',
+      url:app_url+'/cart/summary',
+       success: function (data) {
+           $('.top-cart-content').empty();
+          $('.top-cart-content').append(data);
+       }
+   });
+});
+
+
+// $('.btn.col-md-2.btn-primary.add_cart ').click(function () {
+//     $.ajax({
+//         type:'GET',
+//         url:app_url+'/cart/count',
+//         success: function (count) {
+//             console.log(count);
+//             // $('.top-cart-info').empty();
+//             $('.top-cart-info-count').append(count);
+//         }
+//     });
+// });
+

@@ -2,6 +2,9 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>
+        var app_url = "{{Request::root()}}";
+    </script>
     <title>Rudrax </title>
 
     {!! Html::style('shop/css/meanmenu.css') !!}
@@ -142,7 +145,7 @@
                         </div>
 
 
-                        @include('shop.layout.cartbadge');
+                        @include('shop.layout.cartbadge')
                     </div> <!-- row -->
                 </div> <!-- col -->
             </div> <!-- row -->

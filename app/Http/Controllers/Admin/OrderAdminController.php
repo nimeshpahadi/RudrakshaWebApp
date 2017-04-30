@@ -73,4 +73,14 @@ class OrderAdminController extends Controller
         }
         return back()->withErrors('something went wrong');
     }
+
+     public function statusupdate( Request $request,$id)
+     {
+         $data=$request->all();
+
+         if ($this->orderService->ordergroupstatusUpdate($data, $id)) {
+             return redirect()->route('order.list')->withSuccess('Order Group status Updated');
+         }
+         return back()->withErrors('something went wrong');
+     }
 }

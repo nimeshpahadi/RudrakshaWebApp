@@ -1,10 +1,5 @@
 @extends('shop.layout.app')
-
-
 @section('main-content')
-
-@include('shop.layout.banner')
-
 
     @if (count($entries) > 0)
     <div class="infinite-scroll">
@@ -58,6 +53,7 @@
 
 
 @endsection
+
 
 <script type="text/javascript">
     $('ul.pagination').hide();

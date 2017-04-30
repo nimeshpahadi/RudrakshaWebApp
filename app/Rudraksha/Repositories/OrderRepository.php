@@ -181,7 +181,7 @@ class OrderRepository
     public function getallgroups()
     {
         $query = $this->orderGroup->select('order_groups.*','users.firstname','users.lastname')
-                                                ->where('group_status','processing')
+//                                                ->where('group_status','processing')
                                                 ->join('users','users.id','order_groups.customer_id')
                                                 ->get()->toArray();
         return $query;
@@ -214,6 +214,20 @@ class OrderRepository
             ->join('users','users.id','order_groups.customer_id')
             ->get()->toArray();
 
+    }
+
+    public function orderGroupStatusUpdate($data, $id)
+    {
+        try {
+            $data1= OrderGroup::find($id);
+            $data1->group_status= $data['group_status'];
+            $data1->update();
+            $this->log->info("Order Group status Updated", ['id' => $id]);
+            return true;
+        } catch (QueryException $e) {
+            $this->log->error("Order Group status Update Failed %s", ['id' => $id], [$e->getMessage()]);
+            return false;
+        }
     }
 
 
