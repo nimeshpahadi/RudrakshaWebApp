@@ -67,10 +67,9 @@ class OrderRepository
     public function getOrderItembyCustomerId($id)
     {
         $query=$this->orderItem->select('order_items.*','product_infos.name as prodname',
-            'product_prices.price as prodprice','product_images.image')
+            'product_prices.price as prodprice')
             ->join('product_infos','product_infos.id','order_items.product_id')
             ->join('product_prices','product_infos.id','product_prices.product_id')
-            ->join('product_images','product_infos.id','product_images.product_id')
             ->where('customer_id',$id)
             ->where('order_status','cart')
             ->get()->toArray();
@@ -91,13 +90,12 @@ class OrderRepository
     public function getOrderItembycartid($id)
     {
         $query=$this->orderItem->select('order_items.*','product_infos.name as prodname',
-            'product_prices.price as prodprice','product_images.image',
+            'product_prices.price as prodprice',
             'currencies.representation as cname','users.firstname as customername','users.lastname as customerlname')
             ->join('product_infos','product_infos.id','order_items.product_id')
             ->join('users','users.id','order_items.customer_id')
             ->join('currencies','currencies.id','order_items.currency_id')
             ->join('product_prices','product_infos.id','product_prices.product_id')
-            ->join('product_images','product_infos.id','product_images.product_id')
             ->where('order_items.id',$id)
             ->where('order_status','processing')
             ->get()->toArray();

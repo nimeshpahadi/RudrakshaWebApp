@@ -11,6 +11,7 @@ namespace App\Rudraksha\Services;
 
 use App\Rudraksha\Repositories\CappingRepository;
 use App\Rudraksha\Repositories\OrderRepository;
+use App\Rudraksha\Repositories\ProductRepository;
 
 class OrderService
 {
@@ -22,17 +23,22 @@ class OrderService
      * @var CappingRepository
      */
     private $cappingRepository;
+    /**
+     * @var ProductRepository
+     */
+    private $productRepository;
 
     /**
      * OrderService constructor.
      * @param OrderRepository $orderRepository
      * @param CappingRepository $cappingRepository
      */
-    public function __construct(OrderRepository $orderRepository, CappingRepository $cappingRepository)
+    public function __construct(OrderRepository $orderRepository, CappingRepository $cappingRepository,ProductRepository $productRepository)
     {
 
         $this->orderRepository = $orderRepository;
         $this->cappingRepository = $cappingRepository;
+        $this->productRepository = $productRepository;
     }
 
     public function order_itemStore($data)
@@ -50,6 +56,8 @@ class OrderService
         $data = [];
         $orders = $this->orderRepository->getOrderItembyCustomerId($id);
         foreach ($orders as $order) {
+           $image= $this->productRepository->get_productImage($order['product_id'])->toArray();
+//           dd($image[0]['image']);
             $capping = $this->cappingRepository->get_cappingid($order['capping_id']);
             $data[] = [
                 "id" => $order['id'],
@@ -63,11 +71,14 @@ class OrderService
                 "updated_at" => $order['updated_at'],
                 "prodname" => $order['prodname'],
                 "prodprice" => $order['prodprice'],
-                "image" => $order['image'],
+//                "image" => $order['image'],
+                "image" => $image[0]['image'],
+
                 "captype" => isset($capping['type']) ? $capping['type'] : '',
                 "capprice" => isset($capping['price']) ? $capping['price'] : '',
             ];
         }
+//        dd($data);
         return $data;
 
     }
@@ -118,9 +129,12 @@ class OrderService
             $detail[$data['id']]=[];
 
             foreach ($data['order_items_id'] as $orderid) {
+
                 $orders = $this->orderRepository->getOrderItembycartid($orderid);
 
                 foreach ($orders as $order) {
+                    $image= $this->productRepository->get_productImage($order['product_id'])->toArray();
+
                     $capping = $this->cappingRepository->get_cappingid($order['capping_id']);
                     $detail[$data['id']][] = [
                         "group_id" => $data['id'],
@@ -140,7 +154,7 @@ class OrderService
                         "customername" => $order['customername'],
                         "cname" => $order['cname'],
                         "customerlname" => $order['customerlname'],
-                        "image" => $order['image'],
+                        "image" => $image[0]['image'],
                         "captype" => isset($capping['type']) ? $capping['type'] : '',
                         "capprice" => isset($capping['price']) ? $capping['price'] : '',
                     ];

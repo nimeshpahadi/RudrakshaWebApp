@@ -5,22 +5,18 @@
     <section id="detail-wrapper" style="width: auto; height: auto; display: block;">
         <div class="container">
             <div class="row clearfix">
-                <div class="col-sm-12 product-page product-pop-up">
+                <div class="col-sm-12 ">
                     <div class="row">
-                        <div class="col-sm-4 col-sm-offset-1 col-xs-6 zoom-left">
+                        <div class="col-md-5">
 
                             @if(isset($product_image))
                                 @foreach($product_image as $img)
-                                    <div class="item" data-hash="zero{{$img['id']}}">
 
-                                        <img src="{{asset('storage/image/product')}}/{{$img['image']}}" height="200px"
-                                             width="200px"
-                                             alt="Cool green dress with red bell" class="img-responsive">
-                                        <img src="{{asset('storage/image/product')}}/{{$img['image']}}"
-                                             class="zoomImg"
-                                             style="position: absolute; top: -247.909px; left: -269.182px; opacity: 0; width: 600px; height: 800px; border: medium none;">
+                                        <img src="{{asset('storage/image/product')}}/{{$img['image']}}" height="400px"
+                                             width="400px"
+                                             alt="Cool green dress with red bell" >
+                                        <?php  break; ?>
 
-                                    </div>
                                 @endforeach
 
                             @endif
