@@ -17,10 +17,7 @@
 
                 <th>Name</th>
                 <th>Code</th>
-                <th>Short Description</th>
-                <th>Information</th>
                 <th>Face No.</th>
-                <th>Mantra</th>
                 <th>Status</th>
                 <th>Remarks</th>
 
@@ -34,10 +31,8 @@
 
                         <td>{{$row->name }}</td>
                         <td>{{$row->code }}</td>
-                        <td>{{$row->short_description }}</td>
-                        <td class="category-info">{{$row->information }}</td>
                         <td>{{$row->face_no }}</td>
-                        <td>{{$row->mantra }}</td>
+
                         <td>@if($row->status==1)Active @else Inactive @endif</td>
                         <td class="view_detail">
 
