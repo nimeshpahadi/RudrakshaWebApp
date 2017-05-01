@@ -50,6 +50,7 @@
                                 <div class="row">
                                     <ul class="list-unstyle list-inline right-part pull-right">
                                             <!-- Authentication Links -->
+                                        @include('shop.layout.currency')
                                             @if (Auth::guest())
                                                 <li><a href="{{ route('login') }}">Login</a></li>
                                                 <li><a href="{{ route('register') }}">Register</a></li>

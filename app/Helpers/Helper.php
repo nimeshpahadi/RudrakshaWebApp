@@ -31,6 +31,7 @@ class Helper
         return 0;
     }
 
+
     public static function summation()
     {
         if (Auth::user()) {
@@ -52,5 +53,11 @@ class Helper
             return $y;
         }
         return 0;
+    }
+    public static function currency()
+    {
+        $currency = \App\Rudraksha\Entities\Currency::get();
+        return $currency;
+
     }
 }

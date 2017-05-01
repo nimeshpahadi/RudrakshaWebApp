@@ -11,16 +11,15 @@
                     {!! Form::model($user,array('route'=>['changepassword',$user->id],'method'=>'PATCH' ))!!}
 
 
-                        <div class="group frg_psw">
-
-                            <input id="oldpassword" type="password"  name="oldpassword" style="width: 97.5%;" required>
+                    <div class="group col-md-offset-3">
+                            <input id="oldpassword" type="password"  name="oldpassword"  required>
                             <span class="highlight"></span>
                             <span class="bar"></span>
                             <label for="oldpassword">Current Password </label>
                         </div>
 
 
-                    <div class="group">
+                    <div class="group col-md-offset-3">
                     <input id="password" type="password"  name="password" required>
                         <span class="highlight"></span>
                         <span class="bar"></span>
@@ -28,7 +27,7 @@
                     </div>
 
 
-                    <div class="group">
+                    <div class="group col-md-offset-3">
                         <input id="password-confirm" type="password"
                                name="password_confirmation" required>
                         <span class="highlight"></span>
@@ -37,8 +36,8 @@
                     <label for="password-confirm" >Confirm Password</label>
                     </div>
 
-                    {{Form::submit('Save new password', array('class'=>'btn btn-primary col-sm-2 ','title'=>'Save the password change'))}}
-                    <a type="button" class="btn btn-warning " href="/profile">Cancel</a>
+                    {{Form::submit('Save new password', array('class'=>'btn btn-primary col-sm-2 col-md-offset-3','title'=>'Save the password change'))}}
+                    <a type="button" class="btn btn-warning col-md-offset-3" href="/profile">Cancel</a>
                     {!! Form::close() !!}
                 </div> <!-- col-sm-12 -->
                 @endif
