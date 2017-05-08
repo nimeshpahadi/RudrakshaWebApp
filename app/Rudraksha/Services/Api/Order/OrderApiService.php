@@ -78,9 +78,11 @@ class OrderApiService
             $productInfo = $this->orderApiRepository->getProductInfo($order->product_id);
             $productPrice = $this->orderApiRepository->getProductPrice($order->product_id);
             $productImage = $this->orderApiRepository->getProductImage($order->product_id);
+            $image = ($productImage==null)?"":$baseUrl.'/storage/image/product/'.$productImage->image;
+
             $capping = $this->cappingApiRepository->getCappingId($order->capping_id);
 
-            $data[] = [
+            $data['cart'][] = [
                 "id" => $order->id,
                 "product_id" => $productInfo->id,
                 "product_name" => $productInfo->name,
@@ -91,7 +93,7 @@ class OrderApiService
                 "quantity" => $order->quantity,
                 "capping_type" => isset($capping->type)?$capping->type:'',
                 "capping_price" => isset($capping->price)?$capping->price:'',
-                "image" => $baseUrl.'/storage/image/product/'.$productImage->image,
+                "image" => $image,
             ];
         }
         return $data;
