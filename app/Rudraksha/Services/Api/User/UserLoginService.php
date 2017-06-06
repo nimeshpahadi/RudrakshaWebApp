@@ -49,6 +49,21 @@ class UserLoginService
      */
     public function serviceUserDetails($id)
     {
-        return $this->loginRepository->getUserDetails($id);
+        $userData =  $this->loginRepository->getUserDetails($id);
+
+        $baseUrl = url('/');
+
+        $image = $baseUrl.'/storage/users/'.$userData->image;
+
+        $userDetails = [
+            "id" => $userData->id,
+            "firstname" => $userData->firstname,
+            "lastname" => $userData->lastname,
+            "email" => $userData->email,
+            "contact" => $userData->contact,
+            "alternative_contact" => $userData->alternative_contact,
+            "image" => isset($userData->image)?$image:""
+        ];
+        return $userDetails;
     }
 }

@@ -9,10 +9,12 @@
 namespace App\Rudraksha\Repositories\Api\Order;
 
 
+use App\Rudraksha\Entities\OrderGroup;
 use App\Rudraksha\Entities\OrderItem;
 use App\Rudraksha\Entities\ProductImage;
 use App\Rudraksha\Entities\ProductInfo;
 use App\Rudraksha\Entities\ProductPrice;
+use App\User;
 use Illuminate\Contracts\Logging\Log;
 use Illuminate\Database\QueryException;
 
@@ -38,22 +40,31 @@ class OrderApiRepository
      * @var ProductImage
      */
     private $productImage;
+    /**
+     * @var OrderGroup
+     */
+    private $orderGroup;
 
     /**
      * OrderApiRepository constructor.
      * @param OrderItem $orderItem
      * @param Log $log
      * @param ProductInfo $productInfo
+     * @param ProductPrice $productPrice
+     * @param ProductImage $productImage
+     * @param OrderGroup $orderGroup
      */
     public function __construct(OrderItem $orderItem, Log $log,
                                 ProductInfo $productInfo,
-                                ProductPrice $productPrice, ProductImage $productImage)
+                                ProductPrice $productPrice,
+                                ProductImage $productImage, OrderGroup $orderGroup)
     {
         $this->orderItem = $orderItem;
         $this->log = $log;
         $this->productInfo = $productInfo;
         $this->productPrice = $productPrice;
         $this->productImage = $productImage;
+        $this->orderGroup = $orderGroup;
     }
 
     /**
@@ -80,9 +91,6 @@ class OrderApiRepository
     public function getOrderItemByCustomerId($id)
     {
         $query = $this->orderItem->select('order_items.*')
-//            ->join('product_infos','product_infos.id','order_items.product_id')
-//            ->join('product_prices','product_infos.id','product_prices.product_id')
-//            ->join('product_images','product_infos.id','product_images.product_id')
             ->where('customer_id',$id)
             ->where('order_status','cart')
             ->get();
@@ -184,5 +192,27 @@ class OrderApiRepository
         return $this->productImage->select('*')
                 ->where('id', $product_id)
                 ->first();
+    }
+
+    public function getOrderGroupByCusId($id)
+    {
+        return $this->orderGroup->select('*')
+                ->where('customer_id', $id)
+                ->get();
+    }
+
+    public function customerOrderHistoryDetails($id)
+    {
+        $query = $this->orderGroup->select('order_items_id')
+                    ->where('id', $id)
+                    ->first();
+        return $query;
+    }
+
+    public function getOrderItemId($detail)
+    {
+        return $this->orderItem->select('quantity', 'order_status')
+                        ->where('id', $detail)
+                        ->first();
     }
 }

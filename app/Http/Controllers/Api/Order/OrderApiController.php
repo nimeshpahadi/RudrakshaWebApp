@@ -105,4 +105,15 @@ class OrderApiController extends Controller
 
         return response()->json($response);
     }
+
+    public function customerOrderHistory($id)
+    {
+        $response = $this->orderApiService->customerOrderHistory($id);
+        return response()->json($response);
+    }
+
+    public function customerOrderHistoryDetails($id) {
+        $response = $this->orderApiService->customerOrderHistoryDetails($id);
+        return response()->json($response);
+    }
 }
