@@ -9,12 +9,10 @@
 namespace App\Rudraksha\Repositories\Api\Order;
 
 
-use App\Rudraksha\Entities\OrderGroup;
 use App\Rudraksha\Entities\OrderItem;
 use App\Rudraksha\Entities\ProductImage;
 use App\Rudraksha\Entities\ProductInfo;
 use App\Rudraksha\Entities\ProductPrice;
-use App\User;
 use Illuminate\Contracts\Logging\Log;
 use Illuminate\Database\QueryException;
 
@@ -40,10 +38,6 @@ class OrderApiRepository
      * @var ProductImage
      */
     private $productImage;
-    /**
-     * @var OrderGroup
-     */
-    private $orderGroup;
 
     /**
      * OrderApiRepository constructor.
@@ -52,19 +46,17 @@ class OrderApiRepository
      * @param ProductInfo $productInfo
      * @param ProductPrice $productPrice
      * @param ProductImage $productImage
-     * @param OrderGroup $orderGroup
      */
     public function __construct(OrderItem $orderItem, Log $log,
                                 ProductInfo $productInfo,
                                 ProductPrice $productPrice,
-                                ProductImage $productImage, OrderGroup $orderGroup)
+                                ProductImage $productImage)
     {
         $this->orderItem = $orderItem;
         $this->log = $log;
         $this->productInfo = $productInfo;
         $this->productPrice = $productPrice;
         $this->productImage = $productImage;
-        $this->orderGroup = $orderGroup;
     }
 
     /**
@@ -192,27 +184,5 @@ class OrderApiRepository
         return $this->productImage->select('*')
                 ->where('id', $product_id)
                 ->first();
-    }
-
-    public function getOrderGroupByCusId($id)
-    {
-        return $this->orderGroup->select('*')
-                ->where('customer_id', $id)
-                ->get();
-    }
-
-    public function customerOrderHistoryDetails($id)
-    {
-        $query = $this->orderGroup->select('order_items_id')
-                    ->where('id', $id)
-                    ->first();
-        return $query;
-    }
-
-    public function getOrderItemId($detail)
-    {
-        return $this->orderItem->select('quantity', 'order_status')
-                        ->where('id', $detail)
-                        ->first();
     }
 }

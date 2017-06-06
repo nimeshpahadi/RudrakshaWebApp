@@ -53,4 +53,39 @@ class OrderGroupApiService
         ];
         return $response;
     }
+
+    /**
+     * @param $id
+     * @return array
+     */
+    public function customerOrderHistory($id)
+    {
+        $orderHistory = $this->orderGroupApiRepository->getOrderGroupByCusId($id);
+        $customerOrderHistory = [];
+
+        foreach ($orderHistory as $order) {
+            $customerOrderHistory['order_history'][] = [
+                "id" => $order->id,
+                "order_items_id" => $order->order_items_id,
+                "order_group" => $order->order_group,
+                "group_status" => $order->group_status,
+                "created_at" => $order->created_at,
+            ];
+        }
+        return $customerOrderHistory;
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function customerOrderHistoryDetails($id)
+    {
+        $orderHistoryDetails = $this->orderGroupApiRepository->customerOrderHistoryDetails($id);
+        $orderDetails = json_decode($orderHistoryDetails->order_items_id);
+        foreach ($orderDetails as $detail) {
+            $orderDetailsData["order_history_details"][] = $this->orderGroupApiRepository->getOrderItemId($detail);
+        }
+        return $orderDetailsData;
+    }
 }

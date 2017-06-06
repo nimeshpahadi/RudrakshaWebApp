@@ -53,5 +53,5 @@ Route::delete('{customer_id}/cart/deleteall', 'Order\OrderApiController@deleteAl
 Route::post('/cart/group/create','Order\OrderGroupApiController@create');
 
 // customer order history
-Route::get('/order_history/{customer_id}', 'Order\OrderApiController@customerOrderHistory');
-Route::get('/order_history_details/{group_id}', 'Order\OrderApiController@customerOrderHistoryDetails');
+Route::get('/order_history/{customer_id}', 'Order\OrderGroupApiController@customerOrderHistory');
+Route::get('/order_history_details/{group_id}', 'Order\OrderGroupApiController@customerOrderHistoryDetails');

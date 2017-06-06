@@ -24,16 +24,23 @@ class OrderGroupApiRepository
      * @var Log
      */
     private $log;
+    /**
+     * @var OrderItem
+     */
+    private $orderItem;
 
     /**
      * OrderGroupApiRepository constructor.
      * @param OrderGroup $orderGroup
      * @param Log $log
+     * @param OrderItem $orderItem
      */
-    public function __construct(OrderGroup $orderGroup, Log $log)
+    public function __construct(OrderGroup $orderGroup,
+                                Log $log, OrderItem $orderItem)
     {
         $this->orderGroup = $orderGroup;
         $this->log = $log;
+        $this->orderItem = $orderItem;
     }
 
     /**
@@ -68,5 +75,39 @@ class OrderGroupApiRepository
             $this->log->error("Order Group Not Placed ", [$e->getMessage()]);
             return false;
         }
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function getOrderGroupByCusId($id)
+    {
+        return $this->orderGroup->select('*')
+            ->where('customer_id', $id)
+            ->get();
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function customerOrderHistoryDetails($id)
+    {
+        $query = $this->orderGroup->select('order_items_id')
+            ->where('id', $id)
+            ->first();
+        return $query;
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function getOrderItemId($id)
+    {
+        return $this->orderItem->select('quantity', 'order_status')
+            ->where('id', $id)
+            ->first();
     }
 }

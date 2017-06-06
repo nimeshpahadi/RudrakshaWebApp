@@ -13,7 +13,6 @@ use App\Http\Controllers\Controller;
 use App\Rudraksha\ApiValidation\OrderValidation;
 use App\Rudraksha\Services\Api\Order\OrderApiService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class OrderApiController extends Controller
 {
@@ -52,7 +51,6 @@ class OrderApiController extends Controller
         }
 
         $response = $this->orderApiService->create($data);
-
         return response()->json($response);
     }
 
@@ -80,7 +78,6 @@ class OrderApiController extends Controller
         }
 
         $response = $this->orderApiService->edit($data, $id);
-
         return response()->json($response);
     }
 
@@ -91,7 +88,6 @@ class OrderApiController extends Controller
     public function destroy($id)
     {
         $response = $this->orderApiService->destroy($id);
-
         return response()->json($response);
     }
 
@@ -102,18 +98,6 @@ class OrderApiController extends Controller
     public function deleteAll($id)
     {
         $response = $this->orderApiService->deleteAll($id);
-
-        return response()->json($response);
-    }
-
-    public function customerOrderHistory($id)
-    {
-        $response = $this->orderApiService->customerOrderHistory($id);
-        return response()->json($response);
-    }
-
-    public function customerOrderHistoryDetails($id) {
-        $response = $this->orderApiService->customerOrderHistoryDetails($id);
         return response()->json($response);
     }
 }

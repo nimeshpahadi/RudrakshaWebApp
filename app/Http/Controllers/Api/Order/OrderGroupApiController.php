@@ -54,4 +54,23 @@ class OrderGroupApiController extends Controller
 
         return response()->json($response);
     }
+
+    /**
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function customerOrderHistory($id)
+    {
+        $response = $this->orderGroupApiService->customerOrderHistory($id);
+        return response()->json($response);
+    }
+
+    /**
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function customerOrderHistoryDetails($id) {
+        $response = $this->orderGroupApiService->customerOrderHistoryDetails($id);
+        return response()->json($response);
+    }
 }
