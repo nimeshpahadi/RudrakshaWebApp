@@ -35,12 +35,13 @@ class UserLoginService
     public function userDetailsByEmail($request)
     {
         $user = $this->loginRepository->getUserDetailsByEmail($request);
-
-        if (!$user->confirmed) {
-            return false;
+        if ($user!=null) {
+            if (!$user->confirmed) {
+                return false;
+            }
+            return true;
         }
-
-        return $user;
+        return "false";
     }
 
     /**
@@ -53,7 +54,7 @@ class UserLoginService
 
         $baseUrl = url('/');
 
-        $image = $baseUrl.'/storage/users/'.$userData->image;
+        $image = $baseUrl.'/storage/image/users/'.$userData->image;
 
         $userDetails = [
             "id" => $userData->id,

@@ -64,7 +64,7 @@ class UserRegisterService
     {
         $imageName = $id . '_' . rand(0, 10000) . '.' . $request['image']->getClientOriginalExtension();
 
-        $destinationPath = storage_path('app/public/users');
+        $destinationPath = storage_path('app/public/image/users');
 
         $request['image']->move($destinationPath, $imageName);
 

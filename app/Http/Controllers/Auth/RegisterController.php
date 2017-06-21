@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Rudraksha\Services\CustomerService;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -29,21 +28,15 @@ class RegisterController extends Controller
      * @var string
      */
     protected $redirectTo = '/';
-    /**
-     * @var CustomerService
-     */
-    private $customerService;
 
     /**
      * Create a new controller instance.
-     *
-     * @return void
      */
-    public function __construct( CustomerService $customerService)
+    public function __construct()
     {
         $this->middleware('guest');
-        $this->customerService = $customerService;
     }
+
     /**
      * Get a validator for an incoming registration request.
      *
@@ -61,6 +54,7 @@ class RegisterController extends Controller
             'alternative_contact' => 'integer',
         ]);
     }
+
     /**
      * Create a new user instance after a valid registration.
      *
@@ -69,7 +63,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-
         return User::create([
             'firstname' => $data['firstname'],
             'lastname' => $data['lastname'],
@@ -112,7 +105,6 @@ class RegisterController extends Controller
      * @param $token
      * @return \Illuminate\Http\RedirectResponse
      */
-
     public function confirmation($token)
     {
         $user = User::where('token', $token)->first();
@@ -126,8 +118,4 @@ class RegisterController extends Controller
 
         return redirect(route('login'))->with('warning', 'Something went wrong.');
     }
-
-
-
-
 }
